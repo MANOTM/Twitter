@@ -4,6 +4,7 @@ import { useStateContext } from '../../../contexts/ContextProvider';
 
 function FooterAuth() {
     const { setAuthModal } = useStateContext();
+    const { setRegisterModal } = useStateContext();
 
     return (
         <div className="modal">
@@ -20,7 +21,7 @@ function FooterAuth() {
                     </div>
                     <div className="modal__buttons">
                         <button onClick={() => setAuthModal(true)} className='modal__button'>Log in</button>
-                        <button>Sign up</button>
+                        <button onClick={() => setRegisterModal(true) } >Sign up</button>
                     </div>
                 </div>
             </div>

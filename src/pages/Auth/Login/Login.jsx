@@ -16,20 +16,20 @@ export default function Login() {
     const HandleSubmit = e => {
         e.preventDefault()
         const url =  {email,password}
-        const { data, error, loading } = useAuth(url)
+        // const { data, error, loading } = useAuth(url)
         // loading && console.log(data);
         // console.log(data);
-        // axios.post('http://127.0.0.1:8000/api/login', {password,email})
-        // .then(res => {
-        //     if(res.status === 200) {
-        //         setUser(res.data.data.user)
-        //         console.log(User);
-        //         setAuth(true)
-        //         navigate('/')
-        //     }
-        // }).catch(Err => {
-        //     console.log(Err);
-        // })
+        axios.post('http://127.0.0.1:8000/api/login', {password,email})
+        .then(res => {
+            if(res.status === 200) {
+                setUser(res.data.data.user)
+                // console.log(User);
+                setAuth(true)
+               navigate('/')
+            }
+        }).catch(Err => {
+            console.log(Err);
+        })
     }
 
     return (
