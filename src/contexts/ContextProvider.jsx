@@ -14,6 +14,7 @@ export const ContextProvider = ({ children }) => {
     const [Toast, setToast] = useState({ status: false, content: '' })
     const [steps, setSteps] = useState(true)
     const [AuthModal, setAuthModal] = useState(false)
+    const [RegisterModal, setRegisterModal] = useState(false)
     const [CardHover, setCardHover] = useState(false)
 
     return (

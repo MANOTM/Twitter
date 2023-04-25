@@ -23,9 +23,14 @@ command : for install are packages with one command ==> npm i <==
     => npm i react-router-dom
     => npm i react-icon
     => npm i axios
+    => npm i js-cookie
 
 ila ila ila ma5dmooch ghyrhaaa la7fdek sir dir lik chi حلاق
 
 
-for support call @Wassim, @Idrisi, @sadqi
+for support call @Wassim, @Idrisi, @sadqi, harrak
+
+
+
+====> for notification use => CallToast('hello')
 
