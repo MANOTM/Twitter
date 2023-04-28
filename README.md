@@ -4,7 +4,7 @@
   </a>
 </p>
 
-### this projet is sensitive if u don't say bismillah :point_up: it won't work
+<h4 align="center"> this projet is sensitive if u don't say bismillah :point_up: it won't work </h4>
 
 
 ### step 1 => Clone project with command: 
