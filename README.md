@@ -1,8 +1,11 @@
 <p align="center">
-  <a href="https://skillicons.dev">
+  <a href="#">
     <img src="https://skillicons.dev/icons?i=atom" />
   </a>
 </p>
+
+# this projet is sensitive if u don't say bismillah :point_up: it won't work
+
 
 ### step 1 => Clone project with command: 
     git clone "https://github.com/MANOTM/Twitter.git"
@@ -16,7 +19,7 @@
 ### step 4 => start server with command :tada: : 
     npm run dev
 
-### step 5 => close the laptop and go to spleep:
+### step 5 => close the laptop and go to spleep :shipit: :
     npm close laptop and sleep
 
 
@@ -40,4 +43,4 @@ for support call @elonMask
 
 
 ====> for notification use => CallToast('hello')
-====> and my heart it's for u ❤️
+====> and my heart it's for u :smiling_face_with_three_hearts: :cupid:
