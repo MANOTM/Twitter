@@ -7,7 +7,7 @@
 ### step 3 => Install node_module with command: 
     npm i
 
-### step 4 => start server with command: 
+### step 4 => start server with command :tada: : 
     npm run dev
 
 ### step 5 => close the laptop and go to spleep:
