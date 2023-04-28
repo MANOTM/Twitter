@@ -1,0 +1,33 @@
+.toast {
+    position: fixed;
+    left: 50%;
+    padding: 14px 23px;
+    bottom: 30px;
+    transform: translateX(-50%);
+    background-color: #1d9bf0;
+    z-index: 99;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    opacity: 0;
+    pointer-events: none;
+}
+@keyframes toast {
+    20%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.toast.showToast {
+    animation: toast 1s linear forwards;
+    -webkit-animation: toast .4s linear forwards;
+    pointer-events: all;
+}
+
+.toast__content{
+    font-weight: 400;
+    color: #fff;
+    font-size: 15px;
+}

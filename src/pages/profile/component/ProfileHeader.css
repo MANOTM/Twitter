@@ -341,7 +341,7 @@
     color: rgb(95, 95, 95);
   }
   .retweet:hover {
-    background: #dfffe7;
+    /* background: #dfffe7; */
     color: #00cc36;
   }
   .like {

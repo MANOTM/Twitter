@@ -101,6 +101,12 @@
 .post__footer li.Like__icon:hover svg{
     fill: #F91880;  
 }
+.post__footer li.Like__icon.linkedOne svg{
+    fill: #F91880;  
+}
+.post__footer li.Like__icon.linkedOne{
+    color: #F91880;  
+}
 .post__footer li.Like__icon:hover span{
     background-color: #f9188131;  
 }
@@ -128,7 +134,16 @@
 .post__option svg {
     fill: #71767B;
 }
+.overlay__option {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
 .post__option {
+    position: relative;
     cursor: pointer;
     padding-top: 1px;
     width: 30px;

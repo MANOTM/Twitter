@@ -4,6 +4,7 @@ import { VerifyIcon, CommentIcon, RetweetIcon, LikeIcon, ShareIcon } from '../Ic
 import ThreePoints from '../Icons/ThreePoints';
 import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
+import OptionCard from '../OptionCard/OptionCard';
 
 export default function Post({
     profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
@@ -19,6 +20,13 @@ export default function Post({
             setCardHover(false) 
             setisIn(false) 
     }
+    const showOption = () => {
+        setOptionHover(true)
+    }
+    const hiddeOption = () => {
+        setOptionHover(false)
+    } 
+    const [OptionHover, setOptionHover] = useState(false)
     return (
         <div className="father">
             {isIn && CardHover ? <HoverCard isIn={isIn} setisIn={setisIn}/> :''}
@@ -36,7 +44,11 @@ export default function Post({
                             </small>
                         </h3>
                         <div className="post__option">
-                            <ThreePoints />
+                            <div onClick={showOption}><ThreePoints /></div>
+                            { OptionHover && <>
+                                <div onClick={hiddeOption} className="overlay__option"></div>
+                                <OptionCard />
+                            </> }
                         </div>
                     </div>
                     <div className="post__description">
@@ -49,14 +61,14 @@ export default function Post({
                                 <CommentIcon />
                             </span> {'  '} 155
                         </li>
-                        <li className='Reweet__icon retweet'>
+                        <li className={`Reweet__icon ${retweeted && 'reetweet'}`}>
                             <span>
                                 <RetweetIcon />
                             </span> {'  '} 15
                         </li>
-                        <li className='Like__icon liked'>
+                        <li className={`Like__icon ${liked && 'linkedOne'}`}>
                             <span>
-                                <LikeIcon />
+                                <LikeIcon liked={liked} />
                             </span> {'  '} 15
                         </li>
                         <li>

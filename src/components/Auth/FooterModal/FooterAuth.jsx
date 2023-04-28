@@ -1,9 +1,9 @@
 import React from 'react';
 import './FooterAuth.css';
-import { useStateContext } from '../../../contexts/ContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 function FooterAuth() {
-    const { setAuthModal } = useStateContext();
+    const navigate = useNavigate()
 
     return (
         <div className="modal">
@@ -19,8 +19,8 @@ function FooterAuth() {
                         </p>
                     </div>
                     <div className="modal__buttons">
-                        <button onClick={() => setAuthModal(true)} className='modal__button'>Log in</button>
-                        <button>Sign up</button>
+                        <button onClick={() => navigate('/login')} className='modal__button'>Log in</button>
+                        <button onClick={() => navigate('/register')}>Sign up</button>
                     </div>
                 </div>
             </div>

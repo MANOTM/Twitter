@@ -8,7 +8,6 @@ import Loading from '../../components/Loading/Loading'
 export default function Bookmarks() {
   const {error , data ,loading} =useFetch('https://jsonplaceholder.typicode.com/users')
   
-
   return (
     <Main>
       <div className="bookmarks"> 

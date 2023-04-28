@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import Gallery from "./icons/Gallery";
 import "./HeadTweet.css";
 import * as icons from './IconsImport'; 
 
 export default function HeadTweet() {
     const [active, setActive] = useState(true);
+    const [tweetbtn, setTweetbtn] = useState(false);
     const handleChange = () => setActive(!active); 
+    const handleTweetbtn = e => {
+        if(e.target.value.trim() == ''){
+            return setTweetbtn(false)
+        }
+        setTweetbtn(true)
+    }
     return (
         <header className="header__section">
             <div className="head_name_page">
@@ -13,10 +19,10 @@ export default function HeadTweet() {
                     <h3>Accueil</h3>
                 </div>
                 <div className="header__links">
-                    <div onClick={handleChange} className={active?"active":''}>
+                    <div onClick={handleChange} className={active ? "active" : ''}>
                     <a href="#">Pour vous</a>
                     </div>
-                    <div onClick={handleChange} className={!active?"active":''}>
+                    <div onClick={handleChange} className={!active ? "active" : ''}>
                     <a href="#">Abonnements</a>
                     </div>
             </div>
@@ -29,7 +35,7 @@ export default function HeadTweet() {
                     alt="profile_avatar"
                     />
                 </div>
-                <input type="text" placeholder="Quoi de neuf ?" />
+                <input type="text" onChange={handleTweetbtn} placeholder="What's new ?" />
             </div>
             <div className="header__buttons">
             <ul>
@@ -38,7 +44,7 @@ export default function HeadTweet() {
                 <li> <icons.Emojis /> </li>
                 <li> <icons.Map /> </li>
             </ul>
-            <button>Tweeter</button>
+            <button className={tweetbtn ? 'active__click__btn' : ''}>Tweeter</button>
             </div>
         </div>
         </header>

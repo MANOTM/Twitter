@@ -1,0 +1,56 @@
+.option__card {
+    position: absolute;
+    min-width: 322px;
+    width: fit-content;
+    overflow: hidden;
+    z-index: 11;
+    right: 0;
+    background-color: #000;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    padding: 12px 15px;
+    animation: option 1s linear forwards;
+    -webkit-animation: option .16s linear forwards;
+}
+
+@keyframes option {
+    0%{
+        height: 0;
+    }
+    25%{
+        height: 70px;
+    }
+    50%{
+        height: 140px;
+    }
+    75%{
+        height: 210px;
+    }
+    100%{
+        height: auto;
+    }
+}
+
+.option__card ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.option__card ul li {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+
+.option__card ul li .option__icon svg{
+    fill: #fff;
+    width: 19px;
+    padding-top: 0;
+}
+.option__card ul li .option__title{
+    font-size: 16px;
+    margin-left: 15px;
+}
+

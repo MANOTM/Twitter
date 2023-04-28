@@ -7,14 +7,10 @@ import AsideTrends from '../../components/Trends/AsideTrends'
 
 export default function Bookmarks() {
   return (
-    <Countainer>
-      <Sidebar/>
         <Main> 
           <div className='text-blue'>
               {/* Ur Code here  */}
           </div>
         </Main>
-      <AsideTrends/>
-    </Countainer>
   )
 }

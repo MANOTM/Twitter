@@ -1,0 +1,91 @@
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+    background-color: rgba(91, 112, 131, 0.4);
+    display: none;
+}
+
+.overlay.isActive {
+    display: block;
+}
+
+.login__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 650px;
+    border-radius: 19px;
+    background-color: black;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 11px 11px 19px 11px;
+}
+
+.empty__header__modal {
+    width: 30px;
+    height: 30px;
+}
+
+.modal__logo {
+    justify-content: center;
+    padding-right: 12px;
+}
+
+.modal__close {
+    /* position: absolute; */
+    top: 13px;
+    left: 13px;
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    align-items: center;
+    transition: all .2s ease;
+}
+.modal__close,
+.modal__body,
+.modal__logo {
+    display: flex;
+    justify-content: center;
+}
+
+.modal__close:hover {
+    background-color: #ffffff45;
+}
+.modal__close svg {
+    height: 1.2rem;
+    cursor: pointer;
+}
+
+.modal__body {
+    /* style modal */
+    height: 100%;
+}
+
+@media (max-width: 1500px) {
+    .login__content{
+        width: 700px;
+        height: 750px;
+    }
+}
+@media (max-width: 900px) {
+    .login__content{
+        width: 628px;
+        height: 622px;
+    }
+}
+@media (max-width: 700px) {
+    .login__content{
+        width: 505px;
+        height: 540px;
+    }
+}

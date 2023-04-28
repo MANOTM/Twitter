@@ -6,6 +6,10 @@ import Notifications from "./pages/notification/Notifications";
 import Messages from "./pages/messages/Messges";
 import Bookmarks from "./pages/bookmarks/Bookmarks";
 import Profile from "./pages/profile/Profile";
+import { AuthRoute, GuestRoute } from "./layouts/AuthLayout";
+import { LoginComponent, RegisterComponent } from "./assets/Helper/MultiComponents";
+import NotFound from "./pages/NotFound/NotFound";
+
 
 const router = createBrowserRouter([
     {
@@ -13,7 +17,7 @@ const router = createBrowserRouter([
         children : [
             {
                 path : '/',
-                element : <Home />
+                element : <Home />,
             },
             {
                 path : '/explore',
@@ -21,23 +25,31 @@ const router = createBrowserRouter([
             },
             {
                 path : '/notifications',
-                element : <Notifications />
+                element : <AuthRoute element={Notifications} />,
             },
             {
                 path : '/messages',
-                element : <Messages />
+                element : <AuthRoute element={Messages} />,
             },
             {
                 path : '/bookmarks',
-                element : <Bookmarks />
+                element : <AuthRoute element={Bookmarks} />,
             },
             {
                 path : '/profile',
-                element : <Profile />
+                element : <AuthRoute element={Profile} />,
             },
             {
                 path : '/login',
-                element : <Home />
+                element : <GuestRoute element={LoginComponent} />
+            },
+            {
+                path : '/register',
+                element : <GuestRoute element={RegisterComponent} />
+            },
+            {
+                path : '/*',
+                element : <NotFound />
             }
         ]
     }

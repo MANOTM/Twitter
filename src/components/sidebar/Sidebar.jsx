@@ -2,10 +2,10 @@ import './sidebar.css'
 import SidebarItem from './SidebarItem'
 import * as icons from './IconsImport'
 import { Link } from 'react-router-dom'
-import { useStateContext } from '../../contexts/ContextProvider'
+import { useSelector } from 'react-redux'
 
 export default function Sidebar() {
-  const { Auth } = useStateContext()
+  const { loggedIn:Auth } = useSelector(state => state.Auth)
   return (
     <>
       <div className="sidebar">

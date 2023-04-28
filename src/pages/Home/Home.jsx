@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Main from '../../layouts/Main'
 import HeadTweet from "./HeadTweet";
 import Post from '../../components/posts/Post'
-import HoverCard from '../../components/HoverCard/HoverCard';
-import { useStateContext } from '../../contexts/ContextProvider';
+import { useSelector } from 'react-redux';
 
 export default function Home() { 
+    const { user} = useSelector(state => state.Auth)
+    console.log(user);
     return (
         <>
             <Main>
@@ -14,7 +15,9 @@ export default function Home() {
                 <Post
                     usename={"ossama banzima"}
                     tagname={"@ossamabanzima"}
-                    verify={true} 
+                    verify={true}
+                    liked={true}
+                    retweeted={false}
                     title={"only boys can bet me in my terrantory"}
                     tweet={
                     "https://i.pinimg.com/564x/fb/a3/47/fba34776c01f241f3481d392fd296aaf.jpg"
@@ -23,13 +26,16 @@ export default function Home() {
                 <Post
                     usename={"ossamaBonif"}
                     tagname={"@ossamabanzima"}
-                    verify={true} 
+                    verify={true}
+                    liked={false}
+                    retweeted={true}
                     title={"only boys can bet me in my terrantory"}
                 />
                 <Post
                     usename={"ossama banzima"}
                     tagname={"@ossamabanzima"}
                     verify={true} 
+                    liked={true}
                     title={"only boys can bet me in my terrantory"}
                     tweet={'https://i.pinimg.com/564x/fc/40/df/fc40dfa22da42e25ce506281c4381a39.jpg'}
                 />
