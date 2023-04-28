@@ -30,7 +30,8 @@ export function RegisterComponent() {
 export default function ContainerContent() {
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     // const path = useLocation().pathname != '/explore' && useLocation().pathname != '/profile';
-    const path = useLocation().pathname != '/message';
+    const path = useLocation().pathname == '/explore';
+    console.log(path);
     if(Auth){
         return path ? <WhoToFollow /> : <AsideTrends />
     }

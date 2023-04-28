@@ -75,9 +75,7 @@ a {
 }
 
 body {
-    background-color: var(--black);
-    max-height: 100vh;
-    height: 100vh;
+    background-color: var(--black); 
 }
 
 html {
