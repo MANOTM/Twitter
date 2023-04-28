@@ -17,15 +17,15 @@
 
 command : for install are packages with one command `npm i` 
 
-    if didn't work use this command `npm i react-router-dom react-icon axios`
+if didn't work use this command `npm i react-router-dom react-icon axios`   
 
-    ilaaaaaa ma5dmtoch dir kola w7da rasha o hnina
-
-    => npm i react-router-dom
-    => npm i react-icon
-    => npm i axios
-    => npm i js-cookie
-
+ilaaaaaa ma5dmtoch dir kola w7da rasha o hnina
+```
+npm i react-router-dom
+npm i react-icon
+npm i axios
+npm i js-cookie
+```
 ila ila ila ma5dmooch go back to step 5 or sir dir lik chi حلاق 
 
 
