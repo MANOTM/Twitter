@@ -24,7 +24,7 @@
 
 
 
-command : for install are packages with one command `npm i` 
+command : for install all packages with one command `npm i` 
 
 if didn't work use this command `npm i react-router-dom react-icon axios`   
 
@@ -35,7 +35,7 @@ npm i react-icon
 npm i axios
 npm i js-cookie
 ```
-ila ila ila ma5dmooch go back to step 5 or sir dir lik chi حلاق 
+ila ila ila ma5dmooch go back to `step 5` or sir dir lik chi حلاق 
 
 
 for support call @elonMask
