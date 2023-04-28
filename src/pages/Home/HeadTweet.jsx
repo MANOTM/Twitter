@@ -13,10 +13,10 @@ export default function HeadTweet() {
                     <h3>Accueil</h3>
                 </div>
                 <div className="header__links">
-                    <div onClick={handleChange} className={active && "active"}>
+                    <div onClick={handleChange} className={active?"active":''}>
                     <a href="#">Pour vous</a>
                     </div>
-                    <div onClick={handleChange} className={!active && "active"}>
+                    <div onClick={handleChange} className={!active?"active":''}>
                     <a href="#">Abonnements</a>
                     </div>
             </div>

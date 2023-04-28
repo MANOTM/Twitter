@@ -16,7 +16,7 @@ export default function Sidebar() {
             </Link>
             <ul className="sidebar__items">
               <SidebarItem notf={true} to="/" text={Auth ? "Home" : "explore"}>
-                {Auth ? <icons.HomeIcon fill="#e7e9ea" /> : <icons.ExploreIcon fill="#e7e9ea" />}
+                {Auth ? <icons.HomeIcon fill="#e7e9ea"  /> : <icons.ExploreIcon fill="#e7e9ea" />}
               </SidebarItem>
               {
                 Auth && (<>

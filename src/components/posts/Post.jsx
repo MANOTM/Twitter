@@ -9,19 +9,19 @@ export default function Post({
     profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
 }) {
 
-    const { CardHover, setCardHover } = useStateContext(); 
+    const { CardHover, setCardHover } = useStateContext();  
+    const [isIn, setisIn] = useState(false) 
     const MouseIn = ()=>{
         setCardHover(true)
         setisIn(true)
     }
-    const MouseOut = ()=>{
-        setCardHover(false) 
-        setisIn(false)
+    const MouseOut = ()=>{ 
+            setCardHover(false) 
+            setisIn(false) 
     }
-    const [isIn, setisIn] = useState(false)
     return (
         <div className="father">
-            {isIn   && <HoverCard />}
+            {isIn && CardHover ? <HoverCard isIn={isIn} setisIn={setisIn}/> :''}
             <section className="post__section">
                 <div className="post__avatar avatar" onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                     <img src="https://cdn.discordapp.com/avatars/787349101414187059/79e57a3f1d0fa6dbca1607cc95930f34.webp?size=32" alt="profile_avatar" />
