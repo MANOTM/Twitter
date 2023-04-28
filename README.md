@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h4 align="center"> this projet is sensitive if u don't say <strong>bismillah</strong> :point_up: it won't work </h4>
+<h4 align="center"> this projet is sensitive if u don't say :point_up: bismillah :point_up: it won't work </h4>
 
 
 ### step 1 => Clone project with command: 
@@ -42,5 +42,5 @@ for support call @elonMask
 
 
 
-====> for notification use => CallToast('hello')
-====> and my heart it's for u :smiling_face_with_three_hearts: :cupid:
+for notification use `CallToast('hello')`
+and my heart it's for u :smiling_face_with_three_hearts: :cupid:
