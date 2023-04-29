@@ -16,14 +16,14 @@ export default function HeadTweet() {
         <header className="header__section">
             <div className="head_name_page">
                 <div className="header__title">
-                    <h3>Accueil</h3>
+                    <h3>Home</h3>
                 </div>
                 <div className="header__links">
                     <div onClick={handleChange} className={active ? "active" : ''}>
-                    <a href="#">Pour vous</a>
+                    <a href="#">For you</a>
                     </div>
                     <div onClick={handleChange} className={!active ? "active" : ''}>
-                    <a href="#">Abonnements</a>
+                    <a href="#">Following</a>
                     </div>
             </div>
         </div>
@@ -35,7 +35,7 @@ export default function HeadTweet() {
                     alt="profile_avatar"
                     />
                 </div>
-                <input type="text" onChange={handleTweetbtn} placeholder="What's new ?" />
+                <input type="text" onChange={handleTweetbtn} placeholder="What's Happening ?" />
             </div>
             <div className="header__buttons">
             <ul>
