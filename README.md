@@ -1,10 +1,10 @@
 <p align="center">
   <a href="#">
-    <img src="https://skillicons.dev/icons?i=atom" />
+    <img src="https://skillicons.dev/icons?i=react,redux,twitter,git,github,js,laravel,mysql,postman" />
   </a>
 </p>
 
-<h4 align="center"> this projet is sensitive if u don't say :point_up: bismillah :point_up: it won't work </h4>
+<h4 align="center"> Evrythink is ok my brader if u have any problem know that the problem is u :shipit: </h4>
 
 
 ### step 1 => Clone project with command: 
@@ -19,7 +19,7 @@
 ### step 4 => start server with command :tada: : 
     npm run dev
 
-### step 5 => close the laptop and go to spleep :shipit: :
+### step 5 => close the laptop and go to spleep :
     npm close laptop and sleep
 
 
@@ -42,5 +42,4 @@ for support call @elonMask
 
 
 
-for notification use `CallToast('hello')`
-and my heart it's for u :smiling_face_with_three_hearts: :cupid:
+for notification use `CallToast('hello')` 

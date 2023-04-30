@@ -15,7 +15,7 @@ export default function Trends({FromExplore}) {
             </div>
           </div>
         </div>  
-        <div className={FromExplore ? 'trends__content':'trends__content  bg-gray'  }>
+        <div className={FromExplore ? 'trends__content':'trends__content  bg-0'  }>
             <header className='trends__header'>
               <span className='trends__title'>Trends for you</span>
             </header>
