@@ -1,0 +1,9 @@
+.show__more{
+    width: 100%;
+    display: block;
+    padding: 17px 15px;
+}
+.show__more p{
+    color: #1d9bf0;
+    font-size: 15px;
+}
