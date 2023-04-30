@@ -18,9 +18,9 @@ export default function Home() {
                     verify={true}
                     liked={true}
                     retweeted={false}
-                    title={"only boys can bet me in my terrantory"}
+                    title={""}
                     tweet={
-                    "https://i.pinimg.com/564x/fb/a3/47/fba34776c01f241f3481d392fd296aaf.jpg"
+                    "https://pbs.twimg.com/media/Fu2X_TqaYAAohDK?format=jpg&name=small"
                     }
                 />
                 <Post
