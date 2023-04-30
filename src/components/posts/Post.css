@@ -5,19 +5,19 @@
     background-size: 2900%;
     height: 55px !important;
     width: 55px !important; 
-  }
-  .heart.heart-active{
+}
+.heart.heart-active{
     animation: animate .8s steps(28) 1;
     background-position: right;
-  }
-  @keyframes animate {
+}
+@keyframes animate {
     0%{
-      background-position: left;
+        background-position: left;
     }
     100%{
-      background-position: right;
+        background-position: right;
     }
-  }
+}
 .post__section {
     display: flex;
     align-items: flex-start;

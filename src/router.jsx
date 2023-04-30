@@ -7,7 +7,7 @@ import Messages from "./pages/messages/Messges";
 import Bookmarks from "./pages/bookmarks/Bookmarks";
 import Profile from "./pages/profile/Profile";
 import { AuthRoute, GuestRoute } from "./layouts/AuthLayout";
-import { LoginComponent, RegisterComponent } from "./assets/Helper/MultiComponents";
+import { LoginComponent, RegisterComponent, MessageComponent } from "./assets/Helper/MultiComponents";
 import NotFound from "./pages/NotFound/NotFound";
 
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path : '/messages',
-                element : <AuthRoute element={Messages} />,
+                element : <AuthRoute element={MessageComponent} />,
             },
             {
                 path : '/bookmarks',
