@@ -16,8 +16,8 @@ export default function Countainer() {
         <Toast  />
         <Sidebar /> 
         <Outlet />
-        <ContainerContent />
-        {Auth && !isInMessagePath && <BoiteMessages/> }
+        { !isInMessagePath && <ContainerContent />}
+        {Auth && !isInMessagePath &&  <BoiteMessages/>}
     </div>
   )
 }

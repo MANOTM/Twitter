@@ -37,7 +37,7 @@ export const BoiteMessages = () => {
             <span className='boite__header__title'>Messages</span>
             <div className="boite__header__actions"> 
               <NewMessage/>
-             <Collapse onClick={handelChange} className={`Collapse ${ToBottom && 'rotate'}`}/> 
+              <Collapse onClick={handelChange} className={`Collapse ${ToBottom && 'rotate'}`}/> 
             </div>
         </div>
         {!ToBottom &&

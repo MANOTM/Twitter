@@ -17,7 +17,6 @@ if(token){
   .get('/profile/'+localStorage.getItem('pss'))
   .then(res => {
     store.dispatch({ type:"Auth/LogIn", payload: res.data.data })
-    console.log(res.data.data);
     render()
   }).catch((error) =>{
     console.log(error);
@@ -25,7 +24,6 @@ if(token){
 }else{
   render()
 }
- 
 
 function render() {
   ReactDOM.createRoot(document.getElementById('twitter')).render(
