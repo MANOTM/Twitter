@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#">
-    <img src="https://skillicons.dev/icons?i=react,redux,twitter,git,github,js,laravel,mysql,postman" />
+    <img src="https://skillicons.dev/icons?i=react,redux,twitter,git,github,js,css,laravel,mysql,postman" />
   </a>
 </p>
 
