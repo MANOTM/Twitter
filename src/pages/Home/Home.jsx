@@ -2,8 +2,11 @@ import React from 'react'
 import Main from '../../layouts/Main'
 import HeadTweet from "./HeadTweet";
 import Post from '../../components/posts/Post'
+import { useSelector } from 'react-redux';
 
 export default function Home() { 
+    const { user} = useSelector(state => state.Auth)
+    console.log(user);
     return (
         <>
             <Main>

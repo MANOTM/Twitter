@@ -7,7 +7,7 @@ import WhoToFollow from '../../components/WhoToFollow/WhoToFollow'
 import NewToTwitter from '../../components/NewToTwitter/NewToTwitter'
 import FooterAuth from '../../components/Auth/FooterModal/FooterAuth'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom' 
 
 
 export function LoginComponent() {
@@ -30,7 +30,7 @@ export function RegisterComponent() {
 export default function ContainerContent() {
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     // const path = useLocation().pathname != '/explore' && useLocation().pathname != '/profile';
-    const path = useLocation().pathname != '/message';
+    const path = useLocation().pathname == '/explore';
     if(Auth){
         return path ? <WhoToFollow /> : <AsideTrends />
     }

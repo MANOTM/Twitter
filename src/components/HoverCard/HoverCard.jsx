@@ -4,13 +4,15 @@ import './HoverCard.css'
 import VerifyIc from '../Icons/VerifyIc'
 import { useStateContext } from '../../contexts/ContextProvider';
 
-function HoverCard() {
+function HoverCard({isIn,setisIn}) {
     const { CardHover, setCardHover } = useStateContext(); 
     const MouseIn = ()=>{
         setCardHover(true) 
+        setisIn(true) 
     }
     const MouseOut = ()=>{
         setCardHover(false) 
+        setisIn(false)
     }
     return (
         <div className='hover__card' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>

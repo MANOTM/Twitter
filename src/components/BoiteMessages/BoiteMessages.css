@@ -1,0 +1,65 @@
+.boite__messages{
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    height: 80%;
+    max-height: 530px;
+    width: 400px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    transition: all 200ms ease 0s;
+    -webkit-border-radius: 16px 16px 0 0;
+    -moz-border-radius: 16px 16px 0 0;
+    -ms-border-radius: 16px 16px 0 0;
+    -o-border-radius: 16px 16px 0 0;
+    -webkit-transition: all 200ms ease 0s;
+    -moz-transition: all 200ms ease 0s;
+    -ms-transition: all 200ms ease 0s;
+    -o-transition: all 200ms ease 0s;
+}
+.boite__m__header{
+    padding: 27px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 53px;
+}
+.boite__header__title{
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+    font-weight: 500;
+}
+.boite__header__actions{
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.boite__header__actions svg{ 
+    width: 20px; 
+}
+.boite_messages_chatLines{
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px);
+    overflow: auto;
+} 
+.toBottom{
+    height: 53px !important;
+}
+.Collapse{
+    transition: .200ms;
+    -webkit-transition: .200ms;
+    -moz-transition: .200ms;
+    -ms-transition: .200ms;
+    -o-transition: .200ms;
+}
+.rotate{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}

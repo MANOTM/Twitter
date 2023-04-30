@@ -2,8 +2,8 @@ import React from 'react'
 import './Bookmarks.css' 
 import Main from '../../layouts/Main'
 import bookInCage from '../../assets/images/book-in-bird-cage.png' 
-import useFetch from '../../hooks/useFetch'
-import Loading from '../../components/Icons/Loading'
+import useFetch from '../../hooks/useFetch' 
+import Loading from '../../components/Loading/Loading'
 
 export default function Bookmarks() {
   const {error , data ,loading} =useFetch('https://jsonplaceholder.typicode.com/users')
