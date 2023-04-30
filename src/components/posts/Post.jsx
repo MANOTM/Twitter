@@ -69,7 +69,8 @@ export default function Post({
                         </li>
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
                         {'  '} 15
-                            <span onClick={()=>{setActive(!active)}} className={`heart ${active && 'heart-active'}`}> 
+                            <span>
+                                <LikeIcon/> 
                             </span> 
                         </li>
                         <li>
