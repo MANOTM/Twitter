@@ -23,8 +23,7 @@ export const BoiteMessages = () => {
           setTimeout(()=>{
             setData(response.data.data.map(it=>{
               return <ChatLine key={it.id} avatar={it.avatar} name={`${it.first_name} ${it.last_name} ${it.first_name}`} usernam={it.first_name+it.last_name} time={' Apr 17'} text={it.last_name}/>
-            }))
-            console.log(response.data.data);
+            }))   
             setLoading(false)  
 
           },1000)
@@ -44,14 +43,10 @@ export const BoiteMessages = () => {
         {!ToBottom &&
         <div className="boite_messages_chatLines">
           {
-            loading && <Loading/>
-          }
-          { data && <>  
-            {data} 
-            </>}
+            loading ? <Loading/>: data
+          } 
         </div>
         }
-        
     </div>
   )
 }
