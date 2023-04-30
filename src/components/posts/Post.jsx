@@ -5,13 +5,14 @@ import ThreePoints from '../Icons/ThreePoints';
 import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
+import img from '../../assets/images/img.png'
 
 export default function Post({
     profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
-}) {
-
+}) {  
     const { CardHover, setCardHover } = useStateContext();  
     const [isIn, setisIn] = useState(false) 
+    const [active, setActive] = useState(false) 
     const MouseIn = ()=>{
         setCardHover(true)
         setisIn(true)
@@ -67,9 +68,9 @@ export default function Post({
                             </span> {'  '} 15
                         </li>
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
-                            <span>
-                                <LikeIcon liked={liked} />
-                            </span> {'  '} 15
+                        {'  '} 15
+                            <span onClick={()=>{setActive(!active)}} className={`heart ${active && 'heart-active'}`}> 
+                            </span> 
                         </li>
                         <li>
                             <span>

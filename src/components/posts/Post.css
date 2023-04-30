@@ -1,3 +1,23 @@
+.heart{
+    position: absolute;
+    background: url("/src/assets/images/img.png") no-repeat;
+    background-position: left;
+    background-size: 2900%;
+    height: 55px !important;
+    width: 55px !important; 
+  }
+  .heart.heart-active{
+    animation: animate .8s steps(28) 1;
+    background-position: right;
+  }
+  @keyframes animate {
+    0%{
+      background-position: left;
+    }
+    100%{
+      background-position: right;
+    }
+  }
 .post__section {
     display: flex;
     align-items: flex-start;
