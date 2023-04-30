@@ -4,11 +4,11 @@ const StateContext = createContext()
 
 export const ContextProvider = ({ children }) => {
     
-    const CallToast = (content) => {
+    const CallToast = (content,time=2222) => {
         setToast({status:true, content})
         let timer = setTimeout(() => {
             setToast({status:false, content:''})
-        },2222)
+        },time)
     }
 
     const [Toast, setToast] = useState({ status: false, content: '' })

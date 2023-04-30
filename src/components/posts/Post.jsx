@@ -68,10 +68,9 @@ export default function Post({
                             </span> {'  '} 15
                         </li>
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
-                        {'  '} 15
                             <span>
                                 <LikeIcon/> 
-                            </span> 
+                            </span> {'  '} 15
                         </li>
                         <li>
                             <span>
