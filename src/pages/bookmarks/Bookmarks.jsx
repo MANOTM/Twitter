@@ -3,7 +3,7 @@ import './Bookmarks.css'
 import Main from '../../layouts/Main'
 import bookInCage from '../../assets/images/book-in-bird-cage.png' 
 import useFetch from '../../hooks/useFetch'
-import Loading from '../../components/Icons/Loading'
+import Loading from '../../components/Loading/Loading'
 import Post from '../../components/posts/Post' 
 import { useSelector } from 'react-redux'
 

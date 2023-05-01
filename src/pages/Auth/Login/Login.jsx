@@ -3,7 +3,7 @@ import Input from '../Components/Inputs/Input'
 import './Login.css'
 import axios from '../../../api/axios'
 import { useStateContext } from '../../../contexts/ContextProvider'
-import Loading from '../../../components/Icons/Loading'
+import Loading from '../../../components/Loading/Loading'
 import Cookies from 'js-cookie'
 import AuthModal from '../Components/LoginModal/AuthModal'
 import { connect, useDispatch } from 'react-redux'
@@ -30,15 +30,17 @@ function Login() {
             if(data) {
                 setLoading(false)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
-                Cookies.set("Auth_token",data.data.token)
-                dispatch(LogIn(data.data.user))
+                Cookies.set("Auth_token",data.data.token);
+                console.log(data.data.user);
+                localStorage.setItem('pss', data.data.user.pseudo);
+                dispatch(LogIn(data.data.user));
                 CallToast(data.message);
             }
         } catch(e){
-            setLoading(false)
-            CallToast('Sorry, we could not find your account.')
+            setLoading(false);
+            CallToast('Sorry, we could not find your account.');
         }
-        setField({...field, password:''})
+        setField({...field, password:''});
     }
 
     return (

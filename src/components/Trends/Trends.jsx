@@ -2,6 +2,7 @@ import React from 'react'
 import './Trends.css'
 import SearchIcon from '../Icons/SearchIcon'
 import TrendItem from './TrendItem' 
+import { ShowMore } from '../ShowMore/ShowMore'
 export default function Trends({FromExplore}) {
   return ( 
     <div className='trends'>  
@@ -15,7 +16,7 @@ export default function Trends({FromExplore}) {
             </div>
           </div>
         </div>  
-        <div className={FromExplore ? 'trends__content':'trends__content  bg-gray'  }>
+        <div className={ FromExplore ? 'trends__content':'trends__content  bg-0' }>
             <header className='trends__header'>
               <span className='trends__title'>Trends for you</span>
             </header>
@@ -26,6 +27,7 @@ export default function Trends({FromExplore}) {
               <TrendItem type='Sport Tranding' title='مدريد' count='13.7k' isArabic={true} />
               <TrendItem type='Sport Tranding' title='Xavi' count='13.7k' isArabic={false} /> 
             </div>
+            <ShowMore to='#'/>
         </div>  
     </div> 
   )

@@ -16,7 +16,7 @@ export default function Sidebar() {
             </Link>
             <ul className="sidebar__items">
               <SidebarItem notf={true} to="/" text={Auth ? "Home" : "explore"}>
-                {Auth ? <icons.HomeIcon fill="#e7e9ea" /> : <icons.ExploreIcon fill="#e7e9ea" />}
+                {Auth ? <icons.HomeIcon fill="#e7e9ea"  /> : <icons.ExploreIcon fill="#e7e9ea" />}
               </SidebarItem>
               {
                 Auth && (<>
@@ -50,18 +50,22 @@ export default function Sidebar() {
           {
             Auth && (
               <div className="sidebar__user hover">
-            <div className="user__info">
-              <div className="avatar">
-                <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_normal.jpg" alt="" />
-              </div>
-              <div className="info">
-                <span className='name ellipsis'>Otmane Mnasouri</span>
-                <span className='username ellipsis'>@MANOTM_1</span>
-              </div>
-            </div>
-            <div className="user__action">
-              <icons.ThreePoints  />
-            </div>
+                {/* <div className="signOutPopUp">
+                  <span>Add an existing account</span>
+                  <span>Log out @DiwaniYassine</span>
+                </div> */}
+                <div className="user__info">
+                  <div className="avatar">
+                    <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_normal.jpg" alt="" />
+                  </div>
+                  <div className="info">
+                    <span className='name ellipsis'>Otmane Mnasouri</span>
+                    <span className='username ellipsis'>@MANOTM_1</span>
+                  </div>
+                </div>
+                <div className="user__action">
+                  <icons.ThreePoints  />
+                </div>
           </div>
             )
           }

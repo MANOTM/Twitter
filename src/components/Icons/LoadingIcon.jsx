@@ -1,6 +1,6 @@
  
 
-const Loading = (props) => {
+const LoadingIcon = (props) => {
   return (
     <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -38,4 +38,4 @@ const Loading = (props) => {
   </svg>
   )
 }
- export default Loading
+ export default LoadingIcon

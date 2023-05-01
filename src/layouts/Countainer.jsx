@@ -1,18 +1,23 @@
 import React from 'react';
 import './countainer.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from '../components/sidebar/Sidebar';
 import Toast from '../components/Toast/Toast';
 import ContainerContent from '../assets/Helper/MultiComponents';
+import { BoiteMessages } from '../components/BoiteMessages/BoiteMessages';
+import { useSelector } from 'react-redux';
 
 
-export default function Countainer() {
+export default function Countainer() {  
+  const { loggedIn:Auth } = useSelector(state => state.Auth)
+  const isInMessagePath = useLocation().pathname == '/messages'; 
   return (
     <div className='countainer'>
         <Toast  />
         <Sidebar /> 
         <Outlet />
-        <ContainerContent />
+        { !isInMessagePath && <ContainerContent />}
+        {Auth && !isInMessagePath &&  <BoiteMessages/>}
     </div>
   )
 }

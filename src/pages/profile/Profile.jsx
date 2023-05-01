@@ -1,9 +1,7 @@
 import './profile.css'
 import Main from '../../layouts/Main'
-import ProfileHeader from '../../components/profile/ProfileHeader'
-import ProfileTweet from '../../components/profile/ProfileTweet'
-import ProfileTweetsReply from '../../components/profile/ProfileTweetsReply'
-
+import ProfileHeader from './component/ProfileHeader'
+import ProfileTweet from './component/ProfileTweet'
 function Profile() {
   return (
       <Main>

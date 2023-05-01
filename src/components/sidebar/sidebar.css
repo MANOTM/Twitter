@@ -4,7 +4,6 @@
     padding-right: 15px;
     color:#e7e9ea ; 
 }
- 
 .sidebar__content{
     height: 100%;
     width: 249px; 
@@ -79,6 +78,7 @@
     -o-border-radius:999px ;
 }
 .sidebar__user{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -144,6 +144,9 @@
     .sidebar__text{
         display: none;
     }
+    .boite__messages{
+        display: none;
+    }
     .sidebar{
         width: 70px;
     }
@@ -166,3 +169,9 @@
         display: none;
     } 
 }
+/* 
+.signOutPopUp {
+    background-color: red;
+    position: absolute;
+    top: -30px;
+} */

@@ -12,12 +12,14 @@ let token = Cookies.get("Auth_token");
 
 
 if(token){
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
   axios
-  .get('/user')
+  .get('/profile/'+localStorage.getItem('pss'))
   .then(res => {
-    store.dispatch({ type:"Auth/LogIn", payload: res.data })
+    store.dispatch({ type:"Auth/LogIn", payload: res.data.data })
     render()
+  }).catch((error) =>{
+    console.log(error);
   })
 }else{
   render()
