@@ -5,10 +5,11 @@ import ThreePoints from '../Icons/ThreePoints';
 import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
-import img from '../../assets/images/img.png'
+
+
 
 export default function Post({
-    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
+    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,numberLikes,numberComments,image,video
 }) {  
     const { CardHover, setCardHover } = useStateContext();  
     const [isIn, setisIn] = useState(false) 
@@ -61,7 +62,7 @@ export default function Post({
                         <li>
                             <span>
                                 <CommentIcon />
-                            </span> {'  '} 155
+                            </span> {'  '} {numberComments}
                         </li>
                         <li className={`Reweet__icon ${retweeted && 'reetweet'}`}>
                             <span>
@@ -70,8 +71,8 @@ export default function Post({
                         </li>
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
                             <span>
-                                <LikeIcon/> 
-                            </span> {'  '} 15
+                                <LikeIcon liked={liked} />
+                            </span> {'  '} {numberLikes}
                         </li>
                         <li>
                             <span>
