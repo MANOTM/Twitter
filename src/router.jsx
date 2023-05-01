@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useNavigate  } from "react-router-dom";
 import Countainer from "./layouts/Countainer";
 import Home from "./pages/Home/Home";
 import Explore from "./pages/explore/Explore";
@@ -12,13 +12,17 @@ import NotFound from "./pages/NotFound/NotFound";
 import Overlay from "./layouts/Overlay/overlay";
 import Logout from "./components/Logout/Logout";
 
-
 const router = createBrowserRouter([
     {
         element : <Countainer />,
         children : [
             {
                 path : '/',
+                exact: true,
+                element : <Home />,
+            },
+            {
+                path : '/home',
                 element : <Home />,
             },
             {
@@ -50,7 +54,7 @@ const router = createBrowserRouter([
                 element : <GuestRoute element={RegisterComponent} />
             },
             {
-                path : '/*',
+                path : '/:pseudo',
                 element : <ProfileNotFound />
             }
         ]

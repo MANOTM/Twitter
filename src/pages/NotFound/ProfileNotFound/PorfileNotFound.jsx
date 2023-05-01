@@ -2,8 +2,12 @@ import React from 'react'
 import './PorfileNotFound.css';
 import Main from '../../../layouts/Main'
 import HeadMain from '../../../components/HeadMain/HeadMain'
+import { useParams } from 'react-router-dom';
+import useFetch from '../../../hooks/useFetch';
 
 export default function PorfileNotFound() {
+    const { pseudo } = useParams()
+    const { loading, data } = useFetch('/')
     return <Main>
         <div className='profile__not__found'>
             <HeadMain />
@@ -12,7 +16,7 @@ export default function PorfileNotFound() {
                 <div className="profile__avatar_not"></div>
             </div>
             <div className="profile__body__not">
-                <span>@dqdzdqsdzqdq</span>
+                <span>@{ pseudo } </span>
             </div>
             <div className="profile__post__not">
                 <div>
