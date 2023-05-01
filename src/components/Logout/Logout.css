@@ -1,0 +1,47 @@
+.modal__logout {
+    background-color: #000;
+    max-width: 320px;
+    height: 356px;
+    width: 100%;
+    position: fixed;
+    padding: 29px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.logout__logo svg {
+    fill: #fff;
+    width: 40px;
+    height: 40px;
+}
+
+.logout__logo {
+    text-align: center;
+}
+
+.logout__content {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.logout__content span{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logout__content p{
+    line-height: 1.33;
+    margin-top: 14px;
+}
+
+.logout__buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    text-align: center;
+}
+
+.logout__buttons button{
+    height: 24px;
+}

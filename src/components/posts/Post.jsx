@@ -24,7 +24,8 @@ export default function Post({
     const showOption = () => {
         setOptionHover(true)
     }
-    const hiddeOption = () => {
+    const hiddeOption = event => {
+        event.stopPropagation();
         setOptionHover(false)
     } 
     const [OptionHover, setOptionHover] = useState(false)
@@ -44,10 +45,10 @@ export default function Post({
                                 {tagname}
                             </small>
                         </h3>
-                        <div className="post__option">
-                            <div onClick={showOption}><ThreePoints /></div>
+                        <div onClick={showOption} className="post__option">
+                            <div ><ThreePoints /></div>
                             { OptionHover && <>
-                                <div onClick={hiddeOption} className="overlay__option"></div>
+                                <div onClick={hiddeOption} className="overlay__hidden"></div>
                                 <OptionCard />
                             </> }
                         </div>

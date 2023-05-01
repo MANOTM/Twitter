@@ -1,8 +1,8 @@
 import './FollowBtn.css'
 
-function FollowBtn() {
+function FollowBtn({ title, noBackground=false, click }) {
   return (
-    <button className="button__follow">Follow</button>
+    <button onClick={()=>click()} className={`button__follow ${noBackground && 'trans'}`}>{ title }</button>
   )
 }
 

@@ -21,7 +21,7 @@ function HoverCard({isIn,setisIn}) {
                     <img src="	https://pbs.twimg.com/profile_images/1590968738358079488/IY9Gx6Ok_bigger.jpg" alt="" />
                 </Link>
                 <div>
-                    <FollowBtn />
+                    <FollowBtn title="Follow" />
                 </div>
             </div>
             <Link to='' className="hover__card_user">

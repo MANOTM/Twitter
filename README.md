@@ -22,24 +22,28 @@
 ### step 5 => close the laptop and go to spleep :
     npm close laptop and sleep
 
-
+### Reminde, need Backend Api first and xamp server !!!!
 
 command : for install all packages with one command `npm i` 
 
-if didn't work use this command `npm i react-router-dom react-icon axios`   
+if didn't work use this command `npm i react-router-dom react-icon axios js-cookie`   
 
-ilaaaaaa ma5dmtoch dir kola w7da rasha o hnina
+ilaaaaaa ma5dmtoch dir kola w7da rasha o copie w7da b w7da || w7da bw7da machi w7da f w7da :bulb:
 ```
 npm i react-router-dom
 npm i react-icon
 npm i axios
 npm i js-cookie
 ```
-ila ila ila ma5dmooch go back to `step 5` or sir dir lik chi حلاق 
+If none of this works for you, I recommend you to go back and check the steps again
 
 
-for support call @elonMask
+for support call @elonMask :money_with_wings::money_with_wings::money_with_wings:
 
 
 
-for notification use `CallToast('hello')` 
+for notification use `CallToast('hello')` in your sotuation maybe you need button VIEW fiha, so add second paramétre `CallToast('hello,'/home')` add the path will added automaticly to view button :)
+
+
+if you looking for footer Components [Terms of Service, Privacy Policy...] go to 
+==> Components/PolicyLinks <==

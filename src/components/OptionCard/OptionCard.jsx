@@ -4,7 +4,7 @@ import { Report, Block, Mute, List, Unfollow, SadImojis } from './OptionIcons/Op
 
 export default function OptionCard() {
     return (
-        <div className="option__card">
+        <div className="option__card popup">
             <ul>
                 <li>
                     <div className="option__icon">

@@ -8,6 +8,8 @@ import Cookies from 'js-cookie'
 import AuthModal from '../Components/LoginModal/AuthModal'
 import { connect, useDispatch } from 'react-redux'
 import { LogIn } from '../../../redux/Reducers/AuthReducer'
+import Google from '../../../components/Icons/Google'
+import Apple from '../../../components/Icons/Apple'
 
 function Login() {
     const [field, setField] = useState({ email:'', password:'' })
@@ -23,22 +25,18 @@ function Login() {
         e.preventDefault()
         try{
             setLoading(true)
-            const { data } = await axios.post('/login',{ 
-                email: field.email, 
-                password: field.password 
-            })
+            const { data } = await axios.post('/login',field)
             if(data) {
                 setLoading(false)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
                 Cookies.set("Auth_token",data.data.token);
-                console.log(data.data.user);
                 localStorage.setItem('pss', data.data.user.pseudo);
                 dispatch(LogIn(data.data.user));
                 CallToast(data.message);
             }
         } catch(e){
             setLoading(false);
-            CallToast('Sorry, we could not find your account.');
+            CallToast('Sorry, something happened, please try later.');
         }
         setField({...field, password:''});
     }
@@ -54,8 +52,14 @@ function Login() {
                 </div>
                 <form className="login__form">
                     <div className="login__buttons">
-                        <button>Sign in with Google</button>
-                        <button>Sign in with Apple</button>
+                        <button>
+                            <div className="new__icons__sign"><Google /></div>
+                            Sign in with Google
+                        </button>
+                        <button>
+                            <div className="new__icons__sign apple"><Apple /></div>
+                            Sign in with Apple
+                        </button>
                     </div>
                     <div className="login__line">
                         <div></div>

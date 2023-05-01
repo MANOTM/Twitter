@@ -29,6 +29,15 @@
     flex-direction: column;
     column-gap: 10px;
 }
+.new__icons__sign {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+.new__icons__sign.apple {
+    width: 20px;
+    height: 20px;
+}
 .new__body {
     display: flex;
     flex-direction: column;
@@ -43,6 +52,9 @@
     border: none;
     height: 38px;
     width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -75,6 +87,7 @@
 }
 .new__title__footer .new_links,
 .new__title__footer  p {
+    margin: 0 15px;
     color: #747474;
 }
 
