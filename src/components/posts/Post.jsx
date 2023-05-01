@@ -7,7 +7,7 @@ import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
 
 export default function Post({
-    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
+    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,numberLikes,numberComments,image,video
 }) {
 
     const { CardHover, setCardHover } = useStateContext(); 
@@ -59,7 +59,7 @@ export default function Post({
                         <li>
                             <span>
                                 <CommentIcon />
-                            </span> {'  '} 155
+                            </span> {'  '} {numberComments}
                         </li>
                         <li className={`Reweet__icon ${retweeted && 'reetweet'}`}>
                             <span>
@@ -69,7 +69,7 @@ export default function Post({
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
                             <span>
                                 <LikeIcon liked={liked} />
-                            </span> {'  '} 15
+                            </span> {'  '} {numberLikes}
                         </li>
                         <li>
                             <span>
