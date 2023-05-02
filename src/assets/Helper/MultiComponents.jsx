@@ -30,8 +30,7 @@ export function RegisterComponent() {
 export function MessageComponent() {
     return (
         <>
-            <Messages />
-            <Messages />
+            <Messages /> 
         </>
     )
 }

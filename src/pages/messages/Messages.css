@@ -1,0 +1,16 @@
+.messages{ 
+    width: calc(100% - 297px);
+    height: 100vh;
+    display: flex;
+}
+.sideLeftM{
+    width: 388px;
+}
+.sideRightM{
+    width: calc(100% - 388px);
+}
+.sideLeftM , .sideRightM{
+height: 100%;
+overflow: auto; 
+border-right: 1px solid rgba(128, 128, 128, 0.436);
+}
