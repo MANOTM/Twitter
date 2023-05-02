@@ -78,12 +78,12 @@ function Login() {
                             />
                         </div>
                         <div className="login__buttons down">
-                            <button onClick={handleSteps} type='button'>Next</button>
+                            <button className={!field.email.length ? 'login__disabled__button' : ''} onClick={handleSteps} type='button'>Next</button>
                             <button className='login__forgot__button'>Forgot password</button>
                         </div>
                     </form>
                     <div className='login__signUp'>
-                        <span>Don't have an account? <a href="/register">Sign up</a></span>
+                        <span>Don't have an account? <a href="/i/flow/signup">Sign up</a></span>
                     </div>
                 </div>
                 <div className="secondStep" hidden={steps}>

@@ -14,6 +14,7 @@
     --black: #000;
     --text-color: #e7e9ea;
     --second-title: rgb(113, 118, 123);
+    --error: #f4212e;
 }
 
 *::-webkit-scrollbar {

@@ -111,7 +111,7 @@
     height: 50px;
     font-size: 17px;
 }
-.login__buttons.form__button button.login__disabled__button{
+button.login__disabled__button{
     opacity: .6;
     pointer-events: none;
 }

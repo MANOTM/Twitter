@@ -1,0 +1,56 @@
+.Register__Steps {
+    padding: 0 80px;
+    row-gap: 6px;
+}
+
+.Register__Steps,
+.register__step__inputs {
+    display: flex;
+    flex-direction: column;
+}
+.Register__steps__title {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    font-size: 29px;
+    font-weight: 600;
+}
+
+.register__step__inputs {
+    row-gap: 25px;
+}
+
+.register__step__email__error {
+    font-size: 13px;
+    color: #f4212e;
+    margin-left: 8px;
+}
+
+
+.registed__date__step {
+    margin-top: 33px;
+}
+.registed__date__step span {
+    font-size: 15px;
+    font-weight: 500;
+}
+.registed__date__step p {
+    margin: 10px 0;
+}
+
+.registed__select__date__step {
+    display: flex;
+    column-gap: 12px;
+}
+
+.registed__select__date__step select {
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid #777;
+    height: 44px;
+    font-size: 17px;
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 10px;
+}

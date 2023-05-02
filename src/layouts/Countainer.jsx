@@ -13,7 +13,7 @@ export default function Countainer() {
   const isInMessagePath = useLocation().pathname == '/messages'; 
   return (
     <div className='countainer'>
-        <Toast  />
+        <Toast />
         <Sidebar /> 
         <Outlet />
         { !isInMessagePath && <ContainerContent />}

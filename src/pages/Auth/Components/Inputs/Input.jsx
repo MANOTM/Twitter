@@ -19,7 +19,8 @@ export default function Input(props) {
                     defaultValue={value}
                     type={input_type ? type : 'text'}
                     onChange={change && (e => change(e))}
-                    placeholder=' ' />
+                    placeholder=' ' 
+                />
                 <label htmlFor={id}>{label}</label>
                 {icon && (
                     <div className="twitter__form__icon" onClick={() => setInput(!input_type)}>

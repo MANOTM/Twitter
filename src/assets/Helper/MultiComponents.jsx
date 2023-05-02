@@ -35,6 +35,14 @@ export function MessageComponent() {
         </>
     )
 }
+export function PageNotFound() {
+    return (
+        <>
+            <Messages />
+            <Messages />
+        </>
+    )
+}
 
 export default function ContainerContent() {
     const { loggedIn:Auth } = useSelector(state => state.Auth)

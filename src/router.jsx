@@ -56,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path : '/:pseudo',
                 element : <ProfileNotFound />
+            },
+            {
+                path : '/:pseudo/*',
+                element : <NotFound />
             }
         ]
     },

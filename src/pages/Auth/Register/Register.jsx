@@ -1,41 +1,42 @@
 import React from 'react'
 import AuthModal from '../Components/LoginModal/AuthModal'
-import Google from '../../../components/Icons/Google'
-import Apple from '../../../components/Icons/Apple'
-import FollowBtn from '../../../components/buttons/FollowBtn'
 import './Register.css';
 import { useStateContext } from '../../../contexts/ContextProvider'
+import RegisterHome from './RegisterHome/RegisterHome'
+import { useSelector } from 'react-redux';
+import RegisterStepOne from './RegisterSteps/RegisterStepOne';
+import { useState } from 'react';
 
 export default function Register() {
     const { SetTitle } = useStateContext();
     SetTitle('Sign up for Twitter')
+    const { pages: {step, Start} } = useSelector(state => state.Register)
+    const [Feilds, setFeilds] = useState()
+    let Content;
+    switch (step){
+        case 1:
+            Content = <RegisterStepOne setFeilds={setFeilds} />
+            break;
+        case 2:
+            Content = <h1>2</h1>
+            break;
+        case 3:
+            Content = <h1>3</h1>
+            break;
+        case 4:
+            Content = <h1>4</h1>
+            break;
+        case 5:
+            Content = <h1>5</h1>;
+            break;
+        default:
+            Content = <RegisterHome />
+            break;
+    }
+
     return (
         <AuthModal>
-            <div>
-                <div className="login__title">
-                    <span>Sign in to Twitter</span>
-                </div>
-                <form className="login__form">
-                    <div className="login__buttons">
-                        <button>
-                            <div className="new__icons__sign"><Google /></div>
-                            Sign in with Google
-                        </button>
-                        <button>
-                            <div className="new__icons__sign apple"><Apple /></div>
-                            Sign in with Apple
-                        </button>
-                    </div>
-                    <div className="login__line">
-                        <div></div>
-                        <span>or</span>
-                        <div></div>
-                    </div>
-                    <div className="login__input">
-                        <FollowBtn text='Create account' />
-                    </div>
-                </form>
-            </div>
+            { Content }
         </AuthModal>
     )
 }

@@ -15,6 +15,7 @@
 
 .login__content {
     position: absolute;
+    overflow: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,6 +30,9 @@
     justify-content: space-between;
     align-items: center;
     margin: 11px 11px 19px 11px;
+}
+.modal__header.steps {
+    justify-content: flex-start;
 }
 
 .empty__header__modal {
@@ -66,9 +70,29 @@
     cursor: pointer;
 }
 
-.modal__body {
-    /* style modal */
-    height: 100%;
+.Register__steps {
+    font-size: 19px;
+    font-weight: 600;
+    margin-left: 33px;
+}
+
+.Register__next__steps {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    width: 440px;
+    color: #000;
+    font-weight: 600;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    border-radius: 33px;
+    height: 50px;
+    transform: translateX(-50%);
+}
+.Register__next__steps.disbled {
+    opacity: .7;
+    pointer-events: none;
 }
 
 @media (max-width: 1500px) {

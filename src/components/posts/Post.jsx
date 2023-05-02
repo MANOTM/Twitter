@@ -5,13 +5,15 @@ import ThreePoints from '../Icons/ThreePoints';
 import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
+import { useSelector } from 'react-redux';
 
 
 
 export default function Post({
     profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,numberLikes,numberComments,image,video
 }) {  
-    const { CardHover, setCardHover } = useStateContext();  
+    const { CardHover, setCardHover, CallToast } = useStateContext();  
+    const { loggedIn:Auth } = useSelector(state => state.Auth)
     const [isIn, setisIn] = useState(false) 
     const [active, setActive] = useState(false) 
     const MouseIn = ()=>{
@@ -23,6 +25,7 @@ export default function Post({
             setisIn(false) 
     }
     const showOption = () => {
+        if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
         setOptionHover(true)
     }
     const hiddeOption = event => {
