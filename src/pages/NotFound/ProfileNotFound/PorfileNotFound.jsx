@@ -4,10 +4,14 @@ import Main from '../../../layouts/Main'
 import HeadMain from '../../../components/HeadMain/HeadMain'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../../hooks/useFetch';
+import { useStateContext } from '../../../contexts/ContextProvider';
 
 export default function PorfileNotFound() {
+    const { SetTitle } = useStateContext();
+    SetTitle('Profile')
     const { pseudo } = useParams()
     const { loading, data } = useFetch('/')
+    
     return <Main>
         <div className='profile__not__found'>
             <HeadMain />

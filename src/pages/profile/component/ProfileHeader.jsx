@@ -3,10 +3,13 @@ import './ProfileHeader.css'
 import { BiArrowBack } from "react-icons/bi";
 import { CgMoreAlt ,CgCalendarDates } from "react-icons/cg";
 import { useSelector } from "react-redux";
+import { useStateContext } from "../../../contexts/ContextProvider";
 
 const ProfileHeader = () => {
   const { user } = useSelector(state => state.Auth)
   const [follow, setfollow] = useState(false)
+  const { SetTitle } = useStateContext();
+  SetTitle(`${user.name} (@${user.pseudo})`)
   const followHandler=()=>{
       setfollow(!follow)
   }

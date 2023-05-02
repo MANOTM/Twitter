@@ -72,7 +72,7 @@ export default function Post({
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
                             <span>
                                 <LikeIcon liked={liked} />
-                            </span> {'  '} {numberLikes}
+                            </span> {'  '} {numberLikes || 756}
                         </li>
                         <li>
                             <span>

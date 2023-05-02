@@ -45,3 +45,9 @@
 .logout__buttons button{
     height: 24px;
 }
+
+.logout__loading {
+    display: flex;
+    flex-direction: column;
+    row-gap: 11px;
+}

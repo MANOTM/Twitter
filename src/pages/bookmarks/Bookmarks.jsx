@@ -6,9 +6,12 @@ import useFetch from '../../hooks/useFetch'
 import Loading from '../../components/Loading/Loading'
 import Post from '../../components/posts/Post' 
 import { useSelector } from 'react-redux'
+import { useStateContext } from '../../contexts/ContextProvider'
 
 
 export default function Bookmarks() {
+  const { SetTitle } = useStateContext();
+  SetTitle()
   const { user } = useSelector(state => state.Auth)
   const {error , data ,loading} =useFetch('bookmarks/' + user.pseudo)
   return (

@@ -22,7 +22,7 @@
 ### step 5 => close the laptop and go to spleep :
     npm close laptop and sleep
 
-### Reminde, need Backend Api first and xamp server !!!!
+### Reminde, need Backend Api first and start xamp server !!!!
 
 command : for install all packages with one command `npm i` 
 
@@ -41,9 +41,18 @@ If none of this works for you, I recommend you to go back and check the steps ag
 for support call @elonMask :money_with_wings::money_with_wings::money_with_wings:
 
 
-
+===================================================================================================
 for notification use `CallToast('hello')` in your sotuation maybe you need button VIEW fiha, so add second paramétre `CallToast('hello,'/home')` add the path will added automaticly to view button :)
+===================================================================================================
+for Set title page use `SetTitle('Home')` and import it from `useStateContext`
+obligatoir to impoted in all page [ even if you are in profile page ]
+`SetTitle('Home')` => Home / Twitter
+`SetTitle()` => pathname / Twitter
+`SetTitle(null,true)` => Twitter
+===================================================================================================
 
+const { SetTitle } = useStateContext();
+SetTitle('Notification')
 
 if you looking for footer Components [Terms of Service, Privacy Policy...] go to 
 ==> Components/PolicyLinks <==

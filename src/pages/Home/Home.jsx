@@ -2,10 +2,11 @@ import React from 'react'
 import Main from '../../layouts/Main'
 import HeadTweet from "./HeadTweet";
 import Post from '../../components/posts/Post'
-import { useSelector } from 'react-redux';
+import { useStateContext } from '../../contexts/ContextProvider';
 
 export default function Home() { 
-    const { user} = useSelector(state => state.Auth)
+    const { SetTitle } = useStateContext();
+    SetTitle('Home')
     return (
         <>
             <Main>
