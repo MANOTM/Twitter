@@ -1,0 +1,54 @@
+.boite__m__header{
+    padding: 27px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 53px;
+    cursor: pointer;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+}
+.boite__header__info{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.boite_header__user{
+    display: flex;
+    flex-direction: column;
+}
+.boite__header__title{
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+    font-weight: 500;
+}
+.boite__header__actions{
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.boite__header__actions svg{ 
+    width: 20px; 
+}
+.header__back{
+    height: 20px;
+}
+
+.Collapse{
+    transition: .200ms;
+    -webkit-transition: .200ms;
+    -moz-transition: .200ms;
+    -ms-transition: .200ms;
+    -o-transition: .200ms;
+}
+.rotate{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}

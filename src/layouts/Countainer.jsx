@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from '../components/sidebar/Sidebar';
 import Toast from '../components/Toast/Toast';
 import ContainerContent from '../assets/Helper/MultiComponents';
-import { BoiteMessages } from '../components/BoiteMessages/BoiteMessages';
+import { BoiteMessages } from '../components/Chat/BoiteMessages/BoiteMessages';
 import { useSelector } from 'react-redux';
 
 

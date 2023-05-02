@@ -16,9 +16,20 @@ export const ContextProvider = ({ children }) => {
     const [AuthModal, setAuthModal] = useState(false)
     const [RegisterModal, setRegisterModal] = useState(false)
     const [CardHover, setCardHover] = useState(false)
-
+    // Don't touch it it's 4 chat
+    const [ToBottom, setToBottom] = useState(true)
+    const [InChat, setInChat] = useState(false)
+    const [userChat, setUserChat] = useState(null)
+  
+    const handelChat=(user)=>{
+      setInChat(!InChat) 
+      setUserChat(user) 
+    }
+    const handelChange = () => {
+      setToBottom(!ToBottom) 
+    } 
     return (
-        <StateContext.Provider value={{ CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ToBottom,InChat,userChat,handelChange,handelChat, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }
