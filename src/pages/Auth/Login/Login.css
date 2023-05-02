@@ -24,9 +24,21 @@
     margin-top: 0;
 }
 
+.new__icons__sign {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+.new__icons__sign.apple {
+    width: 20px;
+    height: 20px;
+}
 .login__buttons button{
     border-radius: 33px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 37px;
     color: rgb(15, 20, 25);
     font-weight: 600;

@@ -171,3 +171,43 @@ button::-moz-focus-inner,
 [hidden] {
     display: none;
 }
+
+.popup {
+    z-index: 11;
+    background-color: #000;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    position: absolute;
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+
+.radius {
+    border-radius: 16px;
+}
+
+.overlay__hidden {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.overlay__showed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(91, 112, 131, 0.4);
+    height: 100vh;
+}
+
+.small-text {
+    font-size: 14px;
+    color: rgb(113, 118, 123);
+}

@@ -14,7 +14,7 @@ export default function SuggestionUser({name,username,avatar}) {
                 <span className='username ellipsis'>@{username}</span>
             </div>
           </div>
-          <FollowBtn/>
+          <FollowBtn title="Follow"/>
         </div>
       </div>
   )

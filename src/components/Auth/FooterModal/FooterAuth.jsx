@@ -19,8 +19,8 @@ function FooterAuth() {
                         </p>
                     </div>
                     <div className="modal__buttons">
-                        <button onClick={() => navigate('/login')} className='modal__button'>Log in</button>
-                        <button onClick={() => navigate('/register')}>Sign up</button>
+                        <button onClick={() => navigate('/i/flow/login')} className='modal__button'>Log in</button>
+                        <button onClick={() => navigate('/i/flow/signup')}>Sign up</button>
                     </div>
                 </div>
             </div>

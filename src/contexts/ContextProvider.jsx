@@ -1,4 +1,6 @@
 import React, { useContext, createContext, useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const StateContext = createContext()
 
@@ -9,6 +11,21 @@ export const ContextProvider = ({ children }) => {
         let timer = setTimeout(() => {
             setToast({status:false, content:''})
         },time)
+    }
+
+    const SetTitle = (title,Dont=false) => {
+        if(Dont){
+            return document.title = 'Twitter'
+        }
+        const location = useLocation();
+        const { pathname } = location;
+        const content = pathname.substring(1)
+        useEffect(() => {
+            document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
+            / Twitter`;
+        },[title, content, Dont]);
+
+        return null
     }
 
     const [Toast, setToast] = useState({ status: false, content: '' })
@@ -29,7 +46,7 @@ export const ContextProvider = ({ children }) => {
       setToBottom(!ToBottom) 
     } 
     return (
-        <StateContext.Provider value={{ToBottom,InChat,userChat,handelChange,handelChat, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

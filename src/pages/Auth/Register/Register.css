@@ -3,15 +3,13 @@
     display: flex;
     flex-direction: column;
 }
-
-.login__container .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login__container.step {
+    width: 300px;
 }
 
+
 .login__title {
-    margin: 28px 0;
+    margin-bottom: 35px;;
     font-size: 30px;
     font-weight: 500;
 }
@@ -22,10 +20,25 @@
     row-gap: 22px;
     margin-top: 19px;
 }
+.login__buttons.down {
+    margin-top: 0;
+}
 
+.new__icons__sign {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+.new__icons__sign.apple {
+    width: 20px;
+    height: 20px;
+}
 .login__buttons button{
     border-radius: 33px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 37px;
     color: rgb(15, 20, 25);
     font-weight: 600;
@@ -46,70 +59,20 @@
 }
 
 .login__line{
-    position: relative;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 19px 0;
 }
-.login__line span::before {
-    content: '';
-    position: absolute;
+.login__line div{
     height: 1px;
-    width: 66px;
-    top: 50%;
-    left: 50px;
-    background-color: red;
-    transform: translateX(-50%);
-    text-align: center;
+    width: 100%;
+    background-color: rgb(51, 54, 57);
 }
-.login__line span::before {
-    content: '';
-    position: absolute;
-    height: 1px;
-    width: 66px;
-    top: 50%;
-    right: 40px;
-    background-color: rgb(0, 60, 255);
-    transform: translateX(-50%);
-    text-align: center;
+.login__line span{
+    margin: 0 8px;
 }
 
 .login__input {
     margin-bottom: 34px;
-}
-
-.login__signUp {
-    margin-top: 55px;
-    font-size: 15px;
-}
-.login__signUp span{
-    color: #747474;
-}
-.login__signUp span a{
-    color: #1D9BF0;
-}
-.login__signUp span a:hover{
-    text-decoration: underline;
-}
-
-.login__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.login__form_last {
-    width: 438px;
-}
-.login__form_last a{
-    margin-left: 5px;   
-    color: #1D9BF0;
-    font-size: 13px;
-}
-.login__buttons.form__button button{
-    height: 50px;
-    font-size: 17px;
-}
-
-.login__form__signUp {
-    margin-top: 5px;
-    font-size: 16px;
 }

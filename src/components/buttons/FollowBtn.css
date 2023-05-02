@@ -6,7 +6,7 @@
     font-size: 14px;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 17px;
+    border-radius: 23px;
     transition: .2s;
     -webkit-transition: .2s;
     -moz-transition: .2s;
@@ -15,4 +15,13 @@
 }
 .button__follow:hover{
     opacity: .9;
+}
+
+.button__follow.trans {
+    background-color: transparent;
+    border: 1px solid #ffffff84;
+    color: #fff;
+}
+.button__follow.trans:hover {
+    background-color: #ffffff23;
 }

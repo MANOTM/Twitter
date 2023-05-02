@@ -1,0 +1,28 @@
+.Main__Head {
+    height: 53px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Main__Head span {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 18px;
+}
+
+.back__icon {
+    fill: rgb(239, 243, 244);
+    width: 33px;
+    height: 33px;
+    margin: 5px;
+    transition: all .2s ease;
+}
+.back__icon:hover {
+    background-color: #434040;
+    border-radius: 50%;
+}
+.back__icon svg{
+    width: 20px;
+    height: 20px;
+}

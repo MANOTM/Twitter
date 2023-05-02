@@ -1,14 +1,10 @@
 .option__card {
-    position: absolute;
     min-width: 322px;
     width: fit-content;
-    overflow: hidden;
-    z-index: 11;
     right: 0;
-    background-color: #000;
-    border-radius: 12px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
     padding: 12px 15px;
+    position: absolute;
+    overflow: hidden;
     animation: option 1s linear forwards;
     -webkit-animation: option .16s linear forwards;
 }

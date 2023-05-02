@@ -5,10 +5,11 @@ import ThreePoints from '../Icons/ThreePoints';
 import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
-import img from '../../assets/images/img.png'
+
+
 
 export default function Post({
-    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,
+    profile_avatar, usename, tagname, verify, title, tweet, retweeted, liked,numberLikes,numberComments,image,video
 }) {  
     const { CardHover, setCardHover } = useStateContext();  
     const [isIn, setisIn] = useState(false) 
@@ -24,7 +25,8 @@ export default function Post({
     const showOption = () => {
         setOptionHover(true)
     }
-    const hiddeOption = () => {
+    const hiddeOption = event => {
+        event.stopPropagation();
         setOptionHover(false)
     } 
     const [OptionHover, setOptionHover] = useState(false)
@@ -44,10 +46,10 @@ export default function Post({
                                 {tagname}
                             </small>
                         </h3>
-                        <div className="post__option">
-                            <div onClick={showOption}><ThreePoints /></div>
+                        <div onClick={showOption} className="post__option">
+                            <div ><ThreePoints /></div>
                             { OptionHover && <>
-                                <div onClick={hiddeOption} className="overlay__option"></div>
+                                <div onClick={hiddeOption} className="overlay__hidden"></div>
                                 <OptionCard />
                             </> }
                         </div>
@@ -60,7 +62,7 @@ export default function Post({
                         <li>
                             <span>
                                 <CommentIcon />
-                            </span> {'  '} 155
+                            </span> {'  '} {numberComments}
                         </li>
                         <li className={`Reweet__icon ${retweeted && 'reetweet'}`}>
                             <span>
@@ -69,8 +71,8 @@ export default function Post({
                         </li>
                         <li className={`Like__icon ${liked && 'linkedOne'}`}>
                             <span>
-                                <LikeIcon/> 
-                            </span> {'  '} 15
+                                <LikeIcon liked={liked} />
+                            </span> {'  '} {numberLikes || 756}
                         </li>
                         <li>
                             <span>

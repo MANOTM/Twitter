@@ -1,11 +1,20 @@
 import './sidebar.css'
 import SidebarItem from './SidebarItem'
 import * as icons from './IconsImport'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Taawija from '../Icons/Taawija'
+import { useState } from 'react'
 
 export default function Sidebar() {
-  const { loggedIn:Auth } = useSelector(state => state.Auth)
+  const { loggedIn:Auth, user } = useSelector(state => state.Auth)
+  const [actived, setActive] = useState(false)
+  const showIn = () => setActive(true)
+  const navigate = useNavigate();
+  const showOut = event => {
+    event.stopPropagation();
+    setActive(false)
+  }
   return (
     <>
       <div className="sidebar">
@@ -50,17 +59,21 @@ export default function Sidebar() {
           {
             Auth && (
               <div className="sidebar__user hover">
-                {/* <div className="signOutPopUp">
-                  <span>Add an existing account</span>
-                  <span>Log out @DiwaniYassine</span>
-                </div> */}
-                <div className="user__info">
+                  {actived && <div onClick={showOut} className="overlay__logout"></div>}
+                <div className={`popup signOutPopUp ${actived && 'active_logOut'}`}>
+                  <div className="t3wija"><Taawija /></div>
+                  <ul>
+                    <li className='hover'>Add an existing account</li>
+                    <li onClick={()=> navigate('/logout')} className='hover'>Log out @{ user?.pseudo.toUpperCase() }</li>
+                  </ul>
+                </div>
+                <div className="user__info" onClick={showIn}>
                   <div className="avatar">
                     <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_normal.jpg" alt="" />
                   </div>
                   <div className="info">
-                    <span className='name ellipsis'>Otmane Mnasouri</span>
-                    <span className='username ellipsis'>@MANOTM_1</span>
+                    <span className='name ellipsis'>{ user?.name }</span>
+                    <span className='username ellipsis'>@{ user?.pseudo.toUpperCase() }</span>
                   </div>
                 </div>
                 <div className="user__action">
