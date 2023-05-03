@@ -88,17 +88,22 @@
     border: none;
     border-radius: 33px;
     height: 50px;
+    cursor: pointer;
     transform: translateX(-50%);
+    transition: all .2s ease;
+}
+.Register__next__steps:hover {
+    background-color: #dfdfdf;
 }
 .Register__next__steps.disbled {
     opacity: .7;
     pointer-events: none;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
     .login__content{
-        width: 700px;
-        height: 750px;
+        width: 500px;
+        height: 550px;
     }
 }
 @media (max-width: 900px) {

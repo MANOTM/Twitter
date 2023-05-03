@@ -39,12 +39,12 @@
     justify-content: start;
 }
 
-
 .option__card ul li .option__icon svg{
     fill: #fff;
     width: 19px;
     padding-top: 0;
 }
+
 .option__card ul li .option__title{
     font-size: 16px;
     margin-left: 15px;

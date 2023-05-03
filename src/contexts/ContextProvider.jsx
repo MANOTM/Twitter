@@ -6,11 +6,15 @@ const StateContext = createContext()
 
 export const ContextProvider = ({ children }) => {
     
+    const [timeoutId, setTimeOutId] = useState(null)
     const CallToast = (content,time=2222) => {
+        if(timeoutId) clearTimeout(timeoutId)
         setToast({status:true, content})
+        
         let timer = setTimeout(() => {
             setToast({status:false, content:''})
         },time)
+        setTimeOutId(timer)
     }
 
     const SetTitle = (title,Dont=false) => {

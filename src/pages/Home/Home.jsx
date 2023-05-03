@@ -39,6 +39,16 @@ export default function Home() {
                     title={"only boys can bet me in my terrantory"}
                     tweet={'https://i.pinimg.com/564x/fc/40/df/fc40dfa22da42e25ce506281c4381a39.jpg'}
                 />
+                <Post
+                    usename={"ossama banzima"}
+                    tagname={"@ossamabanzima"}
+                    verify={true}
+                    liked={true}
+                    retweeted={false}
+                    tweet={
+                    "https://assets-fr.imgfoot.com/media/cache/1200x675/cristiano-ronaldo-wc-22-1-638de531aff57.jpg"
+                    }
+                />
             </Main>
         </>
     );

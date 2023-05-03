@@ -6,6 +6,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import HoverCard from '../HoverCard/HoverCard';
 import OptionCard from '../OptionCard/OptionCard';
 import { useSelector } from 'react-redux';
+import ShareCard from './Components/ShareCard';
 
 
 
@@ -24,15 +25,18 @@ export default function Post({
             setCardHover(false) 
             setisIn(false) 
     }
-    const showOption = () => {
-        if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
+    const showOption = (A) => {
+        // if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
+        if(A) return setShareHover(true)
         setOptionHover(true)
     }
     const hiddeOption = event => {
-        event.stopPropagation();
+        if(event) event.stopPropagation();
         setOptionHover(false)
+        setShareHover(false)
     } 
     const [OptionHover, setOptionHover] = useState(false)
+    const [ShareHover, setShareHover] = useState(false)
     return (
         <div className="father">
             {isIn && CardHover ? <HoverCard isIn={isIn} setisIn={setisIn}/> :''}
@@ -49,7 +53,7 @@ export default function Post({
                                 {tagname}
                             </small>
                         </h3>
-                        <div onClick={showOption} className="post__option">
+                        <div onClick={()=>showOption(false)} className="post__option">
                             <div ><ThreePoints /></div>
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
@@ -78,7 +82,13 @@ export default function Post({
                             </span> {'  '} {numberLikes || 756}
                         </li>
                         <li>
-                            <span>
+                            <span onClick={()=>showOption(true)}>
+                                {ShareHover && 
+                                    <div>
+                                        <div onClick={hiddeOption} className="overlay__hidden"></div>
+                                        <ShareCard hiddeOption={hiddeOption} />
+                                    </div>
+                                }
                                 <ShareIcon />
                             </span>
                         </li>

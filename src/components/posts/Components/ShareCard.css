@@ -1,0 +1,40 @@
+.Share__card {
+    min-width: 255px;
+    width: fit-content;
+    right: 50px;
+    bottom: 0;
+    padding: 12px 4px;
+}
+
+
+.Share__card .share__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.Share__card .share__list div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.share__title:not(.post__footer li) {
+    font-size: 15.5px;
+    margin-left: 15px;
+    font-weight: 500;
+    color: rgb(231, 233, 234);
+}
+
+
+.share__List__icon svg {
+    fill: rgb(231, 233, 234) !important;
+    width: 21px;
+    padding-top: 0;
+    margin-left: 10px;
+}
+
+
+
+
+

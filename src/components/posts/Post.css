@@ -73,6 +73,7 @@
     margin-right: 40px;
 }
 .post__footer li{
+    position: relative;
     max-width: 80px;
     font-size: 13px;
     color: #71767B;

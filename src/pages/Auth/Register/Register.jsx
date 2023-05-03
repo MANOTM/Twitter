@@ -6,6 +6,7 @@ import RegisterHome from './RegisterHome/RegisterHome'
 import { useSelector } from 'react-redux';
 import RegisterStepOne from './RegisterSteps/RegisterStepOne';
 import { useState } from 'react';
+import RegisterStepTwo from './RegisterSteps/RegisterStepTwo';
 
 export default function Register() {
     const { SetTitle } = useStateContext();
@@ -18,7 +19,7 @@ export default function Register() {
             Content = <RegisterStepOne setFeilds={setFeilds} />
             break;
         case 2:
-            Content = <h1>2</h1>
+            Content = <RegisterStepTwo />
             break;
         case 3:
             Content = <h1>3</h1>

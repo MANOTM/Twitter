@@ -5,7 +5,7 @@ import { useStateContext } from '../../../../contexts/ContextProvider';
 import TwitterIcon from '../../../../components/icons/TwitterIcon';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { EndSteps } from '../../../../redux/Reducers/RegisterReducer';
+import { EndSteps, Move } from '../../../../redux/Reducers/RegisterReducer';
 
 export default function LoginModal({ children }) {
     const { pages: { Start, step } } = useSelector(state => state.Register);
@@ -34,7 +34,8 @@ export default function LoginModal({ children }) {
                             <span className='Register__steps'>
                                 Step { step } of 5
                             </span> 
-                            <button className='Register__next__steps disbled'>
+                            <button onClick={()=>dispatch(Move())} className='Register__next__steps'>
+                                {/* disbled */}
                                 Next
                             </button>
                         </>

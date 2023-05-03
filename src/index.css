@@ -181,3 +181,10 @@ button::-moz-focus-inner,
     font-size: 14px;
     color: rgb(113, 118, 123);
 }
+
+.a-link {
+    color: #1d9bf0;
+}
+.a-link:hover {
+    text-decoration: underline;
+}
