@@ -7,7 +7,7 @@ import ProfileNotFound from './pages/NotFound/ProfileNotFound/PorfileNotFound'
 import Bookmarks from "./pages/bookmarks/Bookmarks";
 import Profile from "./pages/profile/Profile";
 import { AuthRoute, GuestRoute } from "./layouts/AuthLayout";
-import { LoginComponent, RegisterComponent, MessageComponent } from "./assets/Helper/MultiComponents";
+import { LoginComponent, RegisterComponent, MessageComponent, PageNotFound } from "./assets/Helper/MultiComponents";
 import NotFound from "./pages/NotFound/NotFound";
 import Overlay from "./layouts/Overlay/overlay";
 import Logout from "./components/Logout/Logout";

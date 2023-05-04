@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import RegisterStepOne from './RegisterSteps/RegisterStepOne';
 import { useState } from 'react';
 import RegisterStepTwo from './RegisterSteps/RegisterStepTwo';
+import RegisterStepThree from './RegisterSteps/RegisterStepThree';
+import RegisterStepFour from './RegisterSteps/RegisterStepFour';
+import RegisterStepFive from './RegisterSteps/RegisterStepFive';
 
 export default function Register() {
     const { SetTitle } = useStateContext();
@@ -22,13 +25,13 @@ export default function Register() {
             Content = <RegisterStepTwo />
             break;
         case 3:
-            Content = <h1>3</h1>
+            Content = <RegisterStepThree />
             break;
         case 4:
-            Content = <h1>4</h1>
+            Content = <RegisterStepFour />
             break;
         case 5:
-            Content = <h1>5</h1>;
+            Content = <RegisterStepFive /> ;
             break;
         default:
             Content = <RegisterHome />

@@ -41,8 +41,8 @@
 }
 
 .modal__logo {
-    justify-content: center;
     padding-right: 12px;
+    margin: 0 auto;
 }
 
 .modal__close {
@@ -90,7 +90,14 @@
     height: 50px;
     cursor: pointer;
     transform: translateX(-50%);
-    transition: all .2s ease;
+    transition: .2s ease;
+}
+.Register__next__steps.submitRegister {
+    background-color: #1d9bf0;
+    color: rgb(231, 233, 234) !important;
+}
+.Register__next__steps.submitRegister:hover {
+    background-color: #1f8dd6;
 }
 .Register__next__steps:hover {
     background-color: #dfdfdf;
@@ -98,6 +105,63 @@
 .Register__next__steps.disbled {
     opacity: .7;
     pointer-events: none;
+}
+
+.step3__paragraph {
+    position: absolute;
+    bottom: 102px;
+    line-height: 1.2;
+    width: 440px;
+    font-size: 12.5px !important;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.add__profile__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 188px;
+    height: 188px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.add__profile__image img {
+    filter: brightness(60%);
+    border: 2.3px solid #000;
+    width: 184px;
+    height: 184px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.Skip__for__new {
+    width: 440px;
+    height: 52px;
+}
+
+.camera__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    width: 44px;
+    height: 44px;
+    background-color: #272f37;
+    border-radius: 50%;
+    transition: all .2s ease;
+}
+.camera__icon:hover {
+    background-color: #323639;
+}
+.camera__icon svg{
+    width: 22px;
+    height: 22px;
+    fill: rgb(255, 255, 255);
 }
 
 @media (max-width: 1200px) {
@@ -116,5 +180,8 @@
     .login__content{
         width: 505px;
         height: 540px;
+    }
+    .step3__paragraph {
+        display: none;
     }
 }

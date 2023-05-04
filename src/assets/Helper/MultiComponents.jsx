@@ -9,6 +9,7 @@ import FooterAuth from '../../components/Auth/FooterModal/FooterAuth'
 import Messages from '../../pages/messages/Messges'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom' 
+import NotFound from '../../pages/NotFound/NotFound'
 
 
 export function LoginComponent() {
@@ -38,8 +39,8 @@ export function MessageComponent() {
 export function PageNotFound() {
     return (
         <>
-            <Messages />
-            <Messages />
+            <NotFound />
+            <NotFound />
         </>
     )
 }

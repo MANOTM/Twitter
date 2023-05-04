@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import './Input.css';
-import { Eye, HiddenEye } from '../../../../components/Icons/PasswordIcons';
+import { Eye, HiddenEye, ValidIcon } from '../../../../components/Icons/PasswordIcons';
 
 export default function Input(props) {
 
-    const { type="text", pattern, style, className, id, name, label, change, icon, value, error, readonly } = props
+    const { type="text", pattern, style, className,  valid, id, name, label, change, icon, value, error, readonly } = props
     const [input_type,setInput] = useState(true)
 
     return (
         <>
             <div className="twitter__form__group">
                 {/* <div className="twitter__form__group__border"></div> */}
+                {
+                    valid && (
+                        <div className="valid__icon">
+                            <ValidIcon />
+                        </div>
+                    )
+                }
                 <input 
                     className={className}
                     readOnly={readonly}

@@ -28,6 +28,7 @@
     border: none;
     height: 44px;
     font-size: 17px;
+    font-weight: normal;
     width: 100%;
     padding: 0 10px;
     margin-top: 10px;
@@ -56,4 +57,13 @@
     right: 1px;
     transform: translateX(-50%);
     cursor: pointer;
+}
+
+.valid__icon {
+    width: 18px;
+    height: 18px;
+    fill: rgb(0, 186, 124);
+    position: absolute;
+    right: 6px;
+    bottom: 13px;
 }

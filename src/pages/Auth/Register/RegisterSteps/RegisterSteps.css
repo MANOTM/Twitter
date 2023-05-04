@@ -95,3 +95,31 @@
     line-height: 1.4;
     color: rgb(113, 118, 123) !important;
 }
+
+
+/*Thered__Step*/
+
+.Thered__Step,
+.step__four {
+    width: 100%;
+}
+
+/*step__four*/
+
+.verificationt__titles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+    justify-content: center;
+    height: 104px;
+}
+.verificationt__titles p{
+    font-size: 14px;
+    margin-top: 8px;
+    color: rgb(113, 118, 123);
+    font-weight: 400;
+}
+
+.verification_code_receive {
+    font-size: 12.3px !important;
+}

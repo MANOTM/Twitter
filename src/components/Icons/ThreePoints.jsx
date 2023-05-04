@@ -2,7 +2,6 @@ import * as React from "react";
 const ThreePoints = (props) => (
   <svg
     viewBox="0 0 24 24"
-
     aria-hidden="true"
     className="r-1nao33i r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr option"
     {...props}
