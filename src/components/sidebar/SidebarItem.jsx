@@ -1,12 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
-export default function SidebarItem({children,text,to,notf}) {
+export default function SidebarItem({children,text,to,notf,bold,icon}) {
+    const location = useLocation();
     return (
         <li className='sidebar__item hover'>
             <NavLink to={to} className='sidebar__link' >
                 <div className="link__icon">
                     {children}
+                    {
+                        location.pathname == to ? bold : icon
+                    }
                     {notf && <span></span>}
                 </div>
                 <div className="sidebar__text">{text}</div> 

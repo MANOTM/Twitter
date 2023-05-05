@@ -11,6 +11,13 @@ export default function ShareCard({ hiddeOption }) {
         CallToast('Copied to clipboard');
         hiddeOption(event)
     }
+    const handleShare = () => {
+        navigator.share({
+            title: 'Tweet',
+            text: 'Check out this Tweet !!!',
+            url: window.location.href,
+        })
+    }
 
     return (
         <div className="Share__card popup">
@@ -23,7 +30,7 @@ export default function ShareCard({ hiddeOption }) {
                         Copy link to Tweet
                     </div>
                 </div>
-                <div>
+                <div onClick={handleShare}>
                     <div className="share__List__icon">
                         <ShareIcon />
                     </div>

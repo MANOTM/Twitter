@@ -1,14 +1,10 @@
 import ThreePoints from '../Icons/ThreePoints'
-import Save from '../Icons/SaveIcon'
-import NewTweetIcon from '../Icons/NewTweetIcon'
 import TwitterIcon from '../icons/TwitterIcon'
-import HomeIcon from '../icons/HomeIcon'
-import NotificationIcon from '../icons/NotificationIcon'
-import MessageIcon from '../icons/MessageIcon'
-import UserIcon from '../icons/UserIcon'
-import ExploreIcon from '../icons/ExploreIcon'
-import MoreIcon from '../icons/MoreIcon'
+import NewTweetIcon from '../Icons/NewTweetIcon'
+import { Save, BoldSave, HomeIcon, HomeBoldIcon, NotificationIcon, BoldNOtificationIcon,
+MessageIcon, BoldMessageIcon, UserIcon, BoldUserIcon, ExploreIcon, BoldExploreIcon, MoreIcon } from '../Icons/SideBarIcons'
+
 export {
-    ThreePoints, Save, NewTweetIcon, TwitterIcon, HomeIcon, NotificationIcon, MessageIcon,
-    UserIcon, ExploreIcon, MoreIcon,
+    ThreePoints, Save, BoldSave, NewTweetIcon, TwitterIcon, HomeIcon, NotificationIcon, BoldNOtificationIcon,
+    MessageIcon, BoldMessageIcon, UserIcon, BoldUserIcon, ExploreIcon, BoldExploreIcon, MoreIcon, HomeBoldIcon
 }

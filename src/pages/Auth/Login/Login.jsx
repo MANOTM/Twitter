@@ -55,7 +55,7 @@ function Login() {
             if(data) {
                 setLoading(false)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
-                Cookies.set("Auth_token",data.data.token);
+                Cookies.set("Auth_token",data.data.token,{ expires: 7 });
                 localStorage.setItem('pss', data.data.user.pseudo);
                 dispatch(LogIn(data.data.user));
                 CallToast(data.message);

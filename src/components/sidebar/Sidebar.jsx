@@ -24,26 +24,32 @@ export default function Sidebar() {
               <icons.TwitterIcon fill="#e7e9ea" />
             </Link>
             <ul className="sidebar__items">
-              <SidebarItem notf={true} to="/" text={Auth ? "Home" : "explore"}>
-                {Auth ? <icons.HomeIcon fill="#e7e9ea"  /> : <icons.ExploreIcon fill="#e7e9ea" />}
-              </SidebarItem>
+              <SidebarItem notf={true} to="/" text={Auth ? "Home" : "explore"} 
+              icon={Auth ? <icons.HomeIcon /> : <icons.ExploreIcon />}
+              bold={Auth ? <icons.HomeBoldIcon /> : <icons.BoldExploreIcon />} />
               {
                 Auth && (<>
-                    <SidebarItem notf={false} to="/explore" text="Explore">
-                      <icons.ExploreIcon fill="#e7e9ea" />
-                    </SidebarItem>
-                    <SidebarItem notf={true} to="/notifications" text="Notifications">
-                      <icons.NotificationIcon fill="#e7e9ea" />
-                    </SidebarItem>
-                    <SidebarItem notf={false} to="/messages" text="Messages">
-                      <icons.MessageIcon fill="#e7e9ea" />
-                    </SidebarItem>
-                    <SidebarItem notf={false} to="/bookmarks" text="Bookmarks">
-                      <icons.Save fill="#e7e9ea" />
-                    </SidebarItem>
-                    <SidebarItem notf={false} to="/profile" text="Profile">
-                      <icons.UserIcon fill="#e7e9ea" />
-                    </SidebarItem>
+                    <SidebarItem 
+                      notf={false} 
+                      to="/explore" 
+                      text="Explore" icon={<icons.ExploreIcon />} bold={<icons.BoldExploreIcon />} />
+                    <SidebarItem notf={true} to="/notifications" text="Notifications" 
+                      icon={<icons.NotificationIcon />}
+                      bold={<icons.BoldNOtificationIcon />}
+                    />
+                    
+                    <SidebarItem notf={false} to="/messages" text="Messages"
+                      icon={<icons.MessageIcon />}
+                      bold={<icons.BoldMessageIcon />}
+                    />
+                    <SidebarItem notf={false} to="/bookmarks" text="Bookmarks" 
+                      icon={<icons.Save />}
+                      bold={<icons.BoldSave />}
+                    />
+                    <SidebarItem notf={false} to="/profile" text="Profile"
+                      icon={<icons.UserIcon />}
+                      bold={<icons.BoldUserIcon />}
+                    />
                   </>
                 )
               }
