@@ -10,6 +10,8 @@ import { connect, useDispatch } from 'react-redux'
 import { LogIn } from '../../../redux/Reducers/AuthReducer'
 import Google from '../../../components/Icons/Google'
 import Apple from '../../../components/Icons/Apple'
+import { useAuth } from '../../../hooks/useAuth'
+import RegularEx from '../../../assets/Helper/RegularEx'
 
 function Login() {
     const { SetTitle } = useStateContext();
@@ -22,7 +24,29 @@ function Login() {
         const { name, value } = e.target;
         setField({ ...field, [name] : value })
     }
-    const handleSteps = () => setSteps(false);
+    const handleSteps = async() => {
+        setLoading(true)
+        const RegExEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        const isValidEmail = RegExEmail.test(field.email)
+        if(!isValidEmail){
+            setLoading(false)
+            return CallToast('this is not a valid Email');
+        }
+        console.log(field);
+        try {
+            const { data } = await axios.post('/verifyEmail',field)
+            setLoading(false)
+            CallToast('Sorry, we could not find your account.')
+        }catch(error) {
+            setLoading(false)
+            if(error.response && error.response.status === 403){
+                setSteps(false)
+                console.log('aaaaaaaaaaa');
+            }else{
+                CallToast('ch3el xamp b3da hh');
+            }
+        }
+    };
     const HandleSubmit = async e => {
         e.preventDefault()
         try{
@@ -38,7 +62,7 @@ function Login() {
             }
         } catch(e){
             setLoading(false);
-            CallToast('Sorry, something happened, please try later.');
+            CallToast('Wrong password.');
         }
         setField({...field, password:''});
     }

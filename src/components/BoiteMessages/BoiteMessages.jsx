@@ -25,7 +25,6 @@ export const BoiteMessages = () => {
               return <ChatLine key={it.id} avatar={it.avatar} name={`${it.first_name} ${it.last_name} ${it.first_name}`} usernam={it.first_name+it.last_name} time={' Apr 17'} text={it.last_name}/>
             }))   
             setLoading(false)  
-
           },1000)
           
         })  

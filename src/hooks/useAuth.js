@@ -1,12 +1,23 @@
 import axios from "../api/axios";
 import { useState, useEffect } from "react";
 
-const auth = (url,user) => {
+export const useAuth = (url,user) => {
 
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null)
+    const [data, setData] = useState(null)
     const [error, setError] = useState(null)
 
+    useEffect(() => {
+        axios.post(url,user)
+        .then(res => {
+            setData(res.data)
+            setLoading(false)
+        })
+        .catch(err => {
+            setLoading(false)
+            setError(false)
+        });
+    },[url,user])
     
-
+    return { data, error, loading }
 }
