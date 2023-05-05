@@ -1,11 +1,12 @@
 import React from 'react';
 import './NewToTwitter.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Google from '../Icons/Google';
 import Apple from '../Icons/Apple';
 import PolicyLinks from '../PolicyLinks/PolicyLinks';
 
 export default function NewToTwitter() {
+    const naviate = useNavigate()
     return (
         <>
             <div className="NewToTwitter">
@@ -23,7 +24,7 @@ export default function NewToTwitter() {
                             <div className="new__icons__sign apple"><Apple /></div>
                             Sign up with Apple
                         </button>
-                        <button onClick={() => Navigate('/i/flow/signup')}>Create account</button>
+                        <button onClick={() => naviate('/i/flow/signup')}>Create account</button>
                     </div>
                     <div className="new__footer">
                         <span>By signing up, you agree to the <a href="https://twitter.com/en/tos" target='_blank'>Terms of Service</a> 
