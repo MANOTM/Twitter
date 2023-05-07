@@ -37,16 +37,16 @@ export const ContextProvider = ({ children }) => {
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
-  
+    const [ShowingCard,setShowingCard]=useState(false)
     const handelChat=(user)=>{
-      setInChat(!InChat) 
-      setUserChat(user) 
+        user ? setInChat(true):setInChat(false)  
+         setUserChat(user)  
     }
     const handelChange = () => {
       setToBottom(!ToBottom) 
     } 
     return (
-        <StateContext.Provider value={{ ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

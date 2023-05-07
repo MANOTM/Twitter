@@ -5,7 +5,7 @@ import Collapse from '../../Icons/collapse'
 import './ChatHead.css'
 
 export const ChatHead = () => {
-  const {handelChat,userChat,handelChange,ToBottom }=useStateContext()
+  const {handelChat,userChat,handelChange,ToBottom ,setShowingCard}=useStateContext()
   return ( 
     <div className="boite__m__header">
         <div className="boite__header__info">
@@ -20,14 +20,16 @@ export const ChatHead = () => {
         </div>
         </div> 
         <div className="boite__header__actions"> 
-        <div className="iconH">
-           {!userChat? <NewMessage/>:''} 
+        {!userChat ? 
+        <div className="iconH"  onClick={()=>setShowingCard(true)}>
+           <NewMessage/>
         </div>
+        :''}
+        
         <div className="iconH">
-
             <Collapse onClick={handelChange} className={`Collapse ${ToBottom && 'rotate'}`}/> 
         </div>
-        </div>
+        </div> 
     </div> 
   )
 }

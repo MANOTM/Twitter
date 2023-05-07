@@ -3,6 +3,7 @@ const SettingsIcon = (props) => (
   <svg
     viewBox="0 0 24 24" 
     aria-hidden="true" 
+    fill="rgb(239, 243, 244)"
     {...props}
   >
     <g>

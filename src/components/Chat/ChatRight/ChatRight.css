@@ -1,0 +1,19 @@
+
+.chat__right{
+ height: 100%;
+}
+
+.chat__right .boite__header__info{
+    gap: 10px;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+.op0{
+    opacity: 0;
+}
+.op1{
+    opacity: 1;
+}

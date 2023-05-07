@@ -1,0 +1,117 @@
+.new__chat__container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(91, 112, 131, 0.4);
+    z-index: 22222;
+}
+.new__chat{
+    width: 600px;
+    height: 90%;
+    max-height: 650px;
+    min-height: 400px;
+    background-color: black;
+    overflow: auto;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+.next_btn{
+    all: unset;
+    background: #e7e9ea;
+    color: rgb(15, 20, 25);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 55px;
+    cursor: pointer;
+}
+.op5{
+    opacity: .5;
+}
+.new_chat_input {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    height: 42px;
+    padding-left: 22px;
+    border-bottom: 1px solid #8585857d;
+}
+.new_chat_input input{
+    all: unset;
+    height: 100%;
+    color: rgb(231, 233, 234);
+    font-weight: 400;
+    font-size: 15px;
+    width: 100%;
+}
+.new_chat_input svg{
+    height:1.25rem;
+
+}
+.new_grp{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 65px;
+    padding-left: 22px;
+    cursor: pointer;
+    border-bottom: 1px solid #8585857d;
+}
+.new_grp_icon{
+    height: 40px;
+    width: 40px;
+    border: 1px solid gray;
+    border-radius: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.new_grp_icon svg{
+    height: 22px;
+}
+.new_grp_text{
+    color:rgb(29, 155, 240);
+    font-size: 15px;
+    font-weight: 600;
+
+}
+.new_chat_avatar{
+    height: 56px;
+    width: 56px;
+    border-radius: 80%;
+    overflow: hidden; 
+}
+.new_chat_avatar img{
+    height: 100%;
+    width: 100%; 
+}
+.new_chat_user{
+    display: flex;
+    gap: 14px;
+    padding: 14px 22px;
+    cursor: pointer;
+}
+.new_chat_info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.new_chat_info_name{
+    color: rgb(231, 233, 234);
+    font-size: 15px;
+    font-weight: 600;
+}
+.new_chat_info_username{
+    font-size: 15px;
+    font-weight: 400;
+    color: #71767b;
+}

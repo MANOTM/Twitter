@@ -5,10 +5,19 @@
     justify-content: center;
     cursor: pointer;
 }
+.chat__left .chat__line.active{
+    background: #202327;
+    border-right: 2px solid #1d9bf0;
+}
 .chat__line_{
     width: 100%;
     display: flex;
     gap: 10px;
+}
+.chat__line_in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .chat__avatar{
     width: 48px;
@@ -25,12 +34,16 @@
     height: 100%;
 }  
 .chat__line__content{
-    width: calc(100% - 50px) !important;
+    width: calc(100% - 58px) !important;
 }
 .chat__line__info{
-    display: flex; 
-    justify-content: space-between;
+    display: flex;  
     align-items: center;
+}
+.chat__line__info{
+    gap: 5px;
+    max-width: 90%;
+    width: fit-content;
 }
 .chat__line__name , .chat__line__username{
     width: 41%;
@@ -38,6 +51,14 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+.chat__left .chat__line__name , .chat__left .chat__line__username{
+    /* width: 38%; */
+    max-width: max-content;
+}
+ 
+.chat__line__time{
+    width: 73px;
 }
 .chat__line_message{
     width: 236px;

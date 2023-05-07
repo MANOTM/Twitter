@@ -30,3 +30,8 @@
 .toBottom{
     height: 53px !important;
 }
+@media (max-width: 1100px) {
+    .boite__messages{
+        display: none;
+    }
+}

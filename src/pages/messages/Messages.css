@@ -19,3 +19,43 @@
     overflow: auto;
     border-right: 1px solid rgba(128, 128, 128, 0.436);
 }
+.no_user_select{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.no_user_content{
+    width: 400px; 
+}
+.no_user_content span{
+    font-size: 30px;
+    font-weight: 700;
+}
+.no_user_content p{
+    color: rgb(113, 118, 123);
+    font-size: 15px;
+    margin: 20px 0;
+}
+.no_user_content button{
+    padding-inline: 25px;
+}
+@media (max-width: 1280px) {
+    .messages{
+        width: calc(100% - 175px) !important;
+    }
+}
+@media (max-width: 1100px) {
+    .over_h{
+        display: none;
+    }
+    .sideLeftM{
+        width: 100%;
+    }
+    .sideRightM{
+        width: 100%;
+    }
+    .messages{
+        width: 610px !important;
+    }
+}

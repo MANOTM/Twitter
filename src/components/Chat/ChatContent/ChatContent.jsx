@@ -1,11 +1,11 @@
+import { useEffect, useRef } from 'react'
 import { useStateContext } from '../../../contexts/ContextProvider'
 import './ChatContent.css'
 
 export const ChatContent = () => {
   const {userChat}=useStateContext()
-
   return (
-    <div className='chat__content'>
+    <div className='chat__content' >
         <div className="chat__content__head hover">
             <div className="avatar64">
                 <img src={userChat.avatar} alt="" />
