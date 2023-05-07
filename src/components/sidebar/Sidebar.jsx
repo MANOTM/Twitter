@@ -41,7 +41,7 @@ export default function Sidebar() {
                     <SidebarItem notf={false} to="/bookmarks" text="Bookmarks">
                       <icons.Save fill="#e7e9ea" />
                     </SidebarItem>
-                    <SidebarItem notf={false} to="/profile" text="Profile">
+                    <SidebarItem notf={false} to="/profile/riglhadi" text="Profile">
                       <icons.UserIcon fill="#e7e9ea" />
                     </SidebarItem>
                   </>
