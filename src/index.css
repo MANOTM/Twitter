@@ -30,7 +30,7 @@
     background: #88888800; 
   }
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .d-block {

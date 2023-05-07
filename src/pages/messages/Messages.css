@@ -58,4 +58,7 @@
     .messages{
         width: 610px !important;
     }
+    .iconH.d-none{
+        display: block !important;
+    }
 }
