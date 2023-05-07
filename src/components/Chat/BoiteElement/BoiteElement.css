@@ -1,0 +1,7 @@
+
+.boite_messages_chatLines{
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px);
+    /* overflow: auto; */
+} 

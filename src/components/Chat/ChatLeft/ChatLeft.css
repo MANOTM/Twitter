@@ -1,0 +1,45 @@
+.chat__left{
+    height: 100%;
+    overflow: auto;
+}
+.cursor_auto{
+    cursor: auto !important;
+}
+.search__chat{
+    width: 90%;
+    height: 44px;
+    margin: 15px auto;
+    cursor: pointer;
+    border: 1px solid rgba(128, 128, 128, 0.436);
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+.search__chat_form{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.search__chat svg{
+    height: 16px;
+}
+.input__search{
+    height: 100%;
+}
+.input__search input{
+    all: unset;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+}
+.search__chat.active{
+    border:2px solid rgb(29, 155, 240) !important ;
+    cursor: auto;
+}
+.search__chat.active .input__search {
+    width: calc(100% - 40px);
+}

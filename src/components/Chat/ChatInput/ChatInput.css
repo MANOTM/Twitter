@@ -1,0 +1,64 @@
+.chat__input{ 
+    height: 56px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #80808045;
+}
+.chat__input svg{
+    height: 20px;
+}
+.chat__form{
+    height: 44px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-inline:12px ;
+    background-color: rgb(32, 35, 39);
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+.chat_form__actions{
+    display: flex;
+    gap: 5px;
+}
+.chat_form_input{
+    display: flex;
+    width: calc(100% - 45px); 
+}
+.chat_form_input input{
+    all: unset;
+    width: 100%;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgb(231, 233, 234);
+}
+.chat_form_input input::placeholder{
+    font-size: 14px;
+}
+.stoPro{
+    position: fixed;
+    bottom: 50px;
+    z-index: 111112222222222222;
+    right: 200px; 
+}
+
+em-emoji-picker{
+    width: 320px;
+    height: 400px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+  
+} 
+.emoji_div{ 
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 11111;
+}

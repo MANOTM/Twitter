@@ -5,7 +5,7 @@ import PolicyLinks from '../PolicyLinks/PolicyLinks'
 
 export default function AsideTrends({children}) {
   return (
-    <div className='AsideTrends'>
+    <div className='AsideTrends scroll'>
         <Trends/>
         <WhoToFollow/>
         <PolicyLinks />

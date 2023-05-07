@@ -1,6 +1,6 @@
 .sidebar{
     height: 100%;
-    width: 250px; 
+    width: 257px; 
     padding-right: 15px;
     color:#e7e9ea ; 
 }
@@ -142,9 +142,6 @@
 
 @media (max-width: 1280px) {
     .sidebar__text{
-        display: none;
-    }
-    .boite__messages{
         display: none;
     }
     .sidebar{

@@ -46,7 +46,7 @@ export default function Sidebar() {
                       icon={<icons.Save />}
                       bold={<icons.BoldSave />}
                     />
-                    <SidebarItem notf={false} to="/profile" text="Profile"
+                    <SidebarItem notf={false} to={`/profile/${user.pseudo}`} text="Profile"
                       icon={<icons.UserIcon />}
                       bold={<icons.BoldUserIcon />}
                     />

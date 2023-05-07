@@ -38,11 +38,15 @@ const router = createBrowserRouter([
                 element : <AuthRoute element={MessageComponent} />,
             },
             {
+                path : '/messages/:idSender',
+                element : <AuthRoute element={MessageComponent} />,
+            },
+            {
                 path : '/bookmarks',
                 element : <AuthRoute element={Bookmarks} />,
             },
             {
-                path : '/profile',
+                path : '/profile/:pseudo/*',
                 element : <AuthRoute element={Profile} />,
             },
             {

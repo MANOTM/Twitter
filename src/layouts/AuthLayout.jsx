@@ -3,12 +3,12 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { useSelector } from "react-redux";
 
 export function AuthRoute({ element: Element }) {
+    const { CallToast } = useStateContext()
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     if(!Auth) {
         CallToast('you shoud login first, to access this page')
         return <Navigate to="/i/flow/login" />
     }
-    const { CallToast } = useStateContext()
     return <Element />
 }
 

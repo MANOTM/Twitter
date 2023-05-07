@@ -26,7 +26,7 @@ export default function Post({
             setisIn(false) 
     }
     const showOption = (A) => {
-        // if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
+        if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
         if(A) return setShareHover(true)
         setOptionHover(true)
     }
