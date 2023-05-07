@@ -12,7 +12,7 @@ import FollowBtn from '../../../../components/buttons/FollowBtn';
 import { CameraIcon } from '../../../../components/Icons/PasswordIcons';
 
 export default function LoginModal({ children }) {
-    const { pages: { Start, step } } = useSelector(state => state.Register);
+    const { pages: { Start, step }, button: { disabled } } = useSelector(state => state.Register);
     const { setAuthModal, setSteps } = useStateContext();
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -53,8 +53,8 @@ export default function LoginModal({ children }) {
                             </span> 
                             {
                                 step <= 5 &&( 
-                                        step != 5 ?
-                                        <button onClick={()=>dispatch(Move())} className='Register__next__steps'>
+                                        step != 4 ?
+                                        <button onClick={()=>dispatch(Move())} className={`Register__next__steps ${disabled && 'disbled'}`}>
                                             Next
                                         </button>
                                         :

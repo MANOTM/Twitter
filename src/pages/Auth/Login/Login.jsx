@@ -32,18 +32,16 @@ function Login() {
             setLoading(false)
             return CallToast('this is not a valid Email');
         }
-        console.log(field);
         try {
             const { data } = await axios.post('/verifyEmail',field)
             setLoading(false)
-            CallToast('Sorry, we could not find your account.')
+            if(data) CallToast('Sorry, we could not find your account.')
         }catch(error) {
             setLoading(false)
             if(error.response && error.response.status === 403){
                 setSteps(false)
-                console.log('aaaaaaaaaaa');
-            }else{
-                CallToast('ch3el xamp b3da hh');
+            }else {
+                return CallToast('x3el xamp wla api !!!')
             }
         }
     };
@@ -58,7 +56,8 @@ function Login() {
                 Cookies.set("Auth_token",data.data.token,{ expires: 7 });
                 localStorage.setItem('pss', data.data.user.pseudo);
                 dispatch(LogIn(data.data.user));
-                CallToast(data.message);
+                setSteps(true)
+                CallToast('Hello world!!')
             }
         } catch(e){
             setLoading(false);

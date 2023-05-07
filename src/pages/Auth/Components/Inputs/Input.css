@@ -7,6 +7,9 @@
 .twitter__form__group:focus-within{
     border: .5px solid #1D9BF0;
 }
+.error .twitter__form__group:focus-within{
+    border: .5px solid red;
+}
 .twitter__form__group label {
     position: absolute;
     top: 50%;
@@ -19,8 +22,16 @@
     transition: .2s;
 }
 
+.error .twitter__form__group label {
+    color: red;
+}
+
 .twitter__form__group:focus-within label {
     color: #1D9BF0;
+}
+
+.error .twitter__form__group:focus-within label {
+    color: red;
 }
 .twitter__form__group input {
     background-color: transparent;

@@ -1,8 +1,10 @@
 import React from 'react'
 import './RegisterSteps.css';
 import Input from '../../Components/Inputs/Input';
+import { useSelector } from 'react-redux';
 
 export default function RegisterStepOne() { 
+    const { inputs: { name, email, year, month, day } } = useSelector(state => state.Register);
 
     return (
         <div className="Register__Steps Thered__Step">
@@ -15,7 +17,7 @@ export default function RegisterStepOne() {
                         label="Name"
                         id="Name"
                         name="name"
-                        value="yassine adiouani"
+                        value={name}
                         valid={true}
                         />
                 </div>
@@ -24,7 +26,7 @@ export default function RegisterStepOne() {
                         label="Email"
                         id="email"
                         name="email"
-                        value="yassinediwani444@gmail.com"
+                        value={email}
                         valid={true}
                         />
                 </div>
@@ -33,7 +35,7 @@ export default function RegisterStepOne() {
                         label="Date of birth"
                         id="email"
                         name="date"
-                        value="August 08, 2002"
+                        value={`${month.substring(0,3)} ${day}, ${year}`}
                         valid={true}
                     />
                 </div>

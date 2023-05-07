@@ -1,13 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './RegisterSteps.css';
 import Input from '../../Components/Inputs/Input';
 import { useStateContext } from '../../../../contexts/ContextProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { HandleStepsButton, handleSetValue } from '../../../../redux/Reducers/RegisterReducer';
+import axios from '../../../../api/axios';
 
 export default function RegisterStepOne() { 
-    const { Mounths } = useStateContext()
+    const dispatch = useDispatch();
+    const { inputs: { name, email, year, month, day } } = useSelector(state => state.Register);
+    const { Mounths } = useStateContext();
+    const [error, setError] = useState({});
+    const currentYear = new Date().getFullYear();
+    const [days, setDays] = useState(30)
+    const dayOfMonth = [];
+    for(let day = 0; day <= days; day++){
+        dayOfMonth.push(<option key={day} value={day}>{day}</option>)
+    }
     const years = [];
-    for (let year = 2023; year >= 1903; year--) {
+    for (let year = currentYear; year >= currentYear - 100; year--) {
         years.push(<option key={year} value={year}>{year}</option>);
+    }
+    const useCheck = async email => {
+        try{
+            const { data } = await axios.post('/verifyEmail',{email});
+            dispatch(handleSetValue({name:'email', value:email}))
+            setError(prev => ({...prev, email:null}))
+        }catch(err) {
+            dispatch(HandleStepsButton())
+            setError(prev => ({...prev, email:'Email has already been taken.'}))
+        }
+    }
+    const handleChange = e => {
+        const { name, value, id } = e.target 
+        if(name === 'month') setDays(e.target.options[e.target.selectedIndex].getAttribute('id'));
+        if(name !== 'email') dispatch(handleSetValue({name, value}))
+        const emailRegex =  /^[^\s@]+@[^\s@]+\.(com|net|ma)$/i;
+        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // name error
+        if(name === 'name' && value === ''){
+            setError(prev => ({...prev, name:'What’s your name?'}));
+        }else if(name === 'name' && value !== '') {
+            setError(prev => ({...prev, name:null}));
+        }
+        //email error
+        if(name === 'email' && emailRegex.test(value)){
+            useCheck(value)
+            setError(prev => ({...prev, email:null}))
+        }else if(name === 'email' && value !== '' && !emailRegex.test(value)){
+            dispatch(HandleStepsButton())
+            setError(prev => ({...prev, email:'Please enter a valid email.'}));
+        }else {
+            dispatch(HandleStepsButton())
+            setError(prev => ({...prev, email:null}));
+        }
     }
 
     return (
@@ -16,43 +62,45 @@ export default function RegisterStepOne() {
                 <span>Create your account</span>
             </div>
             <div className="register__step__inputs">
-                <div>
+                <div className={error.name ? 'error' : ''}>
                     <Input
                         label="Name"
                         id="Name"
                         name="name"
-                        // change={handleFields}
+                        change={handleChange}
+                        value={name}
                     />
-                    <span hidden className='register__step__email__error'>What’s your name?</span>
+                    <span className='register__step__email__error'> { error.name } </span>
                 </div>
-                <div>
+                <div className={error.email ? 'error' : ''}>
                     <Input
                         label="Email"
                         id="email"
                         name="email"
-                        // change={handleFields}
+                        change={handleChange}
+                        value={email}
                     />
-                    <span hidden className='register__step__email__error'>Please enter a valid email.</span>
+                    <span className='register__step__email__error'> { error.email } </span>
                 </div>
             </div>
             <div className="registed__date__step">
                 <span>Date of birth</span>
                 <p className='small-text'>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
                 <div className="registed__select__date__step">
-                    <select>
+                    <select defaultValue={month} name='month' onChange={handleChange}>
                         <option hidden></option>
                         {
                             Mounths.map(one => (
-                                <option key={one.month} value={one.month}>{ one.month }</option>
+                                <option key={one.month} id={one.days} value={one.month}>{ one.month }</option>
                             ))
                         }
                     </select>
-                    <select>
-                        <option value="">1</option>
-                        <option value="">12</option>
-                        <option value="">8</option>
+                    <select defaultValue={day} name='day' onChange={handleChange}>
+                        <option hidden></option>
+                        { dayOfMonth }
                     </select>
-                    <select>
+                    <select defaultValue={year} name='year' onChange={handleChange}>
+                        <option hidden></option>
                         { years }
                     </select>
                 </div>

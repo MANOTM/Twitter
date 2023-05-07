@@ -1,4 +1,5 @@
 import React from 'react'
+import { CheckValidIcon } from '../../../../components/Icons/PasswordIcons'
 
 export default function RegisterStepTwo() {
     return (
@@ -13,7 +14,12 @@ export default function RegisterStepTwo() {
                     Twitter uses this data to personalize your experience. 
                     This web browsing history will never be stored with your name, email, or phone number.
                     </p>
-                    <input type="checkbox" name="" id="" />
+                    <label htmlFor="checkbox" className="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div className="checkValid">
+                            <CheckValidIcon />
+                        </div>
+                    </label>
                 </div>
             </div>
             <div>

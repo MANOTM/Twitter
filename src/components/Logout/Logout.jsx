@@ -9,19 +9,24 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../contexts/ContextProvider';
 import Loading from '../Loading/Loading';
 import { useState } from 'react';
+import axios from '../../api/axios';
 
 export default function Logout() {
     const [logout, setLogout] = useState(false);
-    const { SetTitle } = useStateContext();
+    const { SetTitle, CallToast } = useStateContext();
     SetTitle(null, true)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleLogout = () => {
+    const handleLogout = async() => {
+        const { data } = await axios.post('/logout')
+        if(!data) return
         setLogout(true)
         setTimeout(() => {
             Cookies.remove('Auth_token');
+            localStorage.clear()
             dispatch(logOut())
+            CallToast(data.message)
             navigate('/')
             setLogout(false)
         }, 700);
