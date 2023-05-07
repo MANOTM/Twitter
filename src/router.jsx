@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element : <AuthRoute element={Bookmarks} />,
             },
             {
-                path : '/profile',
+                path : '/profile/:pseudo/*',
                 element : <AuthRoute element={Profile} />,
             },
             {
