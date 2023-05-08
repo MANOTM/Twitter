@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AuthModal.css';
 import CloseIcon from '../../../../components/Icons/CloseIcon';
 import { useStateContext } from '../../../../contexts/ContextProvider';
 import TwitterIcon from '../../../../components/icons/TwitterIcon';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { EndSteps, Move, MoveBack } from '../../../../redux/Reducers/RegisterReducer';
+import { EndSteps, Move, MoveBack, MoveToStepOne, handleLoading } from '../../../../redux/Reducers/RegisterReducer';
 import Arrow from '../../../../components/Icons/Arrow';
 import avatar from '../../../../assets/images/avatar_twitter.png';
 import FollowBtn from '../../../../components/buttons/FollowBtn';
 import { CameraIcon } from '../../../../components/Icons/PasswordIcons';
+import { useAuth } from '../../../../hooks/useAuth';
+import axios from '../../../../api/axios';
+import Cookies from 'js-cookie';
+import { LogIn } from '../../../../redux/Reducers/AuthReducer';
 
 export default function LoginModal({ children }) {
-    const { pages: { Start, step }, button: { disabled } } = useSelector(state => state.Register);
-    const { setAuthModal, setSteps } = useStateContext();
+    const { pages: { Start, step, Loading }, button: { disabled }, inputs: {
+        name, email, password, year, month, day, verify:token}
+    } = useSelector(state => state.Register);
+    const { setAuthModal, setSteps, CallToast } = useStateContext();
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const handleCloseModal = () => {
@@ -25,6 +31,34 @@ export default function LoginModal({ children }) {
     const handleBack = () => {
         dispatch(MoveBack());
     }
+    const StoreUser = ({ user, token }) => {
+        if(!token) return
+        Cookies.set('Auth_token', token);
+        localStorage.setItem('user_info',JSON.stringify(user));
+        dispatch(LogIn(user));
+        navigate('/');
+    }
+    const handleRegister = async() => {
+        if(step === 3 && new Date().getFullYear() - parseInt(year) <= 12 ) {
+            CallToast("Can't complete your signup right now.")
+            return dispatch(MoveToStepOne())
+        }
+        if(step !== 5) return dispatch(Move())
+        // const { data, loading, error } = useAuth('/register',inputs)
+        dispatch(handleLoading())
+        try{
+            const { data } = await axios.post('/register',
+            { name, email, password, birthDay:`${year}-08-${day}`, token:parseInt(token) })
+            if(data){
+                console.log(data);
+                dispatch(handleLoading())
+                StoreUser(data.data)
+            } 
+        }catch(err){
+            console.log(err);
+            dispatch(handleLoading())
+        }
+    }
     return (
         // <div className={`overlay ${AuthModal && 'isActive'}`}>
         <div className={`overlay isActive`}>
@@ -34,10 +68,13 @@ export default function LoginModal({ children }) {
                     step > 1
                     ?
                         (
-                            <span onClick={handleBack} 
-                                className="modal__close">
-                                <Arrow />
-                            </span>)
+                            step !== 5 && (
+                                    <span onClick={handleBack} 
+                                        className="modal__close">
+                                        <Arrow />
+                                    </span>
+                                )
+                        )
                     :
                         <span onClick={handleCloseModal} 
                             className="modal__close">
@@ -47,23 +84,23 @@ export default function LoginModal({ children }) {
                     {
                         Start && step <= 5
                         ?
-                        <>
+                        Loading && <>
                             <span className='Register__steps'>
                                 Step { step } of 5
                             </span> 
                             {
                                 step <= 5 &&( 
-                                        step != 4 ?
-                                        <button onClick={()=>dispatch(Move())} className={`Register__next__steps ${disabled && 'disbled'}`}>
+                                        step != 5 ?
+                                        <button onClick={handleRegister} className={`Register__next__steps ${disabled && 'disbled'}`}>
                                             Next
                                         </button>
+                                        // :
+                                        // step > 5 ? 
+                                        // <div className="Skip__for__new">
+                                        //     <FollowBtn title="Skip for now" noBackground={true} />
+                                        // </div>
                                         :
-                                        step > 5 ? 
-                                        <div className="Skip__for__new">
-                                            <FollowBtn title="Skip for now" noBackground={true} />
-                                        </div>
-                                        :
-                                        <button onClick={()=>dispatch(Move())} className='Register__next__steps submitRegister'>Sign up</button>
+                                        <button onClick={handleRegister} className={`Register__next__steps submitRegister ${disabled && 'disbled'}`}>Sign up</button>
                                 )
                             }
                         </>
@@ -80,7 +117,7 @@ export default function LoginModal({ children }) {
                     { children }
                 </div>
                 {
-                    step === 3 && (
+                    Loading && (step === 3 || step === 5) && (
                         <p className='small-text step3__paragraph'>
                             By signing up, you agree to the <a target='_blank' className='a-link' href="https://twitter.com/en/tos#new">Terms of Service</a> and <a target='_blank' className='a-link' href="https://twitter.com/en/privacy">Privacy Policy</a>, including <a target='_blank' className='a-link' href="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie Use</a>. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. <a target='_blank' className='a-link' href="https://twitter.com/en/privacy">Learn more</a>. Others will be able to find you by email or phone number, when provided, unless you choose otherwise <a className='a-link' href="#">here</a>.
                         </p>

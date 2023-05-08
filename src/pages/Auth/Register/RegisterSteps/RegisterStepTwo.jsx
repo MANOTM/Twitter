@@ -15,7 +15,7 @@ export default function RegisterStepTwo() {
                     This web browsing history will never be stored with your name, email, or phone number.
                     </p>
                     <label htmlFor="checkbox" className="checkbox">
-                        <input type="checkbox" id="checkbox" />
+                        <input type="checkbox" defaultChecked={true} id="checkbox" />
                         <div className="checkValid">
                             <CheckValidIcon />
                         </div>

@@ -20,7 +20,7 @@ export default function Home() {
                     retweeted={false}
                     title={""}
                     tweet={
-                    "https://pbs.twimg.com/media/Fu2X_TqaYAAohDK?format=jpg&name=small"
+                        "https://i.pinimg.com/564x/fb/a3/47/fba34776c01f241f3481d392fd296aaf.jpg"
                     }
                 />
                 <Post

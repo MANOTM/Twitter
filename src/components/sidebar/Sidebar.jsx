@@ -70,7 +70,7 @@ export default function Sidebar() {
                   <div className="t3wija"><Taawija /></div>
                   <ul>
                     <li className='hover'>Add an existing account</li>
-                    <li onClick={()=> navigate('/logout')} className='hover'>Log out @{ user?.pseudo.toUpperCase() }</li>
+                    <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo.toUpperCase() }</li>
                   </ul>
                 </div>
                 <div className="user__info" onClick={showIn}>
@@ -79,10 +79,10 @@ export default function Sidebar() {
                   </div>
                   <div className="info">
                     <span className='name ellipsis'>{ user?.name }</span>
-                    <span className='username ellipsis'>@{ user?.pseudo.toUpperCase() }</span>
+                    <span className='username ellipsis'>{ user?.pseudo.toUpperCase() }</span>
                   </div>
                 </div>
-                <div className="user__action">
+                <div onClick={showIn} className="user__action">
                   <icons.ThreePoints  />
                 </div>
           </div>

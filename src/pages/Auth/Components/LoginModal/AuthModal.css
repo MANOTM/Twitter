@@ -96,6 +96,11 @@
     background-color: #1d9bf0;
     color: rgb(231, 233, 234) !important;
 }
+/* .Register__next__steps.submitRegister.disbled {
+    opacity: .7;
+    pointer-events: none;
+    cursor: none;
+} */
 .Register__next__steps.submitRegister:hover {
     background-color: #1f8dd6;
 }

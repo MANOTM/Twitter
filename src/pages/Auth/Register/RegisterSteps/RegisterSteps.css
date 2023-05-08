@@ -1,7 +1,12 @@
+.loading__to__bottom {
+    margin-top: 280px;
+}
+
 .Register__Steps {
     padding: 0 80px;
     row-gap: 6px;
 }
+
 
 .Register__Steps,
 .register__step__inputs {
@@ -19,11 +24,15 @@
 .register__step__inputs {
     row-gap: 25px;
 }
+.register__step__inputs div.error div {
+    box-shadow: #f4212e 0 0 0 1.5px !important;
+}
 
 .register__step__email__error {
-    font-size: 13px;
+    font-size: 12.5px;
     color: #f4212e;
     margin-left: 8px;
+    font-weight: 400;
 }
 
 
@@ -35,7 +44,7 @@
     font-weight: 500;
 }
 .registed__date__step p {
-    margin: 10px 0;
+    margin: 10px 0 16px 0;
 }
 
 .registed__select__date__step {
@@ -43,20 +52,63 @@
     column-gap: 12px;
 }
 
-.registed__select__date__step select {
+.select__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    height: 22.5px;
+    width: 22.5px;
+    fill: #626060;
+    pointer-events: none;
+}
+
+.select__option {
+    position: relative;
+    height: 58px;
+    width: 199px;
+    border: 1px solid rgb(51, 54, 57);
+    background-color: #000;
     border-radius: 4px;
-    background-color: transparent;
+}
+.select__option.day {
+    width: 86px;
+}
+.select__option.year {
+    width: 109px;
+}
+.select__option:focus-within .select__label,
+.select__option:focus-within .select__icon{
+    color: #1D9BF0;
+    fill: #1D9BF0;
+}
+.select__option:focus-within{
+    box-shadow: rgb(29, 155, 240) 0 0 0 2px;
+}
+
+.select__label {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    z-index: 2;
+    font-size: 13px;
+    color: #626060;
+    font-weight: 500;
+}
+
+.registed__select__date__step select {
+    position: absolute;
+    background: #000;
+    width: 100%;
+    bottom: 0;
     outline: none;
+    cursor: pointer;
     border: none;
     appearance: none;
-    border: 1px solid #777;
-    height: 44px;
-    background-color: #000;
+    margin: 16px 0 0;
     color: #fff;
     font-size: 17px;
-    width: 100%;
-    padding: 0 10px;
-    margin-top: 10px;
+    padding: 12px 10px 8px;
 }
 
 /*Step 2*/

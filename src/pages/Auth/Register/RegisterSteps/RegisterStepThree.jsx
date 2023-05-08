@@ -1,10 +1,13 @@
 import React from 'react'
 import './RegisterSteps.css';
 import Input from '../../Components/Inputs/Input';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { MoveToStepOne } from '../../../../redux/Reducers/RegisterReducer';
 
 export default function RegisterStepOne() { 
     const { inputs: { name, email, year, month, day } } = useSelector(state => state.Register);
+    const dispatch = useDispatch()
+    const handleStepThree = () => dispatch(MoveToStepOne())
 
     return (
         <div className="Register__Steps Thered__Step">
@@ -12,7 +15,7 @@ export default function RegisterStepOne() {
                 <span>Create your account</span>
             </div>
             <div className="register__step__inputs">
-                <div>
+                <div onClick={handleStepThree}>
                     <Input
                         label="Name"
                         id="Name"
@@ -21,7 +24,7 @@ export default function RegisterStepOne() {
                         valid={true}
                         />
                 </div>
-                <div>
+                <div onClick={handleStepThree}>
                     <Input
                         label="Email"
                         id="email"
@@ -30,7 +33,7 @@ export default function RegisterStepOne() {
                         valid={true}
                         />
                 </div>
-                <div>
+                <div onClick={handleStepThree}>
                     <Input
                         label="Date of birth"
                         id="email"

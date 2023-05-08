@@ -66,10 +66,32 @@
     flex-direction: column;
 }
 .trends__hashtag{
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding:10px 14px;
+}
+.trend__option__icon {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.trend__option__icon:hover {
+    background-color: rgba(29, 155, 240,.15);
+}
+.trend__option__icon svg{
+    fill: rgb(113, 118, 123);
+    transition: all .3s ease;
+    height: 18.5px;
+}
+.trend__option__icon:hover svg{
+    fill: rgb(29, 155, 240) !important;
 }
 .hashtag__gray{
     color: rgb(113, 118, 123);
@@ -81,7 +103,7 @@
     font-size: 16px;
 }
 .hashtag__title__end{
-    font-size: 19px;
+    font-size: 18px;
     text-align: end;
 }
 

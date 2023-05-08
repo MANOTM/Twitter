@@ -5,16 +5,17 @@ import { useStateContext } from '../../../../contexts/ContextProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import { HandleStepsButton, handleSetValue } from '../../../../redux/Reducers/RegisterReducer';
 import axios from '../../../../api/axios';
+import { SelectIcon } from '../../../../components/Icons/PostIcons';
 
 export default function RegisterStepOne() { 
     const dispatch = useDispatch();
     const { inputs: { name, email, year, month, day } } = useSelector(state => state.Register);
-    const { Mounths } = useStateContext();
+    const { Mounths, CallToast } = useStateContext();
     const [error, setError] = useState({});
     const currentYear = new Date().getFullYear();
     const [days, setDays] = useState(30)
     const dayOfMonth = [];
-    for(let day = 0; day <= days; day++){
+    for(let day = 1; day <= days; day++){
         dayOfMonth.push(<option key={day} value={day}>{day}</option>)
     }
     const years = [];
@@ -26,9 +27,9 @@ export default function RegisterStepOne() {
             const { data } = await axios.post('/verifyEmail',{email});
             dispatch(handleSetValue({name:'email', value:email}))
             setError(prev => ({...prev, email:null}))
-        }catch(err) {
+        }catch({ response: { status } }) {
             dispatch(HandleStepsButton())
-            setError(prev => ({...prev, email:'Email has already been taken.'}))
+            if(status === 403) setError(prev => ({...prev, email:'Email has already been taken.'}))
         }
     }
     const handleChange = e => {
@@ -46,11 +47,11 @@ export default function RegisterStepOne() {
         //email error
         if(name === 'email' && emailRegex.test(value)){
             useCheck(value)
-            setError(prev => ({...prev, email:null}))
+            return setError(prev => ({...prev, email:null}))
         }else if(name === 'email' && value !== '' && !emailRegex.test(value)){
             dispatch(HandleStepsButton())
-            setError(prev => ({...prev, email:'Please enter a valid email.'}));
-        }else {
+            return setError(prev => ({...prev, email:'Please enter a valid email.'}));
+        }else if(name === 'email' && value === '') {
             dispatch(HandleStepsButton())
             setError(prev => ({...prev, email:null}));
         }
@@ -87,22 +88,40 @@ export default function RegisterStepOne() {
                 <span>Date of birth</span>
                 <p className='small-text'>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
                 <div className="registed__select__date__step">
-                    <select defaultValue={month} name='month' onChange={handleChange}>
-                        <option hidden></option>
-                        {
-                            Mounths.map(one => (
-                                <option key={one.month} id={one.days} value={one.month}>{ one.month }</option>
-                            ))
-                        }
-                    </select>
-                    <select defaultValue={day} name='day' onChange={handleChange}>
-                        <option hidden></option>
-                        { dayOfMonth }
-                    </select>
-                    <select defaultValue={year} name='year' onChange={handleChange}>
-                        <option hidden></option>
-                        { years }
-                    </select>
+                    <div className="select__option">
+                        <label htmlFor="month" className="select__label">Month</label>
+                        <select id='month' defaultValue={month} name='month' onChange={handleChange}>
+                            <option hidden></option>
+                            {
+                                Mounths.map(one => (
+                                    <option key={one.month} id={one.days} value={one.month}>{ one.month }</option>
+                                ))
+                            }
+                        </select>
+                        <div className="select__icon">
+                            <SelectIcon />
+                        </div>
+                    </div>
+                    <div className="select__option day">
+                        <label htmlFor="day" className="select__label">Day</label>
+                        <select defaultValue={day} id='day' name='day' onChange={handleChange}>
+                            <option hidden></option>
+                            { dayOfMonth }
+                        </select>
+                        <div className="select__icon">
+                            <SelectIcon />
+                        </div>
+                    </div>
+                    <div className="select__option year">
+                        <label htmlFor="year" className="select__label">Year</label>
+                        <select defaultValue={year} id='year' name='year' onChange={handleChange}>
+                            <option hidden></option>
+                            { years }
+                        </select>
+                        <div className="select__icon">
+                            <SelectIcon />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

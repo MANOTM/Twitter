@@ -14,7 +14,7 @@ let token = Cookies.get("Auth_token");
 if(token){
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
   axios
-  .get('/profile/'+localStorage.getItem('pss'))
+  .get('/profile/'+JSON.parse(localStorage.getItem('user_info'))?.pseudo)
   .then(res => {
     store.dispatch({ type:"Auth/LogIn", payload: res.data.data })
     console.log(res.data.data);
