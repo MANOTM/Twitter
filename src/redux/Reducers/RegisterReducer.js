@@ -11,7 +11,8 @@ export const RegisterSlice = createSlice({
         },
         button: {
             disabled: true,
-            receive: false
+            receive: false,
+            mail: false,
         }
     },
     reducers: {
@@ -26,7 +27,7 @@ export const RegisterSlice = createSlice({
         Move: state => {
             state.pages.step++
             if(state.pages.step > 3) state.button.disabled = true
-            if(state.pages.step === 4 && !state.inputs?.verify?.length) state.button.disabled = true
+            if(state.pages.step === 4 && state.inputs?.verify?.length > 0) state.button.disabled = false
             if(state.pages.step === 5 && state.inputs?.password?.length === 0) state.button.disabled = true
         },
         MoveBack: state => {
@@ -46,25 +47,31 @@ export const RegisterSlice = createSlice({
             const { name, value } = actions.payload;
             state.inputs = { ...state.inputs, [name] : value, }
             const { name:username , email, year, month, day, password, verify } = state.inputs;
-            const info = state.pages.step <= 3 ? (!username || !email || !year || !month || !day) :
+            const info = state.pages.step <= 3 ? (!username || !state.button.mail || !year || !month || !day) :
             (state.pages.step === 4 ? !verify?.length : password?.length < 8)
             state.button.disabled = info
+        },
+        EmailValid: state => {
+            state.button.mail = true
+            state.button.disabled = false
+        },
+        EmailNotValid: state => {
+            state.button.disabled = true
+            state.button.mail = false
         },
         HandleStepsButton: state => {
             state.button.disabled = true
         },
         handleBackReceive: state => {
             state.button.receive = true
-            console.log(true);
         },
         handleBackReceiveOff: state => {
             state.button.receive = false
-            console.log(false);
         }
     }
 });
 
 
-export const { StartSteps, Move, MoveBack, EndSteps, handleSetValue, HandleStepsButton, MoveToStepOne, handleLoading, handleBackReceive, handleBackReceiveOff } = RegisterSlice.actions;
+export const { StartSteps, Move, MoveBack, EndSteps, handleSetValue, HandleStepsButton, MoveToStepOne, handleLoading, handleBackReceive, handleBackReceiveOff, EmailValid, EmailNotValid } = RegisterSlice.actions;
 
 export default RegisterSlice.reducer;
