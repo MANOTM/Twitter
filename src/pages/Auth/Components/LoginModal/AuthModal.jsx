@@ -47,6 +47,7 @@ export default function LoginModal({ children }) {
     const handleBack = () => {
         dispatch(MoveBack());
     }
+    // git can you add this 
     const StoreUser = ({ user, token }) => {
         if(!token) return
         Cookies.set('Auth_token', token);
@@ -57,6 +58,7 @@ export default function LoginModal({ children }) {
         CallToast('Hello World');
         navigate('/');
     }
+    // =================================
     const handleRegister = async() => {
         if(step === 3 && new Date().getFullYear() - parseInt(year) <= 12 ) {
             CallToast("Can't complete your signup right now.")
