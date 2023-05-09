@@ -28,6 +28,7 @@
     position: absolute;
     top: 13px;
     left: 13px;
+    user-select: none;
     width: 29px;
     height: 29px;
     border-radius: 50%;

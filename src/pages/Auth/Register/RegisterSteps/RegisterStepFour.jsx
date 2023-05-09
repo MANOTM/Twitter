@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../Components/Inputs/Input'
 import { useDispatch, useSelector } from 'react-redux'
-import { handleSetValue } from '../../../../redux/Reducers/RegisterReducer'
+import { handleBackReceive, handleSetValue } from '../../../../redux/Reducers/RegisterReducer'
 
 export default function RegisterStepFour() {
 
@@ -10,6 +10,9 @@ export default function RegisterStepFour() {
     const handleChange = e => {
         const { name, value } = e.target 
         dispatch(handleSetValue({name, value}))
+    }
+    const handleReceive = () => {
+        dispatch(handleBackReceive())
     }
 
     return <div className="Register__Steps step__four">
@@ -26,7 +29,7 @@ export default function RegisterStepFour() {
                     change={handleChange}
                     value={verify}
                 />
-                <a href='#' className='register__step__email__error verification_code_receive a-link'>Didn't receive email?</a>
+                <a onClick={handleReceive} className='register__step__email__error verification_code_receive a-link'>Didn't receive email?</a>
             </div>
         </div>
     </div>

@@ -45,7 +45,6 @@ export const ContextProvider = ({ children }) => {
         { month: 'November', days: 30 },
         { month: 'December', days: 31 }
     ]
-
     const [Toast, setToast] = useState({ status: false, content: '' })
     const [steps, setSteps] = useState(true)
     const [AuthModal, setAuthModal] = useState(false)

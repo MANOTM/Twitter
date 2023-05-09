@@ -208,4 +208,5 @@
 
 .verification_code_receive {
     font-size: 12.3px !important;
+    cursor: pointer;
 }

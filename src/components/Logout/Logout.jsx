@@ -19,9 +19,9 @@ export default function Logout() {
     const navigate = useNavigate()
 
     const handleLogout = async() => {
+        setLogout(true)
         const { data } = await axios.post('/logout')
         if(!data) return
-        setLogout(true)
         setTimeout(() => {
             Cookies.remove('Auth_token');
             localStorage.clear()

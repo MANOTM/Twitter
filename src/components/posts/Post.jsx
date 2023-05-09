@@ -69,7 +69,7 @@ export default function Post({
                         <li>
                             <span>
                                 <CommentIcon />
-                            </span> {'  '} {numberComments}
+                            </span> {'  '} {numberComments || 85}
                         </li>
                         <li className={`Reweet__icon ${retweeted && 'reetweet'}`}>
                             <span>

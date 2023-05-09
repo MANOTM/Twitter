@@ -10,7 +10,8 @@ export const RegisterSlice = createSlice({
             step: 0
         },
         button: {
-            disabled: true
+            disabled: true,
+            receive: false
         }
     },
     reducers: {
@@ -25,6 +26,8 @@ export const RegisterSlice = createSlice({
         Move: state => {
             state.pages.step++
             if(state.pages.step > 3) state.button.disabled = true
+            if(state.pages.step === 4 && !state.inputs?.verify?.length) state.button.disabled = true
+            if(state.pages.step === 5 && state.inputs?.password?.length === 0) state.button.disabled = true
         },
         MoveBack: state => {
             state.pages.step--
@@ -49,11 +52,19 @@ export const RegisterSlice = createSlice({
         },
         HandleStepsButton: state => {
             state.button.disabled = true
+        },
+        handleBackReceive: state => {
+            state.button.receive = true
+            console.log(true);
+        },
+        handleBackReceiveOff: state => {
+            state.button.receive = false
+            console.log(false);
         }
     }
 });
 
 
-export const { StartSteps, Move, MoveBack, EndSteps, handleSetValue, HandleStepsButton, MoveToStepOne, handleLoading } = RegisterSlice.actions;
+export const { StartSteps, Move, MoveBack, EndSteps, handleSetValue, HandleStepsButton, MoveToStepOne, handleLoading, handleBackReceive, handleBackReceiveOff } = RegisterSlice.actions;
 
 export default RegisterSlice.reducer;
