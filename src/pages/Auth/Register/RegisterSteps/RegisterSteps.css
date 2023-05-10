@@ -210,3 +210,15 @@
     font-size: 12.3px !important;
     cursor: pointer;
 }
+
+
+
+@media (max-width: 1200px) {
+    .registed__date__step p,
+    .registed__date__step span {
+        display: none;
+    }
+    .step3__paragraph {
+        display: none;
+    }
+}

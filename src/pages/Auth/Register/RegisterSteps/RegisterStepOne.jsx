@@ -3,9 +3,10 @@ import './RegisterSteps.css';
 import Input from '../../Components/Inputs/Input';
 import { useStateContext } from '../../../../contexts/ContextProvider';
 import { useDispatch, useSelector } from 'react-redux';
-import { HandleStepsButton, handleSetValue } from '../../../../redux/Reducers/RegisterReducer';
+import { EmailNotValid, EmailValid, HandleStepsButton, handleSetValue } from '../../../../redux/Reducers/RegisterReducer';
 import axios from '../../../../api/axios';
 import { SelectIcon } from '../../../../components/Icons/PostIcons';
+import { debounce } from 'lodash';
 
 export default function RegisterStepOne() { 
     const dispatch = useDispatch();
@@ -25,17 +26,20 @@ export default function RegisterStepOne() {
     const useCheck = async email => {
         try{
             const { data } = await axios.post('/verifyEmail',{email});
-            dispatch(handleSetValue({name:'email', value:email}))
+            if(data){
+                dispatch(EmailValid());
+            } 
             setError(prev => ({...prev, email:null}))
         }catch({ response: { status } }) {
-            dispatch(HandleStepsButton())
+            dispatch(EmailNotValid())
             if(status === 403) setError(prev => ({...prev, email:'Email has already been taken.'}))
         }
     }
+    const debouncedVerification = debounce(useCheck, 500);
     const handleChange = e => {
         const { name, value, id } = e.target 
         if(name === 'month') setDays(e.target.options[e.target.selectedIndex].getAttribute('id'));
-        if(name !== 'email') dispatch(handleSetValue({name, value}))
+        dispatch(handleSetValue({name, value}))
         const emailRegex =  /^[^\s@]+@[^\s@]+\.(com|net|ma)$/i;
         // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         // name error
@@ -45,14 +49,15 @@ export default function RegisterStepOne() {
             setError(prev => ({...prev, name:null}));
         }
         //email error
+        if(name === 'email') {
+            dispatch(EmailNotValid())
+        }
         if(name === 'email' && emailRegex.test(value)){
-            useCheck(value)
-            return setError(prev => ({...prev, email:null}))
+            debouncedVerification(value)
+            setError(prev => ({...prev, email:null}))
         }else if(name === 'email' && value !== '' && !emailRegex.test(value)){
-            dispatch(HandleStepsButton())
-            return setError(prev => ({...prev, email:'Please enter a valid email.'}));
+            setError(prev => ({...prev, email:'Please enter a valid email.'}));
         }else if(name === 'email' && value === '') {
-            dispatch(HandleStepsButton())
             setError(prev => ({...prev, email:null}));
         }
     }

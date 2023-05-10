@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./HeadTweet.css";
 import * as icons from './IconsImport'; 
 
@@ -12,6 +12,7 @@ export default function HeadTweet() {
         }
         setTweetbtn(true)
     }
+    const GalleryBtn = useRef();
     return (
         <header className="header__section">
             <div className="head_name_page">
@@ -39,7 +40,8 @@ export default function HeadTweet() {
                 </div>
                 <div className="header__buttons">
                 <ul>
-                    <li> <icons.Gallery /> </li>
+                    <input hidden type="file"  ref={GalleryBtn}/>
+                    <li onClick={()=>GalleryBtn.current.click()}> <icons.Gallery /> </li>
                     <li> <icons.Gif /> </li>
                     <li> <icons.Emojis /> </li>
                     <li> <icons.Map /> </li>

@@ -30,9 +30,10 @@ export default function LoginModal({ children }) {
     const handleSend = async() => {
         try {
             dispatch(handleBackReceiveOff())
-            const { data } = await axios.post('/verifyEmail',{email});
+            const { data: { data, message } } = await axios.post('/verifyEmail',{email});
             if(data){
-                CallToast(data.message)
+                // CallToast(data.message)
+                CallToast('We send verification code to your email', 3500)
             }
         }catch(err) {
             console.log(err);

@@ -21,7 +21,7 @@ export default function Bookmarks() {
           <span className='bookmarks__title'>Bookmarks</span>
           <span className='bookmarks__username'>{ user.name }</span>
         </header>
-      {loading ? <Loading/>  : data ?
+      {loading ? <Loading/>  : data !== undefined ?
         <div className="bookmarks__empty">
           <img src={bookInCage} alt="" />
           <div className="bookmarks__info">
