@@ -1,20 +1,18 @@
 import React from 'react'
 import './PorfileNotFound.css';
 import Main from '../../../layouts/Main'
-import HeadMain from '../../../components/HeadMain/HeadMain'
-import { useParams } from 'react-router-dom';
-import useFetch from '../../../hooks/useFetch';
-import { useStateContext } from '../../../contexts/ContextProvider';
+import { useParams } from 'react-router-dom'; 
+import { useStateContext } from '../../../contexts/ContextProvider'; 
+import { ProfileHead } from '../../../components/ProfileComponent/ProfileHead/ProfileHead';
 
 export default function PorfileNotFound() {
     const { SetTitle } = useStateContext();
     SetTitle('Profile')
-    const { pseudo } = useParams()
-    const { loading, data } = useFetch('/')
+    const { pseudo } = useParams() 
     
     return <Main>
         <div className='profile__not__found'>
-            <HeadMain />
+            <ProfileHead />
             <div className="profile__content">
                 <div className="profile__cover_not"></div>
                 <div className="profile__avatar_not"></div>

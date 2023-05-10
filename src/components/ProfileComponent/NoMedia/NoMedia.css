@@ -1,0 +1,25 @@
+.NoMedia{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 360px;
+}
+.NoMedia div{
+    width: 337px;
+}
+.NoMedia div span{
+display: block;
+margin-top: 10px;
+}
+.NoMedia img{
+    height: 168px;
+    width: 336;
+}
+.NoMedia .title{
+    font-size: 29px;
+    font-weight: 700;
+}
+.NoMedia .p{
+    color: rgb(113, 118, 123);
+    font-size: 15px;
+}

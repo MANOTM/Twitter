@@ -61,6 +61,7 @@
 .iconH{
     display: flex;
     padding: 6px;
+    cursor: pointer;
     border-radius: 30px;
     transition: 300ms;
     -webkit-transition: 300ms;

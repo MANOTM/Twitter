@@ -54,7 +54,7 @@ function Login() {
                 setLoading(false)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
                 Cookies.set("Auth_token",data?.data?.token,{ expires: 7 });
-                localStorage.setItem('user_info', data?.data?.user);
+                localStorage.setItem('user_info', JSON.stringify(data?.data?.user));
                 dispatch(LogIn(data.data.user));
                 setSteps(true)
                 CallToast('Hello world!!')

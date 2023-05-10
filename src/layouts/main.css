@@ -2,7 +2,7 @@
     width: 610px;
     height: 100%; 
     overflow: auto;
-    padding-bottom: 66px;
+    /* padding-bottom: 66px; */
     border-right: 1px solid rgba(128, 128, 128, 0.436);
     margin-right: 25px; 
 }
