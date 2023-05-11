@@ -14,7 +14,7 @@ import axios from '../../api/axios';
 export default function Logout() {
     const [logout, setLogout] = useState(false);
     const { SetTitle, CallToast } = useStateContext();
-    SetTitle(null, true)
+    SetTitle('/logout', true)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -22,14 +22,12 @@ export default function Logout() {
         setLogout(true)
         const { data } = await axios.post('/logout')
         if(!data) return
-        setTimeout(() => {
             Cookies.remove('Auth_token');
             localStorage.clear()
             dispatch(logOut())
             CallToast(data.message)
             navigate('/')
-            setLogout(false)
-        }, 700);
+            setLogout(false) 
     }
     const handleCancel = () => {
         navigate(-1)

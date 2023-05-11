@@ -16,9 +16,9 @@ export const ProfileInfo = () => {
         <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_200x200.jpg" alt="" />
       </div>
       <div className="profile__actions">
-         <div className="iconH">
+         {/* <div className="iconH">
           <ThreePoints/>
-         </div>
+         </div> */}
          <button className='profile_btn btn-def'>Edit profile</button>
          {/* <button className='btn-def btn_follow'>Follow</button>
          <button className='btn-def btn_unfollow'>Following</button> */}

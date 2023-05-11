@@ -151,7 +151,7 @@
         width: 70px;
     }
     .tweet__bottom .icon{
-        display: block;
+        display: block !important;
     }
     .tweet__bottom {
         padding-left: 10px;

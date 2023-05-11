@@ -4,10 +4,10 @@
     align-items: center;
     height: 360px;
 }
-.NoMedia div{
+.no__{
     width: 337px;
 }
-.NoMedia div span{
+.no__ span{
 display: block;
 margin-top: 10px;
 }
@@ -15,11 +15,11 @@ margin-top: 10px;
     height: 168px;
     width: 336;
 }
-.NoMedia .title{
+.NoMedia__title{
     font-size: 29px;
     font-weight: 700;
 }
-.NoMedia .p{
+.NoMedia__p{
     color: rgb(113, 118, 123);
     font-size: 15px;
 }

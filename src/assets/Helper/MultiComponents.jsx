@@ -27,14 +27,7 @@ export function RegisterComponent() {
             <Register />
         </>
     )
-}
-export function MessageComponent() {
-    return (
-        <>
-            <Messages /> 
-        </>
-    )
-}
+} 
 export function PageNotFound() {
     return (
         <>

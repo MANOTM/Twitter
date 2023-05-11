@@ -1,0 +1,7 @@
+.noLikes{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    padding-top: 20px;
+}

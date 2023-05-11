@@ -7,10 +7,11 @@ import ProfileNotFound from './pages/NotFound/ProfileNotFound/PorfileNotFound'
 import Bookmarks from "./pages/bookmarks/Bookmarks";
 import Profile from "./pages/profile/Profile";
 import { AuthRoute, GuestRoute } from "./layouts/AuthLayout";
-import { LoginComponent, RegisterComponent, MessageComponent, PageNotFound } from "./assets/Helper/MultiComponents";
+import { LoginComponent, RegisterComponent, } from "./assets/Helper/MultiComponents";
 import NotFound from "./pages/NotFound/NotFound";
 import Overlay from "./layouts/Overlay/overlay";
 import Logout from "./components/Logout/Logout";
+import Messages from "./pages/messages/Messges";
 
 const router = createBrowserRouter([
     {
@@ -35,18 +36,18 @@ const router = createBrowserRouter([
             },
             {
                 path : '/messages',
-                element : <AuthRoute element={MessageComponent} />,
+                element : <AuthRoute element={Messages} />,
             },
             {
                 path : '/messages/:idSender',
-                element : <AuthRoute element={MessageComponent} />,
+                element : <AuthRoute element={Messages} />,
             },
             {
                 path : '/bookmarks',
                 element : <AuthRoute element={Bookmarks} />,
             },
             {
-                path : '/profile/:pseudo/*',
+                path : ':pseudo/*',
                 element : <AuthRoute element={Profile} />,
             },
             {
@@ -57,10 +58,10 @@ const router = createBrowserRouter([
                 path : '/i/flow/signup',
                 element : <GuestRoute element={RegisterComponent} />
             },
-            {
-                path : '/:pseudo',
-                element : <ProfileNotFound />
-            },
+            // {
+            //     path : '/:pseudo',
+            //     element : <ProfileNotFound />
+            // },
             {
                 path : '/:pseudo/*',
                 element : <NotFound />
