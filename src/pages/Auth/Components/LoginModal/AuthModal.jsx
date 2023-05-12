@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { EndSteps, Move, MoveBack, MoveToStepOne, handleBackReceiveOff, handleLoading } from '../../../../redux/Reducers/RegisterReducer';
 import Arrow from '../../../../components/Icons/Arrow';
-import avatar from '../../../../assets/images/avatar_twitter.png';
+import avatar from '../../../../assets/images/defaultProfile.png';
 import FollowBtn from '../../../../components/buttons/FollowBtn';
 import { CameraIcon } from '../../../../components/Icons/PasswordIcons';
 import { useAuth } from '../../../../hooks/useAuth';

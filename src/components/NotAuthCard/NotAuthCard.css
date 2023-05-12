@@ -1,0 +1,74 @@
+.NotAuthCard{
+    width: 600px;
+    height: 460px;
+    max-height: 550px;
+    min-height: 400px;
+    background-color: black;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+.not__auth_header{
+    display: flex; 
+}
+.not__auth_action{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.not__auth_action svg{
+    
+    height: 48px;
+}
+.not_auth_content{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.not__auth_info{
+    margin-inline: auto;
+}
+.not__auth_info span{
+    display: block;
+}
+.not__auth_title{
+    color: rgb(214, 217, 219);
+    font-weight: 700;
+    font-size: 26px;
+}
+.not__auth_p{
+    margin-top: 10px;
+    color: rgb(113, 118, 123);
+    font-size: 15px;
+}
+.not__auth{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+.not_login{
+    color: rgb(255, 255, 255) !important;
+    background-color:rgb(29, 155, 240) !important;
+    border: 1px solid rgb(29, 155, 240) !important;
+}
+.not__auth a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:370px ;
+    height: 52px ;
+    border-radius:40px ;
+    font-size: 17px;
+    font-weight:600 ;
+    color: rgb(29, 155, 240);
+    border: 1px solid rgb(83, 100, 113);
+    -webkit-border-radius:40px ;
+    -moz-border-radius:40px ;
+    -ms-border-radius:40px ;
+    -o-border-radius:40px ;
+}

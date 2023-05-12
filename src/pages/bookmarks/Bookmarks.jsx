@@ -19,7 +19,7 @@ export default function Bookmarks() {
       <div className="bookmarks"> 
         <header className='bookmarks__header'>
           <span className='bookmarks__title'>Bookmarks</span>
-          <span className='bookmarks__username'>{ user.name }</span>
+          <span className='bookmarks__username'>{ user.pseudo }</span>
         </header>
       {loading ? <Loading/>  : data !== undefined ?
         <div className="bookmarks__empty">

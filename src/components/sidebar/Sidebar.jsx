@@ -1,5 +1,6 @@
 import './sidebar.css'
 import SidebarItem from './SidebarItem'
+import defaultProfile from '../../assets/images/defaultProfile.png'
 import * as icons from './IconsImport'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -75,7 +76,7 @@ export default function Sidebar() {
                 </div>
                 <div className="user__info" onClick={showIn}>
                   <div className="avatar">
-                    <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_normal.jpg" alt="" />
+                    <img src={user.pp || defaultProfile} alt="" />
                   </div>
                   <div className="info">
                     <span className='name ellipsis'>{ user?.name }</span>

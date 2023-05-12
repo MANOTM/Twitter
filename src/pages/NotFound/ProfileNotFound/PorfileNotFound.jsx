@@ -18,7 +18,7 @@ export default function PorfileNotFound() {
                 <div className="profile__avatar_not"></div>
             </div>
             <div className="profile__body__not">
-                <span>@{ pseudo } </span>
+                <span>{ pseudo } </span>
             </div>
             <div className="profile__post__not">
                 <div>
