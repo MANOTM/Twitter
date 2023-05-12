@@ -3,8 +3,9 @@ import SidebarItem from './SidebarItem'
 import * as icons from './IconsImport'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Taawija from '../Icons/Taawija'
-import { useState } from 'react'
+import Taawija from '../Icons/Taawija';
+import { useState } from 'react';
+import avatar from '../../assets/images/avatar_twitter.png';
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
@@ -54,7 +55,7 @@ export default function Sidebar() {
                 )
               }
 
-              <SidebarItem notf={false} to="/more" text="More">
+              <SidebarItem notf={false} to="/settings/account" text="More">
                 <icons.MoreIcon fill="#e7e9ea" />
               </SidebarItem>
               {
@@ -75,7 +76,7 @@ export default function Sidebar() {
                 </div>
                 <div className="user__info" onClick={showIn}>
                   <div className="avatar">
-                    <img src="https://pbs.twimg.com/profile_images/1613293977985318932/uR3GlJQf_normal.jpg" alt="" />
+                    <img src={avatar} alt="" />
                   </div>
                   <div className="info">
                     <span className='name ellipsis'>{ user?.name }</span>

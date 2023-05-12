@@ -10,11 +10,11 @@ import { useSelector } from 'react-redux';
 
 export default function Countainer() {  
   const { loggedIn:Auth } = useSelector(state => state.Auth)
-  const isInMessagePath = useLocation().pathname == '/messages' || useLocation().pathname == '/messages/';  
+  const isInMessagePath = useLocation().pathname == '/messages' || useLocation().pathname == '/messages/' || useLocation().pathname == '/settings' || useLocation().pathname.includes('/settings/');  
   const match = matchPath(
     { path: "/messages/:idSender" },
     useLocation().pathname,
-  ); 
+  );
   return (
     <div className='countainer'>
         <Toast />

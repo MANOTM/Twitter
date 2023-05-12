@@ -142,7 +142,7 @@ function Login() {
                         <div className="login__buttons form__button">
                             <button type='submit' className={!field.password.length ? 'login__disabled__button' : ''}>Log in</button>
                             <div className='login__form__signUp login__signUp'>
-                                <span>Don't have an account? <a href="#">Sign up</a></span>
+                                <span>Don't have an account? <a href="/i/flow/signup">Sign up</a></span>
                             </div>
                         </div>
                     </form>

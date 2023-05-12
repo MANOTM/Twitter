@@ -11,6 +11,7 @@ import { LoginComponent, RegisterComponent, MessageComponent, PageNotFound } fro
 import NotFound from "./pages/NotFound/NotFound";
 import Overlay from "./layouts/Overlay/overlay";
 import Logout from "./components/Logout/Logout";
+import Setting from "./pages/Setting/Setting";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path : '/profile/:pseudo/*',
                 element : <AuthRoute element={Profile} />,
+            },
+            {
+                path : '/settings/*',
+                element : <AuthRoute element={Setting} />,
             },
             {
                 path : '/i/flow/login',

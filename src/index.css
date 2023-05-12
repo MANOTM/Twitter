@@ -81,7 +81,7 @@
     background-color: #202327;
 }
 .text-gray{
-   color:  rgb(113, 118, 123) !important;
+    color:  rgb(113, 118, 123) !important;
 }
 .ellipsis{
     max-width: 100%; 
@@ -233,8 +233,25 @@ button::-moz-focus-inner,
 }
 
 .a-link {
-    color: #1d9bf0;
+    color: #1d9bf0 !important;
 }
 .a-link:hover {
     text-decoration: underline;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 33px;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+.big-title {
+    word-wrap: break-word;
+    white-space: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(231, 233, 234);
 }
