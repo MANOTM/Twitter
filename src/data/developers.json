@@ -1,0 +1,62 @@
+{
+    "DD201": [
+        {
+            "title": "Responsable",
+            "team": [
+                {"name": "Harrak Charifa", "link": "https://www.facebook.com/Complexe.De.Formation.Yaacoub.El.Mansour"}
+            ]
+        },
+        {
+            "title": "Frontend developers",
+            "team": [
+                {"name": "Abouelouafa Oussama", "link": "facebook"},
+                {"name": "Adiouani Yassine", "link": "whatsapp"},
+                {"name": "Alouane Yasmine", "link": "telegram"},
+                {"name": "Baakil Hafsa", "link": "telegram"},
+                {"name": "El Badri Yosra", "link": "telegram"},
+                {"name": "El Faiz Smail", "link": "telegram"},
+                {"name": "Mansouri Otmane", "link": "telegram"},
+                {"name": "Tourabi Nezha", "link": "telegram"}
+            ]
+        },
+        {
+            "title": "Backend developers",
+            "team": [
+                {"name": "Baddah Soufiane", "link": "facebook"},
+                {"name": "Belannab Mohamed", "link": "whatsapp"},
+                {"name": "Tahiri Ismail", "link": "telegram"}
+            ]
+        },
+        {
+            "title": "Documentation",
+            "team": [
+                {"name": "Idali Ikram", "link": "facebook"},
+                {"name": "Rhazzal Wassim", "link": "whatsapp"},
+                {"name": "El Arfaoui Amina", "link": "telegram"},
+                {"name": "Fegoshin Anas", "link": "telegram"}
+            ]
+        },
+        {
+            "title": "Insciption / Technical writers",
+            "team": [
+                {"name": "Hamouddo Younes", "link": "facebook"},
+                {"name": "Assia Assia", "link": "whatsapp"}
+            ]
+        },
+        {
+            "title": "Designers",
+            "team": [
+                {"name": "Sadqi Yassine", "link": "facebook"},
+                {"name": "Harmouche Driss", "link": "whatsapp"},
+                {"name": "Ait Mahda Abdellatif", "link": "whatsapp"},
+                {"name": "Drissi Ismail", "link": "whatsapp"}
+            ]
+        },
+        {
+            "title": "Others",
+            "team": [
+                {"name": "Abdrham chi haja", "link": "facebook"}
+            ]
+        }
+    ]
+}

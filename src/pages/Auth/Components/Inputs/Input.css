@@ -4,6 +4,18 @@
     border: .5px solid rgb(51, 54, 57);
 }
 
+.twitter__form__group.readOnly {
+    background-color: #101214;
+    border: none;
+}
+
+.twitter__form__group.readOnly input,
+.twitter__form__group.readOnly label {
+    color: rgb(81, 83, 85);
+    pointer-events: none;
+    opacity: .7;
+}
+
 .twitter__form__group:focus-within{
     border: .5px solid #1D9BF0;
 }

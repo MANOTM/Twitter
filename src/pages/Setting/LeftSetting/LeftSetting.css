@@ -1,0 +1,12 @@
+.Left__Setting {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.setting__left__paragraph p {
+    padding: 12px 18px;
+    font-size: 13px !important;
+    color: rgb(113, 118, 123) !important;
+    font-weight: 400;
+}

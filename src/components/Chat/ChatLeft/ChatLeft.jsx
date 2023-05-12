@@ -7,7 +7,7 @@ import { ChatLine } from '../ChatLine/ChatLine'
 import { useStateContext } from '../../../contexts/ContextProvider'
 
 export const ChatLeft = () => {
-    const userA=[{id:2,first_name:'Hunter',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:662,first_name:'Dexter',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:22,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:25,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:55,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'}]
+    const userA=[{id:2,first_name:'sma3in',last_name:"Mansouri", avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:662,first_name:'3tman',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:22,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:25,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:55,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'}]
     const [InputActive, setInputActive] = useState(false)
     const {ShowingCard,setShowingCard}=useStateContext()
     return (

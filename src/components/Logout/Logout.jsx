@@ -22,12 +22,12 @@ export default function Logout() {
         setLogout(true)
         const { data } = await axios.post('/logout')
         if(!data) return
-            Cookies.remove('Auth_token');
-            localStorage.clear()
-            dispatch(logOut())
-            CallToast(data.message)
-            navigate('/')
-            setLogout(false) 
+        Cookies.remove('Auth_token');
+        localStorage.clear()
+        dispatch(logOut())
+        CallToast(data.message)
+        navigate('/')
+        setLogout(false)
     }
     const handleCancel = () => {
         navigate(-1)

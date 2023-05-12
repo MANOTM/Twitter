@@ -9,7 +9,7 @@ export default function Input(props) {
 
     return (
         <>
-            <div className={`twitter__form__group`}>
+            <div className={`twitter__form__group ${readonly && 'readOnly'}`}>
                 {/* <div className="twitter__form__group__border"></div> */}
                 {
                     valid && (

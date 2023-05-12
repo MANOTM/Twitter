@@ -1,0 +1,35 @@
+.AccountOptions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.AccountOptions.border {
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
+
+.account__option__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4.5px;
+}
+
+.account__option__title {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.account__option__miniTitle,
+.account__option__miniTitle span {
+    color: rgb(113, 118, 123);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+.account__option__icon svg{
+    height: 18.75px;
+    fill: rgb(113, 118, 123);
+}

@@ -1,0 +1,27 @@
+.setting__one__row svg {
+    height: 18.75px;
+    fill: rgb(113, 118, 123)
+}
+
+.setting__one__row {
+    justify-content: space-between;
+    padding: 14px 16px;
+}
+
+.setting__link__body,
+.setting__one__row {
+    display: flex;
+    align-items: stretch;
+}
+
+.setting__link__title {
+    color: rgb(231, 233, 234);
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 16px;
+}
+
+.active .setting__one__row {
+    background: #202327bf;
+    border-right: 2px solid rgb(29, 155, 240);
+}

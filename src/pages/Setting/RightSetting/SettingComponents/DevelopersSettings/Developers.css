@@ -1,0 +1,33 @@
+.Account__option__input {
+    border: none !important;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(231, 233, 234);
+}
+
+.dev__one {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.develp__icon svg{
+    width: 18.75px;
+    fill: rgb(113, 118, 123);
+}
+
+.devel__loop {
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
+.devel__loop:last-child {
+    border: none !important;
+}
+
+.mini-setting {
+    font-size: 13px;
+}
+
+.big-title {
+    font-size: 20px;
+    font-weight: 700;
+}

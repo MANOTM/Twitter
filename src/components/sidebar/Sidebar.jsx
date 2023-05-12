@@ -4,8 +4,8 @@ import defaultProfile from '../../assets/images/defaultProfile.png'
 import * as icons from './IconsImport'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Taawija from '../Icons/Taawija'
-import { useState } from 'react'
+import Taawija from '../Icons/Taawija';
+import { useState } from 'react'; 
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
@@ -55,7 +55,7 @@ export default function Sidebar() {
                 )
               }
 
-              <SidebarItem notf={false} to="/more" text="More">
+              <SidebarItem notf={false} to="/settings/account" text="More">
                 <icons.MoreIcon fill="#e7e9ea" />
               </SidebarItem>
               {

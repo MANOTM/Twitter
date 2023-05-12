@@ -28,7 +28,6 @@ export const ContextProvider = ({ children }) => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
             / Twitter`;
         },[title, content, Dont]);
-
         return null
     }
     const Mounths = [
@@ -50,7 +49,7 @@ export const ContextProvider = ({ children }) => {
     const [AuthModal, setAuthModal] = useState(false)
     const [RegisterModal, setRegisterModal] = useState(false)
     const [CardHover, setCardHover] = useState(false)
-    // Don't touch it it's 4 chat
+    // Don't touch it it's 4 chat || xkon daha fik ana jit ghaa nzid wa7d const dyali saaaaafi
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
@@ -62,8 +61,11 @@ export const ContextProvider = ({ children }) => {
     const handelChange = () => {
         setToBottom(!ToBottom) 
     } 
+    // ---------------------------------
+    const [SettingLayouts, setSettingLayouts] = useState(false);
+    // ---------------------------------
     return (
-        <StateContext.Provider value={{ Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

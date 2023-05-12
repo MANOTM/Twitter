@@ -1,0 +1,43 @@
+.boite__header__info{
+    padding: 27px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 53px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.Right_header__setting{
+    display: flex;
+    align-items: center;
+}
+.Right__header__title{
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+    font-weight: 500;
+}
+.Header__Right__icon {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: .2s ease;
+    cursor: pointer;
+}
+.Header__Right__icon:hover {
+    background-color: rgba(255,255,255, .25);
+}
+.Header__Right__icon svg {
+    height: 20px;
+    fill: rgb(239, 243, 244);
+}
+.small__arrow__back {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .small__arrow__back {
+        display: block;
+    }
+}

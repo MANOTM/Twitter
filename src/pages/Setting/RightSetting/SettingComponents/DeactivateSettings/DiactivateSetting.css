@@ -1,0 +1,41 @@
+.profile__setting,
+.Account__option__input {
+    padding: 12px 16px;
+}
+
+.profile__setting,
+.profile__setting__info {
+    display: flex;
+}
+
+.profile__setting {
+    align-items: center;
+}
+
+.profile__setting__avatar {
+    margin-right: 12px;
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.profile__setting__info {
+    flex-direction: column;
+}
+
+.profile__setting__name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile__setting__pseudo {
+    flex-shrink: 1;
+    font-weight: 400;
+    color: rgb(113, 118, 123);
+}
+
+.mini-setting {
+    font-size: 12.4px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgb(113, 118, 123);
+}
