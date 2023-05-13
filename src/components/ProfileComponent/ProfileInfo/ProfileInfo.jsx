@@ -1,16 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
 import Born from '../../Icons/Born'
 import Calendrier from '../../Icons/calendrier'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ThreePoints from '../../Icons/ThreePoints'; 
+import { useStateContext } from '../../../contexts/ContextProvider';
+import { NotAuthCard } from '../../NotAuthCard/NotAuthCard';
 
 export const ProfileInfo = ({data}) => {
+  const {pseudo}=useParams()
+  const {IfollowThisUser } =useStateContext()
   const birthday = moment(data.birthday, "YYYY/MM/DD"); 
   const joined = moment(data.created_at, "YYYY/MM/DD");  
   const { loggedIn:Auth, user } = useSelector(state => state.Auth) 
+  const [NotAuth,setnotAuth]=useState(false)
+
+  const follow = ()=>{ 
+    console.log('this shiit not working');
+  }
+
+  const logicFollow=()=>{
+    if(Auth && data?.id==user?.id){
+      return  <button className='profile_btn btn-def'>Edit profile</button>
+    }else if(!Auth){
+      return <button className='btn-def btn_follow' onClick={follow}>Follow</button>
+    }else if( IfollowThisUser(pseudo)?.action){
+      return <button className='btn-def btn_unfollow' onClick={follow}>Following</button>
+    }else{
+      return <button className='btn-def btn_follow' onClick={follow}>Follow</button>
+    }
+  }
+
   return (
     <>
     <div className="profile_images">
@@ -23,17 +45,19 @@ export const ProfileInfo = ({data}) => {
       </div>
       <div className="profile__actions">
 
-        {Auth && data.id==user.id? 
+      {logicFollow()}
+        {/* {Auth && data.id==user.id? 
          <button className='profile_btn btn-def'>Edit profile</button>
         :
         <>
          <div className="iconH">
           <ThreePoints/>
-         </div>
+         </div> 
+         { Auth }
          <button className='btn-def btn_follow'>Follow</button>
          </>
         }
-         {/* <button className='btn-def btn_unfollow'>Following</button> */}
+         <button className='btn-def btn_unfollow'>Following</button> */}
       </div>
     </div>
   </div>  
@@ -61,17 +85,17 @@ export const ProfileInfo = ({data}) => {
       </div>
     </div>
     <div className="card__followers">
-        <Link  className="c_followers underline">
+        <Link to='i/following' className="c_followers underline">
             <span>{data.followings}</span>
             <span className='username '>Following</span>
         </Link>
-        <Link className="c_followers underline">
+        <Link to='i/followers' className="c_followers underline">
             <span>{data.followers}</span>
             <span className='username '>Followers</span>
         </Link>
     </div> 
   </div>
-  
+  {NotAuth && <NotAuthCard/>}
   </>
   )
 }

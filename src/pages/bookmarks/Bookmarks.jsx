@@ -21,7 +21,7 @@ export default function Bookmarks() {
           <span className='bookmarks__title'>Bookmarks</span>
           <span className='bookmarks__username'>{ user.pseudo }</span>
         </header>
-      {loading ? <Loading/>  : data !== undefined ?
+      {loading ? <Loading/>  : !data?.data?.length ?
         <div className="bookmarks__empty">
           <img src={bookInCage} alt="" />
           <div className="bookmarks__info">
@@ -29,8 +29,8 @@ export default function Bookmarks() {
             <p className='bookmarks__blabla'>Don’t let the good ones fly away! Bookmark <br />
               Tweets to easily find them again in the future.</p>
           </div>
-        </div> : data?.data.map(post=>{
-        return <Post
+        </div> : data?.data.map((post,key)=>{
+        return <Post key={key}
               usename={post.name}
               tagname={post.pseudo}
               tweet={post.image}

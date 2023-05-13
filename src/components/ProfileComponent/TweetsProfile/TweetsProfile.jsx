@@ -5,29 +5,52 @@ import Post from '../../posts/Post'
 import Loading from '../../Loading/Loading'
 import { useSelector } from 'react-redux'
 import { NoLike } from '../NoLike/NoLike'
+import { useStateContext } from '../../../contexts/ContextProvider'
+import { useEffect } from 'react'
 
-export const TweetsProfile = ({user}) => { 
-  const {error , data ,loading} =useFetch('tweets/' + user.pseudo) 
-  const { loggedIn:Auth} = useSelector(state => state.Auth) 
+export const TweetsProfile = ({userInfo}) => { 
+  const {error , data ,loading} =useFetch('tweets/' + userInfo.pseudo) 
+  const { loggedIn:Auth , user} = useSelector(state => state.Auth) 
+  const {setHeadingCount}=useStateContext()
+  useEffect(()=>{
+    setHeadingCount(data?.data ? data?.data.length+' tweets':'')
+  },[data])
+  const LogicShow=(arr)=>{  
+    if(arr.length){
+      return arr?.map(tweet=>{
+        return<Post key={tweet.id}
+        usename={userInfo.name}
+        tagname={userInfo.pseudo}
+        verify={true}
+        liked={true}
+        retweeted={false}
+        title={tweet.description}
+        tweet={tweet.image}
+    />
+      })
+    }else if(!arr.length  || user?.id != userInfo?.id){
+      return <NoLike action='tweet'/>
+    }
+  }
   return (
     <> 
-      {loading && !error ?<Loading/>:
+      {loading  ?<Loading/>:
           <> 
-          {
-            data?.data.lenght==0 &&  !Auth   && <NoLike/>
-          }
-              {data?.data.map(tweet=>{
-                      return<Post key={tweet.id}
-                      usename={user.name}
-                      tagname={user.pseudo}
-                      verify={true}
-                      liked={true}
-                      retweeted={false}
-                      title={tweet.description}
-                      tweet={tweet.image}
-                  />
-              })}
-              {Auth && <WhoToFollow100/>}
+          { 
+            data?.data.length ?data?.data.map(tweet=>{
+              return<Post key={tweet.id}
+              usename={userInfo.name}
+              tagname={userInfo.pseudo}
+              verify={true}
+              liked={true}
+              retweeted={false}
+              title={tweet.description}
+              tweet={tweet.image}
+          />
+            }):''  
+          } 
+          {!data?.data.length && user?.id != userInfo?.id && <NoLike action='Tweeted'/>}
+          {Auth && user?.id == userInfo?.id  && <WhoToFollow100/>}
           </>
       } 
     </>

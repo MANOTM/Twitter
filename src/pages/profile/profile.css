@@ -178,8 +178,7 @@
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
 }
-.profile_selecte{
-    padding-top: 20px;
+.profile_selecte{ 
     width: 100%; 
-    padding-bottom: 10px;
+    padding-bottom: 100px;
 }
