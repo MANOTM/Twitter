@@ -26,7 +26,7 @@ function Profile() {
         {loading  ?<Loading/>:
         <div className="profile scroll">
           <ProfileHead name={data.data.name}/>
-          <ProfileInfo data={data.data}/>
+          <ProfileInfo data1={data.data}/>
           <div className="profile__links">
               <NavLink to='' > Tweets  </NavLink>
               <NavLink to='replies' > Replies </NavLink>

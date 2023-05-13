@@ -72,15 +72,15 @@ export const ContextProvider = ({ children }) => {
 
     //Follow & Unfollow Login//
 
-    const IfollowThisUser=(pseudo)=>{
-        if(Auth){
-            const {data ,loading} =useFetch('followings/@' + user.pseudo.substring(1))
-            const action =data?.data?.some(user=> user.pseudo.substring(1) == pseudo)
-            return {loading,action}
-        }else{
-            return {loading:false,action:false}
-        }
-    }
+    // const IfollowThisUser=(pseudo)=>{
+    //     if(Auth){
+    //         const {data ,loading} =useFetch('followings/@' + user.pseudo.substring(1))
+    //         const action =data?.data?.some(user=> user.pseudo.substring(1) == pseudo)
+    //         return {loading,action}
+    //     }else{
+    //         return {loading:false,action:false}
+    //     }
+    // }
  
     // ---------------------------------
     const [SettingLayouts, setSettingLayouts] = useState(false);
