@@ -4,6 +4,7 @@ import defaultAvatar from '../../assets/images/defaultProfile.png'
 import { Link } from 'react-router-dom'
 
 export default function SuggestionUser({name,username,avatar}) {
+  
   return (
     <div className="suggestions">
         <div className="suggestion__user hover">

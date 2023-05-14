@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 function Profile() {
   const {pseudo}=useParams() 
-  
+
   // const { data ,loading} =useFetch('profile/@' + pseudo) 
   
   const [loading, setLoading] = useState(true)
@@ -35,7 +35,7 @@ function Profile() {
   },[pseudo])
   return (
     <>
-    {loading && !data ? <PorfileNotFound/>:
+    {!loading && !data ? <PorfileNotFound/>:
       <Main> 
         {loading  ?<Loading/>:
         <div className="profile scroll">
