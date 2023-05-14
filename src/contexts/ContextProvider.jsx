@@ -69,24 +69,13 @@ export const ContextProvider = ({ children }) => {
     const [HeadingCount,setHeadingCount]=useState('')
 
     //------------//
-
-    //Follow & Unfollow Login//
-
-    // const IfollowThisUser=(pseudo)=>{
-    //     if(Auth){
-    //         const {data ,loading} =useFetch('followings/@' + user.pseudo.substring(1))
-    //         const action =data?.data?.some(user=> user.pseudo.substring(1) == pseudo)
-    //         return {loading,action}
-    //     }else{
-    //         return {loading:false,action:false}
-    //     }
-    // }
+ 
  
     // ---------------------------------
     const [SettingLayouts, setSettingLayouts] = useState(false);
     // ---------------------------------
     return (
-        <StateContext.Provider value={{ IfollowThisUser,HeadingCount,setHeadingCount,SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ HeadingCount,setHeadingCount,SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

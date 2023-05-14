@@ -9,6 +9,7 @@ import ThreePoints from '../../Icons/ThreePoints';
 import { NotAuthCard } from '../../NotAuthCard/NotAuthCard';
 import { useEffect } from 'react'; 
 import useFetch from '../../../hooks/useFetch';
+import useFollow from '../../../hooks/useFollow';
 
 export const ProfileInfo = ({data1}) => {
   const {pseudo}=useParams()  
@@ -19,14 +20,17 @@ export const ProfileInfo = ({data1}) => {
   const [followHim,setfollowHim]=useState(null)
 
   const {data}=useFetch('followings/'+user?.pseudo )
-  useEffect(()=>{
-    console.log(followHim);
-    console.log(data?.data);
+
+  useEffect(()=>{ 
     if(data?.data){
       setfollowHim( data?.data?.some(user=> user?.pseudo.substring(1) == pseudo))
     }
   },[data])
   
+  const follow = () =>{
+    useFollow(followHim,data1.id)
+    setfollowHim(!followHim)
+  }
 
   return (
     <>
@@ -42,8 +46,8 @@ export const ProfileInfo = ({data1}) => {
 
       {Auth && data1.id==user.id && <button className='profile_btn btn-def'>Edit profile</button>}
       {!Auth && <button className='btn-def btn_follow' onClick={()=>setnotAuth(true)}>Follow</button>}
-      {Auth  && followHim!=null &&followHim && data1.id!=user.id && <button className='btn-def btn_unfollow'>Following</button>} 
-      {Auth  && followHim!=null && !followHim&&data1.id!=user.id &&<button className='btn-def btn_follow'>Follow</button>} 
+      {Auth  && followHim!=null &&followHim && data1.id!=user.id && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>} 
+      {Auth  && followHim!=null && !followHim&&data1.id!=user.id &&<button className='btn-def btn_follow' onClick={follow}>Follow</button>} 
       
       </div>
     </div>

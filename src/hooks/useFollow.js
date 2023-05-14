@@ -1,15 +1,18 @@
 import axios from '../api/axios';
 import  { useEffect, useState } from 'react'
 
-const useFollow = (currentPseudo,pseudo) => { 
-    const [dataa, setData] = useState(null) 
-    useEffect(()=>{  
-        axios.get('followings/'+currentPseudo)
+const useFollow = (action,idUser) => { 
+    if(action){
+        axios.post('unfollow/'+idUser)
         .then(function (response) {
-           setData(response?.data?.data?.some(user=> user.pseudo.substring(1) == pseudo))
-        })
-        .catch(function (error) { 
-        });  
-    },[currentPseudo])
-    return {dataa}
-}export default useFollow
+            console.log(response);
+        }) 
+    } else{
+        axios.post('follow/'+idUser)
+        .then(function (response) {
+            console.log(response.data)
+        }) 
+    }
+    return true
+}
+export default useFollow
