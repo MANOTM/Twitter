@@ -17,7 +17,7 @@ export const ProfileFollowing = () => {
             {data?.data?.length ?
             <>
             {data?.data?.map((user,id)=>{
-              return  <SuggestionUser key={id} name={user.name} username={user.pseudo} avatar={user.avatar} /> 
+              return  <SuggestionUser key={id} userSu={user} /> 
             })}
             </>
              :

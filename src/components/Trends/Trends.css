@@ -17,7 +17,7 @@
     position: fixed;
     top: 0;
     padding: 5px 0;
-    z-index: 22;
+    z-index: 2;
     background: black;
 }
 .trends__search__form{

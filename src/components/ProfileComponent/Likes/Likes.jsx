@@ -13,8 +13,7 @@ export const Likes = ({user}) => {
   const {error , data ,loading} =useFetch('tweets/' + user.pseudo) 
 
   const {setHeadingCount}=useStateContext()
-  useEffect(()=>{
-    console.log(data);
+  useEffect(()=>{ 
     setHeadingCount(data?.data && Auth ? data?.data.length+' likes':'')
   },[data])
 
@@ -26,8 +25,8 @@ export const Likes = ({user}) => {
         <>
         {loading  ?<Loading/>:
         <>
-          {data?.data.map(tweet=>  
-                        <Tweet
+          {data?.data.map((tweet,id)=>  
+                        <Tweet key={id}
                           tweet={tweet}
                         />
                 )}

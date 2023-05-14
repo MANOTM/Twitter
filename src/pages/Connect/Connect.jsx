@@ -22,8 +22,8 @@ export const Connect = () => {
       <div className='connect'>
        <span className='trends__title'>Suggested for you</span>
         {loading?<Loading/>:
-          data?.data?.map(user=>{
-            return <SuggestionUser key={user.id} name={user?.name} username={user?.pseudo} avatar={user.avatar}/>
+          data?.data?.map((user,id)=>{
+            return <SuggestionUser key={id} userSu={user}/>
           })
         }
       </div>

@@ -16,7 +16,7 @@ export default function Suggestions() {
       <>
       <div className="suggestions">
         {data?.data?.slice(0,2).map((user,id)=>{
-          return <SuggestionUser key={id} name={user?.name} username={user?.pseudo} avatar={user.avatar}/>
+          return <SuggestionUser key={id} userSu={user}/>
         })}
         
       </div>

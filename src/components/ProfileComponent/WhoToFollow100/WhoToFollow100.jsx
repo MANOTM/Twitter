@@ -12,7 +12,7 @@ export const WhoToFollow100 = () => {
         <span className="profile__title">Who to follow</span>
         {loading ? <Loading/> :
           data?.data?.slice(0,3).map((user,id)=>{
-            return <SuggestionUser key={id} name={user.name} username={user.pseudo} avatar={user.avatar}/>
+            return <SuggestionUser key={id} userSu={user}/>
           })
         } 
         
