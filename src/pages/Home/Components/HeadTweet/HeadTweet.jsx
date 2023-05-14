@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./HeadTweet.css";
-import * as icons from './IconsImport'; 
+import * as icons from '../../IconsImport'; 
 
 export default function HeadTweet() {
     const [active, setActive] = useState(true);

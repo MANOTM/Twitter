@@ -1,7 +1,7 @@
 import React from 'react'
 import './ShareCard.css';
-import { CopyIcon, MessageIcon, ShareIcon } from '../icons/postIcons'
-import { useStateContext } from '../../../contexts/ContextProvider';
+import { useStateContext } from '../../../../contexts/ContextProvider';
+import { CopyIcon, MessageIcon, ShareIcon } from '../../icons/postIcons';
 
 export default function ShareCard({ hiddeOption }) {
     

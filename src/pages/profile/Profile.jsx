@@ -49,11 +49,11 @@ function Profile() {
           </div>
           <div className="profile_selecte">
             <Routes>
-             <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
-             <Route path='/replies' element={<WhoToFollow100/>}/>
-             <Route path='/media' element={<Media user={data.data}/>}/>
-             <Route path='/likes' element={<Likes user={data.data}/>}/> 
-             <Route path='/*' element={<NotFound />}/> 
+              <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
+              <Route path='/replies' element={<WhoToFollow100/>}/>
+              <Route path='/media' element={<Media user={data.data}/>}/>
+              <Route path='/likes' element={<Likes user={data.data}/>}/> 
+              <Route path='/*' element={<NotFound />}/> 
             </Routes> 
           </div>
         </div>

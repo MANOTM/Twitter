@@ -17,7 +17,7 @@
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
     animation: show 1s linear forwards;
-    -webkit-animation: show .4s linear forwards;
+    -webkit-animation: show .01s linear forwards;
 }
 @keyframes show {
     80%{
@@ -63,4 +63,5 @@
 } 
 .Verify__icon svg{
     width: 20px;
+    fill: #1d9bf0 !important;
 }

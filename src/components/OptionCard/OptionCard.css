@@ -1,7 +1,8 @@
 .option__card {
-    min-width: 322px;
+    min-width: calc(384px);
     width: fit-content;
     right: 0;
+    top: 0;
     padding: 12px 15px;
     position: absolute;
     overflow: hidden;

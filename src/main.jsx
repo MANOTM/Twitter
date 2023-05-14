@@ -17,6 +17,7 @@ if(token){
   .get('/profile/'+JSON.parse(localStorage.getItem('user_info'))?.pseudo)
   .then(res => {
     store.dispatch({ type:"Auth/LogIn", payload: res.data.data })
+    console.log(res.data.data);
     render()
   }).catch((error) =>{
     console.log(error);

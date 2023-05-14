@@ -3,10 +3,10 @@ import { NoLike } from '../NoLike/NoLike'
 import { NotAuthCard } from '../../NotAuthCard/NotAuthCard'
 import { useSelector } from 'react-redux'
 import Loading from '../../Loading/Loading'
-import Post from '../../posts/Post'
 import useFetch from '../../../hooks/useFetch'
 import { useStateContext } from '../../../contexts/ContextProvider'
 import { useEffect } from 'react'
+import Tweet from '../../posts/Tweets/Tweet'
 
 export const Likes = ({user}) => {
   const { loggedIn:Auth } = useSelector(state => state.Auth) 
@@ -14,6 +14,7 @@ export const Likes = ({user}) => {
 
   const {setHeadingCount}=useStateContext()
   useEffect(()=>{
+    console.log(data);
     setHeadingCount(data?.data && Auth ? data?.data.length+' likes':'')
   },[data])
 
@@ -21,25 +22,19 @@ export const Likes = ({user}) => {
     <>
       {Auth ? 
       <>
-         {!loading && !data?.data?.length ? <NoLike/>:
-         <>
-          {loading  ?<Loading/>:
-          <>
-            {data?.data.map(tweet=>  
-                        <Post key={tweet.id}
-                        usename={user.name}
-                        tagname={user.pseudo}
-                        verify={true}
-                        liked={true}
-                        retweeted={false}
-                        title={tweet.description}
-                        tweet={tweet.image}
-                    />
-                  )}
-          </>
-          }
-         </>
-         }
+        {!loading && !data?.data?.length ? <NoLike/>:
+        <>
+        {loading  ?<Loading/>:
+        <>
+          {data?.data.map(tweet=>  
+                        <Tweet
+                          tweet={tweet}
+                        />
+                )}
+        </>
+        }
+        </>
+        }
       </>
       
       :<NotAuthCard />}

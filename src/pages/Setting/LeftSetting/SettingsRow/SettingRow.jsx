@@ -1,6 +1,6 @@
 import React from 'react';
 import './SettingRow.css';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ArrowOn } from '../../icons/SettingIcons';
 import { useStateContext } from '../../../../contexts/ContextProvider';
 

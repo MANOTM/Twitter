@@ -1,0 +1,228 @@
+.Tweet svg {
+    width: 18.75px;
+    fill: rgb(113, 118, 123);
+}
+
+.Tweet img {
+    user-select: none;
+}
+
+.shrenk {
+    flex-shrink: 1;
+}
+
+.m-t {
+    margin-top: 8px;
+}
+
+.Tweet {
+    position: relative;
+    height: 100%;
+    background-color: #000;
+    cursor: pointer;
+    transition: .2s ease;
+    border-top: 1px solid rgb(47, 51, 54);
+    border-bottom: 1px solid rgb(47, 51, 54);
+    padding: 0 16px 0 12px;
+}
+.Tweet:hover {
+    background-color: rgba(255,255,255,.03);
+}
+.tweet__content,
+.tweet__info__user,
+.tweet__actions__list,
+.tweet__action,
+.tweet__user,
+.teet__profile__line {
+    display: flex;
+}
+.tweet__content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+}
+
+.tweet__avatar__user {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: rgba(255, 255, 255, 0.03) 0px 0px 2px inset;
+    margin-right: 12px;
+    transition: .1s ease;
+}
+.tweet__avatar__user:hover {
+    /* background-color: rgba(26,26,26,.15); */
+    opacity: .9;
+}
+
+.tweet__avatar__user img{
+    width: 100%;
+    height: 100%;
+}
+
+.tweet__right {
+    width: calc(100% - 60px);
+    padding-bottom: 6px;
+}
+
+.tweet__info__user {
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.tweet__username {
+    color: rgb(231, 233, 234);
+    font-weight: 700;
+    text-overflow: ellipsis;
+}
+
+.tweet__pseudo,
+.tweet__dot,
+.tweet___date {
+    color: rgb(113, 118, 123) !important;
+    font-weight: 400;
+    text-overflow: ellipsis;
+}
+
+.tweet__icon__verify svg,
+.tweet__icon__verify img {
+    width: 18.75px;
+    height: 18.75px;
+    fill: #1d9bf0 !important;
+}
+
+.tweet__icon__verify img {
+    transform: scaleX(1);
+}
+
+.tweet__pseudo,
+.tweet__icon__verify {
+    margin-left: 4px;
+}
+
+.tweet__dot {
+    flex-shrink: 0;
+    padding: 0 4px;
+}
+
+.tweet___date:hover,
+.tweet__username:hover {
+    text-decoration: underline;
+}
+
+.tweet__option__icon {
+    position: relative;
+}
+
+.iconStyle {
+    width: 34.75px;
+    height: 34.75px;
+    border-radius: 50%;
+    transition: all .3s ease;
+}
+.tweet__option__icon:hover {
+    background-color: rgba(29, 155, 240, .1);
+}
+.tweet__option__icon:hover svg {
+    fill: rgba(29, 155, 240);
+}
+
+.tweet__content__body {
+    color: rgb(231, 233, 234);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.tweet__image {
+    border-radius: 16px;
+    border: 1px solid rgb(47, 51, 54);
+    outline-style: none;
+    overflow: hidden;
+    cursor: pointer;
+    max-height: 504px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    user-select: none;
+}
+
+.tweet__image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    inset: none;
+}
+
+.tweet__react__footer svg {
+    width: 18.5px !important;
+    height: 18.5px;
+}
+
+.tweet__actions__list,
+.tweet__action {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    outline-style: none;
+}
+
+.tweet__actions__list {
+    max-width: 425px;
+    column-gap: 8px;
+    margin-top: 8px;
+}
+
+.actions__counter {
+    padding: 0 5px;
+    font-size: 13px;
+    color: rgb(113, 118, 123);
+    text-overflow: ellipsis;
+}
+
+.tweet__action,
+.action__icon svg,
+.actions__counter {
+    transition: all .3s ease;
+}
+
+.tweet__action:hover .action__icon{
+    background-color: rgba(29, 155, 240, .1);
+}
+.tweet__action:hover svg {
+    fill: rgba(29, 155, 240);
+}
+.tweet__action:hover .actions__counter {
+    color: rgba(29, 155, 240) !important;
+}
+
+.tweet__action.liked:hover .action__icon{
+    background-color: rgba(249, 24, 128, .1);
+}
+.tweet__action.liked:hover svg,
+.tweet__action.hasLike svg {
+    fill: #F91880;
+}
+.tweet__action.liked:hover .actions__counter,
+.tweet__action.hasLike .actions__counter {
+    color: #F91880 !important;
+}
+
+.tweet__action.retweet:hover .action__icon{
+    background-color: rgba(0, 186, 124, .1);
+}
+.tweet__action.retweet:hover svg,
+.tweet__action.hasRetweet svg {
+    fill: #00B075;
+}
+.tweet__action.retweet:hover .actions__counter,
+.tweet__action.hasRetweet .actions__counter {
+    color: #00B075 !important;
+}
+
+.shareAction {
+    position: relative;
+}
