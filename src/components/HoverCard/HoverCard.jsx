@@ -4,9 +4,12 @@ import './HoverCard.css'
 import VerifyIc from '../Icons/VerifyIc'
 import { useStateContext } from '../../contexts/ContextProvider';
 import avatar from '../../assets/images/defaultProfile.png';
+import useFetch from '../../hooks/useFetch';
+import Loading from '../Loading/Loading';
 
-function HoverCard({isIn,setisIn, user: { name, pseudo, bio, followings, followers, cover }}) {
+function HoverCard({isIn,setisIn, pseudo }) {
     const { CardHover, setCardHover } = useStateContext(); 
+    const { loading, data } = useFetch('/profile/'+pseudo)
     const MouseIn = ()=>{
         setCardHover(true) 
         setisIn(true) 
@@ -17,16 +20,17 @@ function HoverCard({isIn,setisIn, user: { name, pseudo, bio, followings, followe
     }
     return (
         <div className='hover__card' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
-            <div className="hover__card__header">
+            {
+                !loading ? <><div className="hover__card__header">
                 <Link to='' className="avatar big__avatar">
-                    <img src={cover || avatar} alt="profile__avatar" />
+                    <img src={data?.data.pp || avatar} alt="profile__avatar" />
                 </Link>
                 <div>
                     <FollowBtn title="Follow" />
                 </div>
             </div>
             <Link to='' className="hover__card_user">
-                <span className='name ellipsis underline'>{name}
+                <span className='name ellipsis underline'>{'name'}
                     <span className="Verify__icon align-center">
                         <VerifyIc fill="#1d9bf0" />
                     </span>
@@ -34,20 +38,28 @@ function HoverCard({isIn,setisIn, user: { name, pseudo, bio, followings, followe
                 <span className='username ellipsis'>{pseudo} </span>
             </Link>
 
-            <div className="hover__card_bio">
-                {bio && (<p> {bio} </p>)}
-            </div>
+            {
+                data?.data.bio && (
+                    <div className="hover__card_bio">
+                        {(<p> {data?.data.bio} </p>)}
+                    </div>
+                    )
+            }
+
             <div className="card__followers">
                 <Link to='' className="c_followers underline">
-                    <span>{ followings || 0 }</span>
+                    <span>{ data?.data.followings || 0 }</span>
                     <span className='username '>Following</span>
                 </Link>
                 <Link to='' className="c_followers underline">
-                    <span>{ followers || 0 }</span>
+                    <span>{ data?.data.followers ||0 }</span>
                     <span className='username '>Followers</span>
                 </Link>
             </div>
-
+            </>
+            : 
+            <Loading />
+            }
         </div>
     )
 }

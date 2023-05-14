@@ -32,7 +32,6 @@ export default function Retweet(
     const { CardHover, setCardHover, CallToast } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     const MouseIn = ()=>{
-        console.log(1);
         setCardHover(true)
         setisIn(true)
     }

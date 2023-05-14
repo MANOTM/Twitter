@@ -2,20 +2,29 @@ import React from 'react'
 import './WhoToFollow.css'
 import SuggestionUser from './SuggestionUser'
 import { ShowMore } from '../ShowMore/ShowMore'
+import useFetch from '../../hooks/useFetch'
+import Loading from '../Loading/Loading'
 
 export default function Suggestions() {
+  const {data,loading}=useFetch('usersToFollow/') 
   return (
     <div className="whotofollow bg-0">
       <header className='trends__header'>
         <span className='trends__title'>Who to follow</span>
       </header>
+      {loading ? <Loading/>:
+      <>
       <div className="suggestions">
-        <SuggestionUser name='Erling Haaland' username='ErlingHaaland' avatar='https://pbs.twimg.com/profile_images/1547935226550046720/m0yzCdOe_normal.jpg'/>
-        <SuggestionUser name='Manchester United' username='ManchesterUnited' avatar='https://pbs.twimg.com/profile_images/1622866928434806784/29U-nXuq_normal.jpg'/> 
+        {data?.data?.slice(0,2).map((user,id)=>{
+          return <SuggestionUser key={id} name={user?.name} username={user?.pseudo} avatar={user.avatar}/>
+        })}
+        
       </div>
       <div className="suggestions__more">
-        <ShowMore to='#'/>
+        <ShowMore to='/connect'/>
       </div>
+      </>
+}
     </div>
   )
 }

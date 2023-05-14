@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import Back from '../../Icons/Back'
 import './ProfileHead.css'
+import { useStateContext } from '../../../contexts/ContextProvider'
 
-export const ProfileHead = ({name,tweetCount}) => {
+export const ProfileHead = ({name}) => {
+  const {HeadingCount}= useStateContext()
     const navigator=useNavigate()
   return (
     <div className='profile__head'>
@@ -11,7 +13,7 @@ export const ProfileHead = ({name,tweetCount}) => {
         </div>
         <div className="profile__head_text">
             <span className='profile__head_name'>{name || 'Profile'}</span>
-            <span className='profile__head_tweetC'>{tweetCount ? tweetCount+' tweets':''}</span>
+            <span className='profile__head_tweetC'>{HeadingCount || ''}</span>
         </div>
     </div>
   )

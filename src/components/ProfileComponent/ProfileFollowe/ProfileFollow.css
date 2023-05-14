@@ -1,0 +1,25 @@
+.ProfileFollow_img{
+    width: 336px !important;
+}
+.profile_followers .bookmarks__info{
+    display: flex;
+    flex-direction: column; 
+    width: 50%;
+}
+.profile_followers .bookmarks__info a{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(29, 155, 240);
+    height: 52px;
+    width: 236px;
+    font-size: 15px ;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+}

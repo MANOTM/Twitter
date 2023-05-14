@@ -11,27 +11,33 @@ import { CommentIcon, LikeIcon, RetweetIcon, ShareIcon, VerifyIcon } from '../..
 import DogIcon from '../../../pages/Home/icons/DogIcon';
 import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
+import moment from 'moment';
 
-export default function Tweet(
+export default function Tweet({
+    tweet:
     {
-        user,
+        idUser,
+        name,
+        pseudo,
+        pp,
         created_at,
         verifyUser,
-        tweet_image,
-        tweet_video,
-        postIsRetweeted,
-        tweet_title,
+        image,
+        video,
+        description,
         reply_count,
-        likes_count,
+        likes,
         retweet_count,
         liked,
         retweeted
     }
+}
 ) {
+    const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
+    const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     const MouseIn = ()=>{
-        console.log(1);
         setCardHover(true)
         setisIn(true)
     }
@@ -40,7 +46,7 @@ export default function Tweet(
             setisIn(false) 
     }
     const showOption = (A) => {
-        if(!Auth) return CallToast('Once you join Twitter, you can open it',3500)
+        if(!Auth) return CallToast('Once you join Twitter, you can open it😊',3500)
         if(A) return setShareHover(true)
         setOptionHover(true)
     }
@@ -53,53 +59,52 @@ export default function Tweet(
     const [ShareHover, setShareHover] = useState(false)
     const [isIn, setisIn] = useState(false) 
     const [active, setActive] = useState(false)
-
     return (
         <div className='Tweet'>
-        {isIn && CardHover ? <HoverCard user={user} isIn={isIn} setisIn={setisIn}/> :''}
+        {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
             <div className="tweet__content">
                 <div className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
-                        <img src={avatar} />
+                        <img src={pp || avatar} />
                     </div>  
                 </div>
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
                             <span className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
-                                <span className="tweet__username shrenk">{user.name}</span>
+                                <span className="tweet__username shrenk">{name}</span>
                                 {
                                 verifyUser && (<span className="tweet__icon__verify">
                                             <VerifyIcon />
                                             <DogIcon />
                                         </span>)
                                 }
-                                <span className="tweet__pseudo">{user.pseudo}</span>
+                                <span className="tweet__pseudo">{pseudo}</span>
                                 <span className='tweet__dot'>.</span>
                             </span>
-                            <span className='tweet___date' title='6:01 AM . May 13, 2023'>{created_at}</span>
+                            <span className='tweet___date' title={formattedDate}>{timeSpan}</span>
                         </div>
                         <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center" title='More'>
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard pseudo={user.pseudo} />
+                                <OptionCard pseudo={pseudo} />
                             </> }
                             <ThreePoints />
                         </div>
                     </div>
                     {
-                        tweet_title && <div className="tweet__content__body">
-                            <p className='tweet__paragraph'>{tweet_title}</p>
+                        description && <div className="tweet__content__body">
+                            <p className='tweet__paragraph'>{description}</p>
                         </div>
                     }
                     <div className="tweet__content__media m-t">
                         {
-                            tweet_image && <div className="tweet__image">
-                                <img src={tweet_image || avatar} alt="tweet__image" />
+                            image && <div className="tweet__image">
+                                <img src={image} alt="tweet__image" />
                             </div>
                         }
                         {
-                            tweet_video && <Video />
+                            video && <Video />
                         }
                     </div>
                     <div className="tweet__react__footer">
@@ -121,7 +126,7 @@ export default function Tweet(
                                     <LikeIcon liked={liked || false} />
                                     {/* <span className="like-icon">♥</span> */}
                                 </div>
-                                <span className="actions__counter">{likes_count}</span>
+                                <span className="actions__counter">{likes}</span>
                             </div>
                             <div className="tweet__action">
                                 <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">

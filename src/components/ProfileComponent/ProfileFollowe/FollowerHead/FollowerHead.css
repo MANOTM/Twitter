@@ -1,0 +1,57 @@
+.profile__head_big{
+    height: 107px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.436);
+}
+.profile__head_user{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 15px;
+    height: 53px;
+}
+.profile_head_liks{
+    height: calc(100% - 53px);
+    display: flex;
+    align-items: center;
+}
+.profile_head_liks a{
+    flex-grow: 1;
+    text-align: center;
+    padding: 18px 0;
+    color:rgb(113, 118, 123);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+.profile_head_liks a.active{
+    color: rgb(231, 233, 234);
+    font-weight:600;
+}
+.profile_head_liks a:hover{
+    background-color: rgba(231,233,234,.1);
+}
+.profile_head_liks a.active::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 37%;
+    height: 4px;
+    width: 77px;
+    background-color: rgb(29, 155, 240);
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}

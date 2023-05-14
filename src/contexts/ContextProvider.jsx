@@ -1,11 +1,13 @@
 import React, { useContext, createContext, useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 const StateContext = createContext()
 
 export const ContextProvider = ({ children }) => {
-    
+    const { loggedIn:Auth ,user} = useSelector(state => state.Auth) 
     const [timeoutId, setTimeOutId] = useState(null)
     const CallToast = (content,time=2222) => {
         if(timeoutId) clearTimeout(timeoutId)
@@ -50,6 +52,7 @@ export const ContextProvider = ({ children }) => {
     const [RegisterModal, setRegisterModal] = useState(false)
     const [CardHover, setCardHover] = useState(false)
     // Don't touch it it's 4 chat || xkon daha fik ana jit ghaa nzid wa7d const dyali saaaaafi
+    // a mook sir golha liha dsarti
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
@@ -61,11 +64,18 @@ export const ContextProvider = ({ children }) => {
     const handelChange = () => {
         setToBottom(!ToBottom) 
     } 
+    //--- Profile----//
+
+    const [HeadingCount,setHeadingCount]=useState('')
+
+    //------------//
+ 
+ 
     // ---------------------------------
     const [SettingLayouts, setSettingLayouts] = useState(false);
     // ---------------------------------
     return (
-        <StateContext.Provider value={{ SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ HeadingCount,setHeadingCount,SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }
