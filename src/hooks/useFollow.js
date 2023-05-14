@@ -1,16 +1,15 @@
-import axios from '../api/axios';
-import  { useEffect, useState } from 'react'
+import axios from '../api/axios'; 
 
-const useFollow = (action,idUser) => { 
+const useFollow = (action,idUser) => {  
     if(action){
         axios.post('unfollow/'+idUser)
         .then(function (response) {
-            console.log(response);
+            console.log(response.data.message); 
         }) 
     } else{
         axios.post('follow/'+idUser)
         .then(function (response) {
-            console.log(response.data)
+            console.log(response.data.message)
         }) 
     }
     return true

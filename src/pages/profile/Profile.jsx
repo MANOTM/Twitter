@@ -1,7 +1,7 @@
 import './profile.css'
 import Main from '../../layouts/Main' 
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
-import { NavLink, Route, Routes, useParams } from 'react-router-dom'
+import { NavLink, Route, Routes, useParams, useSearchParams } from 'react-router-dom'
 import { ProfileInfo } from '../../components/ProfileComponent/ProfileInfo/ProfileInfo'
 import { Media } from '../../components/ProfileComponent/Media/Media'
 import { Likes } from '../../components/ProfileComponent/Likes/Likes'
@@ -10,18 +10,32 @@ import useFetch from '../../hooks/useFetch'
 import Loading from '../../components/Loading/Loading'
 import PorfileNotFound from '../NotFound/ProfileNotFound/PorfileNotFound'
 import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/TweetsProfile'
-import NotFound from '../NotFound/NotFound' 
-import { useSelector } from 'react-redux'
-import { useStateContext } from '../../contexts/ContextProvider'
-import { useEffect } from 'react'
+import NotFound from '../NotFound/NotFound'   
+import { useEffect, useState } from 'react'
+import axios from '../../api/axios'
 function Profile() {
   const {pseudo}=useParams() 
-  const {error , data ,loading} =useFetch('profile/@' + pseudo)
-  const { loggedIn:Auth } = useSelector(state => state.Auth) 
+  
+  // const { data ,loading} =useFetch('profile/@' + pseudo) 
+  
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState(null) 
  
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('profile/@' + pseudo)
+      .then(function (response) {
+        setData(response.data)
+        setLoading(false)
+      })
+      .catch(function (error) {
+        setLoading(false)
+        setError(false)
+      });  
+  },[pseudo])
   return (
     <>
-    {!loading && !data ? <PorfileNotFound/>:
+    {loading && !data ? <PorfileNotFound/>:
       <Main> 
         {loading  ?<Loading/>:
         <div className="profile scroll">
