@@ -6,15 +6,9 @@ import { useSelector } from 'react-redux'
 import useFetch from '../../hooks/useFetch'
 import useFollow from '../../hooks/useFollow'
 
-export default function SuggestionUser({userSu}) {
-  const { user:{pseudo} } = useSelector(state => state.Auth)   
-  const [followHim,setfollowHim]=useState(null)
-  const {data}=useFetch('followings/'+pseudo )  
-  useEffect(()=>{ 
-    if(data?.data){
-      setfollowHim( data?.data?.some(user=> user?.pseudo == userSu?.pseudo))
-    } 
-  },[data]) 
+export default function SuggestionUser({userSu , isFollowed}) {  
+  const [followHim,setfollowHim]=useState(isFollowed)   
+  // console.log(isFollowed);
   const follow = () =>{
     useFollow(followHim,userSu.idUser)
     setfollowHim(!followHim)
@@ -31,8 +25,8 @@ export default function SuggestionUser({userSu}) {
                 <span className='username ellipsis'>{userSu?.pseudo}</span>
             </div>
           </Link> 
-            { followHim!=null &&followHim && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>} 
-            { followHim!=null && !followHim &&<button className='btn-def btn_follow' onClick={follow}>Follow</button>} 
+            { followHim!=undefined &&followHim && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>} 
+            { followHim!=undefined && !followHim &&<button className='btn-def btn_follow' onClick={follow}>Follow</button>} 
       
         </div>
       </div>

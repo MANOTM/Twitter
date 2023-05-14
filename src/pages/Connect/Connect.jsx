@@ -6,8 +6,14 @@ import SuggestionUser from '../../components/WhoToFollow/SuggestionUser'
 import './Connect.css'
 import Loading from '../../components/Loading/Loading'
 import useFetch from '../../hooks/useFetch'
+import { useSelector } from 'react-redux'
 export const Connect = () => {
   const navigator = useNavigate()
+
+  const { user } = useSelector(state => state.Auth)    
+  const following= useFetch('followings/'+user?.pseudo ).data
+  const loading2= useFetch('followings/'+user?.pseudo ).loading ;
+
   const {data,loading}=useFetch('usersToFollow/') 
   return (
     <Main>
@@ -21,9 +27,9 @@ export const Connect = () => {
       </div>
       <div className='connect'>
        <span className='trends__title'>Suggested for you</span>
-        {loading?<Loading/>:
+        {loading || loading2 ?<Loading/>:
           data?.data?.map((user,id)=>{
-            return <SuggestionUser key={id} userSu={user}/>
+            return <SuggestionUser key={id} isFollowed={following?.data?.some(follow=> follow?.pseudo == user?.pseudo)} userSu={user}/>
           })
         }
       </div>
