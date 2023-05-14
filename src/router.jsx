@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             },
             {
                 path : ':pseudo/*',
-                element : <AuthRoute element={Profile} />,
+                element : <Profile />,
             },
             {
                 path : '/settings/*',

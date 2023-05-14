@@ -1,11 +1,22 @@
 .Share__card {
     min-width: 255px;
     width: fit-content;
-    right: 50px;
-    bottom: 0;
+    right: 0;
+    bottom: 2px;
     padding: 12px 4px;
+    animation: show 1s linear forwards;
+    -webkit-animation: show .04s linear forwards;
 }
 
+
+@keyframes show {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 
 .Share__card .share__list {
     display: flex;

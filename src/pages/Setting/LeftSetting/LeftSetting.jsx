@@ -37,7 +37,7 @@ export default function LeftSetting() {
                     <SettingRow to="developers" title='Developers' Icon={Developer} />
                 </div>
                 <div className="setting__left__paragraph">
-                    <p className='small-text'>All these people are the ones who make this work. {'(Thank you indian man)'} </p>
+                    <p className='small-text'>All these people are the ones who make this work. Thank you <a href='https://fr.wikipedia.org/wiki/Hrithik_Roshan' className="a-link" target='_blank'>Hrithik Roshan</a> </p>
                 </div>
             </div>
         </div>

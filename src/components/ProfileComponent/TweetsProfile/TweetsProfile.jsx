@@ -1,7 +1,6 @@
 import React from 'react'
 import useFetch from '../../../hooks/useFetch'
 import { WhoToFollow100 } from '../WhoToFollow100/WhoToFollow100'
-import Post from '../../posts/Post'
 import Loading from '../../Loading/Loading'
 import { useSelector } from 'react-redux'
 import { NoLike } from '../NoLike/NoLike'

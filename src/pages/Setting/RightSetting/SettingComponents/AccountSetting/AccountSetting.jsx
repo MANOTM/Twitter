@@ -2,10 +2,12 @@ import React from 'react'
 import HeaderRightSetting from '../../../Components/HeaderRightSetting/HeaderRightSetting'
 import AccountOptions from './AccountOptions'
 import { useState } from 'react'
+import moment from 'moment'
 
 export default function AccountSetting() {
     const { pseudo, email, created_at, birthDay, updated_at } = JSON.parse(localStorage.getItem('user_info'));
     const age = (((new Date() - new Date(birthDay)) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(0));
+    const created = moment.utc(created_at).local()
     const [Account, setAccount] = useState([
         {title: 'Username', second: pseudo, hover: true, to: 'screen_name'},
         {title: 'Phone', hover: true, to: 'phone' },
@@ -13,7 +15,7 @@ export default function AccountSetting() {
         {title: 'Verified',
         second: <span >No. <a className='a-link' target='_blank' href="https://help.twitter.com/en/managing-your-account/about-twitter-verified-accounts">Learn more</a></span> },
         {title: 'Protected Tweets', second: 'No', hover: true },
-        {title: 'Account creation', second: created_at },
+        {title: 'Account creation', second: created.format('D, YYYY, h:mm:ss A') },
         {title: 'Country', second: 'Morocco', hover: true},
         {title: 'Language', second: 'English', hover: true},
         {title: 'Gender', second: 'Home', hover: true},

@@ -29,10 +29,10 @@ function Profile() {
           </div>
           <div className="profile_selecte">
             <Routes>
-             <Route path='/'  element={<TweetsProfile user={data.data}/>}/>
-             <Route path='/replies' element={<WhoToFollow100/>}/>
-             <Route path='/media' element={<Media user={data.data}/>}/>
-             <Route path='/likes' element={<Likes user={data.data}/>}/> 
+              <Route path='/'  element={<TweetsProfile user={data.data}/>}/>
+              <Route path='/replies' element={<WhoToFollow100/>}/>
+              <Route path='/media' element={<Media user={data.data}/>}/>
+              <Route path='/likes' element={<Likes user={data.data}/>}/> 
             </Routes> 
           </div>
         </div>

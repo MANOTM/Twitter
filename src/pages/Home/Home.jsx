@@ -1,54 +1,72 @@
 import React from 'react'
 import Main from '../../layouts/Main'
-import HeadTweet from "./HeadTweet";
-import Post from '../../components/posts/Post'
+import HeadTweet from './Components/HeadTweet/HeadTweet';
 import { useStateContext } from '../../contexts/ContextProvider';
+import './Home.css'
+import Tweet from '../../components/posts/Tweets/Tweet';
+import { WhoToFollow100 } from '../../components/ProfileComponent/WhoToFollow100/WhoToFollow100';
+import Retweet from '../../components/posts/Retweet/Retweet';
 
 export default function Home() { 
     const { SetTitle } = useStateContext();
     SetTitle('Home')
+    const user = JSON.parse(localStorage.getItem('user_info')) || {name: 'ahmed chawki',pseudo: '@AhmedChawki44'};
     return (
         <>
             <Main>
-                <HeadTweet />
-                {/* ============= POST ============= */}
-                <Post
-                    usename={"ossama banzima"}
-                    tagname={"@ossamabanzima"}
-                    verify={true}
-                    liked={true}
-                    retweeted={false}
-                    title={""}
-                    tweet={
-                        "https://pbs.twimg.com/media/FvsJwwNaMAEjuzn?format=jpg&name=900x900"
-                    }
-                />
-                <Post
-                    usename={"ossamaBonif"}
-                    tagname={"@ossamabanzima"}
-                    verify={true}
-                    liked={false}
-                    retweeted={true}
-                    title={"only boys can bet me in my terrantory"}
-                />
-                <Post
-                    usename={"ossama banzima"}
-                    tagname={"@ossamabanzima"}
-                    verify={true} 
-                    liked={true}
-                    title={"only boys can bet me in my terrantory"}
-                    tweet={'https://i.pinimg.com/564x/fc/40/df/fc40dfa22da42e25ce506281c4381a39.jpg'}
-                />
-                <Post
-                    usename={"ossama banzima"}
-                    tagname={"@ossamabanzima"}
-                    verify={true}
-                    liked={true}
-                    retweeted={false}
-                    tweet={
-                    "https://assets-fr.imgfoot.com/media/cache/1200x675/cristiano-ronaldo-wc-22-1-638de531aff57.jpg"
-                    }
-                />
+                <div className="home">
+                    <HeadTweet />
+                    <div className="tweets__container">
+                        {/* ============= POST ============= */}
+                        <Tweet
+                            user={user}
+                            created_at="8h"
+                            verifyUser={true}
+                            tweet_image="https://pbs.twimg.com/media/Fvx0FtAaEAARGBp?format=jpg&name=small"
+                            tweet_title="9raydis"
+                            likes_count="4,875"
+                            reply_count="248"
+                            retweet_count="257M"
+                            liked={true}
+                            retweeted={false}
+                        />
+                        <Retweet
+                            user={user}
+                            created_at="8h"
+                            tweet_video="hdqzdzqd"
+                            tweet_title="green day still G(old)"
+                            likes_count="4,875"
+                            reply_count="248"
+                            retweet_count="257M"
+                            liked={false}
+                            retweeted={true}
+                        />
+                        <WhoToFollow100 />
+                        <Retweet
+                            user={user}
+                            created_at="8h"
+                            tweet_video="hdqzdzqd"
+                            tweet_title="green day still G(old)"
+                            likes_count="4,875"
+                            reply_count="248"
+                            retweet_count="257M"
+                            liked={false}
+                            retweeted={true}
+                        />
+                        <WhoToFollow100 />
+                        <Tweet
+                            user={user}
+                            created_at="8h"
+                            tweet_video="hdqzdzqd"
+                            tweet_title="green day still G(old)"
+                            likes_count="4,875"
+                            reply_count="248"
+                            retweet_count="257M"
+                            liked={false}
+                            retweeted={true}
+                        />
+                    </div>
+                </div>
             </Main>
         </>
     );
