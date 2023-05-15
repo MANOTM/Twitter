@@ -113,20 +113,19 @@ export default function Tweet({
                                 <div className="action__icon iconStyle center">
                                     <CommentIcon />
                                 </div>
-                                <span className="actions__counter">{reply_count}</span>
+                                <span className="actions__counter">{reply_count || 0}</span>
                             </div>
                             <div className={`tweet__action retweet ${retweeted && 'hasRetweet'}`} title='Retweet'>
                                 <div className="action__icon iconStyle center">
                                     <RetweetIcon />
                                 </div>
-                                <span className="actions__counter">{retweet_count}</span>
+                                <span className="actions__counter">{retweet_count || 0}</span>
                             </div>
                             <div className={`tweet__action liked ${liked && 'hasLike'}`} title='Like'>
                                 <div className="action__icon iconStyle center">
                                     <LikeIcon liked={liked || false} />
-                                    {/* <span className="like-icon">♥</span> */}
                                 </div>
-                                <span className="actions__counter">{likes}</span>
+                                <span className="actions__counter">{likes || 0}</span>
                             </div>
                             <div className="tweet__action">
                                 <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">

@@ -1,0 +1,91 @@
+.Forgot {
+    padding: 0 80px;
+    min-width: 100%;
+}
+
+.forgot__content{
+    overflow: auto;
+    max-height: 425px;
+}
+
+.forgot__header {
+    margin: 20px 0;
+}
+
+.forgot__content .forgot__title {
+    color: rgb(231, 233, 234);
+    font-size: 31px;
+    font-weight: 600;
+    line-height: 35px;
+}
+.forgot__content p,
+.forgot__second__paragraph {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(113, 118, 123);
+    margin-top: 8px;
+    line-height: 20px;
+}
+
+.forgot__passwords {
+    padding: 20px 0;
+}
+
+.forgot__email__input {
+    padding: 12px 0;
+}
+
+.forgot__password__error {
+    color: rgb(244, 33, 46);
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 7px;
+}
+
+.forgot__button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.forgot__button button {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    width: 440px;
+    color: #000;
+    font-weight: 600;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    border-radius: 33px;
+    height: 50px;
+    cursor: pointer;
+    transform: translateX(-50%);
+    transition: .2s ease;
+}
+.forgot__button button.back {
+    color: #fff;
+    background-color: #000;
+    border: 1px solid rgb(83, 100, 113);
+    transition: .2s ease;
+}
+.forgot__button button.back:hover {
+    background-color: rgba(239, 243, 244, .1);
+}
+.forgot__button button:hover {
+    background-color: #dfdfdf;
+}
+.forgot__button button.disabled {
+    opacity: .7;
+    pointer-events: none;
+}
+
+.loading__dev {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
