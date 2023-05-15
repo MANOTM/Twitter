@@ -62,6 +62,17 @@ export default function LoginModal({ children }) {
         navigate('/');
     }
     // =================================
+    const checkToken = async() => {
+        try{
+            const { data } = await axios.post(`/verifyToken/${email}/${token}`);
+            if(data) dispatch(Move())
+        }catch({ response: { status } }){
+            if(status === 403){
+                CallToast('token mismatch or user already registred',3500);
+            }
+        }
+        console.log((4));
+    }
     const handleRegister = async() => {
         if(step === 3 && new Date().getFullYear() - parseInt(year) <= 12 ) {
             CallToast("Can't complete your signup right now.")
@@ -119,7 +130,7 @@ export default function LoginModal({ children }) {
                             {
                                 step <= 5 &&( 
                                         step != 5 ?
-                                        <button onClick={handleRegister} className={`Register__next__steps ${disabled && 'disbled'}`}>
+                                        <button onClick={step === 4 ? checkToken : handleRegister} className={`Register__next__steps ${disabled && 'disbled'}`}>
                                             Next
                                         </button>
                                         // :

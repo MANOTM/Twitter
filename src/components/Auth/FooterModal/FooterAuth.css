@@ -71,10 +71,17 @@
     }
 }
 @media (max-width: 600px) {
-    .modal__message .modal__title{
-        font-size: 19px;
+    .modal__content{
+        margin: 0 10px;
     }
-    .modal__message p{
-        font-size: 13px;
+    .modal__message{
+        display: none;
+    }
+    .modal__buttons {
+        width: 100%;
+        display: flex;
+    }
+    .modal__buttons button {
+        width: 100%;
     }
 }

@@ -53,7 +53,8 @@ export const RegisterSlice = createSlice({
         },
         EmailValid: state => {
             state.button.mail = true
-            state.button.disabled = false
+            const { name, email, year, month, day, password, verify } = state.inputs;
+            if(name?.length && year && month && day) state.button.disabled = false
         },
         EmailNotValid: state => {
             state.button.disabled = true

@@ -44,7 +44,6 @@ export const ForgotSlice = createSlice({
             if(password && passwordConfirmation){
                 if(password.length >= 8){
                     if(password == passwordConfirmation){
-                        console.log(password, passwordConfirmation);
                         state.checkPassword = true
                     }
                 }
