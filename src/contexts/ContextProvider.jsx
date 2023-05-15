@@ -53,6 +53,7 @@ export const ContextProvider = ({ children }) => {
     const [CardHover, setCardHover] = useState(false)
     // Don't touch it it's 4 chat || xkon daha fik ana jit ghaa nzid wa7d const dyali saaaaafi
     // a mook sir golha liha dsarti
+    // 9ad toast li 5serti wla nfr3ek
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
@@ -71,11 +72,13 @@ export const ContextProvider = ({ children }) => {
     //------------//
  
  
-    // ---------------------------------
-    const [SettingLayouts, setSettingLayouts] = useState(false);
-    // ---------------------------------
+// ---------------Setting------------------
+const [SettingLayouts, setSettingLayouts] = useState(false);
+// ---------------Create Tweet popup------------------
+const [show__createTweet, setshow__createTweet] = useState(true);
+// ---------------------------------
     return (
-        <StateContext.Provider value={{ HeadingCount,setHeadingCount,SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

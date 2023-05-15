@@ -6,7 +6,6 @@ import AsideTrends from '../../components/Trends/AsideTrends'
 import WhoToFollow from '../../components/WhoToFollow/WhoToFollow'
 import NewToTwitter from '../../components/NewToTwitter/NewToTwitter'
 import FooterAuth from '../../components/Auth/FooterModal/FooterAuth'
-import Messages from '../../pages/messages/Messges'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom' 
 import NotFound from '../../pages/NotFound/NotFound'
@@ -27,7 +26,7 @@ export function RegisterComponent() {
             <Register />
         </>
     )
-} 
+}
 export function PageNotFound() {
     return (
         <>

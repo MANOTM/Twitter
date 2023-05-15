@@ -6,6 +6,7 @@ import Toast from '../components/Toast/Toast';
 import ContainerContent from '../assets/Helper/MultiComponents';
 import { BoiteMessages } from '../components/Chat/BoiteMessages/BoiteMessages';
 import { useSelector } from 'react-redux';
+import CreateTweet from '../components/Modals/CreateTweet/CreateTweet';
 
 
 export default function Countainer() {  
@@ -17,6 +18,7 @@ export default function Countainer() {
   );
   return (
     <div className='countainer'>
+        <CreateTweet />
         <Toast />
         <Sidebar /> 
         <Outlet />

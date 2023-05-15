@@ -14,6 +14,7 @@ import { useAuth } from '../../../../hooks/useAuth';
 import axios from '../../../../api/axios';
 import Cookies from 'js-cookie';
 import { LogIn } from '../../../../redux/Reducers/AuthReducer';
+import { StopForgot } from '../../../../redux/Reducers/ForgotReducer';
 
 export default function LoginModal({ children }) {
     const { pages: { Start, step, Loading }, button: { disabled, receive }, inputs: {
@@ -41,6 +42,7 @@ export default function LoginModal({ children }) {
     }
     const handleCloseModal = () => {
         dispatch(EndSteps())
+        dispatch(StopForgot())
         setAuthModal(false)
         setSteps(true)
         navigate('/')
@@ -56,7 +58,7 @@ export default function LoginModal({ children }) {
         localStorage.setItem('user_info',JSON.stringify(user));
         dispatch(LogIn(user));
         dispatch(EndSteps());
-        CallToast('Hello World');
+        CallToast('login successfully😎');
         navigate('/');
     }
     // =================================

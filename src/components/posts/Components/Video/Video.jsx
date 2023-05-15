@@ -1,5 +1,5 @@
 import React from 'react'
-import video from '../../../../assets/images/green_day.mp4';
+import video from '../../../../assets/images/green_day.mp4'
 import './Video.css'
 
 export default function Video() {

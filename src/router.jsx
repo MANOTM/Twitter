@@ -14,6 +14,7 @@ import Messages from "./pages/messages/Messges";
 import Setting from "./pages/Setting/Setting"; 
 import { ProfileFollower } from "./components/ProfileComponent/ProfileFollowe/ProfileFollower";
 import { Connect } from "./pages/Connect/Connect";
+import Forgot from "./pages/Auth/Forgot/Forgot";
 
 const router = createBrowserRouter([
     {
@@ -87,8 +88,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/logout',
-                element : <AuthRoute element={Logout} />,
+                element: <AuthRoute element={Logout} />,
                 // element: <Logout />
+            },{
+                path : '/i/flow/password_reset',
+                element: <Forgot />
             }
         ]
     }

@@ -12,10 +12,12 @@ import Google from '../../../components/Icons/Google'
 import Apple from '../../../components/Icons/Apple'
 import { useAuth } from '../../../hooks/useAuth'
 import RegularEx from '../../../assets/Helper/RegularEx'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
     const { SetTitle } = useStateContext();
     SetTitle('Log in to Twitter')
+    const navigate = useNavigate()
     const [field, setField] = useState({ email:'', password:'' })
     const { steps, setSteps, CallToast } = useStateContext()
     const dispatch = useDispatch()
@@ -102,7 +104,7 @@ function Login() {
                         </div>
                         <div className="login__buttons down">
                             <button className={!field.email.length ? 'login__disabled__button' : ''} onClick={handleSteps} type='button'>Next</button>
-                            <button className='login__forgot__button'>Forgot password</button>
+                            <button onClick={()=>navigate('/i/flow/password_reset')} className='login__forgot__button'>Forgot password</button>
                         </div>
                     </form>
                     <div className='login__signUp'>

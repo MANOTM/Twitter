@@ -1,0 +1,25 @@
+.create.active{
+    pointer-events: none;
+    opacity: 0;
+    z-index: -10;
+}
+
+.create__tweet {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    z-index: 11;
+    transform: translateX(-50%);
+    min-width: 600px;
+    background-color: #000;
+}
+
+.create__tweet svg {
+    fill: rgb(239, 243, 244);
+    width: 20px;
+    height: 20px;
+}
+
+.createTweet__header {
+    display: flex;
+}
