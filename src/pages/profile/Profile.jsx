@@ -1,7 +1,7 @@
 import './profile.css'
 import Main from '../../layouts/Main' 
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
-import { NavLink, Route, Routes, useParams, useSearchParams } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom'
 import { ProfileInfo } from '../../components/ProfileComponent/ProfileInfo/ProfileInfo'
 import { Media } from '../../components/ProfileComponent/Media/Media'
 import { Likes } from '../../components/ProfileComponent/Likes/Likes'
@@ -13,9 +13,11 @@ import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/T
 import NotFound from '../NotFound/NotFound'   
 import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
+import { Replies } from '../../components/ProfileComponent/Replies/Replies'
+import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 function Profile() {
   const {pseudo}=useParams() 
-
+  const path= useLocation().pathname 
   // const { data ,loading} =useFetch('profile/@' + pseudo) 
   
   const [loading, setLoading] = useState(true)
@@ -42,17 +44,18 @@ function Profile() {
           <ProfileHead name={data.data.name}/>
           <ProfileInfo data1={data.data}/>
           <div className="profile__links">
-              <NavLink to='' > Tweets  </NavLink>
-              <NavLink to='replies' > Replies </NavLink>
-              <NavLink to='media' > Media  </NavLink>
-              <NavLink to='likes'> Likes  </NavLink>
+              <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('replies')==-1 ? 'active' :''} to='' > Tweets  </Link>
+              <Link className={path.includes('replies') ? 'active':''} to='replies' > Replies </Link>
+              <Link className={path.includes('media') ? 'active' :''} to='media' > Media  </Link>
+              <Link className={path.includes('likes') ? 'active' :''} to='likes'> Likes  </Link>
           </div>
           <div className="profile_selecte">
             <Routes>
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
-              <Route path='/replies' element={<WhoToFollow100/>}/>
+              <Route path='/replies' element={<Replies/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
               <Route path='/likes' element={<Likes user={data.data}/>}/>  
+              <Route path='/edit' element={<EditProfile/>}/>  
               <Route path='/*' element={<NotFound />}/> 
             </Routes> 
           </div>

@@ -6,9 +6,11 @@ import "./Home.css";
 import Tweet from "../../components/posts/Tweets/Tweet";
 import { WhoToFollow100 } from "../../components/ProfileComponent/WhoToFollow100/WhoToFollow100";
 import Retweet from "../../components/posts/Retweet/Retweet";
+import { useSelector } from "react-redux";
 
 export default function Home() {
     const { SetTitle } = useStateContext();
+     const {Auth}= useSelector(state => state.Auth)
     SetTitle("Home");
     const tweet = {
         comments: 0,
@@ -34,7 +36,7 @@ export default function Home() {
                         <Tweet
                             tweet={tweet}
                         />
-                        <WhoToFollow100 />
+                       {Auth && <WhoToFollow100 />} 
                         <Tweet
                             tweet={tweet}
                         />

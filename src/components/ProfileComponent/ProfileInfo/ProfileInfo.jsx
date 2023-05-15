@@ -55,7 +55,7 @@ export const ProfileInfo = ({ data1 }) => {
           </div>
           <div className="profile__actions">
 
-            {Auth && data1.id == user.id && <button className='profile_btn btn-def'>Edit profile</button>}
+            {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
             {!Auth && <button className='btn-def btn_follow' onClick={() => setnotAuth(true)}>Follow</button>}
             {Auth && followHim != null && followHim && data1.id != user.id && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>}
             {Auth && followHim != null && !followHim && data1.id != user.id && <button className='btn-def btn_follow' onClick={follow}>Follow</button>}
