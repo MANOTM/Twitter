@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 export default function Home() {
     const { SetTitle } = useStateContext();
-    const { loggedIn } = useSelector(state => state.Auth);
+     const {Auth , loggedIn}= useSelector(state => state.Auth)
     SetTitle("Home");
     const tweet = {
         comments: 0,

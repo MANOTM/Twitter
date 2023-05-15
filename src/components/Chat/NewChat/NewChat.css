@@ -36,6 +36,7 @@
 }
 .op5{
     opacity: .5;
+    cursor: auto;
 }
 .new_chat_input {
     display: flex;

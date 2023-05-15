@@ -7,8 +7,7 @@ import useFetch from '../../hooks/useFetch'
 import useFollow from '../../hooks/useFollow'
 
 export default function SuggestionUser({userSu , isFollowed}) {  
-  const [followHim,setfollowHim]=useState(isFollowed)   
-  // console.log(isFollowed);
+  const [followHim,setfollowHim]=useState(isFollowed)    
   const follow = () =>{
     useFollow(followHim,userSu.idUser)
     setfollowHim(!followHim)
