@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 function Profile() {
   const {pseudo}=useParams() 
-  
+
   // const { data ,loading} =useFetch('profile/@' + pseudo) 
   
   const [loading, setLoading] = useState(true)
@@ -52,7 +52,7 @@ function Profile() {
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
               <Route path='/replies' element={<WhoToFollow100/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
-              <Route path='/likes' element={<Likes user={data.data}/>}/> 
+              <Route path='/likes' element={<Likes user={data.data}/>}/>  
               <Route path='/*' element={<NotFound />}/> 
             </Routes> 
           </div>

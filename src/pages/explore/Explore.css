@@ -1,0 +1,11 @@
+
+.explore__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.explore__icon svg {
+    fill: rgb(239, 243, 244);
+}

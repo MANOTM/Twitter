@@ -2,9 +2,8 @@
     width: 610px;
     height: 100%; 
     overflow: auto;
-    z-index: 0;
+    /* z-index: -1; */
     /* padding-bottom: 57%; */
     border-right: 1px solid rgba(128, 128, 128, 0.436);
     margin-right: 25px; 
 }
- 

@@ -33,8 +33,8 @@ export const Media = ({user}) => {
             <>
               {dataFilter.length==0?<NoMedia/>:
                 <>
-                  {dataFilter.map(tweet=>  
-                  <Tweet
+                  {dataFilter.map((tweet,id)=>  
+                  <Tweet key={id}
                     tweet={tweet}
                   />
                   )}

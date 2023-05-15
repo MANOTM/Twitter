@@ -31,8 +31,8 @@ export const TweetsProfile = ({userInfo}) => {
       {loading  ?<Loading/>:
           <> 
           { 
-            data?.data.length ?data?.data.map(tweet=>{
-              return<Tweet
+            data?.data.length ?data?.data.map((tweet,id)=>{
+              return<Tweet key={id}
               tweet={tweet}
             />
             }):''  

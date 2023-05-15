@@ -7,13 +7,19 @@ import '../ProfileFollow.css'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../../../hooks/useFetch'
 import Loading from '../../../Loading/Loading' 
+import { useSelector } from 'react-redux'
 
 export const ProfileFollowers = () => {
   const { pseudo } = useParams()
+
+  const { user } = useSelector(state => state.Auth)    
+  const following= useFetch('followings/'+user?.pseudo ).data
+  const loading2= useFetch('followings/'+user?.pseudo ).loading ;
+
   const { error, data, loading } = useFetch('followers/@' + pseudo)   
   return (
     <Main>  
-      {loading ? <Loading/>:
+      {loading || loading2 ? <Loading/>:
       <>
       <div className="profile_followers">
         {loading ? <Loading /> :
@@ -21,7 +27,7 @@ export const ProfileFollowers = () => {
             {data?.data.length ?
                <>
                {data?.data?.map((user,id)=>{
-                 return  <SuggestionUser key={id} name={user.name} username={user.pseudo} avatar={user.avatar} /> 
+                 return  <SuggestionUser key={id} isFollowed={following?.data?.some(follow=> follow?.pseudo == user?.pseudo)} userSu={user}/> 
                })}
                </>
               :

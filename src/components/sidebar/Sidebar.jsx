@@ -70,7 +70,7 @@ export default function Sidebar() {
                 <div className={`popup signOutPopUp ${actived && 'active_logOut'}`}>
                   <div className="t3wija"><Taawija /></div>
                   <ul>
-                    <li className='hover'>Add an existing account</li>
+                    <li onClick={()=> navigate(`/${user.pseudo.substring(1)}`)} className='hover'>Show {user.pseudo.substring(1)} profile</li>
                     <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo.toUpperCase() }</li>
                   </ul>
                 </div>
