@@ -46,9 +46,8 @@ export const EditProfile = () => {
         dataUser.append('birthday',date)
         dataUser.append('adresse',userInfo.adresse) 
         dataUser.append('cover',images?.cover) 
-        dataUser.append('pp',images?.pp) 
-        console.log(images?.cover);
-        axios.post('editProfile', dataUser)
+        dataUser.append('pp',images?.pp)  
+        axios.post('editProfile/', dataUser)
             .then(function (response) {
                 console.log(response.data);
             })

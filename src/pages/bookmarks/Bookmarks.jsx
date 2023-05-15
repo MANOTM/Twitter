@@ -14,6 +14,7 @@ export default function Bookmarks() {
   SetTitle()
   const { user } = useSelector(state => state.Auth)
   const {error , data ,loading} =useFetch('bookmarks/' + user?.pseudo)
+  console.log(data);
   return (
     <Main>
       <div className="bookmarks"> 
@@ -29,18 +30,10 @@ export default function Bookmarks() {
             <p className='bookmarks__blabla'>Don’t let the good ones fly away! Bookmark <br />
               Tweets to easily find them again in the future.</p>
           </div>
-        </div> : data?.data.map(post=>{
+        </div> : data?.data.map((post,id)=>{
             return <Tweet
-                user={user}
-                created_at={post.created_at}
-                verifyUser={false}
-                tweet_image={post.image}
-                tweet_title={post.description}
-                likes_count={post.likes}
-                reply_count={post.comments}
-                retweet_count="257M"
-                liked={true}
-                retweeted={false}
+                key={id}
+                tweet={post}
             />
     })
     
