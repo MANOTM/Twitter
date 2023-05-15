@@ -53,11 +53,9 @@ export default function NewPassword() {
                 dispatch(handleLoading())
                 CallToast('you password reseted jrb db dir login😁');
                 dispatch(StopForgot())
-                console.log('works successfuly');
                 navigate('/i/flow/login',3500);
             }
         }catch(err){
-            console.log(err);
             dispatch(handleLoading())
             if(err?.response?.status === 422){
                 return CallToast('token mismatch😒');
