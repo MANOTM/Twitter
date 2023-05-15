@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 import { Replies } from '../../components/ProfileComponent/Replies/Replies'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
+import { AuthRoute } from '../../layouts/AuthLayout'
 function Profile() {
   const {pseudo}=useParams() 
   const path= useLocation().pathname 
@@ -55,7 +56,7 @@ function Profile() {
               <Route path='/replies' element={<Replies/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
               <Route path='/likes' element={<Likes user={data.data}/>}/>  
-              <Route path='/edit' element={<EditProfile/>}/>  
+              <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
               <Route path='/*' element={<NotFound />}/> 
             </Routes> 
           </div>
