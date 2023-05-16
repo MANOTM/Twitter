@@ -16,44 +16,45 @@ import axios from '../../../api/axios'
 export const EditProfile = () => {
 
     const { user: { pseudo } } = useSelector(state => state.Auth)
+    const { Mounths,CallToast } = useStateContext();
     const navigate = useNavigate()
     if (pseudo.substring(1) != useParams().pseudo) navigate(-1)
 
     const { loading, data } = useFetch('profile/' + pseudo)
 
     //for input
-    const [userInfo, setUserInfo] = useState(null)
+    const [userInfo, setUserInfo] = useState(null) 
     const [birthday, setBirthday] = useState({})
     const [images, setImages] = useState({}) 
     const changeUserInfo = e => {
-        setUserInfo({ ...userInfo, [e.target.name]: [e.target.value] })
+        setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
     }
 
     useEffect(() => {
         if (data?.data) {
-            setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse: data?.data?.adresse })
+            setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse:data?.data?.adresse })
             const bir = new Date(data?.data?.birthday)
-            setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() })
-
+            setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() }) 
         }
     }, [data])
 
-    const save = () => {
-        const date = new Date(birthday.year, parseInt(birthday.month), birthday.day);
-        const dataUser=new FormData()
-        dataUser.append('name',userInfo.name)
-        dataUser.append('bio',userInfo.bio)
-        dataUser.append('birthday',date)
-        dataUser.append('adresse',userInfo.adresse) 
-        dataUser.append('cover',images?.cover) 
-        dataUser.append('pp',images?.pp)  
-        axios.post('editProfile/', dataUser)
+    
+
+    const save = () => { 
+        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day)+1);   
+        axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
             .then(function (response) {
                 console.log(response.data);
+                CallToast(response?.data?.message)
+
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            }); 
     }
 
     // for image
@@ -66,8 +67,7 @@ export const EditProfile = () => {
 
 
     //for birthday
-    const { Mounths } = useStateContext();
-    const [days, setDays] = useState(30)
+    const [days, setDays] = useState(31)
     const bir = new Date(data?.data?.birthday)
     const dayOfMonth = [];
     for (let day = 1; day <= days; day++) {
@@ -111,14 +111,14 @@ export const EditProfile = () => {
                                     <div className="icon">
                                         <Camera onClick={() => cover.current.click()} />
                                     </div>
-                                    {data?.data?.cover || images?.cover &&
+                                    {data?.data?.cover || images?.cover ?
                                         <div className="icon" onClick={() => setImages({...images,cover:null})}>
                                             <CloseIcon />
-                                        </div>}
+                                        </div>:''}
 
                                 </div>
 
-                                {data?.data?.cover || images?.cover && <img src={images?.cover ? URL.createObjectURL(images?.cover) : data?.data?.cover} name='cover' className="img__banner" />}
+                                {data?.data?.cover || images?.cover ? (<img src={images?.cover ? URL.createObjectURL(images?.cover) : data?.data?.cover} name='cover' className="img__banner" />):''}
                             </div>
                             <div className="profile__img">
                                 <div className="img__profile">

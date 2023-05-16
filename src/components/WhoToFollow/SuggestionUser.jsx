@@ -11,13 +11,13 @@ export default function SuggestionUser({userSu , isFollowed}) {
   const follow = () =>{
     useFollow(followHim,userSu.idUser)
     setfollowHim(!followHim)
-  }
+  } 
   return (
     <div className="suggestions">
         <div className="suggestion__user hover">
           <Link to={`/${userSu?.pseudo.substring(1) || ''}`} className="suggestion__content">
             <div className="avatar">
-              <img src={userSu?.avatar || defaultAvatar} alt=""  />
+              <img src={userSu?.image || defaultAvatar} alt=""  />
             </div>
             <div className="flex_column ">
                 <span className='name ellipsis'>{userSu?.name}</span>

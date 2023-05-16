@@ -16,7 +16,6 @@ export const ProfileInfo = ({ data1 }) => {
   const birthday = moment(data1.birthday, "YYYY/MM/DD");
   const joined = moment(data1.created_at, "YYYY/MM/DD");
   const { loggedIn: Auth, user } = useSelector(state => state.Auth)
-
   const [pofileImg,setProfileImg]=useState({src:null,from:null})
 
   const showimg = e =>{
@@ -51,7 +50,7 @@ export const ProfileInfo = ({ data1 }) => {
         </div>
         <div className="profile__img">
           <div className="img__profile">
-            <img src={data1.pp ? '' : defaultProfile} name='pp' onClick={showimg}  />
+            <img src={data1.pp ? data1.pp : defaultProfile} name='pp' onClick={showimg}  />
           </div>
           <div className="profile__actions">
 
