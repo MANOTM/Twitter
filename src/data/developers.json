@@ -40,7 +40,9 @@
             "title": "Conception / Technical writers",
             "team": [
                 {"name": "Hamouddo Younes", "link": "facebook"},
-                {"name": "Assia Assia", "link": "whatsapp"}
+                {"name": "Assia Assia", "link": "whatsapp"},
+                {"name": "Aymane benbouya", "link": "whatsapp"},
+                {"name": "Salma", "link": "whatsapp"}
             ]
         },
         {
@@ -52,13 +54,7 @@
                 {"name": "Drissi Ismail", "link": "whatsapp"}
             ]
         },
-        {
-            "title": "Couple",
-            "team": [
-                {"name": "Aymane chi 7aja", "link": "facebook"},
-                {"name": "li m3a aymane chi 7aja", "link": "facebook"}
-            ]
-        },
+      
         {
             "title": "Others",
             "team": [

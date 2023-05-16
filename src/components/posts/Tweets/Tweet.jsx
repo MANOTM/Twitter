@@ -74,7 +74,7 @@ export default function Tweet({
                             <span className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
-                                verifyUser && (<span className="tweet__icon__verify">
+                                (<span className="tweet__icon__verify">
                                             <VerifyIcon />
                                             <DogIcon />
                                         </span>)
