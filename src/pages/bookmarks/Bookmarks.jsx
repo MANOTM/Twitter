@@ -14,7 +14,6 @@ export default function Bookmarks() {
   SetTitle()
   const { user } = useSelector(state => state.Auth)
   const {error , data ,loading} =useFetch('bookmarks/' + user?.pseudo)
-  console.log(data);
   return (
     <Main>
       <div className="bookmarks"> 
