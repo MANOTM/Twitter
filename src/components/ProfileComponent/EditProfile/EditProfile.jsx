@@ -113,7 +113,7 @@ export const EditProfile = () => {
                                     <div className="icon">
                                         <Camera onClick={() => cover.current.click()} />
                                     </div>
-                                    {data?.data?.cover || images?.cover ?
+                                    {images?.cover ?
                                         <div className="icon" onClick={() => setImages({...images,cover:null})}>
                                             <CloseIcon />
                                         </div>:''}

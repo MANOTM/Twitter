@@ -9,6 +9,7 @@
     transform: translate(-50%, -50%);
     display: flex;
     gap: 10px   ;
+    align-items: center;
 }
 .icons_flex svg{
     height: 22px;   

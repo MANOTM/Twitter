@@ -15,7 +15,10 @@
     border-radius: 50px;
     overflow: hidden;
 }
+ 
 .profile_banner{
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     height: 200px;
     width: 100%;
