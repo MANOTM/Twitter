@@ -1,12 +1,11 @@
 import './profile.css'
 import Main from '../../layouts/Main' 
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
-import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useParams, } from 'react-router-dom'
 import { ProfileInfo } from '../../components/ProfileComponent/ProfileInfo/ProfileInfo'
 import { Media } from '../../components/ProfileComponent/Media/Media'
 import { Likes } from '../../components/ProfileComponent/Likes/Likes'
-import { WhoToFollow100 } from '../../components/ProfileComponent/WhoToFollow100/WhoToFollow100'
-import useFetch from '../../hooks/useFetch'
+ 
 import Loading from '../../components/Loading/Loading'
 import PorfileNotFound from '../NotFound/ProfileNotFound/PorfileNotFound'
 import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/TweetsProfile'
@@ -15,11 +14,35 @@ import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 import { Replies } from '../../components/ProfileComponent/Replies/Replies'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
+import { AuthRoute } from '../../layouts/AuthLayout'
+import { useStateContext } from '../../contexts/ContextProvider'
 function Profile() {
   const {pseudo}=useParams() 
   const path= useLocation().pathname 
   // const { data ,loading} =useFetch('profile/@' + pseudo) 
   
+
+
+
+
+
+
+  // i have a idea to re render this component after edit profile try to 
+  //add a state into context and when user click to save change the value 
+  //of state wih anythink and add to useEffect
+
+
+
+
+
+
+
+
+
+
+
+
+  const { render } = useStateContext();
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null) 
   
@@ -33,8 +56,13 @@ function Profile() {
       .catch(function (error) {
         setLoading(false)
         setError(false)
+<<<<<<< HEAD
       });
   },[pseudo])
+=======
+      });  
+  },[pseudo,render])
+>>>>>>> cf185c80f0c97a6cf5e6adaab29806ba640470ec
   return (
     <>
     {!loading && !data ? <PorfileNotFound/>:
@@ -54,9 +82,15 @@ function Profile() {
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
               <Route path='/replies' element={<Replies/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
+<<<<<<< HEAD
               <Route path='/likes' element={<Likes user={data.data}/>}/>
               <Route path='/edit' element={<EditProfile/>}/>
               <Route path='/*' element={<NotFound />}/>
+=======
+              <Route path='/likes' element={<Likes user={data.data}/>}/>  
+              <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
+              <Route path='/*' element={<NotFound />}/> 
+>>>>>>> cf185c80f0c97a6cf5e6adaab29806ba640470ec
             </Routes> 
           </div>
         </div>

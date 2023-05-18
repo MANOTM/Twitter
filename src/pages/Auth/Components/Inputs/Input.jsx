@@ -23,7 +23,7 @@ export default function Input(props) {
                     readOnly={readonly}
                     name={name}
                     id={id}
-                    defaultValue={value}
+                    defaultValue={value||''}
                     type={input_type ? type : 'text'}
                     onChange={change && (e => change(e))}
                     placeholder=' ' 

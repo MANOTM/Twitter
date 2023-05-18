@@ -108,6 +108,7 @@
     border: 1px solid transparent;
     padding: 9px 6px;
     border-radius: 47px; 
+    width: fit-content;
 }
 .user__info{
     display: flex;
