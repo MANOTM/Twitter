@@ -5,12 +5,12 @@ import Calendrier from '../../Icons/calendrier'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import ThreePoints from '../../Icons/ThreePoints'
 import { NotAuthCard } from '../../NotAuthCard/NotAuthCard';
 import { useEffect } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import useFollow from '../../../hooks/useFollow';
-import Loading from '../../Loading/Loading';
+import Loading from '../../Loading/Loading'; 
+import { Skeleton } from '../../Loading/Skeleton/skeleton';
 
 export const ProfileInfo = ({ data1 }) => {
   const { pseudo } = useParams()
@@ -18,7 +18,7 @@ export const ProfileInfo = ({ data1 }) => {
   const joined = moment(data1.created_at, "YYYY/MM/DD");
   const { loggedIn: Auth, user } = useSelector(state => state.Auth)
   const [pofileImg,setProfileImg]=useState({src:null,from:null})
-  const [ImageLoading,setImageLoading]=useState(true)
+  const [ImageLoading,setImageLoading]=useState({pp:true,cover:true})
 
   const showimg = e =>{
 
@@ -50,21 +50,38 @@ export const ProfileInfo = ({ data1 }) => {
         <div className="profile_banner">
          {data1?.cover && 
          <>
-         {ImageLoading && <Loading/>}
-         <img src={data1?.cover } onLoad={()=>setImageLoading(false)} name='cover' onClick={showimg} className="img__banner" />
+         {ImageLoading?.cover && <Skeleton/>}
+         <img src={ data1?.cover } onLoad={()=>{setTimeout(()=>{setImageLoading({...ImageLoading,cover:false})},500)}} name='cover' onClick={showimg} className="img__banner" />
          </>
          }
         </div>
         <div className="profile__img">
           <div className="img__profile">
-            <img src={data1.pp ? data1.pp : defaultProfile} name='pp' onClick={showimg}  />
+            {ImageLoading?.pp && <Skeleton/>}
+            <img src={data1.pp ? data1.pp : defaultProfile} onLoad={()=>{setTimeout(()=>{setImageLoading({...ImageLoading,pp:false})},500)}} name='pp' onClick={showimg}  />
           </div>
           <div className="profile__actions">
 
-            {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
+         
+          {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
+            {!Auth && <button className='btn-def btn_follow' onClick={() => setnotAuth(true)}>Follow</button>}
+            {
+              followHim==null && Auth && data1.id != user.id?
+              
+              <div className='sketlon'>
+              <Skeleton/>
+            </div>:
+            <>
+              {Auth && followHim != null && followHim  && data1.id != user.id && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>}
+            {Auth && followHim != null && !followHim && data1.id != user.id && <button className='btn-def btn_follow' onClick={follow}>Follow</button>}
+            
+            </>
+            }
+
+            {/* {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
             {!Auth && <button className='btn-def btn_follow' onClick={() => setnotAuth(true)}>Follow</button>}
             {Auth && followHim != null && followHim && data1.id != user.id && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>}
-            {Auth && followHim != null && !followHim && data1.id != user.id && <button className='btn-def btn_follow' onClick={follow}>Follow</button>}
+            {Auth && followHim != null && !followHim && data1.id != user.id && <button className='btn-def btn_follow' onClick={follow}>Follow</button>} */}
           </div>
         </div>
       </div>
