@@ -32,21 +32,25 @@ export const EditProfile = () => {
 
     useEffect(() => {
         if (data?.data) {
+            // add you timer befor pp and cover added so you can handle your work faster
             setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse:data?.data?.adresse })
             const bir = new Date(data?.data?.birthday)
             setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() }) 
         }
     }, [data])
 
-    
+
+// si mhamed i thing you should this trables before insert any thing so i can copie your work 😊
+// and find solution for image slowns the animation like facebook its just an excuse 
+
 
     const save = () => { 
         const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day)+1);   
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
-              'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-          })
+        })
             .then(function (response) {
                 console.log(response.data);
                 CallToast(response?.data?.message)

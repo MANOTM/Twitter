@@ -67,7 +67,7 @@ function Profile() {
         {loading  ?<Loading/>:
         <div className="profile scroll">
           <ProfileHead name={data.data.name}/>
-          <ProfileInfo data1={data.data}/>
+          <ProfileInfo data1={data.data} />
           <div className="profile__links">
               <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('replies')==-1 ? 'active' :''} to='' > Tweets  </Link>
               <Link className={path.includes('replies') ? 'active':''} to='replies' > Replies </Link>

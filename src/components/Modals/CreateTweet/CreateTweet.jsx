@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './CreateTweet.css';
-import CloseIcon from '../../Icons/CloseIcon';
 import avatar from '../../../assets/images/defaultProfile.png';
+import CloseIcon from '../../Icons/CloseIcon';
 import { useStateContext } from '../../../contexts/ContextProvider';
 import Gallery from '../../Icons/Gallery';
 import Gif from '../../../pages/Home/icons/Gif';
 import Emojis from '../../../pages/Home/icons/Emojis';
 import Map from '../../../pages/Home/icons/Map';
 import axios from '../../../api/axios';
-import { set } from 'lodash';
 import WorldIcon from '../../Icons/WorldIcon';
+import HeaderCreate from './HeaderCreateTweet/HeaderCreate';
 
 export default function CreateTweet() {
 
@@ -24,6 +24,7 @@ export default function CreateTweet() {
             {...prev, image:e.target.files[0]}
         ))
     }
+    // clear image when you close
     const clearMedia = () => 
     {
         Media.current.value = null
@@ -32,40 +33,33 @@ export default function CreateTweet() {
             {...prev, image:null}
         ))
     }
+    // clear popup
     const clearCreateTweet = () => {
         console.log('clear');
         setTweet(null)
         Media.current.value = null
         setshow__createTweet(true)
     }
-    const hanldeCreateTweet = async() => {
+    const hanldeCreateTweet = () => {
         if(!tweet) return
         setshow__createTweet(true)
         let prifex = '/tweets/createTweet';
         try{
             if(tweet?.image) prifex = '/tweets/createImage';
-            console.log(tweet);
-            const { data } = await axios.post(prifex,tweet)
-            if(data){
-                CallToast('Your Tweet was sent.',3500)
-            }
+            axios.post(prifex,{
+                description : tweet?.description,
+                image: selectedMedia
+            });
+            CallToast('Your Tweet was sent.',3500)
         }catch(err){
             CallToast('someThing Happend, please try later.',3500)
         }
-        clearMedia()
     }
 
     return <div className={`create ${show__createTweet && 'active'}`}>
         <div onClick={clearCreateTweet} className="overlay__showed"></div>
         <div className="create__tweet">
-            <div className="createTweet__header">
-                <span className="createTweet__closeIcon center">
-                    <div onClick={clearCreateTweet} className="iconClose__create center">
-                        <CloseIcon />
-                    </div>
-                </span>
-                <span></span>
-            </div>
+            <HeaderCreate clear={clearCreateTweet} />
             <div className="createTweet__content">
                 <div className="createTweet__body">
                     <div className="createTweet__avatar">
