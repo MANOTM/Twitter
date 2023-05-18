@@ -223,6 +223,6 @@
     -o-border-radius: 50%;
 }
 .model_img .cover{ 
-    max-height: 90%;
+    max-height: 90vh;
     width: 100%;
 }
