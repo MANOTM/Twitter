@@ -10,6 +10,7 @@ import { NotAuthCard } from '../../NotAuthCard/NotAuthCard';
 import { useEffect } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import useFollow from '../../../hooks/useFollow';
+import Loading from '../../Loading/Loading';
 
 export const ProfileInfo = ({ data1 }) => {
   const { pseudo } = useParams()
@@ -17,6 +18,7 @@ export const ProfileInfo = ({ data1 }) => {
   const joined = moment(data1.created_at, "YYYY/MM/DD");
   const { loggedIn: Auth, user } = useSelector(state => state.Auth)
   const [pofileImg,setProfileImg]=useState({src:null,from:null})
+  const [ImageLoading,setImageLoading]=useState(true)
 
   const showimg = e =>{
 
@@ -46,7 +48,12 @@ export const ProfileInfo = ({ data1 }) => {
     <>
       <div className="profile_images">
         <div className="profile_banner">
-         {data1?.cover && <img src={data1?.cover } name='cover' onClick={showimg} className="img__banner" />}  
+         {data1?.cover && 
+         <>
+         {ImageLoading && <Loading/>}
+         <img src={data1?.cover } onLoad={()=>setImageLoading(false)} name='cover' onClick={showimg} className="img__banner" />
+         </>
+         }
         </div>
         <div className="profile__img">
           <div className="img__profile">

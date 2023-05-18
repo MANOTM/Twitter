@@ -1,12 +1,11 @@
 import './profile.css'
 import Main from '../../layouts/Main' 
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
-import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useParams, } from 'react-router-dom'
 import { ProfileInfo } from '../../components/ProfileComponent/ProfileInfo/ProfileInfo'
 import { Media } from '../../components/ProfileComponent/Media/Media'
 import { Likes } from '../../components/ProfileComponent/Likes/Likes'
-import { WhoToFollow100 } from '../../components/ProfileComponent/WhoToFollow100/WhoToFollow100'
-import useFetch from '../../hooks/useFetch'
+ 
 import Loading from '../../components/Loading/Loading'
 import PorfileNotFound from '../NotFound/ProfileNotFound/PorfileNotFound'
 import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/TweetsProfile'
@@ -16,11 +15,34 @@ import axios from '../../api/axios'
 import { Replies } from '../../components/ProfileComponent/Replies/Replies'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 import { AuthRoute } from '../../layouts/AuthLayout'
+import { useStateContext } from '../../contexts/ContextProvider'
 function Profile() {
   const {pseudo}=useParams() 
   const path= useLocation().pathname 
   // const { data ,loading} =useFetch('profile/@' + pseudo) 
   
+
+
+
+
+
+
+  // i have a idea to re render this component after edit profile try to 
+  //add a state into context and when user click to save change the value 
+  //of state wih anythink and add to useEffect
+
+
+
+
+
+
+
+
+
+
+
+
+  const { render } = useStateContext();
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null) 
  
@@ -35,7 +57,7 @@ function Profile() {
         setLoading(false)
         setError(false)
       });  
-  },[pseudo])
+  },[pseudo,render])
   return (
     <>
     {!loading && !data ? <PorfileNotFound/>:

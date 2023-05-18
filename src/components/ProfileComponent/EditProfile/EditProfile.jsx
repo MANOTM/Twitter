@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate,Navigate, useParams } from 'react-router-dom'
 import './EditProfile.css'
 import CloseIcon from '../../Icons/CloseIcon'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
@@ -11,12 +11,12 @@ import { useSelector } from 'react-redux'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../Loading/Loading'
 import { useRef } from 'react'
-import axios from '../../../api/axios'
+import axios from '../../../api/axios' 
 
 export const EditProfile = () => {
 
     const { user: { pseudo } } = useSelector(state => state.Auth)
-    const { Mounths,CallToast } = useStateContext();
+    const { Mounths,CallToast,setRender ,render} = useStateContext();
     const navigate = useNavigate()
     if (pseudo.substring(1) != useParams().pseudo) navigate(-1)
 
@@ -50,6 +50,8 @@ export const EditProfile = () => {
             .then(function (response) {
                 console.log(response.data);
                 CallToast(response?.data?.message)
+                setRender(!render)
+                navigate('/'+pseudo.substring(1))
 
             })
             .catch(function (error) {
