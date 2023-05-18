@@ -9,6 +9,7 @@ import FooterAuth from '../../components/Auth/FooterModal/FooterAuth'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom' 
 import NotFound from '../../pages/NotFound/NotFound'
+import Forgot from '../../pages/Auth/Forgot/Forgot'
 
 
 export function LoginComponent() {
@@ -24,6 +25,14 @@ export function RegisterComponent() {
         <>
             <Home />
             <Register />
+        </>
+    )
+}
+export function ForgotComponent() {
+    return (
+        <>
+            <Home />
+            <Forgot />
         </>
     )
 }

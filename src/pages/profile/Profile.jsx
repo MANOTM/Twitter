@@ -22,7 +22,7 @@ function Profile() {
   
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null) 
- 
+  
   useEffect(()=>{
     setLoading(true)
     axios.get('profile/@' + pseudo)
@@ -33,12 +33,12 @@ function Profile() {
       .catch(function (error) {
         setLoading(false)
         setError(false)
-      });  
+      });
   },[pseudo])
   return (
     <>
     {!loading && !data ? <PorfileNotFound/>:
-      <Main> 
+      <Main>
         {loading  ?<Loading/>:
         <div className="profile scroll">
           <ProfileHead name={data.data.name}/>
@@ -54,9 +54,9 @@ function Profile() {
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
               <Route path='/replies' element={<Replies/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
-              <Route path='/likes' element={<Likes user={data.data}/>}/>  
-              <Route path='/edit' element={<EditProfile/>}/>  
-              <Route path='/*' element={<NotFound />}/> 
+              <Route path='/likes' element={<Likes user={data.data}/>}/>
+              <Route path='/edit' element={<EditProfile/>}/>
+              <Route path='/*' element={<NotFound />}/>
             </Routes> 
           </div>
         </div>

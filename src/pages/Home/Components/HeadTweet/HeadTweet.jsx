@@ -39,14 +39,14 @@ export default function HeadTweet() {
                     <input type="text" onChange={handleTweetbtn} placeholder="What's Happening ?" />
                 </div>
                 <div className="header__buttons">
-                <ul>
-                    <input hidden type="file"  ref={GalleryBtn}/>
-                    <li onClick={()=>GalleryBtn.current.click()}> <icons.Gallery /> </li>
-                    <li> <icons.Gif /> </li>
-                    <li> <icons.Emojis /> </li>
-                    <li> <icons.Map /> </li>
-                </ul>
-                <button className={tweetbtn ? 'active__click__btn' : ''}>Tweeter</button>
+                    <ul>
+                        <input hidden type="file"  ref={GalleryBtn}/>
+                        <li onClick={()=>GalleryBtn.current.click()}> <icons.Gallery /> </li>
+                        <li> <icons.Gif /> </li>
+                        <li> <icons.Emojis /> </li>
+                        <li> <icons.Map /> </li>
+                    </ul>
+                    <button className={tweetbtn ? 'active__click__btn' : ''}>Tweeter</button>
                 </div>
             </div>
         </header>

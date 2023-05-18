@@ -6,12 +6,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Taawija from '../Icons/Taawija';
 import { useState } from 'react'; 
+import { useStateContext } from '../../contexts/ContextProvider'
+import useFetch from '../../hooks/useFetch'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
+  const { setshow__createTweet } = useStateContext()
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
+  const { data, loading } = useFetch('/countNotification');
   const showOut = event => {
     event.stopPropagation();
     setActive(false)
@@ -33,21 +37,23 @@ export default function Sidebar() {
                     <SidebarItem 
                       notf={false} 
                       to="/explore" 
-                      text="Explore" icon={<icons.ExploreIcon />} bold={<icons.BoldExploreIcon />} />
+                      text="Explore" icon={<icons.ExploreIcon />} bold={<icons.BoldExploreIcon />}
+                    />
                     <SidebarItem notf={true} to="/notifications" text="Notifications" 
                       icon={<icons.NotificationIcon />}
                       bold={<icons.BoldNOtificationIcon />}
+                      count={!loading ? data?.data?.count_notify : null}
                     />
                     
-                    <SidebarItem notf={false} to="/messages" text="Messages"
+                    <SidebarItem to="/messages" text="Messages"
                       icon={<icons.MessageIcon />}
                       bold={<icons.BoldMessageIcon />}
                     />
-                    <SidebarItem notf={false} to="/bookmarks" text="Bookmarks" 
+                    <SidebarItem to="/bookmarks" text="Bookmarks" 
                       icon={<icons.Save />}
                       bold={<icons.BoldSave />}
                     />
-                    <SidebarItem notf={false} to={`/${user.pseudo.substring(1)}`} text="Profile"
+                    <SidebarItem to={`/${user.pseudo.substring(1)}`} text="Profile"
                       icon={<icons.UserIcon />}
                       bold={<icons.BoldUserIcon />}
                     />
@@ -55,11 +61,11 @@ export default function Sidebar() {
                 )
               }
 
-              <SidebarItem notf={false} to="/settings/account" text="More">
+              <SidebarItem to="/settings/account" text="More">
                 <icons.MoreIcon fill="#e7e9ea" />
               </SidebarItem>
               {
-                Auth && <button className='tweet__bottom bg-blue' > <p className='text'>Tweet</p> <icons.NewTweetIcon className="d-none icon" fill="#e7e9ea" /></button>
+                Auth && <button onClick={()=>setshow__createTweet(false)} className='tweet__bottom bg-blue' > <p className='text'>Tweet</p> <icons.NewTweetIcon className="d-none icon" fill="#e7e9ea" /></button>
               }
             </ul>
           </nav>

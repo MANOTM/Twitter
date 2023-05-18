@@ -47,7 +47,7 @@ export const ProfileInfo = ({ data1 }) => {
     <>
       <div className="profile_images">
         <div className="profile_banner">
-         {data1?.cover && <img src={data1?.cover } name='cover' onClick={showimg} className="img__banner" />}  
+          {data1?.cover && <img src={data1?.cover } name='cover' onClick={showimg} className="img__banner" />}  
         </div>
         <div className="profile__img">
           <div className="img__profile">

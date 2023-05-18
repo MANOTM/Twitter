@@ -59,7 +59,7 @@ function Login() {
                 localStorage.setItem('user_info', JSON.stringify(data?.data?.user));
                 dispatch(LogIn(data.data.user));
                 setSteps(true)
-                CallToast('Hello world!!')
+                CallToast('Welcome to Twitter✨✨😊')
             }
         } catch(e){
             setLoading(false);

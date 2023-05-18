@@ -15,7 +15,8 @@ import moment from 'moment';
 
 export default function Tweet({
     tweet:
-    {
+    {  
+        idTweet,
         idUser,
         name,
         pseudo,
@@ -60,7 +61,7 @@ export default function Tweet({
     const [isIn, setisIn] = useState(false) 
     const [active, setActive] = useState(false)
     return (
-        <div className='Tweet'>
+        <div className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
             <div className="tweet__content">
                 <div className="tweet__left__img">
@@ -100,7 +101,9 @@ export default function Tweet({
                     <div className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
-                                <img src={image} alt="tweet__image" />
+                                <div style={{backgroundImage: `url(${image})`}} className="tweet__cover">
+                                    <img src={image} alt="tweet__image" />
+                                </div>
                             </div>
                         }
                         {

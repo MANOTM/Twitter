@@ -68,10 +68,9 @@ export default function LoginModal({ children }) {
             if(data) dispatch(Move())
         }catch({ response: { status } }){
             if(status === 403){
-                CallToast('token mismatch or user already registred',3500);
+                CallToast('token mismatch or user already registred😊',3500);
             }
         }
-        console.log((4));
     }
     const handleRegister = async() => {
         if(step === 3 && new Date().getFullYear() - parseInt(year) <= 12 ) {
