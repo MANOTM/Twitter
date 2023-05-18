@@ -31,6 +31,8 @@ function Profile() {
   //add a state into context and when user click to save change the value 
   //of state wih anythink and add to useEffect
 
+  // you are here you can do it 😉✌
+
 
 
 
@@ -56,13 +58,8 @@ function Profile() {
       .catch(function (error) {
         setLoading(false)
         setError(false)
-<<<<<<< HEAD
-      });
-  },[pseudo])
-=======
       });  
   },[pseudo,render])
->>>>>>> cf185c80f0c97a6cf5e6adaab29806ba640470ec
   return (
     <>
     {!loading && !data ? <PorfileNotFound/>:
@@ -82,15 +79,9 @@ function Profile() {
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
               <Route path='/replies' element={<Replies/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
-<<<<<<< HEAD
-              <Route path='/likes' element={<Likes user={data.data}/>}/>
-              <Route path='/edit' element={<EditProfile/>}/>
-              <Route path='/*' element={<NotFound />}/>
-=======
               <Route path='/likes' element={<Likes user={data.data}/>}/>  
               <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
               <Route path='/*' element={<NotFound />}/> 
->>>>>>> cf185c80f0c97a6cf5e6adaab29806ba640470ec
             </Routes> 
           </div>
         </div>
