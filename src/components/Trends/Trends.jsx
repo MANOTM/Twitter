@@ -5,9 +5,11 @@ import TrendItem from './TrendItem'
 import { ShowMore } from '../ShowMore/ShowMore'
 import useFetch from '../../hooks/useFetch'
 import Loading from '../Loading/Loading'
+import { useStateContext } from '../../contexts/ContextProvider'
 export default function Trends({FromExplore}) {
   
   const { loading, data } = useFetch('/trends');
+  const { IsArabic } = useStateContext();
 
   return ( 
     <div className='trends'>  
@@ -27,16 +29,8 @@ export default function Trends({FromExplore}) {
             </header>
             <div className="trends__hashtags">
               {
-                loading ? <Loading /> : data?.data?.length ? 
-                <TrendItem type='Sport Tranding' title='برشلونة' count='13.7k' isArabic={true} />
-                :
-                <>
-                <TrendItem type='Sport Tranding' title='برشلونة' count='13.7k' isArabic={true} />
-                <TrendItem type='Sport Tranding' title='اشرف_حكيمي' count='13.7k' isArabic={true} />
-                <TrendItem type='Sport Tranding' title='Barça' count='1.7k' isArabic={false} />
-                <TrendItem type='Sport Tranding' title='مدريد' count='13.7k' isArabic={true} />
-                <TrendItem type='Sport Tranding' title='Xavi' count='13.7k' isArabic={false} /> 
-                </>
+                loading ? <Loading /> : data?.data?.length && 
+                data?.data?.map(one => <TrendItem title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
               }
             </div>
             {!loading && <ShowMore to='#'/>}

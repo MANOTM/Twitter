@@ -1,17 +1,31 @@
 import React from 'react'
 import './OptionCard.css'
 import { Report, Block, Mute, List, Unfollow, SadImojis, DeleteIcon, EditTweetIcon } from './OptionIcons/OptionIcons'
+import axios from '../../api/axios'
+import { useStateContext } from '../../contexts/ContextProvider'
 
-export default function OptionCard({ pseudo, setInterested }) {
+export default function OptionCard({ pseudo, setInterested, idTweet }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo
+    const { CallToast } = useStateContext()
+
+    const DeleteTweet = () => {
+        axios
+        .delete('/tweets/deleteTweet/'+idTweet)
+        .then(res => {
+            CallToast('tweet Delete successfully😊')
+        })
+        .catch(err => {
+            CallToast('something happend, please try later✌')
+        })
+    }
 
     return (
         <div className="option__card popup">
             <ul>
                 {
                     user_pseudo && (<>
-                        <li>
+                        <li onClick={DeleteTweet}>
                             <div className="option__icon delete">
                                 <DeleteIcon />
                             </div>

@@ -23,7 +23,7 @@ export default function Home() {
                     <div className="tweets__container">
                         {
                             loading ? <Loading /> : data?.data?.length ?
-                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : null
+                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : <WhoToFollow100 />
                         }
                     </div>
                 </div>

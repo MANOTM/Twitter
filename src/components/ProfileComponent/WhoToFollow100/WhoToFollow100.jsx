@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 export const WhoToFollow100 = () => {
 
-  const { user:{pseudo } } = useSelector(state => state.Auth)  
+  const { user:{ pseudo } } = useSelector(state => state.Auth)  
   const following= useFetch('followings/'+pseudo ).data
   const loading2= useFetch('followings/'+pseudo ).loading ;
 
