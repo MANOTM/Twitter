@@ -5,7 +5,7 @@ export default function HeaderCreate({ clear }) {
     return <div className="createTweet__header">
         <span className="createTweet__closeIcon center">
             <div onClick={clear} className="iconClose__create center">
-                <CloseIcon   />
+                <CloseIcon />
             </div>
         </span>
         <span></span>

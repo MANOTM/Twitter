@@ -3,9 +3,9 @@ import { ArrowOn } from '../../../icons/SettingIcons'
 import './AccountSetting.css';
 import { Link } from 'react-router-dom';
 
-export default function AccountOptions({ title, SecondTitle, hover, to }) {
+export default function AccountOptions({ title, SecondTitle, hover, to, index }) {
     return (
-        <Link to={to && `/settings/${to}`} className={`AccountOptions ${hover ? 'hover' : 'border'}`}>
+        <Link key={index} to={to && `/settings/${to}`} className={`AccountOptions ${hover ? 'hover' : 'border'}`}>
             <div className="account__option__content">
                 <span className="account__option__title"> { title } </span>
                 <span className="account__option__miniTitle"> { SecondTitle } </span>

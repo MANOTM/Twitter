@@ -45,6 +45,7 @@ export function PageNotFound() {
     )
 }
 
+
 export default function ContainerContent() {
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     // const path = useLocation().pathname != '/explore' && useLocation().pathname != '/profile';

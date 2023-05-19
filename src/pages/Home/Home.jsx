@@ -12,37 +12,8 @@ import { useSelector } from "react-redux";
 
 export default function Home() {
     const { SetTitle } = useStateContext();
-     const {Auth , loggedIn}= useSelector(state => state.Auth)
     SetTitle("Home");
-    const tweet = {
-        comments: 0,
-        created_at: "2021-05-12T15:25:32.000000Z",
-        description: "GM",
-        email: "Antigone@antigone.ma",
-        id: 1,
-        idUser: 3,
-        image: "https://pbs.twimg.com/media/FwT_o0CXsAEaddH?format=jpg&name=small",
-        likes: 0,
-        name: "Antigone",
-        pp: null,
-        pseudo: "@Atingone444",
-        video: null,
-    };
-    const video = {
-        comments: 0,
-        created_at: "2021-05-12T15:25:32.000000Z",
-        description: "green day move on to another world",
-        email: "Antigone@antigone.ma",
-        id: 1,
-        idUser: 3,
-        image: null,
-        video: true,
-        likes: 0,
-        name: "King",
-        pp: null,
-        pseudo: "@Atingone444",
-    };
-    const { loading, data } = loggedIn ? useFetch('/') : { loading:false, data:null }
+    const { loading, data } = useFetch('/')
     return (
         <>
             <Main>

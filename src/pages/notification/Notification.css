@@ -26,8 +26,20 @@
     padding: 0 16px;
 }
 
-.notification__count__number {
-    font-size: 16px;
+.notification__setting {
+    fill: rgb(231, 233, 234);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: .2s ease;
+    border-radius: 50%;
+}
+.notification__setting:hover {
+    background-color: rgba(239, 243, 244, .1);
+}
+.notification__setting svg {
+    width: 20px;
+    height: 20px;
 }
 
 .notification__title__header {
@@ -40,6 +52,11 @@
     width: 30px;
     height: 30px;
     fill: rgb(29, 155, 240);
+}
+.notification svg.like {
+    width: 30px;
+    height: 30px;
+    fill: rgb(249, 24, 128);
 }
 
 .notification__row {
@@ -58,6 +75,13 @@
     margin-right: 12px;
     flex-basis: 48px;
     height: 64px;
+    display: flex;
+    justify-content: flex-end;
+}
+.notification__icon__type.like {
+    margin-right: 12px;
+    flex-basis: 48px;
+    height: 82px;
     display: flex;
     justify-content: flex-end;
 }
@@ -94,7 +118,7 @@
 .notification__option {
     position: absolute;
     top: 7px;
-    right: 7px;
+    right: 12px;
     width: 32.75px;
     height: 32.75px;
     border-radius: 50%;
@@ -110,4 +134,11 @@
 }
 .notification__option:hover svg{
     fill: rgb(59, 155, 240);
+}
+
+.notification__content {
+    margin-top: 12px;
+    color: rgb(113, 118, 123);
+    font-weight: 400;
+    font-size: 15px;
 }
