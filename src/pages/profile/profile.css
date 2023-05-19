@@ -9,7 +9,7 @@
 .profile_images img{
     cursor: pointer;
     object-fit: cover;
-    transform: scale(-2);
+    /* transform: scale(-2); */
 }
 .sketlon{
     height: 33px;

@@ -18,8 +18,7 @@ import { AuthRoute } from '../../layouts/AuthLayout'
 import { useStateContext } from '../../contexts/ContextProvider'
 function Profile() {
   const {pseudo}=useParams() 
-  const path= useLocation().pathname 
-  // const { data ,loading} =useFetch('profile/@' + pseudo) 
+  const path= useLocation().pathname  
   
 
 
@@ -32,6 +31,8 @@ function Profile() {
   //of state wih anythink and add to useEffect
 
   // you are here you can do it 😉✌
+
+  // what are u doing here ??
 
 
 
