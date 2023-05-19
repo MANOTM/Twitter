@@ -1,34 +1,128 @@
 import React, { useRef, useState } from "react";
 import "./HeadTweet.css";
 import * as icons from '../../IconsImport'; 
+import HeaderHome from "../HeaderHome/HeaderHome";
+import avatar from '../../../../assets/images/defaultProfile.png';
+import CreateFooter from "../../../../components/Modals/CreateTweet/CreateFooter/CreateFooter";
+import Everyone from "../../../../components/Modals/CreateTweet/EveryoneCreate/Everyone";
+import CloseIcon from "../../../../components/Icons/CloseIcon";
+import axios from "../../../../api/axios";
+import { useStateContext } from "../../../../contexts/ContextProvider";
 
 export default function HeadTweet() {
-    const [active, setActive] = useState(true);
-    const [tweetbtn, setTweetbtn] = useState(false);
-    const handleChange = () => setActive(!active); 
-    const handleTweetbtn = e => {
-        if(e.target.value.trim() == ''){
-            return setTweetbtn(false)
-        }
-        setTweetbtn(true)
+    const { CallToast, IsArabic } = useStateContext()
+    const [everyone, setEverone] = useState(true);
+    const [tweet, setTweet] = useState();
+    const Media = useRef();
+    const input = useRef();
+    // set image
+    const handleImage = e => {
+        setEverone(false)
+        setTweet(prev => (
+            { ...prev, image: e.target.files[0] }
+        ));
     }
-    const GalleryBtn = useRef();
+    // clear image 
+    const clearMedia = () => {
+        Media.current.value = null
+        setTweet(prev => (
+            { ...prev, image: null }
+        ));
+    }
+    // post tweet
+    const click = () => {
+        Media.current.value = null
+        setEverone(true)
+        setTweet(null)
+
+        const prefix = tweet?.image ? '/tweets/createImage' : '/tweets/createTweet';
+        axios.post(prefix, tweet, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response => {
+            CallToast('Your Tweet was sent.', 3500);
+        })
+        .catch(error => {
+            CallToast('Something happened, please try later.', 3500);
+        });
+    }
     return (
         <header className="header__section">
-            <div className="head_name_page">
-                <div className="header__title">
-                    <h3>Home</h3>
+            <HeaderHome />
+            <div className="create__home">
+                <div className="create__Avatar">
+                    <div className="tweet__avatar__user">
+                        <img src={avatar} />
+                    </div>
                 </div>
-                <div className="header__links">
-                    <div onClick={handleChange} className={active ? "active" : ''}>
-                    <a href="#">For you</a>
+                <div className="create__right">
+                    <div className="create__input">
+                        <input className={IsArabic(tweet?.description) ? 'arabic' : ''} value={tweet?.description || ''} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} onFocus={()=>setEverone(false)} type="text" placeholder="What is happening?!" name="description" />
                     </div>
-                    <div onClick={handleChange} className={!active ? "active" : ''}>
-                    <a href="#">Following</a>
+                    {
+                        tweet?.image && (<div className="createTweet__media">
+                            <img src={URL.createObjectURL(tweet?.image)} alt="Selected file" />
+                            <div onClick={clearMedia} className="createTweet__cancel__image center">
+                                <CloseIcon />
+                            </div>
+                        </div>
+                        )
+                    }
+                    <div hidden={everyone}>
+                        <Everyone />
                     </div>
+                    <CreateFooter
+                        setTweet={emoji => 
+                            setTweet(prev => (
+                                { ...prev, description: `${prev?.description || ''}` + `${emoji}` }))} 
+                        image={handleImage}
+                        tweet={tweet} 
+                        Media={Media} 
+                        click={click}
+                    />
                 </div>
             </div>
-            <div className="header__input">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <div className="header__input">
                 <div className="header__fields">
                     <div className="header__avatar avatar">
                         <img
@@ -48,7 +142,7 @@ export default function HeadTweet() {
                     </ul>
                     <button className={tweetbtn ? 'active__click__btn' : ''}>Tweeter</button>
                 </div>
-            </div>
+            </div> */}
         </header>
     );
 }

@@ -96,13 +96,6 @@
     height: auto;
 }
 
-.create__line__between {
-    height: 1px;
-    width: 100%;
-    margin: 0 auto;
-    background-color: rgb(47, 51, 54);
-}
-
 .createTweet__actions {
     display: flex;
     justify-content: space-between;
@@ -189,29 +182,23 @@
     background-color: rgba(39, 44, 48, .75);
 }
 
-.create__Everyone {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    width: fit-content;
-    min-width: 24px;
-    min-height: 24px;
-    padding: 0 8px;
-    border-radius: 99999px;
-    transition: .3s ease;
+.createTweet__footer {
+    position: relative;
 }
-.create__Everyone:hover {
-    background-color: rgba(29, 155, 240, .1);
+
+.stoPro__create {
+    z-index: 101;
+    position: absolute;
+    top: 50px;
+    left: -58px;
+    min-width: 320px;
 }
-.create__Everyone span {
-    line-height: 16px;
-    font-size: 14px;
-    color: rgb(29, 155, 240);
-    margin-left: 4px;
-    font-weight: 500;
-}
-.create__Everyone svg{
-    width: 16px;
-    height: 16px;
-    fill: rgb(29, 155, 240);
+
+.emojisBackground {
+    z-index: 100;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: -46px;
+    left: -184px;
 }

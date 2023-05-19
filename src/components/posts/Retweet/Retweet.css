@@ -170,6 +170,10 @@
     line-height: 20px;
 }
 
+.tweet__content__body p.arabic {
+    text-align: right;
+}
+
 .tweet__image {
     border-radius: 16px;
     border: 1px solid rgb(47, 51, 54);

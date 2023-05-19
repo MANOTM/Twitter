@@ -11,3 +11,5 @@ export const ArrowOn = () => <svg viewBox="0 0 24 24" aria-hidden="true"><g><pat
 export const Developer = () => <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M15.24 4.31l-4.55 15.93-1.93-.55 4.55-15.93 1.93.55zm-8.33 3.6L3.33 12l3.58 4.09-1.5 1.32L.67 12l4.74-5.41 1.5 1.32zm11.68-1.32L23.33 12l-4.74 5.41-1.5-1.32L20.67 12l-3.58-4.09 1.5-1.32z"></path></g></svg>
 
 export const Blank = () => <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M8 6h10v10h-2V9.41L5.957 19.46l-1.414-1.42L14.586 8H8V6z"></path></g></svg>
+
+export const Clear = () => <svg viewBox="0 0 24 24" aria-hidden="true"><g><path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"></path></g></svg>
