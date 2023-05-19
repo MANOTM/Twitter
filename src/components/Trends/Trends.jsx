@@ -6,10 +6,12 @@ import { ShowMore } from '../ShowMore/ShowMore'
 import useFetch from '../../hooks/useFetch'
 import Loading from '../Loading/Loading'
 import { useStateContext } from '../../contexts/ContextProvider'
+import { useLocation } from 'react-router-dom'
 export default function Trends({FromExplore}) {
   
   const { loading, data } = useFetch('/trends');
   const { IsArabic } = useStateContext();
+  const trend = useLocation().pathname.includes('explore') ? 5 : 9
 
   return ( 
     <div className='trends'>  
@@ -30,10 +32,10 @@ export default function Trends({FromExplore}) {
             <div className="trends__hashtags">
               {
                 loading ? <Loading /> : data?.data?.length && 
-                data?.data?.map(one => <TrendItem title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
+                data?.data?.slice(0, trend).map((one,i) => <TrendItem key={i} title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
               }
             </div>
-            {!loading && <ShowMore to='#'/>}
+            {!loading && trend === 9 && <ShowMore to='/explore'/>}
         </div>  
     </div> 
   )
