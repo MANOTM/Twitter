@@ -58,6 +58,10 @@ const router = createBrowserRouter([
                 element : <Profile/>,
             }, 
             {
+                path : '/search/:hashtag',
+                element :<AuthRoute element={Explore}/>,
+            },
+            {
                 path : '/connect',
                 element :<AuthRoute element={Connect}/>,
             },
