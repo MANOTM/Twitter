@@ -56,8 +56,12 @@ function `isArabic('content')` return true | false for checking if is any arabic
 import from useStateContexte
 
 
-### go to backend and edit in controller this lines
-app\Http\Controllers\SettingController => (UpdateImg)
-![controller settingController](public/backend/profile.PNG)
-app\Http\Controllers\NotificationController => (getAllNotifications)
-![controller notificationsController](public/backend/notifications.PNG)
+### go to backend and check this
+
+first of all go to public in backend and delete images folder and run php artisan storage:link
+
+line 25 ===> return $this->error( $validate->errors() , 'Verify inputs' , 200);
+line 53 ===> Storage::putFileAs("public/images/{$pseudo}/pp",$img,$pp);
+line 55 ===> 'pp' => asset("images/{$pseudo}/pp/".$pp) ,
+line 61 ===> Storage::putFileAs("public/images/{$pseudo}/cover",$img,$cover);
+line 63 ===> 'cover' => asset("images/{$pseudo}/cover/".$cover) , 

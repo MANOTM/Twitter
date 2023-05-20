@@ -45,7 +45,7 @@ export const EditProfile = () => {
 
 
     const save = () => { 
-        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day)+1);   
+        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));   
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
                 'Content-Type': 'multipart/form-data'
