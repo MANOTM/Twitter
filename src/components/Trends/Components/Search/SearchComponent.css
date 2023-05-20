@@ -1,3 +1,6 @@
+.trends__search {
+    width: 100%;
+}
 
 .trend__header__search,
 .trend__search__input {
@@ -6,8 +9,10 @@
 }
 .trend__header__search {
     justify-content: space-between;
-    padding: 0 16px; 
     height: 53px;
+}
+.trend__header__search.padding {
+    padding: 0 16px; 
 }
 .search__icon svg {
     width: 18.5px;
@@ -33,7 +38,7 @@
 }
 
 .trend__search__input {
-    min-width: 520px;
+    width: 100%;
     height: 44px;
     border-radius: 9999px;
     margin: 0 4px;

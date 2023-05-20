@@ -20,6 +20,10 @@ export default function Sidebar() {
     event.stopPropagation();
     setActive(false)
   }
+  const GoToProfile = e => {
+    navigate(`/${user.pseudo.substring(1)}`)
+    showOut(e)
+  }
   return (
     <>
       <div className="sidebar">
@@ -76,7 +80,7 @@ export default function Sidebar() {
                 <div className={`popup signOutPopUp ${actived && 'active_logOut'}`}>
                   <div className="t3wija"><Taawija /></div>
                   <ul>
-                    <li onClick={()=> navigate(`/${user.pseudo.substring(1)}`)} className='hover'>Show {user.pseudo.substring(1)} profile</li>
+                    <li onClick={GoToProfile} className='hover'>Show {user.pseudo.substring(1)} profile</li>
                     <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo.toUpperCase() }</li>
                   </ul>
                 </div>
