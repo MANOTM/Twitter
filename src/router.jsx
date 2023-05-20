@@ -6,7 +6,7 @@ import Notifications from "./pages/notification/Notifications";
 import Bookmarks from "./pages/bookmarks/Bookmarks";
 import Profile from "./pages/profile/Profile";
 import { AuthRoute, GuestRoute } from "./layouts/AuthLayout";
-import { LoginComponent, RegisterComponent, } from "./assets/Helper/MultiComponents";
+import { ForgotComponent, LoginComponent, RegisterComponent, } from "./assets/Helper/MultiComponents";
 import NotFound from "./pages/NotFound/NotFound";
 import Overlay from "./layouts/Overlay/overlay";
 import Logout from "./components/Logout/Logout";
@@ -80,6 +80,9 @@ const router = createBrowserRouter([
             {
                 path : '/:pseudo/*',
                 element : <NotFound />
+            },{
+                path : '/i/flow/password_reset',
+                element: <GuestRoute element={ForgotComponent} />
             }
         ]
     },
@@ -90,9 +93,6 @@ const router = createBrowserRouter([
                 path: '/logout',
                 element: <AuthRoute element={Logout} />,
                 // element: <Logout />
-            },{
-                path : '/i/flow/password_reset',
-                element: <Forgot />
             }
         ]
     }

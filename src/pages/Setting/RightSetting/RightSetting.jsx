@@ -9,6 +9,7 @@ import EmailOption from './SettingComponents/AccountSetting/AccountComponents/Em
 import PhoneOption from './SettingComponents/AccountSetting/AccountComponents/PhoneOption'
 import AgeOption from './SettingComponents/AccountSetting/AccountComponents/AgeOption'
 import Developers from './SettingComponents/DevelopersSettings/Developers'
+import ClearSettings from './SettingComponents/ClearSettings/ClearSettings'
 
 export default function RightSetting() {
   const { pseudo, email, birthDay } = JSON.parse(localStorage.getItem('user_info'));
@@ -22,6 +23,7 @@ export default function RightSetting() {
     {path: 'email', element: <EmailOption value={email} />},
     {path: 'Age', element: <AgeOption value={age} />},
     {path: 'developers', element: <Developers />},
+    {path: 'Clear', element: <ClearSettings />},
   ])
 
   return <div>

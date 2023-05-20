@@ -67,6 +67,7 @@
     flex-direction: column;
 }
 .trends__hashtag{
+    cursor: pointer;
     position: relative;
     display: flex;
     flex-direction: column;

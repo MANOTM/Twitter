@@ -220,6 +220,7 @@ button::-moz-focus-inner,
 }
 
 .overlay__showed {
+    z-index: 11;
     position: fixed;
     top: 0;
     left: 0;
@@ -235,6 +236,7 @@ button::-moz-focus-inner,
 
 .a-link {
     color: #1d9bf0 !important;
+    cursor: pointer;
 }
 .a-link:hover {
     text-decoration: underline;

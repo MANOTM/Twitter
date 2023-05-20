@@ -30,7 +30,7 @@ function HoverCard({isIn,setisIn, pseudo }) {
                 </div>
             </div>
             <Link to='' className="hover__card_user">
-                <span className='name ellipsis underline'>{'name'}
+                <span className='name ellipsis underline'>{data?.data.name}
                     <span className="Verify__icon align-center">
                         <VerifyIc fill="#1d9bf0" />
                     </span>

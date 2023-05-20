@@ -4,17 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../components/Loading/Loading';
 import '../Forgot.css'
 import { backStep, goStep, handleForgotChange } from '../../../../redux/Reducers/ForgotReducer';
+import { useStateContext } from '../../../../contexts/ContextProvider';
 
 export default function ForgotToken() {
+    const { inputs: { email, token } } = useSelector(state => state.Forgot);
+    const { CallToast } = useStateContext()
     const dispatch = useDispatch()
     const handleChangle = e => {
         const { name, value } = e.target;
         dispatch(handleForgotChange({name, value}));
     }
-    const handleClick = () => {
-        dispatch(goStep())
+    const handleClick = async() => {
+            dispatch(goStep())
     }
-    const { button, inputs: { token } } = useSelector(state => state.Forgot);
     return <div className="forgot__content">
         <div className="forgot__header">
             <span className="forgot__title">We sent you a code</span>

@@ -8,6 +8,7 @@
     overflow: hidden;
     animation: option 1s linear forwards;
     -webkit-animation: option .16s linear forwards;
+    user-select: none;
 }
 
 @keyframes option {
@@ -45,9 +46,17 @@
     width: 19px;
     padding-top: 0;
 }
+.option__card ul li .option__icon.delete svg{
+    fill: rgb(244, 33, 46);
+    width: 19px;
+    padding-top: 0;
+}
 
 .option__card ul li .option__title{
     font-size: 16px;
     margin-left: 15px;
+}
+.option__card ul li .option__title.delete{
+    color: rgb(244, 33, 46) !important;
 }
 

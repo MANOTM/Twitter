@@ -57,92 +57,6 @@
 .header__links > div:hover{
     background-color: rgba(128, 128, 128, 0.236);
 }
-.header__input{
-    border-bottom: 1px solid rgba(128, 128, 128, 0.436);
-}
-.header__fields {
-    display: flex;
-    align-items: center;
-    padding: 10px 10px 0;
-}
-.header__fields .header__avatar{
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all .3s ease;
-}
-.header__fields .header__avatar img{
-    position: relative;
-    width: 100%;
-    object-fit: cover;
-}
-.header__fields .header__avatar img:hover{
-    filter: brightness(88%);
-}
-.header__fields input{
-    width: 100%;
-    height: 37px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background-color: transparent;
-    margin-left: 15px;
-    font-size: 19px;
-    padding: 5px 0;
-}
-.header__buttons,
-.header__buttons ul{
-    display: flex;
-    align-items: center;
-}
-.header__buttons{
-    width: 550px;
-    justify-content: space-between;
-    margin-left: auto;
-    padding: 10px 15px;
-}
-.header__buttons li {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: all .2s ease;
-}
-.header__buttons li:hover {
-    opacity: .6;
-    background-color: #1d9cf061;
-}
-.header__buttons svg{
-    fill: var(--blue);
-    height: 1.2rem;
-}
-.header__buttons ul{
-    column-gap: 8px;
-}
-.header__buttons ul li{
-    cursor: pointer;
-}
-
-.header__buttons button{
-    cursor: pointer;
-    height: 35px;
-    padding: 0 15px;
-    border-radius: 33px;
-    background-color: var(--blue);
-    border: none;
-    outline: none;
-    font-size: 15px;
-    font-weight: 600;
-    pointer-events: none;
-    opacity: .7;
-}
-.header__buttons button.active__click__btn{
-    pointer-events: all;
-    opacity: 1;
-}
 
 :root {
     --blue: #1d9bf0;
@@ -151,3 +65,31 @@
     --gray: #71767B;
     --second-title: rgb(106, 108, 109);
 }
+
+.create__home {
+    display: flex;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.436);
+    padding: 8px 16px 8px 12px;
+}
+
+.create__right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.create__input input {
+    height: 52px;
+    /* padding: 12px; */
+    font-size: 19px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+
+.create__input input.arabic {
+    text-align: right;
+}
+

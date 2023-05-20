@@ -6,7 +6,7 @@ export default function TrendItem({type,title,count,isArabic}) {
   return ( 
     <div className="trends__hashtag hover" title='More'>
       <div className="trend__option__icon center"><ThreePoints /></div>
-      <span className='hashtag__gray'>{type}</span>
+      <span className='hashtag__gray'>{'type'}</span>
       <span className={nameClass}>{title}</span>
       <span className='hashtag__gray'>{count} Tweets</span>
   </div>

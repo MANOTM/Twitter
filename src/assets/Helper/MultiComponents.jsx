@@ -9,6 +9,7 @@ import FooterAuth from '../../components/Auth/FooterModal/FooterAuth'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom' 
 import NotFound from '../../pages/NotFound/NotFound'
+import Forgot from '../../pages/Auth/Forgot/Forgot'
 
 
 export function LoginComponent() {
@@ -27,6 +28,14 @@ export function RegisterComponent() {
         </>
     )
 }
+export function ForgotComponent() {
+    return (
+        <>
+            <Home />
+            <Forgot />
+        </>
+    )
+}
 export function PageNotFound() {
     return (
         <>
@@ -35,6 +44,7 @@ export function PageNotFound() {
         </>
     )
 }
+
 
 export default function ContainerContent() {
     const { loggedIn:Auth } = useSelector(state => state.Auth)

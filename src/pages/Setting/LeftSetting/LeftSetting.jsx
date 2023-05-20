@@ -3,7 +3,7 @@ import HeaderLeftSetting from './HeaderLeftSetting/HeaderLeftSetting'
 import SearchSetting from './SearchSetting/SearchSetting'
 import SettingRow from './SettingsRow/SettingRow'
 import './LeftSetting.css'
-import { Account, Developer } from '../icons/SettingIcons'
+import { Account, Clear, Developer } from '../icons/SettingIcons'
 import { Key } from '../icons/SettingIcons'
 import { Desactivate } from '../icons/SettingIcons'
 import { useSelector } from 'react-redux'
@@ -24,6 +24,7 @@ export default function LeftSetting() {
                         <div className="setting__row">
                             <SettingRow to="account" title='Account information' Icon={Account} />
                             <SettingRow to='password' title='Change your password' Icon={Key} />
+                            <SettingRow to='Clear' title='Clear account' Icon={Clear} />
                             <SettingRow to='deactivate' title='Deactivate your account' Icon={Desactivate} />
                         </div>
                         <div className="setting__left__paragraph">
@@ -37,7 +38,7 @@ export default function LeftSetting() {
                     <SettingRow to="developers" title='Developers' Icon={Developer} />
                 </div>
                 <div className="setting__left__paragraph">
-                    <p className='small-text'>All these people are the ones who make this work. Thank you <a href='https://fr.wikipedia.org/wiki/Hrithik_Roshan' className="a-link" target='_blank'>Hrithik Roshan</a> </p>
+                    <p className='small-text'>All these people are the ones who make this work. Thank you <a href='https://fr.wikipedia.org/wiki/Elon_Musk' className="a-link" target='_blank'>Elon Musk</a> </p>
                 </div>
             </div>
         </div>

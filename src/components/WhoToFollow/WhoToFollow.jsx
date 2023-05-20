@@ -22,7 +22,6 @@ export default function Suggestions() {
       <>
       <div className="suggestions">
         {data?.data?.slice(0,2).map((user,id)=>{ 
-           
           return <SuggestionUser key={id} isFollowed={following?.data?.some(follow=> follow?.pseudo == user?.pseudo)} userSu={user}/>
         })}
         

@@ -1,12 +1,11 @@
 import './profile.css'
 import Main from '../../layouts/Main' 
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
-import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useParams, } from 'react-router-dom'
 import { ProfileInfo } from '../../components/ProfileComponent/ProfileInfo/ProfileInfo'
 import { Media } from '../../components/ProfileComponent/Media/Media'
 import { Likes } from '../../components/ProfileComponent/Likes/Likes'
-import { WhoToFollow100 } from '../../components/ProfileComponent/WhoToFollow100/WhoToFollow100'
-import useFetch from '../../hooks/useFetch'
+ 
 import Loading from '../../components/Loading/Loading'
 import PorfileNotFound from '../NotFound/ProfileNotFound/PorfileNotFound'
 import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/TweetsProfile'
@@ -16,14 +15,40 @@ import axios from '../../api/axios'
 import { Replies } from '../../components/ProfileComponent/Replies/Replies'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 import { AuthRoute } from '../../layouts/AuthLayout'
+import { useStateContext } from '../../contexts/ContextProvider'
 function Profile() {
   const {pseudo}=useParams() 
-  const path= useLocation().pathname 
-  // const { data ,loading} =useFetch('profile/@' + pseudo) 
+  const path= useLocation().pathname  
   
+
+
+
+
+
+
+  // i have a idea to re render this component after edit profile try to 
+  //add a state into context and when user click to save change the value 
+  //of state wih anythink and add to useEffect
+
+  // you are here you can do it 😉✌
+
+  // what are u doing here ??
+
+
+
+
+
+
+
+
+
+
+
+
+  const { render } = useStateContext();
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null) 
- 
+  
   useEffect(()=>{
     setLoading(true)
     axios.get('profile/@' + pseudo)
@@ -35,15 +60,15 @@ function Profile() {
         setLoading(false)
         setError(false)
       });  
-  },[pseudo])
+  },[pseudo,render])
   return (
     <>
     {!loading && !data ? <PorfileNotFound/>:
-      <Main> 
+      <Main>
         {loading  ?<Loading/>:
         <div className="profile scroll">
           <ProfileHead name={data.data.name}/>
-          <ProfileInfo data1={data.data}/>
+          <ProfileInfo data1={data.data} />
           <div className="profile__links">
               <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('replies')==-1 ? 'active' :''} to='' > Tweets  </Link>
               <Link className={path.includes('replies') ? 'active':''} to='replies' > Replies </Link>

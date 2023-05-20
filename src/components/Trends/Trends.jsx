@@ -3,7 +3,16 @@ import './Trends.css'
 import SearchIcon from '../Icons/SearchIcon'
 import TrendItem from './TrendItem' 
 import { ShowMore } from '../ShowMore/ShowMore'
+import useFetch from '../../hooks/useFetch'
+import Loading from '../Loading/Loading'
+import { useStateContext } from '../../contexts/ContextProvider'
+import { useLocation } from 'react-router-dom'
 export default function Trends({FromExplore}) {
+  
+  const { loading, data } = useFetch('/trends');
+  const { IsArabic } = useStateContext();
+  const trend = useLocation().pathname.includes('explore') ? 5 : 9
+
   return ( 
     <div className='trends'>  
         <div className="trends__search">
@@ -21,13 +30,12 @@ export default function Trends({FromExplore}) {
               <span className='trends__title'>Trends for you</span>
             </header>
             <div className="trends__hashtags">
-              <TrendItem type='Sport Tranding' title='برشلونة' count='13.7k' isArabic={true} />
-              <TrendItem type='Sport Tranding' title='اشرف_حكيمي' count='13.7k' isArabic={true} />
-              <TrendItem type='Sport Tranding' title='Barça' count='1.7k' isArabic={false} />
-              <TrendItem type='Sport Tranding' title='مدريد' count='13.7k' isArabic={true} />
-              <TrendItem type='Sport Tranding' title='Xavi' count='13.7k' isArabic={false} /> 
+              {
+                loading ? <Loading /> : data?.data?.length && 
+                data?.data?.slice(0, trend).map((one,i) => <TrendItem key={i} title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
+              }
             </div>
-            <ShowMore to='#'/>
+            {!loading && trend === 9 && <ShowMore to='/explore'/>}
         </div>  
     </div> 
   )

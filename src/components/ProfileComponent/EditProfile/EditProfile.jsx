@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate,Navigate, useParams } from 'react-router-dom'
 import './EditProfile.css'
 import CloseIcon from '../../Icons/CloseIcon'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
@@ -11,12 +11,12 @@ import { useSelector } from 'react-redux'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../Loading/Loading'
 import { useRef } from 'react'
-import axios from '../../../api/axios'
+import axios from '../../../api/axios' 
 
 export const EditProfile = () => {
 
     const { user: { pseudo } } = useSelector(state => state.Auth)
-    const { Mounths,CallToast } = useStateContext();
+    const { Mounths,CallToast,setRender ,render} = useStateContext();
     const navigate = useNavigate()
     if (pseudo.substring(1) != useParams().pseudo) navigate(-1)
 
@@ -32,24 +32,30 @@ export const EditProfile = () => {
 
     useEffect(() => {
         if (data?.data) {
+            // add you timer befor pp and cover added so you can handle your work faster
             setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse:data?.data?.adresse })
             const bir = new Date(data?.data?.birthday)
             setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() }) 
         }
     }, [data])
 
-    
+
+// si mhamed i thing you should this trables before insert any thing so i can copie your work 😊
+// and find solution for image slowns the animation like facebook its just an excuse 
+
 
     const save = () => { 
         const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day)+1);   
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
-              'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-          })
+        })
             .then(function (response) {
                 console.log(response.data);
                 CallToast(response?.data?.message)
+                setRender(!render)
+                navigate('/'+pseudo.substring(1))
 
             })
             .catch(function (error) {
@@ -111,7 +117,7 @@ export const EditProfile = () => {
                                     <div className="icon">
                                         <Camera onClick={() => cover.current.click()} />
                                     </div>
-                                    {data?.data?.cover || images?.cover ?
+                                    {images?.cover ?
                                         <div className="icon" onClick={() => setImages({...images,cover:null})}>
                                             <CloseIcon />
                                         </div>:''}

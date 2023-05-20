@@ -25,14 +25,19 @@ export default function RegisterStepOne() {
     }
     const useCheck = async email => {
         try{
+            // let mois;
+            // Mounths.map((one,index) => {
+            //     if(one.month.substring(0,3) == month.substring(0,3) ) mois = index+1;
+            // })
             const { data } = await axios.post('/verifyEmail',{email});
             if(data){
                 dispatch(EmailValid());
             } 
             setError(prev => ({...prev, email:null}))
-        }catch({ response: { status } }) {
+        }catch(err) {
+            console.log(err);
             dispatch(EmailNotValid())
-            if(status === 403) setError(prev => ({...prev, email:'Email has already been taken.'}))
+            if(err?.response?.status === 403) setError(prev => ({...prev, email:'Email has already been taken.'}))
         }
     }
     const debouncedVerification = debounce(useCheck, 500);

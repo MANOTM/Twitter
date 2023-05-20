@@ -12,10 +12,12 @@ import DogIcon from '../../../pages/Home/icons/DogIcon';
 import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default function Tweet({
     tweet:
-    {
+    {  
+        idTweet,
         idUser,
         name,
         pseudo,
@@ -26,16 +28,34 @@ export default function Tweet({
         video,
         description,
         reply_count,
-        likes,
+        like_count,
         retweet_count,
         liked,
         retweeted
     }
 }
 ) {
+    const [interested, setInterested] = useState(false)
+    const user = idUser === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
-    const { CardHover, setCardHover, CallToast } = useStateContext();  
+    function formatTimeAgo(timeString) {
+        if (timeString.includes('minutes ago')) {
+            const minutesAgo = parseInt(timeString);
+            if (!isNaN(minutesAgo)) {
+                return `${minutesAgo}m`;
+            }
+        } else if (timeString.includes('an hour ago')) {
+            return `1h`;
+        } else if (timeString.includes('hours ago')) {
+        const hoursAgo = parseInt(timeString);
+        if (!isNaN(hoursAgo)) {
+            return `${hoursAgo}h`;
+        }
+        }
+        return timeString;
+    }
+    const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
     const MouseIn = ()=>{
         setCardHover(true)
@@ -60,18 +80,18 @@ export default function Tweet({
     const [isIn, setisIn] = useState(false) 
     const [active, setActive] = useState(false)
     return (
-        <div className='Tweet'>
+        <div hidden={interested} className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
             <div className="tweet__content">
-                <div className="tweet__left__img">
+                <Link to={'/'+pseudo.substring(1)} className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <img src={pp || avatar} />
                     </div>  
-                </div>
+                </Link>
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
-                            <span className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
+                            <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
                                 (<span className="tweet__icon__verify">
@@ -81,26 +101,30 @@ export default function Tweet({
                                 }
                                 <span className="tweet__pseudo">{pseudo}</span>
                                 <span className='tweet__dot'>.</span>
-                            </span>
-                            <span className='tweet___date' title={formattedDate}>{timeSpan}</span>
+                            </Link>
+                            <span className='tweet___date' title={formattedDate}>{formatTimeAgo(timeSpan)}</span>
                         </div>
-                        <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center" title='More'>
+                        <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard pseudo={pseudo} />
+                                <OptionCard setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
                             </> }
-                            <ThreePoints />
+                            <div title='More'>
+                                <ThreePoints />
+                            </div>
                         </div>
                     </div>
                     {
                         description && <div className="tweet__content__body">
-                            <p className='tweet__paragraph'>{description}</p>
+                            <p className={`tweet__paragraph ${IsArabic(description) && 'arabic'}`}>{description}</p>
                         </div>
                     }
                     <div className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
-                                <img src={image} alt="tweet__image" />
+                                <div style={{backgroundImage: `url(${image})`}} className="tweet__cover">
+                                    <img src={image} alt="tweet__image" />
+                                </div>
                             </div>
                         }
                         {
@@ -125,7 +149,7 @@ export default function Tweet({
                                 <div className="action__icon iconStyle center">
                                     <LikeIcon liked={liked || false} />
                                 </div>
-                                <span className="actions__counter">{likes || 0}</span>
+                                <span className="actions__counter">{like_count || 0}</span>
                             </div>
                             <div className="tweet__action">
                                 <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">
