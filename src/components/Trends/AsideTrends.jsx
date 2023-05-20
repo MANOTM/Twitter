@@ -5,10 +5,14 @@ import PolicyLinks from '../PolicyLinks/PolicyLinks'
 import { useLocation } from 'react-router-dom';
 
 export default function AsideTrends({children}) {
-  const connect = useLocation().pathname == '/connect';
+  const location = useLocation();
+  const connect = location.pathname == '/connect';
+  const search = location.pathname.includes('search')
   return (
     <div className='AsideTrends scroll'>
-        <Trends/>
+        {
+          !search && <Trends/>
+        }
         {
           !connect && <WhoToFollow/>
         }

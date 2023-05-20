@@ -18,7 +18,7 @@ export default function TrendResult({ hashtag }) {
                 {
                     loading ? <Loading /> : 
                     !data?.data?.length ? <WhoToFollow100 /> :
-                    data?.data?.map(tweet => <Tweet tweet={tweet} />)
+                    data?.data?.map(tweet => <Tweet key={tweet.id} tweet={tweet} />)
                 }
             </div>
         </div>
