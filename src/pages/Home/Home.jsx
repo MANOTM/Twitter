@@ -5,7 +5,6 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import "./Home.css";
 import Tweet from "../../components/posts/Tweets/Tweet";
 import { WhoToFollow100 } from "../../components/ProfileComponent/WhoToFollow100/WhoToFollow100";
-import Retweet from "../../components/posts/Retweet/Retweet";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
@@ -13,7 +12,8 @@ import { useSelector } from "react-redux";
 export default function Home() {
     const { SetTitle } = useStateContext();
     SetTitle("Home");
-    const { loading, data } = useFetch('/')
+    const { loading, data } = useFetch('/');
+    const { loggedIn: Auth } = useSelector(state => state.Auth);
     return (
         <>
             <Main>
@@ -23,7 +23,7 @@ export default function Home() {
                     <div className="tweets__container">
                         {
                             loading ? <Loading /> : data?.data?.length ?
-                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : <WhoToFollow100 />
+                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : Auth ? <WhoToFollow100 /> : <span style={{textAlign:'center'}} className="small-text">Nothing</span>
                         }
                     </div>
                 </div>
