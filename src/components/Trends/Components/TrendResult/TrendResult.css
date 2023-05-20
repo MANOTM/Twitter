@@ -1,0 +1,17 @@
+.trend__resultat {
+    width: 100%;
+    margin-top: 12px;
+    height: fit-content;
+}
+
+.result__title {
+    padding: 12px 16px;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.result__title a{
+    font-size: 17px;
+    font-weight: 700;
+}
+

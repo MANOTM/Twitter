@@ -1,0 +1,52 @@
+
+.trend__header__search,
+.trend__search__input {
+    display: flex;
+    align-items: center;
+}
+.trend__header__search {
+    justify-content: space-between;
+    padding: 0 16px; 
+    height: 53px;
+}
+.search__icon svg {
+    width: 18.5px;
+    height: 18.5px;
+    fill: rgb(113, 118, 123);
+}
+
+.trend__search__parametre svg {
+    width: 20px;
+    height: 20px;
+    fill: rgb(239, 243, 244);
+}
+
+.trend__search__parametre {
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: .2s ease;
+}
+.trend__search__parametre:hover {
+    background-color: rgba(239, 243, 244, .1);
+}
+
+.trend__search__input {
+    min-width: 520px;
+    height: 44px;
+    border-radius: 9999px;
+    margin: 0 4px;
+    background-color: rgb(32, 35, 39);
+}
+
+.search__icon {
+    width: 50px;
+    height: 44px;
+}
+
+.trand__search__input {
+    padding-left: 8px;
+    border-radius: 9999px;
+    background-color: transparent;
+}

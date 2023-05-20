@@ -36,14 +36,15 @@ npm i axios
 npm i js-cookie
 ```
 If none of this works for you, I recommend you to go back and check the steps again
+or go to pull backend again + fresh migration
 
 
 for support call @elonMask :money_with_wings::money_with_wings::money_with_wings:
 
 for notification use `CallToast('hello')` in your sotuation maybe you need button VIEW fiha, so add second paramétre `CallToast('hello,'/home')` add the path will added automaticly to view button :)
 
-for Set title page use `SetTitle('Home')` and import it from `useStateContext` => const { SetTitle } = useStateContext();
-obligatoir to impoted in all page [ even if you are in profile page ]
+for Set title page use `SetTitle('Home')` and import it from 
+useStateContext => const { SetTitle } = useStateContext();
 `SetTitle('Home')` => Home / Twitter
 `SetTitle()` => pathname / Twitter
 `SetTitle(null,true)` => Twitter
@@ -51,5 +52,12 @@ obligatoir to impoted in all page [ even if you are in profile page ]
 if you looking for footer Components [Terms of Service, Privacy Policy...] go to 
 ==> Components/PolicyLinks <==
 
-function isArabic('content') return true | false for checking if is any arabic words or not !!!
+function `isArabic('content')` return true | false for checking if is any arabic words or not !!!
 import from useStateContexte
+
+
+### go to backend and edit in controller this lines
+app\Http\Controllers\SettingController => (UpdateImg)
+![controller settingController](public/backend/profile.PNG)
+app\Http\Controllers\NotificationController => (getAllNotifications)
+![controller notificationsController](public/backend/notifications.PNG)

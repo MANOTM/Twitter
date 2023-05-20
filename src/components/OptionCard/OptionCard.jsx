@@ -4,12 +4,13 @@ import { Report, Block, Mute, List, Unfollow, SadImojis, DeleteIcon, EditTweetIc
 import axios from '../../api/axios'
 import { useStateContext } from '../../contexts/ContextProvider'
 
-export default function OptionCard({ pseudo, setInterested, idTweet }) {
+export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo
     const { CallToast } = useStateContext()
 
     const DeleteTweet = () => {
+        hiddeOption()
         axios
         .delete('/tweets/deleteTweet/'+idTweet)
         .then(res => {
@@ -18,6 +19,11 @@ export default function OptionCard({ pseudo, setInterested, idTweet }) {
         .catch(err => {
             CallToast('something happend, please try later✌')
         })
+    }
+
+    const Sorry = () => {
+        hiddeOption()
+        CallToast("We don't have the option yet😢")
     }
 
     return (
@@ -47,19 +53,19 @@ export default function OptionCard({ pseudo, setInterested, idTweet }) {
                 </li>
                 {
                     !user_pseudo && (<>
-                        <li>
+                        <li onClick={Sorry}>
                             <div className="option__icon">
                                 <Unfollow />
                             </div>
                             <span className="option__title">Unfollow {pseudo}</span>
                         </li>
-                        <li>
+                        <li onClick={Sorry}>
                             <div className="option__icon">
                                 <Mute />
                             </div>
                             <span className="option__title">Mute {pseudo}</span>
                         </li>
-                        <li>
+                        <li onClick={Sorry}>
                             <div className="option__icon">
                                 <Block />
                             </div>
@@ -67,13 +73,13 @@ export default function OptionCard({ pseudo, setInterested, idTweet }) {
                         </li>
                     </>)
                 }
-                <li>
+                <li onClick={Sorry}>
                     <div className="option__icon">
                         <List />
                     </div>
                     <span className="option__title">Add/remove {pseudo} from lists</span>
                 </li>
-                <li>
+                <li onClick={Sorry}>
                     <div className="option__icon">
                         <Report />
                     </div>

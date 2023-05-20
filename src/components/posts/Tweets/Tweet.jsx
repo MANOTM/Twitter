@@ -107,7 +107,7 @@ export default function Tweet({
                         <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
+                                <OptionCard hiddeOption={hiddeOption} setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
                             </> }
                             <div title='More'>
                                 <ThreePoints />

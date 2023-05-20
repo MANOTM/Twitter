@@ -258,3 +258,15 @@ button {
     font-weight: 600;
     color: rgb(231, 233, 234);
 }
+
+.input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(231, 233, 234);
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    line-height: 20px;
+}

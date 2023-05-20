@@ -43,7 +43,7 @@
     height: 100%;   
 }
 .trends__content{
-    margin-top: 65px;
+    /* margin-top: 65px; */
     height: fit-content;
     overflow: hidden;
     border-radius: 15px;
@@ -73,6 +73,10 @@
     flex-direction: column;
     gap: 5px;
     padding:10px 14px;
+    transition: .2s ease;
+}
+.trends__hashtag:hover {
+    background-color: rgba(255, 255, 255, .03);
 }
 .trend__option__icon {
     position: absolute;
