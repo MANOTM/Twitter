@@ -85,7 +85,7 @@ export default function Tweet({
             <div className="tweet__content">
                 <Link to={'/'+pseudo.substring(1)} className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
-                        <img src={pp || avatar} />
+                        <img loading='lazy' src={pp || avatar} />
                     </div>  
                 </Link>
                 <div className="tweet__right">
