@@ -22,6 +22,8 @@ export const EditProfile = () => {
 
     const { loading, data } = useFetch('profile/' + pseudo)
 
+    const [hidden,setHidden]=useState(true)
+
     //for input
     const [userInfo, setUserInfo] = useState(null) 
     const [birthday, setBirthday] = useState({})
@@ -45,6 +47,7 @@ export const EditProfile = () => {
 
 
     const save = () => { 
+        setHidden(false)
         const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));   
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
@@ -98,6 +101,7 @@ export const EditProfile = () => {
         <div className='new__chat__container edit__profile' onClick={() => navigate(-1)}>
             {loading ? <Loading /> :
                 <div className="new__chat scroll" onClick={e => { e.stopPropagation() }}>
+                    <div className="eventNone" hidden={hidden}><Loading/></div>
                     <div className="boite__m__header cursor_auto">
                         <div className='boite__header__info op1'>
                             <span className='iconH' onClick={() => navigate(-1)}><CloseIcon /></span>

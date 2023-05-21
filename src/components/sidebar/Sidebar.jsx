@@ -8,6 +8,7 @@ import Taawija from '../Icons/Taawija';
 import { useState } from 'react'; 
 import { useStateContext } from '../../contexts/ContextProvider'
 import useFetch from '../../hooks/useFetch'
+import { SideBarUser } from './SideBarUser'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
@@ -85,13 +86,7 @@ export default function Sidebar() {
                   </ul>
                 </div>
                 <div className="user__info" onClick={showIn}>
-                  <div className="avatar">
-                    <img src={user.pp || defaultProfile} alt="" />
-                  </div>
-                  <div className="info">
-                    <span className='name ellipsis'>{ user?.name }</span>
-                    <span className='username ellipsis'>{ user?.pseudo.toUpperCase() }</span>
-                  </div>
+                 <SideBarUser pseudo={user?.pseudo}/>
                 </div>
                 <div onClick={showIn} className="user__action">
                   <icons.ThreePoints  />
