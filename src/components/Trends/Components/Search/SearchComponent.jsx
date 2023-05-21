@@ -42,7 +42,7 @@ export default function SearchComponent({ hashtag }) {
                     <label className='search__icon center' htmlFor="search">
                         <SearchIcon fill="#71767b" />
                     </label>
-                    <input type="text" value={value} onChange={e=>setValue(e.target.value)} autoComplete="off" onBlur={()=>setTimeout(()=>{setHidden(true)},500)} onFocus={()=>setHidden(false)} defaultValue={hashtag ? hashtag : ''} placeholder='Search Twitter' className='input trand__search__input' id='search' />
+                    <input type="text" value={value} onChange={e=>setValue(e.target.value)} autoComplete="off" onBlur={()=>setTimeout(()=>{setHidden(true)},500)} onFocus={()=>setHidden(false)} defaultValue={hashtag ? hashtag : ''} placeholder='Search Wazoo' className='input trand__search__input' id='search' />
                 </div>
                 <div className="fatherCenter" hidden={hidden}>
 

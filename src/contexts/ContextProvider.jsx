@@ -24,14 +24,14 @@ export const ContextProvider = ({ children }) => {
 
     const SetTitle = (title,Dont=false) => {
         if(Dont){
-            return document.title = 'Twitter'
+            return document.title = 'Wazoo'
         }
         const location = useLocation();
         const { pathname } = location;
         const content = pathname.substring(1)
         useEffect(() => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
-            / Twitter`;
+            / Wazoo`;
         },[title, content, Dont]);
         return null
     }

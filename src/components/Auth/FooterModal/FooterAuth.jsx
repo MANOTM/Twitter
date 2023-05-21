@@ -15,7 +15,7 @@ function FooterAuth() {
                             Don’t miss what’s happening
                         </span>
                         <p>
-                            People on Twitter are the first to know.
+                            People on Wazoo are the first to know.
                         </p>
                     </div>
                     <div className="modal__buttons">

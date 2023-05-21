@@ -9,10 +9,10 @@ export const SearchContent = ({ value, data, loading }) => {
             <div className="search__result_users">
                 <div className="user_result">
 
-                    {data.map(user => {
+                    {data.map((user,id) => {
                         return (
-                            <div key={user.id} className="suggestion__user search_hover">
-                                <Link to={user.pseudo.substring(1)} className="suggestion__content">
+                            <div key={id} className="suggestion__user search_hover">
+                                <Link to={`/${user.pseudo.substring(1)}`} className="suggestion__content">
                                     <div className="avatar">
                                         <img src={user?.image || defaultAvatar} alt="" />
                                     </div>

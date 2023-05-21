@@ -68,7 +68,7 @@ export default function NewPassword() {
             <span className="forgot__title">Choose a new password</span>
             <p className="small-title">Make sure your new password is 8 characters or more. Try including numbers, letters, and punctuation marks for a <a className='a-link' target='_blank' href="https://help.twitter.com/en/safety-and-security/account-security-tips?ref=password_reset">strong password</a>. </p>
         </div>
-        <span className="forgot__second__paragraph">You'll be logged out of all active Twitter sessions after your password is changed.</span>
+        <span className="forgot__second__paragraph">You'll be logged out of all active Wazoo sessions after your password is changed.</span>
         <div className="forgot__passwords">
             <div className="forgot__email__input">
                 <Input

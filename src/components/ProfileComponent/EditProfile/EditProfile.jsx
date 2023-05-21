@@ -177,7 +177,7 @@ export const EditProfile = () => {
                         <div className='profile_birthay'>
                             <span className='mb-b'>Birth date</span>
                             <p className='small-text'>This should be the date of birth of the person using the account. Even if you’re making an account for your business, event, or cat.</p><br />
-                            <p className='small-text'>Twitter uses your age to customize your experience, including ads, as explained in our <a href="https://twitter.com/en/privacy" className='underline'>Privacy Policy</a>.</p>
+                            <p className='small-text'>Wazoo uses your age to customize your experience, including ads, as explained in our <a href="https://twitter.com/en/privacy" className='underline'>Privacy Policy</a>.</p>
                             <div className="registed__select__date__step">
                                 <div className="select__option">
                                     <label htmlFor="month" className="select__label">Month</label>
