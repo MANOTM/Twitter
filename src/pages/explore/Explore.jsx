@@ -13,10 +13,11 @@ export default function Explore() {
   const { SetTitle } = useStateContext();
   SetTitle()
   const { data, loading } = loggedIn ? useFetch('/') : { data:null, loading:false };
+  console.log(loggedIn);
   return (
         <Main>
           {
-            loggedIn ? 
+            !loggedIn ? 
             <Trends FromExplore={true} />
             :
             loading ? <Loading /> : !data?.data?.length ? <WhoToFollow100 /> :

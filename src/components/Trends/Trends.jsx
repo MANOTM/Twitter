@@ -9,10 +9,12 @@ import { useStateContext } from '../../contexts/ContextProvider'
 import { useLocation, useParams } from 'react-router-dom'
 import SearchComponent from './Components/Search/SearchComponent'
 import TrendResult from './Components/TrendResult/TrendResult'
+import { useSelector } from 'react-redux'
 
 export default function Trends({FromExplore}) {
   
-  const { loading, data } = useFetch('/trends');
+  const { loggedIn } = useSelector(state => state.Auth);
+  const { loading, data } = loggedIn ? useFetch('/trends') : useFetch('/')
   const { hashtag } = useParams();
   const { IsArabic } = useStateContext();
   const location = useLocation();
@@ -27,13 +29,24 @@ export default function Trends({FromExplore}) {
                 <header className='trends__header'>
                   <span className='trends__title'>Trends for you</span>
                 </header>
-                <div className="trends__hashtags">
+                {
+                  loggedIn ? <>
+                  <div className="trends__hashtags">
+                    {
+                      loading ? <Loading /> : data?.data?.length && 
+                      data?.data?.slice(0, trend).map((one,i) => <TrendItem key={i} index={i} title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
+                    }
+                  </div>
+                  <ShowMore to='/explore'/>
+                  </>
+                  :
+                  <div className="trends__tweet">
                   {
                     loading ? <Loading /> : data?.data?.length && 
-                    data?.data?.slice(0, trend).map((one,i) => <TrendItem key={i} index={i} title={one.hashtag} count={one.count} isArabic={IsArabic(one.hashtag)} />)
+                    data?.data?.map((tweet) => <TrendItem key={tweet.idUser} tweet={tweet} />)
                   }
-                </div>
-                <ShowMore to='/explore'/>
+                  </div>
+                }
             </div>  
             )
         }
