@@ -59,6 +59,7 @@ export const ContextProvider = ({ children }) => {
     // 9ad toast li 5serti wla nfr3ek
     // makhasrt ta la3ba ana ra hadchi dyalk 3la seba
     // 5lenak t5dem m3ana f context o nta dsaar
+    // had context kon kan kaydwi kon galk barak
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)

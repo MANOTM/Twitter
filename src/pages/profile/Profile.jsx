@@ -35,6 +35,8 @@ function Profile() {
   // what are u doing here ??
 
   //i forgot how to use useParams so I came to check the professional how he was doing it 😊
+  
+  //😊😊
 
 
 
