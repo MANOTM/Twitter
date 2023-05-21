@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom'
 
 export default function SearchComponent({ hashtag }) {
     const exlore = useLocation().pathname == 'explore';
-    console.log(exlore);
     return <div className="trends__search">
         <div className={`trend__header__search ${exlore && 'padding'}`}>
         <div className="trend__search__input">

@@ -22,7 +22,7 @@ export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption
     }
 
     const Sorry = () => {
-        hiddeOption()
+        ()=>hiddeOption()
         CallToast("We don't have the option yet😢")
     }
 
