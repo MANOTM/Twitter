@@ -20,8 +20,8 @@ export default function Explore() {
             !loggedIn ? 
             <Trends FromExplore={true} />
             :
-            loading ? <Loading /> : !data?.data?.length ? <WhoToFollow100 /> :
-            data?.data?.map(tweet => <Tweet tweet={tweet} />)
+            loading ? <Loading /> : !data?.data?.length ? <WhoToFollow100 /> : <Trends FromExplore={true}/>
+            // data?.data?.map(tweet => <Tweet tweet={tweet} />)
           }
         </Main>
   )

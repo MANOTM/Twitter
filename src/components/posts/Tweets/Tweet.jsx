@@ -13,6 +13,7 @@ import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Tweet({
     tweet:
@@ -71,10 +72,11 @@ export default function Tweet({
         setOptionHover(true)
     }
     const hiddeOption = event => {
+        console.log('1');
         if(event) event.stopPropagation();
         setOptionHover(false)
         setShareHover(false)
-    } 
+    }                                                                                                                                                                                                           
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [isIn, setisIn] = useState(false) 
@@ -94,7 +96,7 @@ export default function Tweet({
                             <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
-                                (<span className="tweet__icon__verify">
+                                verifyUser && (<span className="tweet__icon__verify">
                                             <VerifyIcon />
                                             <DogIcon />
                                         </span>)
@@ -107,7 +109,7 @@ export default function Tweet({
                         <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard hiddeOption={()=>hiddeOption} setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
+                                <OptionCard hiddeOption={hiddeOption} setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
                             </> }
                             <div title='More'>
                                 <ThreePoints />
@@ -122,9 +124,12 @@ export default function Tweet({
                     <div className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
-                                <div style={{backgroundImage: `url(${image})`}} className="tweet__cover">
-                                    <img src={image} alt="tweet__image" />
-                                </div>
+                                {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
+                                <LazyLoadImage
+                                    effect='blur'
+                                    src={image}
+                                    alt="tweet_img"
+                                />
                             </div>
                         }
                         {

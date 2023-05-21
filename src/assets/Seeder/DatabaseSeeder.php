@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'elon@example.com',
         ]);
         \App\Models\User::factory()->create([
-            'name' => 'yassine adiouani',
+            'name' => 'Andrew Tate',
             'birthDay' => '2002-08-08',
             'password' => Hash::make('12345678'),
             'pseudo'=>'@yassine',
@@ -58,7 +58,8 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Tweet::create([
             'idUser' => 1,
-            'description' => '#Wazoo its copie of twitter 99%👀',
+            'description' => '#Better-Call-Saul 👌',
+            'image' => 'https://pbs.twimg.com/media/FwmjTlZXsAAVamD?format=jpg&name=medium',
             'created_at'=>'2023-05-21 11:45:11',
             'updated_at'=>'2023-05-21 11:45:11',
         ]);
@@ -75,8 +76,9 @@ class DatabaseSeeder extends Seeder
             'updated_at'=>'2023-05-11 11:45:11',
         ]);
         \App\Models\Tweet::create([
-            'idUser' => 2,
-            'description' => 'tnx for #OFPPT ',
+            'idUser' => 3,
+            'description' => 'GM',
+            'image' => 'https://pbs.twimg.com/media/FwkcULoWIAM9dZB?format=jpg&name=small',
             'created_at'=>'2023-05-20 11:45:11',
             'updated_at'=>'2023-05-20 11:45:11',
         ]);

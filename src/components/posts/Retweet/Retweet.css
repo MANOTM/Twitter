@@ -180,11 +180,8 @@
     outline-style: none;
     overflow: hidden;
     cursor: pointer;
-    max-height: 650px;
-    max-width: 504px;
-    width: 100%;
-    height: 100%;
-    flex-grow: 1;
+    height: 504px;
+    width: 382.5px;
     user-select: none;
 }
 
@@ -192,7 +189,8 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    inset: none;
+    inset: 0;
+    opacity: 1;
 }
 
 .tweet__react__footer svg {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Trends.css'
 import SearchIcon from '../Icons/SearchIcon'
 import TrendItem from './TrendItem' 
@@ -13,13 +13,14 @@ import { useSelector } from 'react-redux'
 
 export default function Trends({FromExplore}) {
   
+  const location = useLocation();
+  const trend = location.pathname.includes('explore') ? 5 : 9;
+  const search = location.pathname.includes('search');
   const { loggedIn } = useSelector(state => state.Auth);
   const { loading, data } = loggedIn ? useFetch('/trends') : useFetch('/')
   const { hashtag } = useParams();
   const { IsArabic } = useStateContext();
-  const location = useLocation();
-  const trend = location.pathname.includes('explore') ? 5 : 9;
-  const search = location.pathname.includes('search');
+  const [tags, setTags] = useState(data?.data);
   return ( 
     <div className='trends'>  
         <SearchComponent hashtag={hashtag?hashtag:null} />
@@ -29,8 +30,6 @@ export default function Trends({FromExplore}) {
                 <header className='trends__header'>
                   <span className='trends__title'>Trends for you</span>
                 </header>
-                {
-                  loggedIn ? <>
                   <div className="trends__hashtags">
                     {
                       loading ? <Loading /> : data?.data?.length && 
@@ -38,15 +37,6 @@ export default function Trends({FromExplore}) {
                     }
                   </div>
                   <ShowMore to='/explore'/>
-                  </>
-                  :
-                  <div className="trends__tweet">
-                  {
-                    loading ? <Loading /> : data?.data?.length && 
-                    data?.data?.map((tweet) => <TrendItem key={tweet.idUser} tweet={tweet} />)
-                  }
-                  </div>
-                }
             </div>  
             )
         }
