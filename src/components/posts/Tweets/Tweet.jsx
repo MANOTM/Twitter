@@ -80,7 +80,7 @@ export default function Tweet({
     }
     // like logic
     const [add_to_count, setAddToCount] = useState(0)
-    const [addLike, setAddLike] = useState(like);
+    const [addLike, setAddLike] = useState(liked);
     const [actionTimer, setActionTimer] = useState(false)
     const handleLikes = status => {
         // block like
