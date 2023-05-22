@@ -6,6 +6,9 @@
 .Tweet img {
     user-select: none;
 }
+.tweet__paragraph a{
+    color: #1d9bf0;
+}
 .retweet__tweet { 
     display: flex;
     align-items: center;
@@ -170,7 +173,11 @@
     max-width: 504px;
     min-width: 382px;
     max-height: 510px;
+<<<<<<< HEAD
     min-height: 268px;
+=======
+    min-height:250px;
+>>>>>>> 3bc5ce3d1c4dc5da237ff1c54d44fc16ea2cf116
     inset: 0;
     border: 1px solid rgb(47, 51, 54);
 }

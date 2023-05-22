@@ -13,9 +13,8 @@ import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import useLike from '../../../hooks/useLike';
-import { FrequentlyUsed } from 'emoji-mart';
-import FooterAction from './FooterAction/FooterAction';
+import useLike from '../../../hooks/useLike'; 
+import { HashtagLink } from '../../../assets/Helper/HashtagLink';
 
 export default function Tweet({
     tweet:
@@ -113,7 +112,7 @@ export default function Tweet({
                                         </span>)
                                 }
                                 <span className="tweet__pseudo">{pseudo}</span>
-                                <span className='tweet__dot'>.</span>
+                                <span className='tweet__dot point'>.</span>
                             </Link>
                             <span className='tweet___date' title={formattedDate}>{formatTimeAgo(timeSpan)}</span>
                         </div>
@@ -129,7 +128,7 @@ export default function Tweet({
                     </div>
                     {
                         description && <div className="tweet__content__body">
-                            <p className={`tweet__paragraph ${IsArabic(description) && 'arabic'}`}>{description}</p>
+                            <p className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
                         </div>
                     }
                     <div className="tweet__content__media m-t">

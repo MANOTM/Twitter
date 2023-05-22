@@ -21,7 +21,7 @@ export const Media = ({user}) => {
 
   useEffect(()=>{
     if(data){
-      const dataFilter=data.data.filter(tweet=>tweet.image)
+      const dataFilter=data.data.filter(tweet=>tweet.image && !tweet.orginaUserId)
       setDataFilter(dataFilter)
     }  
   },[data])
