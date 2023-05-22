@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useStateContext } from '../../contexts/ContextProvider'
 import useFetch from '../../hooks/useFetch'
 import { SideBarUser } from './SideBarUser'
+import axios from '../../api/axios'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
@@ -16,10 +17,10 @@ export default function Sidebar() {
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
-  const { data, loading } = useFetch('/countNotification');
-  if(!loading) {
-    setCountNotifi(data?.data?.count_notify || null)
-  }
+  // setInterval(()=>{
+  //   axios
+  //   .get('/countNotification').then(res => setCountNotifi(res?.data?.count_notify || null));
+  // },10000);
   const showOut = event => {
     event.stopPropagation();
     setActive(false)
@@ -89,7 +90,7 @@ export default function Sidebar() {
                   </ul>
                 </div>
                 <div className="user__info" onClick={showIn}>
-                 <SideBarUser pseudo={user?.pseudo}/>
+                  <SideBarUser pseudo={user?.pseudo}/>
                 </div>
                 <div onClick={showIn} className="user__action">
                   <icons.ThreePoints  />

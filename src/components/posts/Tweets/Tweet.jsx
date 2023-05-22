@@ -79,26 +79,24 @@ export default function Tweet({
         setShareHover(false)
     }
     // like logic
-    // const check_like = setInterested(() => {
-
-    // },12000);
     const [add_to_count, setAddToCount] = useState(0)
     const [addLike, setAddLike] = useState(like);
     const [actionTimer, setActionTimer] = useState(false)
     const handleLikes = status => {
+        // block like
         setActionTimer(true)
         let blockLike = setTimeout(()=>{
             setActionTimer(false)
-        },2500)
+        },4000);
+        // like f api
         useLike(status, idTweet);
-        console.log(actionTimer);
+        // add like 
         if(status){
             setAddToCount(-1)
-            return setAddLike(!addLike);
+            return setAddLike(false);
         } 
         setAddToCount(1)
-        setAddLike(!addLike);
-        console.log(add_to_count);
+        setAddLike(true);
     }                                                                                                                                                                                                        
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
