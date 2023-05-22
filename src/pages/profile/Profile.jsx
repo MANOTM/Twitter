@@ -12,7 +12,7 @@ import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/T
 import NotFound from '../NotFound/NotFound'   
 import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
-import { Replies } from '../../components/ProfileComponent/Replies/Replies'
+import { Retweet } from '../../components/ProfileComponent/Retweet/Retweet'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 import { AuthRoute } from '../../layouts/AuthLayout'
 import { useStateContext } from '../../contexts/ContextProvider'
@@ -22,9 +22,7 @@ function Profile() {
   
 
 
-
-
-
+ 
 
   // i have a idea to re render this component after edit profile try to 
   //add a state into context and when user click to save change the value 
@@ -74,15 +72,15 @@ function Profile() {
           <ProfileHead name={data.data.name}/>
           <ProfileInfo data1={data.data} />
           <div className="profile__links">
-              <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('replies')==-1 ? 'active' :''} to='' > Tweets  </Link>
-              <Link className={path.includes('replies') ? 'active':''} to='replies' > Replies </Link>
+              <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('retweet')==-1 ? 'active' :''} to='' > Tweets  </Link>
+              <Link className={path.includes('retweet') ? 'active':''} to='retweet' > Retweets </Link>
               <Link className={path.includes('media') ? 'active' :''} to='media' > Media  </Link>
               <Link className={path.includes('likes') ? 'active' :''} to='likes'> Likes  </Link>
           </div>
           <div className="profile_selecte">
             <Routes>
               <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
-              <Route path='/replies' element={<Replies/>}/>
+              <Route path='/retweet' element={<Retweet userInfo={data?.data}/>}/>
               <Route path='/media' element={<Media user={data.data}/>}/>
               <Route path='/likes' element={<Likes user={data.data}/>}/>  
               <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
