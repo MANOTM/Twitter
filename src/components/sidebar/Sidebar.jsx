@@ -5,7 +5,7 @@ import * as icons from './IconsImport'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Taawija from '../Icons/Taawija';
-import { useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { useStateContext } from '../../contexts/ContextProvider'
 import useFetch from '../../hooks/useFetch'
 import { SideBarUser } from './SideBarUser'
@@ -17,10 +17,17 @@ export default function Sidebar() {
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
-  // setInterval(()=>{
-  //   axios
-  //   .get('/countNotification').then(res => setCountNotifi(res?.data?.count_notify || null));
-  // },10000);
+  // notification check 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get('/countNotification').then(res => {
+        setCountNotifi(res.data.data.count_notify);
+      })
+  }, 20000);
+    return () => clearInterval(interval);
+  }, []);
+
   const showOut = event => {
     event.stopPropagation();
     setActive(false)

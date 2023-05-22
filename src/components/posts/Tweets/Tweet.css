@@ -170,6 +170,7 @@
     max-width: 504px;
     min-width: 382px;
     max-height: 510px;
+    min-height: 268px;
     inset: 0;
     border: 1px solid rgb(47, 51, 54);
 }

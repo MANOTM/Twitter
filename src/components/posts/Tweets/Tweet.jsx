@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike';
 import { FrequentlyUsed } from 'emoji-mart';
+import FooterAction from './FooterAction/FooterAction';
 
 export default function Tweet({
     tweet:
@@ -32,7 +33,7 @@ export default function Tweet({
         reply_count,
         like_count,
         retweet_count,
-        liked,
+        like,
         retweeted,
         orginaUserId
     }
@@ -77,27 +78,7 @@ export default function Tweet({
         if(event) event.stopPropagation();
         setOptionHover(false)
         setShareHover(false)
-    }
-    // like logic
-    const [add_to_count, setAddToCount] = useState(0)
-    const [addLike, setAddLike] = useState(liked);
-    const [actionTimer, setActionTimer] = useState(false)
-    const handleLikes = status => {
-        // block like
-        setActionTimer(true)
-        let blockLike = setTimeout(()=>{
-            setActionTimer(false)
-        },4000);
-        // like f api
-        useLike(status, idTweet);
-        // add like 
-        if(status){
-            setAddToCount(-1)
-            return setAddLike(false);
-        } 
-        setAddToCount(1)
-        setAddLike(true);
-    }                                                                                                                                                                                                        
+    }                                                                                                                                                                                                     
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [isIn, setisIn] = useState(false) 
@@ -156,7 +137,7 @@ export default function Tweet({
                             image && <div className="tweet__image">
                                 {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
                                 <LazyLoadImage
-                                    effect='blur'
+                                    effect="blur"
                                     src={image}
                                     alt="tweet_img"
                                 />
@@ -166,39 +147,17 @@ export default function Tweet({
                             video && <Video />
                         }
                     </div>
-                    <div className="tweet__react__footer">
-                        <div className="tweet__actions__list">
-                            <div className="tweet__action" title='Reply'>
-                                <div className="action__icon iconStyle center">
-                                    <CommentIcon />
-                                </div>
-                                <span className="actions__counter">{reply_count || 0}</span>
-                            </div>
-                            <div className={`tweet__action retweet ${retweeted && 'hasRetweet'}`} title='Retweet'>
-                                <div className="action__icon iconStyle center">
-                                    <RetweetIcon />
-                                </div>
-                                <span className="actions__counter">{retweet_count || 0}</span>
-                            </div>
-                            <div onClick={()=>handleLikes(addLike)} className={`tweet__action liked ${addLike && 'hasLike'} ${actionTimer && 'block'}`} title='Like'>
-                                <div className="action__icon iconStyle center">
-                                    <LikeIcon liked={addLike} />
-                                </div>
-                                <span className="actions__counter">{(like_count + (add_to_count)) > 0 ? (like_count + (add_to_count)) : 0}</span>
-                            </div>
-                            <div className="tweet__action">
-                                <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">
-                                    <div title='Share'><ShareIcon /></div>
-                                    {ShareHover && 
-                                        <div>
-                                            <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                            <ShareCard hiddeOption={hiddeOption} />
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <FooterAction 
+                        idTweet={idTweet}
+                        like={like}
+                        reply_count={reply_count}
+                        retweeted={retweeted}
+                        like_count={like_count}
+                        hiddeOption={hiddeOption}
+                        retweet_count={retweet_count}
+                        ShareHover={ShareHover}
+                        showOption={showOption}
+                    />
                 </div>
             </div>
         </div>
