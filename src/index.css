@@ -37,6 +37,18 @@
 .d-block {
     display: block;
 }
+.w100{
+    width: 154px;
+    height: 19px;
+    border-radius: 17px;
+    overflow: hidden;
+}
+.w50{
+    width: 100px;
+    height: 19px;
+    border-radius: 17px;
+    overflow: hidden;
+}
 .avatar64{
     height: 64px;
     width: 64px;

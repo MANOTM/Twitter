@@ -6,7 +6,23 @@
 .Tweet img {
     user-select: none;
 }
-
+.retweet__tweet { 
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+.retweet__message  {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(113, 118, 123);
+    margin-left: 12px;
+}
+.retweet__icon__tweet svg{
+    width: 16px;
+    height: 16px;
+}
 .shrenk {
     flex-shrink: 1;
 }

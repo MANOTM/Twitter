@@ -4,6 +4,7 @@ import axios from '../../api/axios';
 import defaultProfile from '../../assets/images/defaultProfile.png'
 import { useStateContext } from '../../contexts/ContextProvider';
 import { useEffect } from 'react';
+import { Skeleton } from '../Loading/Skeleton/skeleton';
 export const SideBarUser = ({pseudo}) => {
     
   const { render } = useStateContext();
@@ -22,17 +23,14 @@ export const SideBarUser = ({pseudo}) => {
   },[render])
     return (
         <>
-        {loading ? '':
-        <>
             <div className="avatar">
-                <img src={data?.pp || defaultProfile} alt="" />
+                {loading ? <Skeleton/>:<img src={data?.pp || defaultProfile} alt="" />}
             </div>
             <div className="info">
-                <span className='name ellipsis'>{data?.name}</span>
-                <span className='username ellipsis'>{data?.pseudo.toUpperCase()}</span>
+                <span className='name ellipsis'> {loading && <div className='w100'><Skeleton/></div>} {data?.name }</span>
+                <span className='username ellipsis'>{loading && <div className='w50'><Skeleton/></div>}{data?.pseudo.toUpperCase()}</span>
             </div>
     
-        </>}
         </>
     )
 }

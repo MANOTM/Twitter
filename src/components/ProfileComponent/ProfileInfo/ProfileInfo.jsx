@@ -23,9 +23,7 @@ export const ProfileInfo = ({ data1 }) => {
   const showimg = e => {
 
     setProfileImg({ from: [e.target.name], src: [e.target.src] })
-    //   setProfileImg((prevState) => ({ 
-    //     from: [e.target.name],src:[e.target.src]
-    //  })) 
+     
   }
 
   const [NotAuth, setnotAuth] = useState(false)

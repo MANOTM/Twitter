@@ -32,7 +32,8 @@ export default function Tweet({
         like_count,
         retweet_count,
         liked,
-        retweeted
+        retweeted,
+        orginaUserId
     }
 }
 ) {
@@ -84,6 +85,13 @@ export default function Tweet({
     return (
         <div hidden={interested} className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
+        {orginaUserId && <div className="retweet__tweet">
+            <div className="retweet__icon__tweet">
+                <RetweetIcon />
+            </div>
+            <span className="retweet__message">This Tweet is retweeted</span>
+        </div>}
+        
             <div className="tweet__content">
                 <Link to={'/'+pseudo.substring(1)} className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
