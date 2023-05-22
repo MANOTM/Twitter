@@ -22,6 +22,8 @@ export const EditProfile = () => {
 
     const { loading, data } = useFetch('profile/' + pseudo)
 
+    const [hidden,setHidden]=useState(true)
+
     //for input
     const [userInfo, setUserInfo] = useState(null) 
     const [birthday, setBirthday] = useState({})
@@ -45,7 +47,8 @@ export const EditProfile = () => {
 
 
     const save = () => { 
-        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day)+1);   
+        setHidden(false)
+        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));   
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -98,6 +101,7 @@ export const EditProfile = () => {
         <div className='new__chat__container edit__profile' onClick={() => navigate(-1)}>
             {loading ? <Loading /> :
                 <div className="new__chat scroll" onClick={e => { e.stopPropagation() }}>
+                    <div className="eventNone" hidden={hidden}><Loading/></div>
                     <div className="boite__m__header cursor_auto">
                         <div className='boite__header__info op1'>
                             <span className='iconH' onClick={() => navigate(-1)}><CloseIcon /></span>
@@ -173,7 +177,7 @@ export const EditProfile = () => {
                         <div className='profile_birthay'>
                             <span className='mb-b'>Birth date</span>
                             <p className='small-text'>This should be the date of birth of the person using the account. Even if you’re making an account for your business, event, or cat.</p><br />
-                            <p className='small-text'>Twitter uses your age to customize your experience, including ads, as explained in our <a href="https://twitter.com/en/privacy" className='underline'>Privacy Policy</a>.</p>
+                            <p className='small-text'>Wazoo uses your age to customize your experience, including ads, as explained in our <a href="https://twitter.com/en/privacy" className='underline'>Privacy Policy</a>.</p>
                             <div className="registed__select__date__step">
                                 <div className="select__option">
                                     <label htmlFor="month" className="select__label">Month</label>

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Login() {
     const { SetTitle } = useStateContext();
-    SetTitle('Log in to Twitter')
+    SetTitle('Log in to Wazoo')
     const navigate = useNavigate()
     const [field, setField] = useState({ email:'', password:'' })
     const { steps, setSteps, CallToast } = useStateContext()
@@ -59,7 +59,7 @@ function Login() {
                 localStorage.setItem('user_info', JSON.stringify(data?.data?.user));
                 dispatch(LogIn(data.data.user));
                 setSteps(true)
-                CallToast('Welcome to Twitter✨✨😊')
+                CallToast('Welcome to Wazoo✨✨😊')
             }
         } catch(e){
             setLoading(false);
@@ -75,7 +75,7 @@ function Login() {
                 Loadingform ? <Loading /> : <>
                 <div className={`FirstStep`} hidden={!steps}>
                     <div className="login__title">
-                        <span>Sign in to Twitter</span>
+                        <span>Sign in to Wazoo</span>
                     </div>
                     <form className="login__form">
                         <div className="login__buttons">

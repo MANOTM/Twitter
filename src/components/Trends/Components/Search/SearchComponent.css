@@ -1,57 +1,173 @@
-.trends__search {
-    width: 100%;
+ .trend__header__search,
+ .trend__search__input {
+     display: flex;
+     align-items: center;
+ }
+
+ .trend__header__search {
+     justify-content: space-between;
+     height: 53px;
+ }
+
+ .trends__search.padding {
+     padding: 0 16px;
+ }
+
+ .search__icon svg {
+     width: 18.5px;
+     height: 18.5px;
+     fill: rgb(113, 118, 123);
+ }
+
+ .trend__search__parametre svg {
+     width: 20px;
+     height: 20px;
+     fill: rgb(239, 243, 244);
+ }
+
+ .trend__search__parametre {
+     width: 38px;
+     height: 38px;
+     cursor: pointer;
+     border-radius: 50%;
+     transition: .2s ease;
+ }
+
+ .trend__search__parametre:hover {
+     background-color: rgba(239, 243, 244, .1);
+ }
+
+ .trend__search__input {
+     width: 100%;
+     height: 44px;
+     border-radius: 9999px;
+     margin: 0 4px;
+     background-color: rgb(32, 35, 39);
+ }
+
+ .search__icon {
+     width: 50px;
+     height: 44px;
+ }
+
+ .trand__search__input {
+     padding-left: 8px;
+     border-radius: 9999px;
+     background-color: transparent;
+ }
+
+ .trends {
+     max-width: 100%;
+     width: 100%;
+     height: fit-content;
+ }
+.trends__search .focus{
+    transition: 100ms;
+    background: black;
+    border: 1px solid rgb(29, 155, 240) !important;
+    -webkit-transition: 100ms;
+    -moz-transition: 100ms;
+    -ms-transition: 100ms;
+    -o-transition: 100ms;
+}
+ .trends__search {
+     width: 100%;
+     position: sticky;
+     top: 0;
+     background-color: black;
+     z-index: 111;
+     /* background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px); */
+ }
+
+ .trend__header__search {
+     position: relative;
+ }
+
+ .fatherCenter {
+     position: absolute;
+     top: 52px;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     z-index: 111; 
+ }
+.borderB{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.436);
+}
+ .serchContent {
+     max-height: 70vh;
+     min-height: 100px;
+     overflow: auto;
+     border-radius: 8px;
+     width: 95%;
+     background-color: black;
+     z-index: 111   ;
+     box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+     -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+     -ms-border-radius: 8px;
+     -o-border-radius: 8px;
 }
 
-.trend__header__search,
-.trend__search__input {
+ .serchContent_blabla {
+     width: 100%;
+     text-align: center;
+     margin-top: 30px;
+     color: rgb(113, 118, 123);
+     font-size: 15px;
+ }
+ .search__content_users {
+position: relative;
+ }
+ .loadingLine::after {
+    content: '';
+    height: 3px ;
+    width: 50%;
+    background-color: #1d9bf0;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    animation: loadingLine 2s linear infinite;
+    -webkit-animation: loadingLine 2s linear infinite;
+}
+@keyframes loadingLine{
+    from{left: -50%;}
+    50%{left: 30%;}
+    70%{left: 70%;} 
+    90%{left: 120%;}
+    to{left: 100%}
+}
+.search_hover:hover {
+    background-color: rgb(22,24,28);
+}
+
+ .search_go_to{
+    color: rgb(231, 233, 234);
+    font-weight: 400;
+    font-size: 15px;
+    height: 50px;
+    width: 100%;
     display: flex;
+    overflow: hidden;
+    z-index: 22222;
     align-items: center;
+    padding-left: 20px;
+    transition: 200ms;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;
 }
-.trend__header__search {
-    justify-content: space-between;
-    height: 53px;
+.search__result_users{
+    display: flex;
+    flex-direction: column;
 }
-.trend__header__search.padding {
-    padding: 0 16px; 
-}
-.search__icon svg {
-    width: 18.5px;
-    height: 18.5px;
-    fill: rgb(113, 118, 123);
-}
-
-.trend__search__parametre svg {
-    width: 20px;
-    height: 20px;
-    fill: rgb(239, 243, 244);
-}
-
-.trend__search__parametre {
-    width: 38px;
-    height: 38px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: .2s ease;
-}
-.trend__search__parametre:hover {
-    background-color: rgba(239, 243, 244, .1);
-}
-
-.trend__search__input {
-    width: 100%;
-    height: 44px;
-    border-radius: 9999px;
-    margin: 0 4px;
-    background-color: rgb(32, 35, 39);
-}
-
-.search__icon {
-    width: 50px;
-    height: 44px;
-}
-
-.trand__search__input {
-    padding-left: 8px;
-    border-radius: 9999px;
-    background-color: transparent;
+.fatherCenter .suggestion__user{
+    padding: 10px 15px !important;
+    transition: 200ms;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;
 }

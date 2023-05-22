@@ -36,7 +36,7 @@ export default function ForgotEmail() {
     }
     return loading ? <div className="loading__dev"><Loading /></div> : <div className="forgot__content">
             <div className="forgot__header">
-                <span className="forgot__title">Find your Twitter account</span>
+                <span className="forgot__title">Find your Wazoo account</span>
                 <p className="small-title">Enter the email, phone number, or username associated with your account to change your password.</p>
             </div>
             <div className="forgot__email__input">
