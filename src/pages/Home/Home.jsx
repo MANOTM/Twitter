@@ -23,7 +23,7 @@ export default function Home() {
                     <div className="tweets__container">
                         {
                             loading ? <Loading /> : data?.data?.length ?
-                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : Auth ? <WhoToFollow100 /> : <span style={{textAlign:'center'}} className="small-text">Nothing</span>
+                            data?.data.map(tweet => <Tweet key={tweet.idTweet} tweet={tweet} />) : Auth ? <WhoToFollow100 /> : <span style={{textAlign:'center'}} className="small-text">hello</span>
                         }
                     </div>
                 </div>
