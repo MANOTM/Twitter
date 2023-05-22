@@ -85,9 +85,11 @@ const [SettingLayouts, setSettingLayouts] = useState(false);
 const [show__createTweet, setshow__createTweet] = useState(true);
 // ---------------z-index main 0------------------
 const [zIndex, setZIndex] = useState(false)
-// ---------------------------------
+// ----------------Notification Count----------
+const [countNotifi, setCountNotifi] = useState(null)
+
     return (
-        <StateContext.Provider value={{ setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }
