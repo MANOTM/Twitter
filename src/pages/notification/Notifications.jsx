@@ -11,11 +11,12 @@ import NotifiLike from './Components/TypeNotification/NotifiLike';
 
 export default function Notifications() {
 
-  const { SetTitle } = useStateContext();
+  const { SetTitle, setCountNotifi  } = useStateContext();
   const { data, loading } = useFetch('/notifications');
-  useFetch('/readNotifications');
-
+  const { loading:waiting, data: isRead } = useFetch('/readNotifications');
+  !waiting && isRead ? setCountNotifi(null) : null
   SetTitle()
+
   return (
         <Main> 
           <div>

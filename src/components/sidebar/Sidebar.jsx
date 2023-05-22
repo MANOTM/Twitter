@@ -12,11 +12,14 @@ import { SideBarUser } from './SideBarUser'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
-  const { setshow__createTweet } = useStateContext()
+  const { setshow__createTweet, countNotifi, setCountNotifi } = useStateContext()
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
   const { data, loading } = useFetch('/countNotification');
+  if(!loading) {
+    setCountNotifi(data?.data?.count_notify || null)
+  }
   const showOut = event => {
     event.stopPropagation();
     setActive(false)
@@ -44,10 +47,10 @@ export default function Sidebar() {
                       to="/explore" 
                       text="Explore" icon={<icons.ExploreIcon />} bold={<icons.BoldExploreIcon />}
                     />
-                    <SidebarItem notf={true} to="/notifications" text="Notifications" 
+                    <SidebarItem to="/notifications" text="Notifications" 
                       icon={<icons.NotificationIcon />}
                       bold={<icons.BoldNOtificationIcon />}
-                      count={!loading ? data?.data?.count_notify : null}
+                      count={countNotifi}
                     />
                     
                     <SidebarItem to="/messages" text="Messages"
@@ -82,7 +85,7 @@ export default function Sidebar() {
                   <div className="t3wija"><Taawija /></div>
                   <ul>
                     <li onClick={GoToProfile} className='hover'>Show {user.pseudo.substring(1)} profile</li>
-                    <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo.toUpperCase() }</li>
+                    <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo }</li>
                   </ul>
                 </div>
                 <div className="user__info" onClick={showIn}>

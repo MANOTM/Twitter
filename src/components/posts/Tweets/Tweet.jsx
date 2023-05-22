@@ -3,8 +3,7 @@ import './Tweet.css'
 import avatar from '../../../assets/images/defaultProfile.png'
 import ThreePoints from '../../Icons/ThreePoints';
 import { useStateContext } from '../../../contexts/ContextProvider'; 
-import { useSelector } from 'react-redux';
-import { debounce } from 'lodash';
+import { useSelector } from 'react-redux'; 
 import Video from '../Components/Video/Video';
 import HoverCard from '../../HoverCard/HoverCard';
 import { CommentIcon, LikeIcon, RetweetIcon, ShareIcon, VerifyIcon } from '../../Icons/PostIcons';
@@ -14,6 +13,8 @@ import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import useLike from '../../../hooks/useLike';
+import { FrequentlyUsed } from 'emoji-mart';
 
 export default function Tweet({
     tweet:
@@ -73,11 +74,32 @@ export default function Tweet({
         setOptionHover(true)
     }
     const hiddeOption = event => {
-        console.log('1');
         if(event) event.stopPropagation();
         setOptionHover(false)
         setShareHover(false)
-    }                                                                                                                                                                                                           
+    }
+    // like logic
+    // const check_like = setInterested(() => {
+
+    // },12000);
+    const [add_to_count, setAddToCount] = useState(0)
+    const [addLike, setAddLike] = useState(like);
+    const [actionTimer, setActionTimer] = useState(false)
+    const handleLikes = status => {
+        setActionTimer(true)
+        let blockLike = setTimeout(()=>{
+            setActionTimer(false)
+        },2500)
+        useLike(status, idTweet);
+        console.log(actionTimer);
+        if(status){
+            setAddToCount(-1)
+            return setAddLike(!addLike);
+        } 
+        setAddToCount(1)
+        setAddLike(!addLike);
+        console.log(add_to_count);
+    }                                                                                                                                                                                                        
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [isIn, setisIn] = useState(false) 
@@ -93,11 +115,13 @@ export default function Tweet({
         </div>}
         
             <div className="tweet__content">
-                <Link to={'/'+pseudo.substring(1)} className="tweet__left__img">
+                <div className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
-                        <img loading='lazy' src={pp || avatar} />
+                        <Link to={'/'+pseudo.substring(1)}>
+                            <img loading='lazy' src={pp || avatar} />
+                        </Link>
                     </div>  
-                </Link>
+                </div>
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
@@ -158,11 +182,11 @@ export default function Tweet({
                                 </div>
                                 <span className="actions__counter">{retweet_count || 0}</span>
                             </div>
-                            <div className={`tweet__action liked ${liked && 'hasLike'}`} title='Like'>
+                            <div onClick={()=>handleLikes(addLike)} className={`tweet__action liked ${addLike && 'hasLike'} ${actionTimer && 'block'}`} title='Like'>
                                 <div className="action__icon iconStyle center">
-                                    <LikeIcon liked={liked || false} />
+                                    <LikeIcon liked={addLike} />
                                 </div>
-                                <span className="actions__counter">{like_count || 0}</span>
+                                <span className="actions__counter">{(like_count + (add_to_count)) > 0 ? (like_count + (add_to_count)) : 0}</span>
                             </div>
                             <div className="tweet__action">
                                 <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">

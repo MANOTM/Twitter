@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
-export default function SidebarItem({children,text,to,notf,bold,icon,count}) {
+export default function SidebarItem({children,text,to,bold,icon,count}) {
     const location = useLocation();
     return (
         <li className='sidebar__item hover'>
@@ -12,7 +12,7 @@ export default function SidebarItem({children,text,to,notf,bold,icon,count}) {
                         location.pathname == to ? bold : icon
                     }
                     {
-                        count ? <div className="counter__notitification center">{count}</div> : notf && <span></span>
+                        count && <div className="counter__notitification center">{count}</div>
                     }
                 </div>
                 <div className="sidebar__text">{text}</div> 

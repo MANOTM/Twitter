@@ -15,6 +15,7 @@ import Setting from "./pages/Setting/Setting";
 import { ProfileFollower } from "./components/ProfileComponent/ProfileFollowe/ProfileFollower";
 import { Connect } from "./pages/Connect/Connect";
 import Forgot from "./pages/Auth/Forgot/Forgot";
+import TrendsList from "./components/Trends/Components/TrendsList/TrendsList";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path : '/connect',
                 element :<AuthRoute element={Connect}/>,
+            },
+            {
+                path : '/i/trends',
+                element :<AuthRoute element={TrendsList}/>,
             },
             {
                 path : '/settings/*',

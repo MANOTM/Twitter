@@ -21,7 +21,7 @@ export const WhoToFollow100 = () => {
           })
         } 
         
-        <ShowMore to='/connect'/>
+        {!loading && !loading && <ShowMore to='/connect'/>}
     </div>
   )
 }
