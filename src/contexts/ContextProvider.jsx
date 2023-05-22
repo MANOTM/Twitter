@@ -24,14 +24,14 @@ export const ContextProvider = ({ children }) => {
 
     const SetTitle = (title,Dont=false) => {
         if(Dont){
-            return document.title = 'Twitter'
+            return document.title = 'Wazoo'
         }
         const location = useLocation();
         const { pathname } = location;
         const content = pathname.substring(1)
         useEffect(() => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
-            / Twitter`;
+            / Wazoo`;
         },[title, content, Dont]);
         return null
     }
@@ -59,6 +59,7 @@ export const ContextProvider = ({ children }) => {
     // 9ad toast li 5serti wla nfr3ek
     // makhasrt ta la3ba ana ra hadchi dyalk 3la seba
     // 5lenak t5dem m3ana f context o nta dsaar
+    // had context kon kan kaydwi kon galk barak
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
@@ -85,9 +86,11 @@ const [SettingLayouts, setSettingLayouts] = useState(false);
 const [show__createTweet, setshow__createTweet] = useState(true);
 // ---------------z-index main 0------------------
 const [zIndex, setZIndex] = useState(false)
-// ---------------------------------
+// ----------------Notification Count----------
+const [countNotifi, setCountNotifi] = useState(null)
+
     return (
-        <StateContext.Provider value={{ setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

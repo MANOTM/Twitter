@@ -33,7 +33,7 @@ export default function NewToTwitter() {
                 </div>
                 <span className='new__title__footer'>
                     <PolicyLinks /><br />
-                    <p> &copy; 2023 Twitter, Inc. </p>
+                    <p> &copy; 2023 Wazoo, Inc. </p>
                 </span>
             </div>
         </>

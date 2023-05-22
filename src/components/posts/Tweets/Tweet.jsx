@@ -3,8 +3,7 @@ import './Tweet.css'
 import avatar from '../../../assets/images/defaultProfile.png'
 import ThreePoints from '../../Icons/ThreePoints';
 import { useStateContext } from '../../../contexts/ContextProvider'; 
-import { useSelector } from 'react-redux';
-import { debounce } from 'lodash';
+import { useSelector } from 'react-redux'; 
 import Video from '../Components/Video/Video';
 import HoverCard from '../../HoverCard/HoverCard';
 import { CommentIcon, LikeIcon, RetweetIcon, ShareIcon, VerifyIcon } from '../../Icons/PostIcons';
@@ -13,6 +12,9 @@ import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import useLike from '../../../hooks/useLike'; 
+import { HashtagLink } from '../../../assets/Helper/HashtagLink';
 
 export default function Tweet({
     tweet:
@@ -30,8 +32,9 @@ export default function Tweet({
         reply_count,
         like_count,
         retweet_count,
-        liked,
-        retweeted
+        like,
+        retweeted,
+        orginaUserId
     }
 }
 ) {
@@ -74,7 +77,7 @@ export default function Tweet({
         if(event) event.stopPropagation();
         setOptionHover(false)
         setShareHover(false)
-    } 
+    }                                                                                                                                                                                                     
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [isIn, setisIn] = useState(false) 
@@ -82,25 +85,34 @@ export default function Tweet({
     return (
         <div hidden={interested} className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
+        {orginaUserId && <div className="retweet__tweet">
+            <div className="retweet__icon__tweet">
+                <RetweetIcon />
+            </div>
+            <span className="retweet__message">This Tweet is retweeted</span>
+        </div>}
+        
             <div className="tweet__content">
-                <Link to={'/'+pseudo.substring(1)} className="tweet__left__img">
+                <div className="tweet__left__img">
                     <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
-                        <img src={pp || avatar} />
+                        <Link to={'/'+pseudo.substring(1)}>
+                            <img loading='lazy' src={pp || avatar} />
+                        </Link>
                     </div>  
-                </Link>
+                </div>
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
                             <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
-                                (<span className="tweet__icon__verify">
+                                verifyUser && (<span className="tweet__icon__verify">
                                             <VerifyIcon />
                                             <DogIcon />
                                         </span>)
                                 }
                                 <span className="tweet__pseudo">{pseudo}</span>
-                                <span className='tweet__dot'>.</span>
+                                <span className='tweet__dot point'>.</span>
                             </Link>
                             <span className='tweet___date' title={formattedDate}>{formatTimeAgo(timeSpan)}</span>
                         </div>
@@ -116,54 +128,35 @@ export default function Tweet({
                     </div>
                     {
                         description && <div className="tweet__content__body">
-                            <p className={`tweet__paragraph ${IsArabic(description) && 'arabic'}`}>{description}</p>
+                            <p className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
                         </div>
                     }
                     <div className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
-                                <div style={{backgroundImage: `url(${image})`}} className="tweet__cover">
-                                    <img src={image} alt="tweet__image" />
-                                </div>
+                                {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
+                                <LazyLoadImage
+                                    effect="blur"
+                                    src={image}
+                                    alt="tweet_img"
+                                />
                             </div>
                         }
                         {
                             video && <Video />
                         }
                     </div>
-                    <div className="tweet__react__footer">
-                        <div className="tweet__actions__list">
-                            <div className="tweet__action" title='Reply'>
-                                <div className="action__icon iconStyle center">
-                                    <CommentIcon />
-                                </div>
-                                <span className="actions__counter">{reply_count || 0}</span>
-                            </div>
-                            <div className={`tweet__action retweet ${retweeted && 'hasRetweet'}`} title='Retweet'>
-                                <div className="action__icon iconStyle center">
-                                    <RetweetIcon />
-                                </div>
-                                <span className="actions__counter">{retweet_count || 0}</span>
-                            </div>
-                            <div className={`tweet__action liked ${liked && 'hasLike'}`} title='Like'>
-                                <div className="action__icon iconStyle center">
-                                    <LikeIcon liked={liked || false} />
-                                </div>
-                                <span className="actions__counter">{like_count || 0}</span>
-                            </div>
-                            <div className="tweet__action">
-                                <div onClick={()=>showOption(true)} className="action__icon shareAction iconStyle center">
-                                    <div title='Share'><ShareIcon /></div>
-                                    {ShareHover && 
-                                        <div>
-                                            <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                            <ShareCard hiddeOption={hiddeOption} />
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <FooterAction 
+                        idTweet={idTweet}
+                        like={like}
+                        reply_count={reply_count}
+                        retweeted={retweeted}
+                        like_count={like_count}
+                        hiddeOption={hiddeOption}
+                        retweet_count={retweet_count}
+                        ShareHover={ShareHover}
+                        showOption={showOption}
+                    />
                 </div>
             </div>
         </div>

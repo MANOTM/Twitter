@@ -5,20 +5,36 @@ import * as icons from './IconsImport'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Taawija from '../Icons/Taawija';
-import { useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { useStateContext } from '../../contexts/ContextProvider'
 import useFetch from '../../hooks/useFetch'
+import { SideBarUser } from './SideBarUser'
+import axios from '../../api/axios'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
-  const { setshow__createTweet } = useStateContext()
+  const { setshow__createTweet, countNotifi, setCountNotifi } = useStateContext()
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
-  const { data, loading } = useFetch('/countNotification');
+  // notification check 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get('/countNotification').then(res => {
+        setCountNotifi(res.data.data.count_notify);
+      })
+  }, 20000);
+    return () => clearInterval(interval);
+  }, []);
+
   const showOut = event => {
     event.stopPropagation();
     setActive(false)
+  }
+  const GoToProfile = e => {
+    navigate(`/${user.pseudo.substring(1)}`)
+    showOut(e)
   }
   return (
     <>
@@ -39,10 +55,10 @@ export default function Sidebar() {
                       to="/explore" 
                       text="Explore" icon={<icons.ExploreIcon />} bold={<icons.BoldExploreIcon />}
                     />
-                    <SidebarItem notf={true} to="/notifications" text="Notifications" 
+                    <SidebarItem to="/notifications" text="Notifications" 
                       icon={<icons.NotificationIcon />}
                       bold={<icons.BoldNOtificationIcon />}
-                      count={!loading ? data?.data?.count_notify : null}
+                      count={countNotifi}
                     />
                     
                     <SidebarItem to="/messages" text="Messages"
@@ -76,18 +92,12 @@ export default function Sidebar() {
                 <div className={`popup signOutPopUp ${actived && 'active_logOut'}`}>
                   <div className="t3wija"><Taawija /></div>
                   <ul>
-                    <li onClick={()=> navigate(`/${user.pseudo.substring(1)}`)} className='hover'>Show {user.pseudo.substring(1)} profile</li>
-                    <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo.toUpperCase() }</li>
+                    <li onClick={GoToProfile} className='hover'>Show {user.pseudo.substring(1)} profile</li>
+                    <li onClick={()=> navigate('/logout')} className='hover'>Log out { user?.pseudo }</li>
                   </ul>
                 </div>
                 <div className="user__info" onClick={showIn}>
-                  <div className="avatar">
-                    <img src={user.pp || defaultProfile} alt="" />
-                  </div>
-                  <div className="info">
-                    <span className='name ellipsis'>{ user?.name }</span>
-                    <span className='username ellipsis'>{ user?.pseudo.toUpperCase() }</span>
-                  </div>
+                  <SideBarUser pseudo={user?.pseudo}/>
                 </div>
                 <div onClick={showIn} className="user__action">
                   <icons.ThreePoints  />

@@ -14,7 +14,7 @@ export default function RegisterHome() {
 
     return (
         <div className="register__section">
-            <span className="register__first__title">Join Twitter today</span>
+            <span className="register__first__title">Join Wazoo today</span>
             <div className="register__first__buttons">
                 <button><Google />
                     Sign up with Google</button>

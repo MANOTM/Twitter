@@ -8,14 +8,23 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../components/Loading/Loading';
 import HeaderNotification from './Components/HelpNotification/HeaderNotification';
 import NotifiLike from './Components/TypeNotification/NotifiLike';
+import { useEffect } from 'react';
+import axios from '../../api/axios';
+import FollowNotifications from './Components/TypeNotification/FollowNotifications';
+import LikeNotifications from './Components/TypeNotification/LikeNotifications';
 
 export default function Notifications() {
 
-  const { SetTitle } = useStateContext();
+  const { SetTitle, setCountNotifi  } = useStateContext();
   const { data, loading } = useFetch('/notifications');
-  useFetch('/readNotifications');
-
+  useEffect(()=>{
+    axios
+    .get('/readNotifications')
+    .then(res =>setCountNotifi(0))
+    .catch(err =>console.log);
+  },[])
   SetTitle()
+
   return (
         <Main> 
           <div>

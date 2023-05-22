@@ -6,24 +6,25 @@ import { useStateContext } from '../../contexts/ContextProvider'
 
 export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption }) {
 
-    const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo
-    const { CallToast } = useStateContext()
+    const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
+    const { CallToast } = useStateContext();
 
     const DeleteTweet = () => {
-        hiddeOption()
+        hiddeOption(event)
         axios
         .delete('/tweets/deleteTweet/'+idTweet)
         .then(res => {
-            CallToast('tweet Delete successfully😊')
+            CallToast('tweet Delete successfully😊');
+            setInterested(true)
         })
         .catch(err => {
-            CallToast('something happend, please try later✌')
+            CallToast('something happend, please try later✌');
         })
     }
 
     const Sorry = () => {
-        hiddeOption()
-        CallToast("We don't have the option yet😢")
+        ()=>hiddeOption(event)
+        CallToast("We don't have the option yet😢",1300);
     }
 
     return (

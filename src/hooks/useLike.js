@@ -1,17 +1,17 @@
 import axios from '../api/axios'; 
 
-const useLike = (action,idTweet) => {  
-    if(action){
+const useLike = (action,idTweet) => {
+    if(!action){
         axios.post('likeTweet/'+idTweet)
         .then(function (response) {
-            console.log(response.data.message); 
+            console.log('like');
         }) 
     } else{
         axios.post('disLikeTweet/'+idTweet)
         .then(function (response) {
-            console.log(response.data.message)
+            console.log('dislike');
         }) 
     }
-    return true
+    return null
 }
-export default useFollow
+export default useLike;

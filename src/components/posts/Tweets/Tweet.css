@@ -6,7 +6,26 @@
 .Tweet img {
     user-select: none;
 }
-
+.tweet__paragraph a{
+    color: #1d9bf0;
+}
+.retweet__tweet { 
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+.retweet__message  {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(113, 118, 123);
+    margin-left: 12px;
+}
+.retweet__icon__tweet svg{
+    width: 16px;
+    height: 16px;
+}
 .shrenk {
     flex-shrink: 1;
 }
@@ -137,31 +156,30 @@
 }
 
 .tweet__image {
-    border-radius: 16px;
-    border: 1px solid rgb(47, 51, 54);
+    position: relative;
+    /* border-radius: 16px; */
+    /* border: 1px solid rgb(47, 51, 54); */
     outline-style: none;
     overflow: hidden;
     cursor: pointer;
-    height: 504px;
-    width: 382.5px;
     user-select: none;
-}
-
-.tweet__cover {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
 }
 
 .tweet__image img {
     object-fit: cover;
-    width: 100%;
+    border-radius: 16px;
     height: 100%;
+    width: fit-content;
+    max-width: 504px;
+    min-width: 382px;
+    max-height: 510px;
+<<<<<<< HEAD
+    min-height: 268px;
+=======
+    min-height:250px;
+>>>>>>> 3bc5ce3d1c4dc5da237ff1c54d44fc16ea2cf116
     inset: 0;
-    opacity: 1;
+    border: 1px solid rgb(47, 51, 54);
 }
 
 .tweet__react__footer svg {
@@ -195,6 +213,10 @@
 .action__icon svg,
 .actions__counter {
     transition: all .3s ease;
+}
+
+.tweet__action.block {
+    pointer-events: none;
 }
 
 .tweet__action:hover .action__icon{
