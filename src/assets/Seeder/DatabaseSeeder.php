@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Tweet::create([
             'idUser' => 1,
-            'description' => '#wilcome_to_Wazoo project pfe 😊',
+            'description' => '#welcome_to_Wazoo project pfe 😊',
             'created_at'=>'2023-05-21 11:45:11',
             'updated_at'=>'2023-05-21 11:45:11',
         ]);
