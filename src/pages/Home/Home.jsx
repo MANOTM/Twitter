@@ -13,7 +13,6 @@ export default function Home() {
     const { SetTitle } = useStateContext();
     SetTitle("Home");
     const { loading, data } = useFetch('/');
-    console.log(data);
     const { loggedIn: Auth } = useSelector(state => state.Auth);
     return (
         <>

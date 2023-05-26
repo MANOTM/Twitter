@@ -12,7 +12,7 @@ export default function SidebarItem({children,text,to,bold,icon,count}) {
                         location.pathname == to ? bold : icon
                     }
                     {
-                        count && <div className="counter__notitification center">{count}</div>
+                        count > 0 && <div className="counter__notitification center">{count}</div>
                     }
                 </div>
                 <div className="sidebar__text">{text}</div> 

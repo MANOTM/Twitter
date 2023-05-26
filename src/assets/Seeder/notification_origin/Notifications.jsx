@@ -10,8 +10,8 @@ import HeaderNotification from './Components/HelpNotification/HeaderNotification
 import NotifiLike from './Components/TypeNotification/NotifiLike';
 import { useEffect } from 'react';
 import axios from '../../api/axios';
-import FollowNotifications from './Components/TypeNotification/FollowNotifications';
-import LikeNotifications from './Components/TypeNotification/LikeNotifications';
+import FollowNotifications from '../notification/Components/TypeNotification/FollowNotifications';
+import LikeNotifications from '../notification/Components/TypeNotification/LikeNotifications';
 
 export default function Notifications() {
 
@@ -34,10 +34,10 @@ export default function Notifications() {
                 loading ? <Loading /> : data?.data?.length ? 
                 data?.data?.map(notifi => {
                   if(notifi.type === 'follow'){
-                    return <NotifFollow key={notifi.id_notify} notifi={notifi} />
+                    return <FollowNotifications key={notifi.id_notify} notifi={notifi} />
                   }
                   else if(notifi.type === 'Like'){
-                    return <NotifiLike key={notifi.id_notify} notifi={notifi} />
+                    return <LikeNotifications key={notifi.id_notify} notifi={notifi} />
                   }
                 })
                   :

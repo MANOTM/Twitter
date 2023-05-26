@@ -22,7 +22,6 @@ export default function ForgotEmail() {
             }
         }catch({ response : { status } }) {
             if(status === 404) {
-                console.log('email not found');
                 CallToast('Email not found😢');
             }else{
                 CallToast('something happend, please try later😢');

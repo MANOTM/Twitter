@@ -13,7 +13,6 @@ export default function Explore() {
   const { SetTitle } = useStateContext();
   SetTitle()
   const { data, loading } = loggedIn ? useFetch('/') : { data:null, loading:false };
-  console.log(loggedIn);
   return (
         <Main>
           {
