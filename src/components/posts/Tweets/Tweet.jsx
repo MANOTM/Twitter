@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike'; 
 import { HashtagLink } from '../../../assets/Helper/HashtagLink';
+import FooterAction from './FooterAction/FooterAction';
 
 export default function Tweet({
     tweet:
@@ -32,7 +33,7 @@ export default function Tweet({
         reply_count,
         like_count,
         retweet_count,
-        like,
+        liked,
         retweeted,
         orginaUserId
     }
@@ -148,7 +149,7 @@ export default function Tweet({
                     </div>
                     <FooterAction 
                         idTweet={idTweet}
-                        like={like}
+                        like={liked}
                         reply_count={reply_count}
                         retweeted={retweeted}
                         like_count={like_count}
