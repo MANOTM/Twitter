@@ -4,9 +4,9 @@ import { ArrowUp } from "../../icons/DogIcon";
 import avatar from '../../../../assets/images/defaultProfile.png'
 
 export default function ScrollPopup() {
-  return <div hidden className="tweets__scroll__show">
+  return <div className="tweets__scroll__show">
     <div className="tweets__scroll">
-      <div className="scroll__icon">
+      <div className="scroll__icon center">
         <ArrowUp />
       </div>
       <div className="scroll__avatars">

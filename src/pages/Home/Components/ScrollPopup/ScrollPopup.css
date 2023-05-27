@@ -1,6 +1,16 @@
+.tweets__scroll__show {
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    top: 108px;
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+
 .tweets__scroll__show svg {
     width: 20px;
-    height: 20px;
+    height: 18px;
     fill: #fff
 }
 
@@ -15,7 +25,11 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    border: 2px solid #1D9BF0;
     overflow: hidden;
+}
+.two,.three {
+    margin-left: -12px;
 }
 .scroll__bordered__avatar img {
     object-fit: cover;
@@ -29,7 +43,11 @@
     max-width: 193px;
     width: 100%;
     border-radius: 9999px;
-    padding: 6px 16px;
+    padding: 5px 12px;
+    transition: .2s ease;
+}
+.tweets__scroll:hover {
+    background-color: #1196efef;
 }
 
 .tweets__scroll,
@@ -37,4 +55,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.scroll__span span {
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+}
+
+.scroll__span,
+.scroll__avatars {
+    margin-left : 4px;
 }

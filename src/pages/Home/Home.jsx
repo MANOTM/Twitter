@@ -9,6 +9,7 @@ import { WhoToFollow100 } from "../../components/ProfileComponent/WhoToFollow100
 import Loading from "../../components/Loading/Loading";
 import { getAllTweets, getNewTweets, mixTweets } from "../../redux/Reducers/HomeReducer";
 import ScrollPopup from "./Components/ScrollPopup/ScrollPopup";
+import { useState } from "react";
 
 export default function Home() {
   const { SetTitle } = useStateContext();
@@ -16,18 +17,25 @@ export default function Home() {
   const { loggedIn: Auth } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
   const { tweets, newTweets, loading } = useSelector((state) => state.tweets);
+  const [showScrollPopup, setShowScrollPopup] = useState(false);
   
   useEffect(() => {
     dispatch(getAllTweets());
     const intervalId = setInterval(() => {
       dispatch(getNewTweets());
-      console.log(newTweets?.length);
     }, 20000);
     return () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
-  
+
+  const CheckpopupTweets = () => {
+    console.log("scroll");
+    console.log(window.scrollY);
+  }
+
+  window.addEventListener('scroll',CheckpopupTweets)
+
   function handleMixTweets() {
     dispatch(mixTweets());
   }
@@ -36,14 +44,16 @@ export default function Home() {
     <>
       <Main>
         <div className="home">
-          <HeadTweet />
+          {
+            Auth && <HeadTweet />
+          }
           <div className="tweets__container">
             {newTweets?.length > 0 && (
               <div className="showTweets center" onClick={handleMixTweets}>
               <span>Show {newTweets.length} Tweets</span>
             </div>            
             )}
-            <ScrollPopup />
+            {showScrollPopup && <ScrollPopup />}
             {loading ? (
               <Loading />
             ) : (

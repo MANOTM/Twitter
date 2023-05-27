@@ -14,6 +14,7 @@ import axios from '../../api/axios'
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
   const { setshow__createTweet, countNotifi, setCountNotifi } = useStateContext()
+  const { newTweets } = useSelector((state) => state.tweets);
   const [actived, setActive] = useState(false)
   const showIn = () => setActive(true)
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function Sidebar() {
               <icons.TwitterIcon fill="#e7e9ea" />
             </Link>
             <ul className="sidebar__items">
-              <SidebarItem notf={true} to="/" text={Auth ? "Home" : "explore"} 
+              <SidebarItem notf={newTweets.length?true:false} to="/" text={Auth ? "Home" : "explore"} 
               icon={Auth ? <icons.HomeIcon /> : <icons.ExploreIcon />}
               bold={Auth ? <icons.HomeBoldIcon /> : <icons.BoldExploreIcon />} />
               {
