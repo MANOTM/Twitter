@@ -8,16 +8,17 @@ import useFetch from '../../../../hooks/useFetch'
 import TrendItem from '../../TrendItem'
 import { useStateContext } from '../../../../contexts/ContextProvider'
 import Loading from '../../../Loading/Loading'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function TrendsList() {
 
   const { IsArabic } = useStateContext();
   const { data, loading } = useFetch('/trends');
-
+  const navigate = useNavigate()
   return <Main>
     <div className="TrendsList">
       <div className="trend__list__header">
-          <div className="trend__list__arrow center">
+          <div onClick={()=>navigate(-1)} className="trend__list__arrow center">
               <Arrow />
           </div>
           <div className="trend__list__spam">

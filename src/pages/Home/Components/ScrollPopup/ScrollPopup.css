@@ -1,0 +1,40 @@
+.tweets__scroll__show svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff
+}
+
+.scroll__bordered__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.scroll__bordered__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.scroll__bordered__avatar img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tweets__scroll {
+    background-color: #1D9BF0;
+    justify-content: space-between;
+    max-width: 193px;
+    width: 100%;
+    border-radius: 9999px;
+    padding: 6px 16px;
+}
+
+.tweets__scroll,
+.scroll__avatars {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

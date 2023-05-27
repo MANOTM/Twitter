@@ -52,7 +52,6 @@ export const ContextProvider = ({ children }) => {
     const [Toast, setToast] = useState({ status: false, content: '' })
     const [steps, setSteps] = useState(true)
     const [AuthModal, setAuthModal] = useState(false)
-    const [RegisterModal, setRegisterModal] = useState(false)
     const [CardHover, setCardHover] = useState(false)
     // Don't touch it it's 4 chat || xkon daha fik ana jit ghaa nzid wa7d const dyali saaaaafi
     // a mook sir golha liha dsarti
@@ -60,6 +59,7 @@ export const ContextProvider = ({ children }) => {
     // makhasrt ta la3ba ana ra hadchi dyalk 3la seba
     // 5lenak t5dem m3ana f context o nta dsaar
     // had context kon kan kaydwi kon galk barak
+    // context: ibraaahim ir7amni 
     const [ToBottom, setToBottom] = useState(true)
     const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)

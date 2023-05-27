@@ -17,7 +17,7 @@
     npm i
 
 ### step 4 => start server with command :tada: : 
-    npm run dev
+    npm run wazoo
 
 ### step 5 => close the laptop and go to spleep :
     npm close laptop and sleep

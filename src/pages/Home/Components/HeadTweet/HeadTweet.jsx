@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./HeadTweet.css";
 import * as icons from '../../IconsImport'; 
 import HeaderHome from "../HeaderHome/HeaderHome";
@@ -10,7 +10,19 @@ import axios from "../../../../api/axios";
 import { useStateContext } from "../../../../contexts/ContextProvider";
 
 export default function HeadTweet() {
-    const { CallToast, IsArabic } = useStateContext()
+    const { CallToast, IsArabic, render } = useStateContext()
+    const [data, setData] = useState(null) 
+    const { pseudo } = JSON.parse(localStorage.getItem('user_info'));
+    
+    useEffect(()=>{ 
+      axios.get('profile/' + pseudo)
+        .then(function (response) {
+          setData(response.data?.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });  
+    },[render])
     const [everyone, setEverone] = useState(true);
     const [tweet, setTweet] = useState();
     const Media = useRef();
@@ -54,7 +66,7 @@ export default function HeadTweet() {
             <div className="create__home">
                 <div className="create__Avatar">
                     <div className="tweet__avatar__user">
-                        <img src={avatar} />
+                        <img src={data?.pp || avatar} />
                     </div>
                 </div>
                 <div className="create__right">
