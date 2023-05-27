@@ -7,6 +7,9 @@ import useFetch from '../../hooks/useFetch'
 import useFollow from '../../hooks/useFollow'
 
 export default function SuggestionUser({userSu , isFollowed}) {  
+  
+  
+  const { user } = useSelector(state => state.Auth) 
   const [followHim,setfollowHim]=useState(isFollowed)    
   const follow = () =>{
     useFollow(followHim,userSu.idUser)
@@ -24,9 +27,12 @@ export default function SuggestionUser({userSu , isFollowed}) {
                 <span className='username ellipsis'>{userSu?.pseudo}</span>
             </div>
           </Link> 
+          {user?.id==userSu?.idUser ?'':
+            <>
             { followHim!=undefined &&followHim && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>} 
             { followHim!=undefined && !followHim &&<button className='btn-def btn_follow' onClick={follow}>Follow</button>} 
-      
+            </>
+          }
         </div>
       </div>
   )

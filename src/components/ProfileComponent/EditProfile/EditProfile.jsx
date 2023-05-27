@@ -28,8 +28,14 @@ export const EditProfile = () => {
     const [userInfo, setUserInfo] = useState(null) 
     const [birthday, setBirthday] = useState({})
     const [images, setImages] = useState({}) 
-    const changeUserInfo = e => {
+    const [checker,setChecker]=useState(false)
+
+        const changeUserInfo = e => {
+        setChecker(true)
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
+        if(e.target.name=='name'){
+            setChecker(e.target.value && true)
+        }
     }
 
     useEffect(() => {
@@ -48,7 +54,7 @@ export const EditProfile = () => {
 
     const save = () => { 
         setHidden(false)
-        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));   
+        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));  
         axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -56,9 +62,14 @@ export const EditProfile = () => {
         })
             .then(function (response) {
                 console.log(response.data);
-                CallToast(response?.data?.message)
-                setRender(!render)
-                navigate('/'+pseudo.substring(1))
+                if(!response?.data?.length){
+                    CallToast('Profile updated successfuly')
+                    setRender(!render)
+                    navigate('/'+pseudo.substring(1))
+                }else{
+                    CallToast('Errore🤔🤨')
+                    setHidden(true)
+                }
 
             })
             .catch(function (error) {
@@ -72,6 +83,7 @@ export const EditProfile = () => {
     const prviewImg = e => {
         const image=e.target.files[0] 
         setImages({...images,[e.target.name]:image}) 
+        setChecker(true)
     }
 
 
@@ -110,7 +122,7 @@ export const EditProfile = () => {
                             </div>
                         </div>
                         <div className="boite__header__actions">
-                            <button className='next_btn' onClick={save}>Save</button>
+                            <button className={`next_btn ${!checker && 'cur-none'}`} onClick={save}>Save</button>
                         </div>
                     </div>
 
