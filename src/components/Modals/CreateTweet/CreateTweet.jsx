@@ -15,15 +15,20 @@ export default function CreateTweet() {
     const description = useRef()
     const Media = useRef()
     const handleImage = e => {
-        setTweet(prev => (
-            { ...prev, image: e.target.files[0] }
-        ))
+        const file = e.target.files[0];
+        if (file) {
+          if (file.type.includes("video")) {
+            setTweet((prev) => ({ ...prev, video: file, image: null }));
+          } else {
+            setTweet((prev) => ({ ...prev, image: file, video: null }));
+          }
+        }
     }
     // clear image when you close
     const clearMedia = () => {
         Media.current.value = null
         setTweet(prev => (
-            { ...prev, image: null }
+            { ...prev, image: null, video: null }
         ))
     }
     // close
@@ -38,8 +43,12 @@ export default function CreateTweet() {
         if (!tweet) return;
         setshow__createTweet(true);
         clearCreateTweet()
-        const prefix = tweet?.image ? '/tweets/createImage' : '/tweets/createTweet';
-        axios.post(prefix, tweet, {
+        let prefix = "/tweets/createTweet";
+        if (tweet?.video) {
+          prefix = "/tweets/createVideo";
+        } else if (tweet?.image) {
+          prefix = "/tweets/createImage";
+        }        axios.post(prefix, tweet, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -64,7 +73,7 @@ export default function CreateTweet() {
                         </div>
                     </div>
                     <div className="createTweet__content__input">
-                        <label htmlFor='post_tweet' className={`create__input__feild ${tweet?.image && 'small-textarea'}`}>
+                        <label htmlFor='post_tweet' className={`create__input__feild ${(tweet?.image || tweet?.video) && 'small-textarea'}`}>
                             <textarea value={tweet?.description} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} name='description' ref={description} placeholder='What is happening?!' id="post_tweet"></textarea>
                         </label>
                         {
@@ -74,6 +83,18 @@ export default function CreateTweet() {
                                     <CloseIcon />
                                 </div>
                             </div>
+                        }
+                        {
+                            tweet?.video && (
+                                <div className="createTweet__media">
+                                <video src={URL.createObjectURL(tweet?.video)} controls>
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div onClick={clearMedia} className="createTweet__cancel__image center">
+                                    <CloseIcon />
+                                </div>
+                                </div>
+                            )
                         }
                     </div>
                 </div>

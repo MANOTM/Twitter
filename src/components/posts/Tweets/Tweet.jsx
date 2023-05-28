@@ -160,7 +160,7 @@ export default function Tweet({
                             </div>
                         }
                         {
-                            video && <Video />
+                            video && <Video video={video} />
                         }
                     </div>
                     <FooterAction

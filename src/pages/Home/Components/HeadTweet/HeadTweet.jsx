@@ -26,40 +26,55 @@ export default function HeadTweet() {
     const [everyone, setEverone] = useState(true);
     const [tweet, setTweet] = useState();
     const Media = useRef();
-    const input = useRef();
     // set image
-    const handleImage = e => {
-        setEverone(false)
-        setTweet(prev => (
-            { ...prev, image: e.target.files[0] }
-        ));
-    }
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        setEverone(false);
+        if (file) {
+          if (file.type.includes("video")) {
+            setTweet((prev) => ({ ...prev, video: file, image: null }));
+          } else {
+            setTweet((prev) => ({ ...prev, image: file, video: null }));
+          }
+        }
+      };
     // clear image 
     const clearMedia = () => {
-        Media.current.value = null
-        setTweet(prev => (
-            { ...prev, image: null }
-        ));
-    }
+        Media.current.value = null;
+        setTweet((prev) => ({
+          ...prev,
+          image: null,
+          video: null,
+        }));
+      };
+      
     // post tweet
     const click = () => {
-        Media.current.value = null
-        setEverone(true)
-        setTweet(null)
-
-        const prefix = tweet?.image ? '/tweets/createImage' : '/tweets/createTweet';
-        axios.post(prefix, tweet, {
+        Media.current.value = null;
+        setEverone(true);
+        setTweet(null);
+      
+        let prefix = "/tweets/createTweet";
+        if (tweet?.video) {
+          prefix = "/tweets/createVideo";
+        } else if (tweet?.image) {
+          prefix = "/tweets/createImage";
+        }
+      
+        axios
+          .post(prefix, tweet, {
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(response => {
-            CallToast('Your Tweet was sent.', 3500);
-        })
-        .catch(error => {
-            CallToast('Something happened, please try later.', 3500);
-        });
-    }
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            CallToast("Your Tweet was sent.", 3500);
+          })
+          .catch((error) => {
+            CallToast("Something happened, please try later.", 3500);
+          });
+      };
+      
     return (
         <header className="header__section">
             <HeaderHome />
@@ -82,6 +97,18 @@ export default function HeadTweet() {
                         </div>
                         )
                     }
+                    {
+                        tweet?.video && (
+                            <div className="createTweet__media">
+                            <video src={URL.createObjectURL(tweet?.video)} controls>
+                                Your browser does not support the video tag.
+                            </video>
+                            <div onClick={clearMedia} className="createTweet__cancel__image center">
+                                <CloseIcon />
+                            </div>
+                            </div>
+                        )
+                    }
                     <div hidden={everyone}>
                         <Everyone />
                     </div>
@@ -96,65 +123,6 @@ export default function HeadTweet() {
                     />
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <div className="header__input">
-                <div className="header__fields">
-                    <div className="header__avatar avatar">
-                        <img
-                        src="https://cdn.discordapp.com/avatars/787349101414187059/79e57a3f1d0fa6dbca1607cc95930f34.webp?size=32"
-                        alt="profile_avatar"
-                        />
-                    </div>
-                    <input type="text" onChange={handleTweetbtn} placeholder="What's Happening ?" />
-                </div>
-                <div className="header__buttons">
-                    <ul>
-                        <input hidden type="file"  ref={GalleryBtn}/>
-                        <li onClick={()=>GalleryBtn.current.click()}> <icons.Gallery /> </li>
-                        <li> <icons.Gif /> </li>
-                        <li> <icons.Emojis /> </li>
-                        <li> <icons.Map /> </li>
-                    </ul>
-                    <button className={tweetbtn ? 'active__click__btn' : ''}>Tweeter</button>
-                </div>
-            </div> */}
         </header>
     );
 }

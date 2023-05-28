@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h4 align="center"> Evrythink is ok my brader if u have any problem know that the problem is u :shipit: </h4>
+<h4 align="center"> npm run wazoo </h4>
 
 
 ### step 1 => Clone project with command: 

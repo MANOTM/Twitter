@@ -158,7 +158,7 @@
 .tweet__image {
     position: relative;
     border-radius: 16px;
-    border: 1px solid rgb(47, 51, 54) !important;
+    /* border: 1px solid rgb(47, 51, 54) !important; */
     outline-style: none;
     overflow: hidden;
     cursor: pointer;
