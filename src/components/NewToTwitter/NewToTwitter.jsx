@@ -12,7 +12,7 @@ export default function NewToTwitter() {
             <div className="NewToTwitter">
                 <div className="newtotwitter__form">
                     <header className='new__header'>
-                        <span className='new__title'>New to Twitter?</span>
+                        <span className='new__title'>New to Wazoo?</span>
                         <p className='new__parag'>Signup now to get your own personalized timeline!</p>
                     </header>
                     <div className="new__body">

@@ -13,7 +13,7 @@ import RegisterStepFive from './RegisterSteps/RegisterStepFive';
 
 export default function Register() {
     const { SetTitle } = useStateContext();
-    SetTitle('Sign up for Twitter')
+    SetTitle('Sign up for Wazoo')
     const { pages: {step, Start} } = useSelector(state => state.Register)
     const [Feilds, setFeilds] = useState()
     let Content;

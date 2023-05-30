@@ -26,7 +26,7 @@ if(token){
 }
 
 function render() {
-  ReactDOM.createRoot(document.getElementById('twitter')).render(
+  ReactDOM.createRoot(document.getElementById('wazoo')).render(
     <React.StrictMode>
       <Provider store={store}>
         <App />
