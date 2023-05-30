@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike'; 
 import { HashtagLink } from '../../../assets/Helper/HashtagLink';
+import FooterAction from './FooterAction/FooterAction';
 
 export default function Tweet({
     tweet:
