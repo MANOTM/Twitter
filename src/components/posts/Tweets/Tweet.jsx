@@ -31,7 +31,7 @@ export default function Tweet({
         image,
         video,
         description,
-        reply_count,
+        comment_count,
         like_count,
         retweet_count,
         liked,
@@ -51,7 +51,7 @@ export default function Tweet({
                 return `${minutesAgo}m`;
             }
         } else if (timeString.includes('an hour ago')) {
-            return `1h`;
+            return `1h`;ù
         } else if (timeString.includes('hours ago')) {
             const hoursAgo = parseInt(timeString);
             if (!isNaN(hoursAgo)) {
@@ -86,7 +86,7 @@ export default function Tweet({
             setisIn(false) 
     }
     const showOption = (A) => {
-        if(!Auth) return CallToast('Once you join Twitter, you can open it😊',3500)
+        if(!Auth) return CallToast('Once you join Wazoo, you can open it😊',3500)
         if(A) return setShareHover(true)
         setOptionHover(true)
     }
@@ -166,7 +166,7 @@ export default function Tweet({
                     <FooterAction
                         idTweet={idTweet}
                         like={liked}
-                        reply_count={reply_count}
+                        comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count}
                         hiddeOption={hiddeOption}

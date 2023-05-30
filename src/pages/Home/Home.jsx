@@ -9,6 +9,7 @@ import { WhoToFollow100 } from "../../components/ProfileComponent/WhoToFollow100
 import Loading from "../../components/Loading/Loading";
 import { getAllTweets, getNewTweets, mixTweets } from "../../redux/Reducers/HomeReducer";
 import ScrollPopup from "./Components/ScrollPopup/ScrollPopup";
+import tweetFromJson from '../../data/JsonTweets.json';
 import { useState } from "react";
 
 export default function Home() {
@@ -64,11 +65,9 @@ export default function Home() {
                   <>
                     {Auth ? (
                       <WhoToFollow100 />
-                    ) : (
-                      <span style={{ textAlign: "center" }} className="small-text">
-                        Nothing
-                      </span>
-                    )}
+                    ) : 
+                      tweetFromJson.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}  />)
+                    }
                   </>
                 )}
               </>

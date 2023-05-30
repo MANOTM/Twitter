@@ -45,9 +45,9 @@ for notification use `CallToast('hello')` in your sotuation maybe you need butto
 
 for Set title page use `SetTitle('Home')` and import it from 
 useStateContext => const { SetTitle } = useStateContext();
-`SetTitle('Home')` => Home / Twitter
-`SetTitle()` => pathname / Twitter
-`SetTitle(null,true)` => Twitter
+`SetTitle('Home')` => Home / Wazoo
+`SetTitle()` => pathname / Wazoo
+`SetTitle(null,true)` => Wazoo
 
 if you looking for footer Components [Terms of Service, Privacy Policy...] go to 
 ==> Components/PolicyLinks <==

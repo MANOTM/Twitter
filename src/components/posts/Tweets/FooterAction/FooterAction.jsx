@@ -6,7 +6,7 @@ import { useState } from 'react';
 import axios from '../../../../api/axios';
 import useFetch from '../../../../hooks/useFetch';
 
-export default function FooterAction({ idTweet, reply_count, retweeted, like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
+export default function FooterAction({ idTweet, comment_count, retweeted, like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
     const [actions, setActions] = useState();
     const renderTweet = async() => {
         const { data } = await axios.get('/');
@@ -50,7 +50,7 @@ export default function FooterAction({ idTweet, reply_count, retweeted, like_cou
                 <div className="action__icon iconStyle center">
                     <CommentIcon />
                 </div>
-                <span className="actions__counter">{reply_count || 0}</span>
+                <span className="actions__counter">{comment_count || 0}</span>
             </div>
             <div className={`tweet__action retweet ${retweeted && 'hasRetweet'}`} title='Retweet'>
                 <div className="action__icon iconStyle center">
