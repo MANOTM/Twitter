@@ -45,9 +45,9 @@ export default function CreateTweet() {
         clearCreateTweet()
         let prefix = "/tweets/createTweet";
         if (tweet?.video) {
-          prefix = "/tweets/createVideo";
+            prefix = "/tweets/createVideo";
         } else if (tweet?.image) {
-          prefix = "/tweets/createImage";
+            prefix = "/tweets/createImage";
         }        axios.post(prefix, tweet, {
             headers: {
                 'Content-Type': 'multipart/form-data'
