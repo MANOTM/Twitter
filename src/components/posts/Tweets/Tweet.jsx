@@ -34,7 +34,7 @@ export default function Tweet({
         reply_count,
         like_count,
         retweet_count,
-        liked,
+        like,
         retweeted,
         orginaUserId
     }
@@ -165,7 +165,7 @@ export default function Tweet({
                     </div>
                     <FooterAction
                         idTweet={idTweet}
-                        like={liked}
+                        like={like}
                         reply_count={reply_count}
                         retweeted={retweeted}
                         like_count={like_count}

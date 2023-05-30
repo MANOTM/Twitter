@@ -6,16 +6,16 @@ import { useStateContext } from '../../../../../contexts/ContextProvider'
 export default function ClearSettings() {
 
     const { CallToast } = useStateContext();
-    const ClearBookmark = () => {
-        axios
+    const clearBookmarks = () => {
+      axios
         .delete('/clearAllSaved')
-        .then(res => {
-            CallToast('Bookmarks Clear with success');
+        .then((res) => {
+          CallToast('Bookmarks cleared successfully');
         })
-        .catch(err => {
-            CallToast('something happend, please try later');
-        })
-    }
+        .catch((err) => {
+          CallToast('Something happened, please try again later');
+        });
+    };
 
     return (
         <div className='DiactivateSetting'>
@@ -39,7 +39,7 @@ export default function ClearSettings() {
                     <div className="Account__option__input">
                         <p className='mini-setting'>These option won’t affect your bookmarks, but there is no back after this.</p>
                     </div>
-                    <div onClick={ClearBookmark} className={`Account__option__button deactivate`}>
+                    <div onClick={clearBookmarks} className={`Account__option__button deactivate`}>
                         <button>Claer</button>
                     </div>
                 </div>
