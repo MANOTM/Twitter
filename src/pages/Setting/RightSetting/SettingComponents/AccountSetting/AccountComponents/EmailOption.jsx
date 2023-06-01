@@ -4,7 +4,7 @@ import HeaderRightSetting from '../../../../Components/HeaderRightSetting/Header
 import { useStateContext } from '../../../../../../contexts/ContextProvider'
 
 export default function EmailOption({ value }) {
-    const { CallToast } = useStateContext()
+    const { CallToast, showErrorFunction } = useStateContext()
     return <div className="EmailOption">
         <HeaderRightSetting title="Change email" back="/settings/account" />
         <div className="Account__option__input">
@@ -17,7 +17,8 @@ export default function EmailOption({ value }) {
             />
         </div>
         <div className={`Account__option__button`}>
-            <button onClick={()=>CallToast("We don't have that option right now 😢")}>Update email address</button>
+            <button onClick={()=>showErrorFunction()}>Update email address</button>
+            {/* <button onClick={()=>CallToast("We don't have that option right now 😢")}>Update email address</button> */}
         </div>
     </div>
 }

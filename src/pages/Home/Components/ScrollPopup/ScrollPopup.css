@@ -1,10 +1,10 @@
 .tweets__scroll__show {
     position: fixed;
     z-index: 20;
-    left: 50%;
+    left: 47%;
+    transform: translateX(-50%);
     top: 108px;
     cursor: pointer;
-    transform: translateX(-50%);
 }
 
 

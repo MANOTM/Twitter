@@ -1,0 +1,93 @@
+{
+    "tweets": [
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "image": "https://pbs.twimg.com/media/FkHc5wxXgAA_JZB?format=jpg&name=small",
+            "video": null,
+            "description": "Ici commence votre success story !\r\n            La CMC de la région Rabat-Salé-Kénitra vous ouvre ses portes.\r\n            Inscrivez-vous vite sur : http://inscription.cmc.ac.ma avant le 15 janvier 2023.\r\n            #CMC #OFPPT #formationprofessionnelle",
+            "like_count": 154,
+            "like": false,
+            "comment_count": 99,
+            "type": "tweet",
+            "name": "Wazoo",
+            "pseudo": "@wazoo1",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-05-28T12:45:11.000000Z"
+        },
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "description": "welcone to Wazoo✨✨✨",
+            "like_count": 154,
+            "like": false,
+            "comment_count": 99,
+            "type": "tweet",
+            "name": "Wazoo",
+            "pseudo": "@wazoo1",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-05-28T12:45:11.000000Z"
+        },
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "image": "https://pbs.twimg.com/media/FxQa1H9X0AQfgLT?format=jpg&name=small",
+            "video": null,
+            "description": "The great pyramid of Antarctica can be found at these coordinates: 79°58'39.2'S, 81°57'32.2'W. Of course, it's not officially recognized, as that would change our entire history.",
+            "like_count": 572,
+            "like": false,
+            "comment_count": 81,
+            "type": "tweet",
+            "name": "Wazoo",
+            "pseudo": "@wazoo1",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-05-28T12:45:11.000000Z"
+        },
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "image": "https://pbs.twimg.com/media/FxK7seyX0AIcxqo?format=jpg&name=small",
+            "like_count": 57,
+            "like": false,
+            "comment_count": 7,
+            "type": "tweet",
+            "name": "outOfContext",
+            "pseudo": "@contextDog8",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-04-21T12:45:11.000000Z"
+        },
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "description": "work smart not hard",
+            "like_count": 9884,
+            "like": false,
+            "comment_count": 654,
+            "type": "tweet",
+            "name": "Elon musk",
+            "pseudo": "@Elonamuska89",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-04-21T12:45:11.000000Z"
+        },
+        {
+            "idTweet": 11,
+            "idUser": 4,
+            "image": "https://pbs.twimg.com/media/FxSlGKCWcAAR7fj?format=jpg&name=small",
+            "description": "GM",
+            "like_count": 9884,
+            "like": false,
+            "comment_count": 654,
+            "type": "tweet",
+            "name": "Andrew Tate",
+            "pseudo": "@Cobratate",
+            "pp": null,
+            "verifyUser": true,
+            "created_at": "2023-05-21T12:45:11.000000Z"
+        }
+    ]
+}

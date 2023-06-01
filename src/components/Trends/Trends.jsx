@@ -20,7 +20,8 @@ export default function Trends({FromExplore}) {
   const { loggedIn } = useSelector(state => state.Auth);
   const { loading, data } = loggedIn ? useFetch('/trends') : useFetch('/')
   const { hashtag } = useParams();
-  const { IsArabic } = useStateContext();
+  const { IsArabic, SetTitle } = useStateContext();
+  hashtag && SetTitle(`${hashtag} - Wazoo Search`)
   return ( 
     <div className='trends'>  
         <SearchComponent hashtag={hashtag?hashtag:null} />

@@ -11,16 +11,18 @@ import DogIcon from '../../../pages/Home/icons/DogIcon';
 import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike'; 
 import { HashtagLink } from '../../../assets/Helper/HashtagLink';
 import FooterAction from './FooterAction/FooterAction';
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import formatTimeAgo from '../../../assets/Helper/FormatDate';
 
 export default function Tweet({tweet,
     tweet:
     {  
+        id,
         idTweet,
         idUser,
         name,
@@ -31,8 +33,9 @@ export default function Tweet({tweet,
         image,
         video,
         description,
-        reply_count,
+        comment_count,
         like_count,
+        likes,
         retweet_count,
         like,
         retweeted,
@@ -41,52 +44,36 @@ export default function Tweet({tweet,
 }
 ) {  
     const [interested, setInterested] = useState(false)
-    const user = idUser === JSON.parse(localStorage.getItem('user_info'))?.pseudo
+    const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
-    function formatTimeAgo(timeString) {
-        if (timeString.includes('minutes ago')) {
-            const minutesAgo = parseInt(timeString);
-            if (!isNaN(minutesAgo)) {
-                return `${minutesAgo}m`;
-            }
-        } else if (timeString.includes('an hour ago')) {
-            return `1h`;
-        } else if (timeString.includes('hours ago')) {
-            const hoursAgo = parseInt(timeString);
-            if (!isNaN(hoursAgo)) {
-                return `${hoursAgo}h`;
-            }
-        } else if (timeString.includes('a day ago')) {
-            return 'Yesterday'
-        } else if (timeString.includes('days')) {
-            const daysAgo = parseInt(timeString);
-            if (!isNaN(daysAgo)) {
-                if (daysAgo === 1) {
-                    return 'Yesterday';
-                } else if (daysAgo >= 2) {
-                    const date = new Date();
-                    date.setDate(date.getDate() - daysAgo);
-                    const month = date.toLocaleString('default', { month: 'short' });
-                    const day = date.getDate();
-                    return `${month} ${day}`;
-                }
-            }
-        }
-        return timeString;
-    }
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const [OptionHover, setOptionHover] = useState(false)
+    const [ShareHover, setShareHover] = useState(false)
+    const [hoverTimeout, setHoverTimeout] = useState(null);
+    const [isIn, setisIn] = useState(false) 
+    const navigate = useNavigate()
     const MouseIn = ()=>{
-        setCardHover(true)
-        setisIn(true)
+        clearTimeout(hoverTimeout);
+        const timeoutId = setTimeout(() => {
+          setCardHover(true)
+          setisIn(true)
+        }, 800);
+        setHoverTimeout(timeoutId);
     }
-    const MouseOut = ()=>{ 
-            setCardHover(false) 
-            setisIn(false) 
-    }
+    const MouseOut = () => {
+        if(hoverTimeout) return clearTimeout(hoverTimeout);
+        setHoverTimeout(
+          setTimeout(() => {
+            setCardHover(false);
+            setisIn(false);
+          }, 400)
+        );
+      };
+      
     const showOption = (A) => {
-        if(!Auth) return CallToast('Once you join Twitter, you can open it😊',3500)
+        if(!Auth) return CallToast('Once you join Wazoo, you can open it😊',3500)
         if(A) return setShareHover(true)
         setOptionHover(true)
     }
@@ -95,12 +82,8 @@ export default function Tweet({tweet,
         setOptionHover(false)
         setShareHover(false)
     }                                                                                                                                                                                                     
-    const [OptionHover, setOptionHover] = useState(false)
-    const [ShareHover, setShareHover] = useState(false)
-    const [isIn, setisIn] = useState(false) 
-    const [active, setActive] = useState(false)
     return (
-        <Link  to={`/${pseudo.substring(1)}/status/${idTweet}`} hidden={interested} className='Tweet' key={idTweet}>
+        <div  hidden={interested} className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
         {orginaUserId && <div className="retweet__tweet">
             <div className="retweet__icon__tweet">
@@ -111,7 +94,7 @@ export default function Tweet({tweet,
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                    <div onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <Link to={'/'+pseudo.substring(1)}>
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
@@ -120,7 +103,7 @@ export default function Tweet({tweet,
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
-                            <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
+                            <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
                                 verifyUser && (<span className="tweet__icon__verify">
@@ -133,10 +116,14 @@ export default function Tweet({tweet,
                             </Link>
                             <span className='tweet___date' title={formattedDate}> {timeSpan !=='Invalid date'?  formatTimeAgo(timeSpan):created_at}</span>
                         </div>
-                        <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
+                        <div onClick={()=>JSON.parse(localStorage.getItem('id_follows')) && showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard hiddeOption={hiddeOption} setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
+                                <OptionCard 
+                                hiddeOptionClick={()=>hiddeOption()}
+                                setInterested={()=>setInterested(true)} 
+                                idTweet={idTweet || id}  idUser={idUser}
+                                pseudo={pseudo} />
                             </> }
                             <div title='More'>
                                 <ThreePoints />
@@ -144,11 +131,11 @@ export default function Tweet({tweet,
                         </div>
                     </div>
                     {
-                        description && <div className="tweet__content__body">
+                        description && <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__body">
                             <p className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
-                        </div>
+                        </Link>
                     }
-                    <div className="tweet__content__media m-t">
+                    <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
                                 {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
@@ -162,20 +149,21 @@ export default function Tweet({tweet,
                         {
                             video && <Video video={video} />
                         }
-                    </div>
+                    </Link>
                     <FooterAction
-                        idTweet={idTweet}
+                        idTweet={idTweet || id}
                         like={like}
-                        reply_count={reply_count}
+                        comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count || tweet?.likes}
                         hiddeOption={hiddeOption}
                         retweet_count={retweet_count}
                         ShareHover={ShareHover}
                         showOption={showOption}
+                        setInterested={()=>setInterested(true)} 
                     />
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }

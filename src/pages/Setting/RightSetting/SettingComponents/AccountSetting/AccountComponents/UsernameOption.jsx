@@ -3,9 +3,11 @@ import HeaderRightSetting from '../../../../Components/HeaderRightSetting/Header
 import Input from '../../../../../Auth/Components/Inputs/Input'
 import { useState } from 'react';
 import './AccountComponents.css';
+import { useStateContext } from '../../../../../../contexts/ContextProvider';
 
 export default function UsernameOption({ value: pseudo }) {
     const [value, setValue] = useState(pseudo);
+    const { showErrorFunction } = useStateContext()
     const [buttonSave, setBtnSave] = useState(false);
     const HandleChange = e => {
         setValue(e.target.value)
@@ -24,7 +26,7 @@ export default function UsernameOption({ value: pseudo }) {
             />
         </div>
         <div className={`Account__option__saveBtn ${buttonSave && value.length && 'active'}`}>
-            <button>Save</button>
+            <button onClick={()=>showErrorFunction()}>Save</button>
         </div>
     </div>
 }

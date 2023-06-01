@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './OptionCard.css'
-import { Report, Block, Mute, List, Unfollow, SadImojis, DeleteIcon, EditTweetIcon } from './OptionIcons/OptionIcons'
+import { Report, Block, Mute, List, Unfollow, SadImojis, DeleteIcon, EditTweetIcon, FollowIcon } from './OptionIcons/OptionIcons'
 import axios from '../../api/axios'
 import { useStateContext } from '../../contexts/ContextProvider'
 import { useDispatch } from 'react-redux'
 import { removeTweet } from '../../redux/Reducers/HomeReducer'
+import useFollow from '../../hooks/useFollow'
 
-export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption }) {
+export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
+    const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
     const { CallToast } = useStateContext();
     const dispatch = useDispatch()
 
     const DeleteTweet = () => {
         setInterested(true)
-        hiddeOption(event)
         dispatch(removeTweet(idTweet))
         axios
         .delete('/tweets/deleteTweet/'+idTweet)
@@ -26,8 +27,13 @@ export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption
         })
     }
 
+    const handleFollow = () => {
+        useFollow(follow, idUser)
+        setFollow(!follow)
+        // hiddeOptionClick()
+    }
+
     const Sorry = () => {
-        ()=>hiddeOption(event)
         CallToast("We don't have the option yet😢",1300);
     }
 
@@ -42,12 +48,12 @@ export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption
                             </div>
                             <span className="option__title delete">Delete</span>
                         </li>
-                        <li>
+                        {/* <li onClick={Sorry}>
                             <div className="option__icon">
                                 <EditTweetIcon />
                             </div>
                             <span className="option__title">Edit tweet</span>
-                        </li>
+                        </li> */}
                     </>)
                 }
                 <li onClick={()=>setInterested()}>
@@ -58,18 +64,29 @@ export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption
                 </li>
                 {
                     !user_pseudo && (<>
-                        <li onClick={Sorry}>
-                            <div className="option__icon">
-                                <Unfollow />
-                            </div>
-                            <span className="option__title">Unfollow {pseudo}</span>
+                        <li onClick={handleFollow}>
+                            {
+                                follow ? 
+                            <>
+                                <div className="option__icon">
+                                    <Unfollow />
+                                </div>
+                                <span className="option__title">Unfollow {pseudo}</span>
+                            </> :
+                            <>
+                                <div className="option__icon">
+                                    <FollowIcon />
+                                </div>
+                                <span className="option__title">Follow {pseudo}</span>
+                            </>
+                            }
                         </li>
-                        <li onClick={Sorry}>
+                        {/* <li onClick={()=>setInterested()}>
                             <div className="option__icon">
                                 <Mute />
                             </div>
                             <span className="option__title">Mute {pseudo}</span>
-                        </li>
+                        </li> */}
                         <li onClick={Sorry}>
                             <div className="option__icon">
                                 <Block />
@@ -78,12 +95,12 @@ export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption
                         </li>
                     </>)
                 }
-                <li onClick={Sorry}>
+                {/* <li onClick={Sorry}>
                     <div className="option__icon">
                         <List />
                     </div>
                     <span className="option__title">Add/remove {pseudo} from lists</span>
-                </li>
+                </li> */}
                 <li onClick={Sorry}>
                     <div className="option__icon">
                         <Report />

@@ -162,6 +162,7 @@
 .createTweet__media video {
     height: 100%;
     width: 100%;
+    max-height: 650px;
     object-fit: cover;
 }
 

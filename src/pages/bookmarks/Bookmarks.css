@@ -1,5 +1,16 @@
-.bookmarks__header {
+.bookmarks__header,
+.bookmarks__header div {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bokIcon {
+    margin: 0 12px 8px 0;
+}
+
+.bookmarks__header div {
+    align-items: start;
     flex-direction: column;
     gap: 2px;
     padding: 10px 15px;

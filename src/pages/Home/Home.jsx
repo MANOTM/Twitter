@@ -9,25 +9,50 @@ import { WhoToFollow100 } from "../../components/ProfileComponent/WhoToFollow100
 import Loading from "../../components/Loading/Loading";
 import { getAllTweets, getNewTweets, mixTweets } from "../../redux/Reducers/HomeReducer";
 import ScrollPopup from "./Components/ScrollPopup/ScrollPopup";
+import tweetFromJson from '../../data/JsonTweets.json';
 import { useState } from "react";
+import axios from "../../api/axios";
 
 export default function Home() {
+
+  
   const { SetTitle } = useStateContext();
   SetTitle("Home");
-  const { loggedIn: Auth } = useSelector((state) => state.Auth);
+  const { loggedIn: Auth, user } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
   const { tweets, newTweets, loading } = useSelector((state) => state.tweets);
   const [showScrollPopup, setShowScrollPopup] = useState(false);
   
+  const getIDs = async() => {
+    localStorage.removeItem('id_follows');
+    localStorage.removeItem('id_Save');
+    // store followers id
+    const {  data: { data: followingData } } = await axios.get('/followings/'+user?.pseudo);
+    const idFollowers = followingData.map(one => one.idUser)
+    localStorage.setItem('id_follows',JSON.stringify(idFollowers))
+    // store saves id
+      const {  data: { data:bookmarkData } } = await axios.get('/bookmarks/'+user?.pseudo);
+      const idSave = bookmarkData.map(one => one.idTweet)
+      localStorage.setItem('id_Save',JSON.stringify(idSave));
+  }
+
+
   useEffect(() => {
-    dispatch(getAllTweets());
+    if (!tweets || tweets.length === 0) {
+      dispatch(getAllTweets());
+    }
+  
+    getIDs();
+  
     const intervalId = setInterval(() => {
       dispatch(getNewTweets());
     }, 20000);
+  
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch]);
+  }, [dispatch, tweets]);
+  
 
   const CheckpopupTweets = () => {
     console.log("scroll");
@@ -64,11 +89,9 @@ export default function Home() {
                   <>
                     {Auth ? (
                       <WhoToFollow100 />
-                    ) : (
-                      <span style={{ textAlign: "center" }} className="small-text">
-                        Nothing
-                      </span>
-                    )}
+                    ) : 
+                      tweetFromJson.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}  />)
+                    }
                   </>
                 )}
               </>

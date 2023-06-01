@@ -26,8 +26,7 @@ export const ContextProvider = ({ children }) => {
         if(Dont){
             return document.title = 'Wazoo'
         }
-        const location = useLocation();
-        const { pathname } = location;
+        const { pathname } = useLocation();
         const content = pathname.substring(1)
         useEffect(() => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
@@ -78,8 +77,7 @@ export const ContextProvider = ({ children }) => {
     const [HeadingCount,setHeadingCount]=useState('')
 
     //------------//
- 
- 
+
 // ---------------Setting------------------
 const [SettingLayouts, setSettingLayouts] = useState(false);
 // ---------------Create Tweet popup------------------
@@ -88,9 +86,15 @@ const [show__createTweet, setshow__createTweet] = useState(true);
 const [zIndex, setZIndex] = useState(false)
 // ----------------Notification Count----------
 const [countNotifi, setCountNotifi] = useState(null)
+// ----------------Error modal ----------
+const showErrorFunction = (off) => {
+    if(off) return setShowErrorModal(true)
+    setShowErrorModal(false)
+}
+const [ShowErrorModal, setShowErrorModal] = useState(true)
 
     return (
-        <StateContext.Provider value={{ countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{ showErrorFunction, ShowErrorModal, countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
             {
                 children
             }

@@ -142,3 +142,7 @@
     font-weight: 400;
     font-size: 15px;
 }
+
+.tweet svg {
+    margin-top: 10px;
+}
