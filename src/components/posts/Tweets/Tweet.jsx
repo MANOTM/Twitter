@@ -21,6 +21,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 export default function Tweet({
     tweet:
     {  
+        id,
         idTweet,
         idUser,
         name,
@@ -33,6 +34,7 @@ export default function Tweet({
         description,
         comment_count,
         like_count,
+        likes,
         retweet_count,
         like,
         retweeted,
@@ -77,6 +79,9 @@ export default function Tweet({
     }
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const [OptionHover, setOptionHover] = useState(false)
+    const [ShareHover, setShareHover] = useState(false)
+    const [isIn, setisIn] = useState(false) 
     const MouseIn = ()=>{
         setCardHover(true)
         setisIn(true)
@@ -95,12 +100,8 @@ export default function Tweet({
         setOptionHover(false)
         setShareHover(false)
     }                                                                                                                                                                                                     
-    const [OptionHover, setOptionHover] = useState(false)
-    const [ShareHover, setShareHover] = useState(false)
-    const [isIn, setisIn] = useState(false) 
-    const [active, setActive] = useState(false)
     return (
-        <div hidden={interested} className='Tweet' key={idTweet}>
+        <div hidden={interested} className='Tweet' key={idTweet || id}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
         {orginaUserId && <div className="retweet__tweet">
             <div className="retweet__icon__tweet">
@@ -136,7 +137,11 @@ export default function Tweet({
                         <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
-                                <OptionCard hiddeOption={hiddeOption} setInterested={()=>setInterested(true)} idTweet={idTweet} pseudo={pseudo} />
+                                <OptionCard 
+                                hiddeOptionClick={()=>hiddeOption()}
+                                setInterested={()=>setInterested(true)} 
+                                idTweet={idTweet || id}  idUser={idUser}
+                                pseudo={pseudo} />
                             </> }
                             <div title='More'>
                                 <ThreePoints />
@@ -164,15 +169,16 @@ export default function Tweet({
                         }
                     </div>
                     <FooterAction
-                        idTweet={idTweet}
+                        idTweet={idTweet || id}
                         like={like}
-                        reply_count={reply_count}
+                        comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count}
                         hiddeOption={hiddeOption}
                         retweet_count={retweet_count}
                         ShareHover={ShareHover}
                         showOption={showOption}
+                        setInterested={()=>setInterested(true)} 
                     />
                 </div>
             </div>

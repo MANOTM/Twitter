@@ -1,10 +1,15 @@
 import React from 'react'
 import './ShareCard.css';
 import { useStateContext } from '../../../../contexts/ContextProvider';
-import { CopyIcon, MessageIcon, ShareIcon } from '../../icons/postIcons';
+import { BookMarkIcon, CopyIcon, MessageIcon, RemoveFromBookmarkIcon, ShareIcon } from '../../icons/postIcons';
+import { useState } from 'react';
+import useSave from '../../../../hooks/useSave';
+import { useLocation } from 'react-router-dom';
 
-export default function ShareCard({ hiddeOption }) {
+export default function ShareCard({ setInterested, hiddeOption, idTweet }) {
     
+    const location = useLocation()
+    const [bookmark, setBookmark] = useState(location.pathname.includes('bookmarks') || JSON.parse(localStorage.getItem('id_Save')).includes(idTweet))
     const { CallToast } = useStateContext()
     const handleCopie = async () => {
         await navigator.clipboard.writeText(window.location.href);
@@ -17,6 +22,13 @@ export default function ShareCard({ hiddeOption }) {
             text: 'Check out this Tweet !!!',
             url: window.location.href,
         })
+    }
+
+    const handleBookmark = () => {
+        useSave(bookmark,idTweet);
+        setBookmark(!bookmark)
+        hiddeOption(event)
+        if(bookmark) setInterested()
     }
 
     return (
@@ -46,13 +58,26 @@ export default function ShareCard({ hiddeOption }) {
                         Send via Direct Message
                     </div>
                 </div>
-                <div>
-                    <div className="share__List__icon">
-                        <ShareIcon />
-                    </div>
-                    <div className="share__title">
-                        Bookmark
-                    </div>
+                <div onClick={handleBookmark}>
+                    {
+                        bookmark ? 
+                        <>
+                            <div className="share__List__icon">
+                                <RemoveFromBookmarkIcon />
+                            </div>
+                            <div className="share__title">
+                                Remove Tweet from Bookmarks
+                            </div>
+                        </> :
+                        <>
+                            <div className="share__List__icon">
+                                <BookMarkIcon />
+                            </div>
+                            <div className="share__title">
+                                Bookmark
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
         </div>

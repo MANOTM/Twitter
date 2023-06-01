@@ -7,7 +7,7 @@ import { useStateContext } from '../../../../../contexts/ContextProvider';
 
 export default function DiactivateSetting() {
     const { name, pseudo } = JSON.parse(localStorage.getItem('user_info'));
-    const { CallToast } = useStateContext()
+    const { CallToast, showErrorFunction } = useStateContext()
     return (
         <div className='DiactivateSetting'>
             <HeaderRightSetting title="Deactivate account" />
@@ -45,7 +45,8 @@ export default function DiactivateSetting() {
                 <div className="Account__option__input">
                     <p className='mini-setting'>If you want to download <a className='a-link' href="#">your Wazoo data</a>, you’ll need to complete both the request and download process before deactivating your account. Links to download your data cannot be sent to deactivated accounts.</p>
                 </div>
-                <div onClick={()=>CallToast("We don't have that option right now 😢")} className={`Account__option__button deactivate`}>
+                {/* <div onClick={()=>CallToast("We don't have that option right now 😢")} className={`Account__option__button deactivate`}> */}
+                <div onClick={()=>showErrorFunction()} className={`Account__option__button deactivate`}>
                     <button>Deactivate</button>
                 </div>
             </div>

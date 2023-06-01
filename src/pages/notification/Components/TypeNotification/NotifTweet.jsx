@@ -11,7 +11,7 @@ export default function NotifTweet({ notifi }) {
                 <ThreePoints />
             </div>
             <div className="notification__icon__type like">
-                <div className="notification__icon">
+                <div className="notification__icon tweet">
                     <TweetIcon />
                 </div>
             </div>
