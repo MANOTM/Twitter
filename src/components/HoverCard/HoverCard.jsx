@@ -10,6 +10,7 @@ import Loading from '../Loading/Loading';
 function HoverCard({isIn,setisIn, pseudo }) {
     const { CardHover, setCardHover } = useStateContext(); 
     const { loading, data } = useFetch('/profile/'+pseudo)
+    console.log(data?.data);
     const MouseIn = ()=>{
         setCardHover(true) 
         setisIn(true) 
@@ -47,11 +48,11 @@ function HoverCard({isIn,setisIn, pseudo }) {
             }
 
             <div className="card__followers">
-                <Link to='' className="c_followers underline">
+                <Link to={`${pseudo.substring(1)}/i/following`} className="c_followers underline">
                     <span>{ data?.data.followings || 0 }</span>
                     <span className='username '>Following</span>
                 </Link>
-                <Link to='' className="c_followers underline">
+                <Link to={`${pseudo.substring(1)}/i/followers`} className="c_followers underline">
                     <span>{ data?.data.followers ||0 }</span>
                     <span className='username '>Followers</span>
                 </Link>

@@ -3,8 +3,11 @@ import HeaderRightSetting from '../../../Components/HeaderRightSetting/HeaderRig
 import AccountOptions from './AccountOptions'
 import { useState } from 'react'
 import moment from 'moment'
+import { useStateContext } from '../../../../../contexts/ContextProvider'
 
 export default function AccountSetting() {
+    const { SetTitle } = useStateContext()
+    SetTitle('Your Account')
     const { pseudo, email, created_at, birthDay } = JSON.parse(localStorage.getItem('user_info'));
     const age = (((new Date() - new Date(birthDay)) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(0));
     const created = moment.utc(created_at).local()

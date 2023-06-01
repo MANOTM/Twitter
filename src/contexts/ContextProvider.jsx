@@ -26,8 +26,7 @@ export const ContextProvider = ({ children }) => {
         if(Dont){
             return document.title = 'Wazoo'
         }
-        const location = useLocation();
-        const { pathname } = location;
+        const { pathname } = useLocation();
         const content = pathname.substring(1)
         useEffect(() => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}

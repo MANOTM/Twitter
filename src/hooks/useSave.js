@@ -4,12 +4,12 @@ const useSave = (action,idTweet) => {
     if(!action){
         axios.post('saveTweet/'+idTweet)
         .then(function (response) {
-            console.log('added to bookmark');
+            console.log('add tweet to bookmark');
         }) 
     } else{
         axios.post('unsaveTweet/'+idTweet)
         .then(function (response) {
-            console.log('removed to bookmark');
+            console.log('remove tweet from bookmark');
         }) 
     }
     return null

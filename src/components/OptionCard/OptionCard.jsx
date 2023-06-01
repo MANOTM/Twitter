@@ -10,7 +10,7 @@ import useFollow from '../../hooks/useFollow'
 export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
-    const [follow, setFollow] = useState(JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
+    const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
     const { CallToast } = useStateContext();
     const dispatch = useDispatch()
 

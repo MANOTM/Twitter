@@ -6,7 +6,8 @@ import './PasswordSetting.css'
 import { useStateContext } from '../../../../../contexts/ContextProvider'
 
 export default function PasswordSetting() {
-    const { CallToast, showErrorFunction } = useStateContext()
+    const { CallToast, showErrorFunction, SetTitle } = useStateContext()
+    SetTitle('Change your password')
     const [newPassword, setNewPassword] = useState({})
     const handleNewPassword= e => {
         const { name, value } = e.target

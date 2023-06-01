@@ -7,7 +7,8 @@ import { useStateContext } from '../../../../../contexts/ContextProvider';
 
 export default function DiactivateSetting() {
     const { name, pseudo } = JSON.parse(localStorage.getItem('user_info'));
-    const { CallToast, showErrorFunction } = useStateContext()
+    const { CallToast, showErrorFunction, SetTitle } = useStateContext()
+    SetTitle('Deactivate account')
     return (
         <div className='DiactivateSetting'>
             <HeaderRightSetting title="Deactivate account" />

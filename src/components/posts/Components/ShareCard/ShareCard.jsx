@@ -9,10 +9,10 @@ import { useLocation } from 'react-router-dom';
 export default function ShareCard({ setInterested, hiddeOption, idTweet }) {
     
     const location = useLocation()
-    const [bookmark, setBookmark] = useState(location.pathname.includes('bookmarks') || JSON.parse(localStorage.getItem('id_Save')).includes(idTweet))
-    const { CallToast } = useStateContext()
+    const [bookmark, setBookmark] = useState(location.pathname.includes('bookmarks') || JSON.parse(localStorage.getItem('id_Save')) && JSON.parse(localStorage.getItem('id_Save')).includes(idTweet))
+    const { CallToast, setShowingCard } = useStateContext()
     const handleCopie = async () => {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(window.location.href + 'tweet/' + idTweet);
         CallToast('Copied to clipboard');
         hiddeOption(event)
     }
@@ -20,15 +20,21 @@ export default function ShareCard({ setInterested, hiddeOption, idTweet }) {
         navigator.share({
             title: 'Tweet',
             text: 'Check out this Tweet !!!',
-            url: window.location.href,
+            url: window.location.href + 'tweet/' + idTweet,
         })
+        hiddeOption(event)
     }
 
     const handleBookmark = () => {
         useSave(bookmark,idTweet);
         setBookmark(!bookmark)
         hiddeOption(event)
-        if(bookmark) setInterested()
+        if(location.pathname.includes('bookmarks')) setInterested()
+        if(bookmark){
+            CallToast('Tweet removed from your Bookmarks',2500)
+        }else{
+            CallToast('Tweet added to your Bookmarks',2500)
+        }
     }
 
     return (
@@ -50,7 +56,7 @@ export default function ShareCard({ setInterested, hiddeOption, idTweet }) {
                         Share tweet via...
                     </div>
                 </div>
-                <div>
+                <div onClick={()=>setShowingCard(true)}>
                     <div className="share__List__icon">
                         <MessageIcon />
                     </div>
