@@ -27,8 +27,8 @@ export default function HeadTweet() {
     const [tweet, setTweet] = useState();
     const Media = useRef();
     // set image
-    const handleImage = (e) => {
-        const file = e.target.files[0];
+    const handleImage = (e) => { 
+        const file = e.target.files[0]; 
         setEverone(false);
         if (file) {
           if (file.type.includes("video")) {
@@ -52,7 +52,7 @@ export default function HeadTweet() {
     const click = () => {
         Media.current.value = null;
         setEverone(true);
-        setTweet(null);
+        setTweet(null); 
       
         let prefix = "/tweets/createTweet";
         if (tweet?.video) {
@@ -71,6 +71,7 @@ export default function HeadTweet() {
             CallToast("Your Tweet was sent.", 3500);
           })
           .catch((error) => {
+            console.log(error.response.data);
             CallToast("Something happened, please try later.", 3500);
           });
       };

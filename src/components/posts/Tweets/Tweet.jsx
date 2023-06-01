@@ -18,7 +18,7 @@ import { HashtagLink } from '../../../assets/Helper/HashtagLink';
 import FooterAction from './FooterAction/FooterAction';
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
-export default function Tweet({
+export default function Tweet({tweet,
     tweet:
     {  
         idTweet,
@@ -34,12 +34,12 @@ export default function Tweet({
         reply_count,
         like_count,
         retweet_count,
-        liked,
+        like,
         retweeted,
         orginaUserId
     }
 }
-) {
+) {  
     const [interested, setInterested] = useState(false)
     const user = idUser === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
@@ -100,7 +100,7 @@ export default function Tweet({
     const [isIn, setisIn] = useState(false) 
     const [active, setActive] = useState(false)
     return (
-        <div hidden={interested} className='Tweet' key={idTweet}>
+        <Link  to={`/${pseudo.substring(1)}/status/${idTweet}`} hidden={interested} className='Tweet' key={idTweet}>
         {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
         {orginaUserId && <div className="retweet__tweet">
             <div className="retweet__icon__tweet">
@@ -131,7 +131,7 @@ export default function Tweet({
                                 <span className="tweet__pseudo">{pseudo}</span>
                                 <span className='tweet__dot point'>.</span>
                             </Link>
-                            <span className='tweet___date' title={formattedDate}>{formatTimeAgo(timeSpan)}</span>
+                            <span className='tweet___date' title={formattedDate}> {timeSpan !=='Invalid date'?  formatTimeAgo(timeSpan):created_at}</span>
                         </div>
                         <div onClick={()=>showOption(false)}  className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
@@ -165,10 +165,10 @@ export default function Tweet({
                     </div>
                     <FooterAction
                         idTweet={idTweet}
-                        like={liked}
+                        like={like}
                         reply_count={reply_count}
                         retweeted={retweeted}
-                        like_count={like_count}
+                        like_count={like_count || tweet?.likes}
                         hiddeOption={hiddeOption}
                         retweet_count={retweet_count}
                         ShareHover={ShareHover}
@@ -176,6 +176,6 @@ export default function Tweet({
                     />
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

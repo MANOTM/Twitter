@@ -11,7 +11,7 @@ import Tweet from '../../posts/Tweets/Tweet'
 export const TweetsProfile = ({userInfo}) => { 
   const {error , data ,loading} =useFetch('tweets/' + userInfo.pseudo) 
   const { loggedIn:Auth , user} = useSelector(state => state.Auth) 
-  const {setHeadingCount}=useStateContext()
+  const {setHeadingCount}=useStateContext() 
   useEffect(()=>{
     setHeadingCount(data?.data ? data?.data.length+' tweets':'')
   },[data]) 
