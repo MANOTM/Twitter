@@ -22,8 +22,6 @@ function Profile() {
   
 
 
- 
-
   // i have a idea to re render this component after edit profile try to 
   //add a state into context and when user click to save change the value 
   //of state wih anythink and add to useEffect

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h4 align="center"> Evrythink is ok my brader if u have any problem know that the problem is u :shipit: </h4>
+<h4 align="center"> npm run wazoo </h4>
 
 
 ### step 1 => Clone project with command: 
@@ -17,7 +17,7 @@
     npm i
 
 ### step 4 => start server with command :tada: : 
-    npm run dev
+    npm run wazoo
 
 ### step 5 => close the laptop and go to spleep :
     npm close laptop and sleep
@@ -45,9 +45,9 @@ for notification use `CallToast('hello')` in your sotuation maybe you need butto
 
 for Set title page use `SetTitle('Home')` and import it from 
 useStateContext => const { SetTitle } = useStateContext();
-`SetTitle('Home')` => Home / Twitter
-`SetTitle()` => pathname / Twitter
-`SetTitle(null,true)` => Twitter
+`SetTitle('Home')` => Home / Wazoo
+`SetTitle()` => pathname / Wazoo
+`SetTitle(null,true)` => Wazoo
 
 if you looking for footer Components [Terms of Service, Privacy Policy...] go to 
 ==> Components/PolicyLinks <==

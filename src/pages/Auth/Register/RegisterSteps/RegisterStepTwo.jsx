@@ -8,7 +8,7 @@ export default function RegisterStepTwo() {
                 <h2 className='Register__steps__title'>Customize your experience</h2>
             </div>
             <div>
-                <span className='second__step__mintitle'>Track where you see Twitter content across the web</span>
+                <span className='second__step__mintitle'>Track where you see Wazoo content across the web</span>
                 <div className="register__secondStep__chebox">
                     <p className='second__step__parag small-text'>
                     Wazoo uses this data to personalize your experience. 

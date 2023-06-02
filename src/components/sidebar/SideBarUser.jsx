@@ -28,7 +28,7 @@ export const SideBarUser = ({pseudo}) => {
             </div>
             <div className="info">
                 <span className='name ellipsis'> {loading && <div className='w100'><Skeleton/></div>} {data?.name }</span>
-                <span className='username ellipsis'>{loading && <div className='w50'><Skeleton/></div>}{data?.pseudo.toUpperCase()}</span>
+                <span className='username ellipsis'>{loading && <div className='w50'><Skeleton/></div>}{data?.pseudo}</span>
             </div>
     
         </>

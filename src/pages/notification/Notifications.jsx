@@ -14,7 +14,6 @@ import FollowNotifications from './Components/TypeNotification/FollowNotificatio
 import LikeNotifications from './Components/TypeNotification/LikeNotifications';
 
 export default function Notifications() {
-
   const { SetTitle, setCountNotifi  } = useStateContext();
   const { data, loading } = useFetch('/notifications');
   useEffect(()=>{

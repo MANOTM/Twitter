@@ -33,7 +33,10 @@
 .d-none {
     display: none !important;
 }
-
+.cur-none{
+    pointer-events: none;
+    opacity: 0.8;
+}
 .d-block {
     display: block;
 }

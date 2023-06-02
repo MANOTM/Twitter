@@ -16,6 +16,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike'; 
 import { HashtagLink } from '../../../assets/Helper/HashtagLink';
 import FooterAction from './FooterAction/FooterAction';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 export default function Tweet({
     tweet:
@@ -30,7 +31,7 @@ export default function Tweet({
         image,
         video,
         description,
-        reply_count,
+        comment_count,
         like_count,
         retweet_count,
         like,
@@ -50,12 +51,27 @@ export default function Tweet({
                 return `${minutesAgo}m`;
             }
         } else if (timeString.includes('an hour ago')) {
-            return `1h`;
+            return `1h`;ù
         } else if (timeString.includes('hours ago')) {
-        const hoursAgo = parseInt(timeString);
-        if (!isNaN(hoursAgo)) {
-            return `${hoursAgo}h`;
-        }
+            const hoursAgo = parseInt(timeString);
+            if (!isNaN(hoursAgo)) {
+                return `${hoursAgo}h`;
+            }
+        } else if (timeString.includes('a day ago')) {
+            return 'Yesterday'
+        } else if (timeString.includes('days')) {
+            const daysAgo = parseInt(timeString);
+            if (!isNaN(daysAgo)) {
+                if (daysAgo === 1) {
+                    return 'Yesterday';
+                } else if (daysAgo >= 2) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - daysAgo);
+                    const month = date.toLocaleString('default', { month: 'short' });
+                    const day = date.getDate();
+                    return `${month} ${day}`;
+                }
+            }
         }
         return timeString;
     }
@@ -70,7 +86,7 @@ export default function Tweet({
             setisIn(false) 
     }
     const showOption = (A) => {
-        if(!Auth) return CallToast('Once you join Twitter, you can open it😊',3500)
+        if(!Auth) return CallToast('Once you join Wazoo, you can open it😊',3500)
         if(A) return setShareHover(true)
         setOptionHover(true)
     }
@@ -144,13 +160,13 @@ export default function Tweet({
                             </div>
                         }
                         {
-                            video && <Video />
+                            video && <Video video={video} />
                         }
                     </div>
-                    <FooterAction 
+                    <FooterAction
                         idTweet={idTweet}
                         like={like}
-                        reply_count={reply_count}
+                        comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count}
                         hiddeOption={hiddeOption}

@@ -14,7 +14,7 @@ export const TweetsProfile = ({userInfo}) => {
   const {setHeadingCount}=useStateContext()
   useEffect(()=>{
     setHeadingCount(data?.data ? data?.data.length+' tweets':'')
-  },[data])
+  },[data]) 
   const LogicShow=(arr)=>{  
     if(arr.length){
       return arr?.map(tweet=>{

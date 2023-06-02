@@ -158,7 +158,8 @@
     border-radius: 16px;
 }
 
-.createTweet__media img{
+.createTweet__media img,
+.createTweet__media video {
     height: 100%;
     width: 100%;
     object-fit: cover;

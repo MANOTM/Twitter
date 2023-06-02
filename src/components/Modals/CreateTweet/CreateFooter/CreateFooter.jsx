@@ -38,7 +38,7 @@ export default function CreateFooter({ Media, tweet, click, image, setTweet }) {
                     <span onClick={open} className='center' title='Emoji'><Emojis /></span>
                     <span className='center' title='Map'><Map /></span>
                 </div>
-                <div onClick={click} className={`createTweet__Tweet__button ${!tweet?.image && !tweet?.description?.trim() && 'disabled'}`}>
+                <div onClick={click} className={`createTweet__Tweet__button ${!tweet?.image && !tweet?.description?.trim() && !tweet?.video && 'disabled'}`}>
                     <button>Tweet</button>
                 </div>
             </div>

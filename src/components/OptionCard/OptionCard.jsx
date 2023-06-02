@@ -3,19 +3,23 @@ import './OptionCard.css'
 import { Report, Block, Mute, List, Unfollow, SadImojis, DeleteIcon, EditTweetIcon } from './OptionIcons/OptionIcons'
 import axios from '../../api/axios'
 import { useStateContext } from '../../contexts/ContextProvider'
+import { useDispatch } from 'react-redux'
+import { removeTweet } from '../../redux/Reducers/HomeReducer'
 
 export default function OptionCard({ pseudo, setInterested, idTweet, hiddeOption }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
     const { CallToast } = useStateContext();
+    const dispatch = useDispatch()
 
     const DeleteTweet = () => {
+        setInterested(true)
         hiddeOption(event)
+        dispatch(removeTweet(idTweet))
         axios
         .delete('/tweets/deleteTweet/'+idTweet)
         .then(res => {
             CallToast('tweet Delete successfully😊');
-            setInterested(true)
         })
         .catch(err => {
             CallToast('something happend, please try later✌');
