@@ -7,30 +7,32 @@ import avatar from '../../assets/images/defaultProfile.png';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading/Loading';
 
-function HoverCard({isIn,setisIn, pseudo }) {
+function HoverCard({isIn,setisIn, pseudo, hoverTimeout, setHoverTimeout }) {
     const { CardHover, setCardHover } = useStateContext(); 
     const { loading, data } = useFetch('/profile/'+pseudo)
-    console.log(data?.data);
     const MouseIn = ()=>{
+        if(hoverTimeout) return clearTimeout(hoverTimeout);
         setCardHover(true) 
         setisIn(true) 
     }
     const MouseOut = ()=>{
-        setCardHover(false) 
-        setisIn(false)
+        setTimeout(() => {
+            setCardHover(false);
+            setisIn(false);
+        }, 400)
     }
     return (
         <div className='hover__card' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
             {
                 !loading ? <><div className="hover__card__header">
-                <Link to='' className="avatar big__avatar">
+                <Link to={'/'+pseudo.substring(1)} className="avatar big__avatar">
                     <img src={data?.data.pp || avatar} alt="profile__avatar" />
                 </Link>
                 <div>
                     <FollowBtn title="Follow" />
                 </div>
             </div>
-            <Link to='' className="hover__card_user">
+            <Link to={'/'+pseudo.substring(1)} className="hover__card_user">
                 <span className='name ellipsis underline'>{data?.data.name}
                     <span className="Verify__icon align-center">
                         <VerifyIc fill="#1d9bf0" />

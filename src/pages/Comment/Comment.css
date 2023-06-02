@@ -1,0 +1,41 @@
+.reply__ .create__home{
+    padding-top: 12px;
+}
+.reply__ .Tweet{
+    cursor: auto;
+    padding: 8px 16px 12px 16px;
+}
+.reply__ .Tweet:hover{
+    background-color: transparent;
+}
+.reply__ .tweet__image{
+    cursor: auto;
+}
+.replys .Tweet{
+    border-top: none;
+    cursor: pointer;
+    padding: 5px 16px 12px 16px;
+    transition: .2s ease;
+}
+.replys{
+    margin-bottom: 100px;
+}
+
+.Title__reply {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
+
+.Title__reply span {
+    font-weight: 700;
+    font-size: 20px;
+    color: rgb(231, 233, 234);
+    line-height: 24px;
+}
+
+.emoji_position {
+    left: 25.5% !important;
+    top: 32%;
+    width: fit-content;
+    height: fit-content;
+}

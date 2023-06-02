@@ -7,24 +7,40 @@ import { useDispatch } from 'react-redux'
 import { removeTweet } from '../../redux/Reducers/HomeReducer'
 import useFollow from '../../hooks/useFollow'
 
-export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick }) {
+export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
     const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
-    const { CallToast } = useStateContext();
+    const { CallToast, showErrorFunction } = useStateContext();
     const dispatch = useDispatch()
 
     const DeleteTweet = () => {
-        setInterested(true)
-        dispatch(removeTweet(idTweet))
-        axios
-        .delete('/tweets/deleteTweet/'+idTweet)
-        .then(res => {
-            CallToast('tweet Delete successfully😊');
-        })
-        .catch(err => {
-            CallToast('something happend, please try later✌');
-        })
+        if(!commentOption){
+            setInterested(true)
+            dispatch(removeTweet(idTweet))
+            axios
+            .delete('/tweets/deleteTweet/'+idTweet)
+            .then(res => {
+                CallToast('tweet Delete successfully😊');
+            })
+            .catch(err => {
+                // CallToast('something happend, please try later✌');
+                showErrorFunction()
+                setInterested(false)
+            })
+        }else{
+            setInterested(true)
+            axios
+            .delete('/comments/delete/'+idComment)
+            .then(res => {
+                CallToast('Comment Delete successfully😊');
+            })
+            .catch(err => {
+                // CallToast('something happend, please try later✌');
+                showErrorFunction()
+                setInterested(false)
+            })
+        }
     }
 
     const handleFollow = () => {
