@@ -44,7 +44,7 @@ export default function Tweet({tweet,
 }
 ) {  
     const [interested, setInterested] = useState(false)
-    const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
+    // const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
@@ -53,9 +53,9 @@ export default function Tweet({tweet,
     const [ShareHover, setShareHover] = useState(false)
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isIn, setisIn] = useState(false) 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
     const MouseIn = ()=>{
-        if(user) return
+        if(!Auth) return
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
             setCardHover(true)
@@ -64,7 +64,8 @@ export default function Tweet({tweet,
         setHoverTimeout(timeoutId);
     }
     const MouseOut = () => {
-        if(user) return
+        if(!Auth) return
+        if(hoverTimeout) return clearTimeout(hoverTimeout)
         setHoverTimeout(
             setTimeout(() => {
             setCardHover(false);
@@ -94,7 +95,7 @@ export default function Tweet({tweet,
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                    <div onMouseEnter={Auth ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <Link to={'/'+pseudo.substring(1)} >
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
