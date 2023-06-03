@@ -28,12 +28,8 @@ function HoverCard({ isIn, setisIn, pseudo, hoverTimeout, setHoverTimeout }) {
         setFollowHim(!followHim)
     } 
     const MouseIn = () => {
-        clearTimeout(hoverTimeout);
-        const timeoutId = setTimeout(() => {
-            setCardHover(true)
-            setisIn(true)
-        }, 800);
-        setHoverTimeout(timeoutId);
+        setCardHover(true)
+        setisIn(true)
     }
     const MouseOut = () => {
         setCardHover(false);

@@ -44,19 +44,19 @@ export default function Tweet({tweet,
 }
 ) {  
     const [interested, setInterested] = useState(false)
-    const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
+    // const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
-    const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const { loggedIn:Auth, user:{ pseudo: myPseudo } } = useSelector(state => state.Auth)
+    const userIsMe = myPseudo === pseudo
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isIn, setisIn] = useState(false) 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
     const MouseIn = ()=>{
-        if(user) return
-        console.log('in');
+        if(!Auth || userIsMe) return
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
             setCardHover(true)
@@ -65,7 +65,8 @@ export default function Tweet({tweet,
         setHoverTimeout(timeoutId);
     }
     const MouseOut = () => {
-        if(user) return
+        if(!Auth || userIsMe) return
+        if(hoverTimeout) return clearTimeout(hoverTimeout)
         setHoverTimeout(
             setTimeout(() => {
                 setCardHover(false);
@@ -95,7 +96,7 @@ export default function Tweet({tweet,
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                    <div onMouseEnter={Auth ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <Link to={'/'+pseudo.substring(1)} >
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
