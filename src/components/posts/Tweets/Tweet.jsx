@@ -56,6 +56,7 @@ export default function Tweet({tweet,
     const navigate = useNavigate()
     const MouseIn = ()=>{
         if(user) return
+        console.log('in');
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
             setCardHover(true)
@@ -67,9 +68,9 @@ export default function Tweet({tweet,
         if(user) return
         setHoverTimeout(
             setTimeout(() => {
-            setCardHover(false);
-            setisIn(false);
-        }, 400)
+                setCardHover(false);
+                setisIn(false);
+            }, 300)
         );
     };
     const showOption = (A) => {
@@ -94,7 +95,7 @@ export default function Tweet({tweet,
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                    <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <Link to={'/'+pseudo.substring(1)} >
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
