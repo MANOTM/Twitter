@@ -6,7 +6,8 @@ import './PasswordSetting.css'
 import { useStateContext } from '../../../../../contexts/ContextProvider'
 
 export default function PasswordSetting() {
-    const { CallToast } = useStateContext()
+    const { CallToast, showErrorFunction, SetTitle } = useStateContext()
+    SetTitle('Change your password')
     const [newPassword, setNewPassword] = useState({})
     const handleNewPassword= e => {
         const { name, value } = e.target
@@ -34,7 +35,8 @@ export default function PasswordSetting() {
                 </div>
             </div>
             <div className={`Account__option__saveBtn ${newPassword && newPassword?.password?.length && newPassword?.passwordConfirmation?.length && 'active'}`}>
-                <button onClick={()=>CallToast("We don't have that option right now 😢")}>Save</button>
+                {/* <button onClick={()=>CallToast("We don't have that option right now 😢")}>Save</button> */}
+                <button onClick={()=>showErrorFunction()}>Save</button>
             </div>
         </div>
     )

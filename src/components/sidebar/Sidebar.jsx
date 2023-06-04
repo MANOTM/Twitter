@@ -103,7 +103,7 @@ export default function Sidebar() {
                 <div onClick={showIn} className="user__action">
                   <icons.ThreePoints  />
                 </div>
-          </div>
+              </div>
             )
           }
         </div >

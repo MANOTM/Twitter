@@ -50,6 +50,7 @@ const homeSlice = createSlice({
       .addCase(getAllTweets.fulfilled, (state, action) => {
         state.loading = false;
         state.tweets = action.payload;
+        state.newTweets = [];
       })
       .addCase(getAllTweets.rejected, (state, action) => {
         state.loading = false;

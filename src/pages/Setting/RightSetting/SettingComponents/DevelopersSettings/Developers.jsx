@@ -3,8 +3,11 @@ import HeaderRightSetting from '../../../Components/HeaderRightSetting/HeaderRig
 import './Developers.css';
 import json from '../../../../../data/developers.json';
 import DeveloperComponent from '../../../Components/DeveloperComponent/DeveloperComponent';
+import { useStateContext } from '../../../../../contexts/ContextProvider';
 
 export default function Developers() {
+    const { SetTitle } = useStateContext();
+    SetTitle('Developers')
     return (
         <div className='Developers'>
             <HeaderRightSetting title="Developers List" />

@@ -1,5 +1,5 @@
 .Share__card {
-    min-width: 255px;
+    min-width: calc(255px);
     width: fit-content;
     right: 0;
     bottom: 2px;

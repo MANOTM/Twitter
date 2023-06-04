@@ -11,7 +11,7 @@ import Tweet from '../../posts/Tweets/Tweet'
 export const Likes = ({user}) => {
   const { loggedIn:Auth } = useSelector(state => state.Auth) 
   const {error , data ,loading} =useFetch('likedTweets/' + user.pseudo) 
-
+  console.log(data);
   const {setHeadingCount}=useStateContext()
   useEffect(()=>{ 
     setHeadingCount(data?.data && Auth ? data?.data.length+' likes':'')

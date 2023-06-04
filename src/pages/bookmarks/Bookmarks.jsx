@@ -7,6 +7,8 @@ import Loading from '../../components/Loading/Loading'
 import { useSelector } from 'react-redux'
 import { useStateContext } from '../../contexts/ContextProvider'
 import Tweet from '../../components/posts/Tweets/Tweet'
+import { useNavigate } from 'react-router-dom'
+import { SettingIcon } from '../notification/Icons/notificationIcons'
 
 
 export default function Bookmarks() {
@@ -14,12 +16,18 @@ export default function Bookmarks() {
   SetTitle()
   const { user } = useSelector(state => state.Auth)
   const {error , data ,loading} =useFetch('bookmarks/' + user?.pseudo)
+  const navigate = useNavigate()
   return (
     <Main>
       <div className="bookmarks"> 
         <header className='bookmarks__header'>
-          <span className='bookmarks__title'>Bookmarks</span>
-          <span className='bookmarks__username'>{ user?.pseudo }</span>
+          <div>
+            <span className='bookmarks__title'>Bookmarks</span>
+            <span className='bookmarks__username'>{ user?.pseudo.substring(1) }</span>
+          </div>
+          <span onClick={()=>navigate('/settings/Clear')} className="notification__setting center bokIcon">
+                <SettingIcon />
+          </span>
         </header>
       {loading ? <Loading/>  : !data?.data.length ?
         <div className="bookmarks__empty">

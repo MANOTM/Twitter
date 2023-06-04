@@ -17,12 +17,16 @@ export default function CreateTweet() {
     const handleImage = e => {
         const file = e.target.files[0];
         if (file) {
-          if (file.type.includes("video")) {
-            setTweet((prev) => ({ ...prev, video: file, image: null }));
-          } else {
-            setTweet((prev) => ({ ...prev, image: file, video: null }));
-          }
-        }
+            if (file.type.includes("video")) {
+                if (file.size > 25 * 1024 * 1024) {
+                    CallToast("Video file size must be less than 25 MB.", 3500);
+                } else {
+                    setTweet((prev) => ({ ...prev, video: file, image: null }));
+                }
+            } else {
+                setTweet((prev) => ({ ...prev, image: file, video: null }));
+            }
+        };
     }
     // clear image when you close
     const clearMedia = () => {
@@ -45,20 +49,20 @@ export default function CreateTweet() {
         clearCreateTweet()
         let prefix = "/tweets/createTweet";
         if (tweet?.video) {
-          prefix = "/tweets/createVideo";
+            prefix = "/tweets/createVideo";
         } else if (tweet?.image) {
-          prefix = "/tweets/createImage";
-        }        axios.post(prefix, tweet, {
+            prefix = "/tweets/createImage";
+        } axios.post(prefix, tweet, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        .then(response => {
-            CallToast('Your Tweet was sent.', 3500);
-        })
-        .catch(error => {
-            CallToast('Something happened, please try later.', 3500);
-        });
+            .then(response => {
+                CallToast('Your tweet was published.', 3500);
+            })
+            .catch(error => {
+                CallToast('Something happened, please try later.', 3500);
+            });
     }
 
     return <div className={`create ${show__createTweet && 'active'}`}>
@@ -87,26 +91,26 @@ export default function CreateTweet() {
                         {
                             tweet?.video && (
                                 <div className="createTweet__media">
-                                <video src={URL.createObjectURL(tweet?.video)} controls>
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div onClick={clearMedia} className="createTweet__cancel__image center">
-                                    <CloseIcon />
-                                </div>
+                                    <video src={URL.createObjectURL(tweet?.video)} controls>
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div onClick={clearMedia} className="createTweet__cancel__image center">
+                                        <CloseIcon />
+                                    </div>
                                 </div>
                             )
                         }
                     </div>
                 </div>
                 <Everyone />
-                <CreateFooter 
-                image={handleImage} 
-                setTweet={emoji => 
-                    setTweet(prev => (
-                        { ...prev, description: `${prev?.description || ''}` + `${emoji}` }))} 
-                tweet={tweet} 
-                Media={Media} 
-                click={createTweet} />
+                <CreateFooter
+                    image={handleImage}
+                    setTweet={emoji =>
+                        setTweet(prev => (
+                            { ...prev, description: `${prev?.description || ''}` + `${emoji}` }))}
+                    tweet={tweet}
+                    Media={Media}
+                    click={createTweet} />
             </div>
         </div>
     </div>

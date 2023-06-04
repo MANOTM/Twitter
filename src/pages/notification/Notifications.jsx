@@ -10,8 +10,7 @@ import HeaderNotification from './Components/HelpNotification/HeaderNotification
 import NotifiLike from './Components/TypeNotification/NotifiLike';
 import { useEffect } from 'react';
 import axios from '../../api/axios';
-import FollowNotifications from './Components/TypeNotification/FollowNotifications';
-import LikeNotifications from './Components/TypeNotification/LikeNotifications';
+import NotifTweet from './Components/TypeNotification/NotifTweet';
 
 export default function Notifications() {
   const { SetTitle, setCountNotifi  } = useStateContext();
@@ -37,6 +36,9 @@ export default function Notifications() {
                   }
                   else if(notifi.type === 'Like'){
                     return <NotifiLike key={notifi.id_notify} notifi={notifi} />
+                  }
+                  else if(notifi.type === 'Tweet'){
+                    return <NotifTweet key={notifi.id_notify} notifi={notifi} />
                   }
                 })
                   :

@@ -1,0 +1,20 @@
+.reply__ .create__home{
+    padding-top: 20px;
+}
+.reply__ .Tweet{
+    cursor: auto;
+}
+.reply__ .Tweet:hover{
+    background-color: transparent;
+}
+.reply__ .tweet__image{
+    cursor: auto;
+}
+.replys .Tweet{
+    border-top: none;
+    cursor: auto;
+    padding:0 10px 10px;
+}
+.replys{
+    margin-bottom: 100px;
+}

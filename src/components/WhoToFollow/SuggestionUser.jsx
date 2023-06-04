@@ -1,16 +1,14 @@
-import {useEffect, useState} from 'react'
-import FollowBtn from '../buttons/FollowBtn'
+import {useEffect, useState} from 'react' 
 import defaultAvatar from '../../assets/images/defaultProfile.png'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux' 
-import useFetch from '../../hooks/useFetch'
+import { useSelector } from 'react-redux'  
 import useFollow from '../../hooks/useFollow'
 
 export default function SuggestionUser({userSu , isFollowed}) {  
   
   
   const { user } = useSelector(state => state.Auth) 
-  const [followHim,setfollowHim]=useState(isFollowed)    
+  const [followHim,setfollowHim]=useState(isFollowed)  
   const follow = () =>{
     useFollow(followHim,userSu.idUser)
     setfollowHim(!followHim)
@@ -28,7 +26,7 @@ export default function SuggestionUser({userSu , isFollowed}) {
             </div>
           </Link> 
           {user?.id==userSu?.idUser ?'':
-            <>
+            <> 
             { followHim!=undefined &&followHim && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>} 
             { followHim!=undefined && !followHim &&<button className='btn-def btn_follow' onClick={follow}>Follow</button>} 
             </>
