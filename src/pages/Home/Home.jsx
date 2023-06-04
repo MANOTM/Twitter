@@ -42,10 +42,10 @@ export default function Home() {
       dispatch(getAllTweets());
     }
   
-    getIDs();
+    Auth && getIDs();
   
     const intervalId = setInterval(() => {
-      dispatch(getNewTweets());
+      Auth && dispatch(getNewTweets());
     }, 20000);
   
     return () => {
