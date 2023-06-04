@@ -4,7 +4,7 @@ import Main from '../../layouts/Main'
 import { ProfileHead } from '../../components/ProfileComponent/ProfileHead/ProfileHead'
 import Tweet from '../../components/posts/Tweets/Tweet'
 import { CommentItem } from './Component/CommentItem/CommentItem'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import Loading from '../../components/Loading/Loading'
 import CreateComment from './Component/CreateComment/CreateComment'
@@ -13,6 +13,7 @@ export default function Comment() {
 
     // hello my friend if u find any issue try to fix it ,may get some hassanat
     const { idTweet } = useParams();
+    const navigate = useNavigate()
     const { loading, data } = useFetch('tweet/'+idTweet);
     return (
         <Main>
@@ -20,6 +21,7 @@ export default function Comment() {
                 <ProfileHead name='Tweet' />
                 {
                     loading ? <Loading /> : 
+                    data?.data?.tweet && 
                     <>
                         <Tweet tweet={data?.data?.tweet} />
                         <CreateComment idTweet={idTweet} />

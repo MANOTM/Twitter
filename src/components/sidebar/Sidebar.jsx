@@ -21,12 +21,14 @@ export default function Sidebar() {
   // notification check 
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios.get('/countNotification').then(res => {
-        setCountNotifi(res.data.data.count_notify);
-      })
-  }, 20000);
-    return () => clearInterval(interval);
+    if(Auth){
+      const interval = setInterval(() => {
+        axios.get('/countNotification').then(res => {
+          setCountNotifi(res.data.data.count_notify);
+        })
+    }, 20000);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const showOut = event => {

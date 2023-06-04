@@ -12,7 +12,7 @@ import Google from '../../../components/Icons/Google'
 import Apple from '../../../components/Icons/Apple'
 import { useAuth } from '../../../hooks/useAuth'
 import RegularEx from '../../../assets/Helper/RegularEx'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
     const { SetTitle } = useStateContext();
@@ -138,7 +138,7 @@ function Login() {
                                     change={handleFields}
                                     icon={true}
                                 />
-                                <a href="#">Forgot password?</a>
+                                <Link to="/i/flow/password_reset">Forgot password?</Link>
                             </div>
                         </div>
                         <div className="login__buttons form__button">
