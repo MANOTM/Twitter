@@ -16,7 +16,9 @@ import { ProfileFollower } from "./components/ProfileComponent/ProfileFollowe/Pr
 import { Connect } from "./pages/Connect/Connect";
 import Forgot from "./pages/Auth/Forgot/Forgot";
 import TrendsList from "./components/Trends/Components/TrendsList/TrendsList";
+import Comment from "./pages/Comment/Comment";
 import Reply from "./pages/Reply/Reply";
+
 
 const router = createBrowserRouter([
     {
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
             }, 
             {
                 path : ':pseudo/status/:idTweet',
+                element : <AuthRoute element={Comment} />,
+            },
+            {
+                path : ':pseudo/reply/:idComment/:idTweet',
                 element : <AuthRoute element={Reply} />,
             },  
             {

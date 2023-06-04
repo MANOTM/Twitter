@@ -6,13 +6,13 @@ import { useState } from 'react';
 import useSave from '../../../../hooks/useSave';
 import { useLocation } from 'react-router-dom';
 
-export default function ShareCard({ setInterested, hiddeOption, idTweet }) {
+export default function ShareCard({ pseudo, setInterested, hiddeOption, idTweet }) {
     
     const location = useLocation()
     const [bookmark, setBookmark] = useState(location.pathname.includes('bookmarks') || JSON.parse(localStorage.getItem('id_Save')) && JSON.parse(localStorage.getItem('id_Save')).includes(idTweet))
     const { CallToast, setShowingCard } = useStateContext()
     const handleCopie = async () => {
-        await navigator.clipboard.writeText(window.location.href + 'tweet/' + idTweet);
+        await navigator.clipboard.writeText(window.location.href + pseudo.substring(1) + '/status/' + idTweet);
         CallToast('Copied to clipboard');
         hiddeOption(event)
     }

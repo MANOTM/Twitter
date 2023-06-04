@@ -44,34 +44,36 @@ export default function Tweet({tweet,
 }
 ) {  
     const [interested, setInterested] = useState(false)
-    const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
+    // const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
-    const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const { loggedIn:Auth, user:{ pseudo: myPseudo } } = useSelector(state => state.Auth)
+    const userIsMe = myPseudo === pseudo
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isIn, setisIn] = useState(false) 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
     const MouseIn = ()=>{
+        if(!Auth || userIsMe) return
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
-          setCardHover(true)
-          setisIn(true)
+            setCardHover(true)
+            setisIn(true)
         }, 800);
         setHoverTimeout(timeoutId);
     }
     const MouseOut = () => {
-        if(hoverTimeout) return clearTimeout(hoverTimeout);
+        if(!Auth || userIsMe) return
+        if(hoverTimeout) return clearTimeout(hoverTimeout)
         setHoverTimeout(
-          setTimeout(() => {
-            setCardHover(false);
-            setisIn(false);
-          }, 400)
+            setTimeout(() => {
+                setCardHover(false);
+                setisIn(false);
+            }, 300)
         );
-      };
-      
+    };
     const showOption = (A) => {
         if(!Auth) return CallToast('Once you join Wazoo, you can open it😊',3500)
         if(A) return setShareHover(true)
@@ -84,18 +86,18 @@ export default function Tweet({tweet,
     }                                                                                                                                                                                                     
     return (
         <div  hidden={interested} className='Tweet' key={idTweet}>
-        {isIn && CardHover ? <HoverCard pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
-        {orginaUserId && <div className="retweet__tweet">
-            <div className="retweet__icon__tweet">
-                <RetweetIcon />
-            </div>
-            <span className="retweet__message">This Tweet is retweeted</span>
-        </div>}
+            {isIn && CardHover ? <HoverCard setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
+            {orginaUserId && <div className="retweet__tweet">
+                <div className="retweet__icon__tweet">
+                    <RetweetIcon />
+                </div>
+                <span className="retweet__message">This Tweet is retweeted</span>
+            </div>}
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
-                        <Link to={'/'+pseudo.substring(1)}>
+                    <div onMouseEnter={Auth ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                        <Link to={'/'+pseudo.substring(1)} >
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
                     </div>  
@@ -103,7 +105,7 @@ export default function Tweet({tweet,
                 <div className="tweet__right">
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
-                            <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={!user ? MouseIn : ''} onMouseLeave={MouseOut}>
+                            <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
                                 <span className="tweet__username shrenk">{name}</span>
                                 {
                                 verifyUser && (<span className="tweet__icon__verify">
@@ -151,11 +153,12 @@ export default function Tweet({tweet,
                         }
                     </Link>
                     <FooterAction
+                        pseudo={pseudo}
                         idTweet={idTweet || id}
                         like={like}
                         comment_count={comment_count}
                         retweeted={retweeted}
-                        like_count={like_count || tweet?.likes}
+                        like_count={like_count}
                         hiddeOption={hiddeOption}
                         retweet_count={retweet_count}
                         ShareHover={ShareHover}

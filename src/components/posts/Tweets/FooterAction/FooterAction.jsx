@@ -6,7 +6,7 @@ import { useState } from 'react';
 import axios from '../../../../api/axios';
 import useFetch from '../../../../hooks/useFetch';
 
-export default function FooterAction({ setInterested, idTweet, comment_count, retweeted, like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
+export default function FooterAction({ pseudo, setInterested, idTweet, comment_count, retweeted, like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
 
     // like logic
     const [addLike, setAddLike] = useState(like);
@@ -61,7 +61,7 @@ export default function FooterAction({ setInterested, idTweet, comment_count, re
                     {ShareHover && 
                         <div>
                             <div onClick={hiddeOption} className="overlay__hidden"></div>
-                            <ShareCard setInterested={()=>setInterested()} hiddeOption={hiddeOption} idTweet={idTweet} />
+                            <ShareCard pseudo={pseudo} setInterested={()=>setInterested()} hiddeOption={hiddeOption} idTweet={idTweet} />
                         </div>
                     }
                 </div>

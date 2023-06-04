@@ -4,7 +4,7 @@ import './ProfileHead.css'
 import { useStateContext } from '../../../contexts/ContextProvider'
 
 export const ProfileHead = ({name}) => {
-  const {HeadingCount}= useStateContext()
+  const { HeadingCount }= useStateContext()
     const navigator=useNavigate()
   return (
     <div className='profile__head'>

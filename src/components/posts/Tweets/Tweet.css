@@ -9,6 +9,9 @@
 .tweet__paragraph a{
     color: #1d9bf0;
 }
+.tweet__paragraph.arabic{
+    text-align: right;
+}
 .retweet__tweet { 
     display: flex;
     align-items: center;
@@ -55,6 +58,9 @@
 .tweet__user,
 .teet__profile__line {
     display: flex;
+}
+.tweet__action {
+    cursor: pointer;
 }
 .tweet__content {
     display: flex;
@@ -163,6 +169,7 @@
     /* border: 1px solid rgb(47, 51, 54) !important; */
     outline-style: none;
     overflow: hidden;
+    margin-top: 8px;
     cursor: pointer;
     user-select: none;
     width: fit-content;
