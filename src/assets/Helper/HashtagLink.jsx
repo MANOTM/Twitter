@@ -1,10 +1,15 @@
 import React from 'react';
 
 export const HashtagLink = ({ text }) => {
+  if (!text) {
+    return null; // or handle the case when text is undefined/null
+  }
+
   const convertedText = text.replace(
     /#([\p{L}\p{N}_-]+)/gu,
     '<a class="underline" href="/search/$1">#$1</a>'
   );
+
   return <span dangerouslySetInnerHTML={{ __html: convertedText }} />;
 };
 

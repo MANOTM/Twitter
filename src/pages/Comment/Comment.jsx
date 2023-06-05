@@ -16,7 +16,6 @@ export default function Comment() {
     // hello my friend if u find any issue try to fix it ,may get some hassanat
     const { idTweet } = useParams();
     const { setHeadingCount } = useStateContext();
-    const navigate = useNavigate();
     const { loading, data } = useFetch('tweet/'+idTweet);
     setHeadingCount('comments');
     return (
