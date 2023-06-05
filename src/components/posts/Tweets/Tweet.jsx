@@ -142,7 +142,7 @@ export default function Tweet({tweet,Tweet4Comment,
                     {
                         description && Tweet4Comment ? <div className='tweet__content__body'>
                             <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
-                        </div> : <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__body">
+                        </div> : <Link onClick={e => e.preventDefault()} to={`${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__body">
                             <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
                         </Link>
                     }
@@ -163,7 +163,7 @@ export default function Tweet({tweet,Tweet4Comment,
                             }
                         </div>
                         :
-                    <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__media m-t">
+                    <Link to={`${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
                                 {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
