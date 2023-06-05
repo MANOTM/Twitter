@@ -17,8 +17,8 @@ export const TweetsProfile = ({userInfo}) => {
   },[data]) 
   const LogicShow=(arr)=>{  
     if(arr.length){
-      return arr?.map(tweet=>{
-        return <Tweet
+      return arr?.map((tweet,index)=>{
+        return <Tweet key={index}
           tweet={tweet}
         />
       })

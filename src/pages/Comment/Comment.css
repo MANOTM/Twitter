@@ -14,7 +14,7 @@
 .replys .Tweet{
     border-top: none;
     cursor: pointer;
-    padding: 5px 16px 12px 16px;
+    padding: 5px 16px 2px 16px;
     transition: .2s ease;
 }
 .replys{
@@ -38,4 +38,21 @@
     top: 32%;
     width: fit-content;
     height: fit-content;
+}
+
+.Show__repllies,
+.Show__repllies small {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(29, 155, 240);
+    transition: .2s ease;
+    cursor: pointer;
+}
+.Show__repllies small {
+    font-size: 12px;
+}
+.Show__repllies:hover,
+.Show__repllies:hover small {
+    color: rgb(31, 138, 210);
 }

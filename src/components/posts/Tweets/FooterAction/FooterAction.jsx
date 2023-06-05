@@ -5,13 +5,14 @@ import ShareCard from '../../Components/ShareCard/ShareCard'
 import { useState } from 'react';
 import axios from '../../../../api/axios';
 import useFetch from '../../../../hooks/useFetch';
+import { Link } from 'react-router-dom';
 
-export default function FooterAction({ pseudo, setInterested, idTweet, comment_count, retweeted, like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
+export default function FooterAction({ pseudo, setInterested, idTweet, comments, comment_count, retweeted, likes,like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
 
+    const [actionTimer,setActionTimer] = useState(false)
     // like logic
     const [addLike, setAddLike] = useState(like);
-    const [likeCount, setLikeCount] = useState(like_count);
-    const [actionTimer,setActionTimer] = useState(false)
+    const [likeCount, setLikeCount] = useState(likes !== undefined ? likes : like_count);
     const handleLikes = status => {
         const url = status ? '/disLikeTweet/' : '/likeTweet/';
         axios.post(url+idTweet).then(res => console.log(url))
@@ -35,19 +36,45 @@ export default function FooterAction({ pseudo, setInterested, idTweet, comment_c
             setActionTimer(false);
         }, 999);
     }
+    // retweet logic
+    const [addRetweet, setAddRetweet] = useState(false);
+    const [retweetCount, setRetweetCount] = useState(retweet_count || 0);
+    const handleRetweet = status => {
+        const url = status ? '/removeReTweet/' : '/reTweet/';
+        axios.post(url+idTweet).then(res => console.log(url))
+        .catch(err => {
+            setRetweetCount(retweetCount);
+            if(!status){
+                setAddLike(true)
+            }else{
+                setAddLike(false)
+            }
+        })
+        if(status){
+            setRetweetCount(retweetCount - 1);
+            setAddRetweet(false)
+        }else{
+            setRetweetCount(retweetCount + 1);
+            setAddRetweet(true)
+        }
+        setActionTimer(true);
+        setTimeout(() => {
+            setActionTimer(false);
+        }, 999);
+    }
     return <div className="tweet__react__footer">
         <div className="tweet__actions__list">
-            <div className="tweet__action" title='Reply'>
+            <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__action" title='Reply'>
                 <div className="action__icon iconStyle center">
                     <CommentIcon />
                 </div>
-                <span className="actions__counter">{comment_count}</span>
-            </div>
-            <div className={`tweet__action retweet ${retweeted && 'hasRetweet'}`} title='Retweet'>
+                <span className="actions__counter">{comment_count || comments || 0}</span>
+            </Link>
+            <div onClick={()=>handleRetweet(addRetweet)} className={`tweet__action retweet ${addRetweet && 'hasRetweet'} ${actionTimer && 'block'}`} title='Retweet'>
                 <div className="action__icon iconStyle center">
                     <RetweetIcon />
                 </div>
-                <span className="actions__counter">{retweet_count || 0}</span>
+                <span className="actions__counter">{retweetCount}</span>
             </div>
             <div onClick={()=>handleLikes(addLike)} className={`tweet__action liked ${addLike && 'hasLike'} ${actionTimer && 'block'}`} title='Like'>
                 <div className="action__icon iconStyle center">

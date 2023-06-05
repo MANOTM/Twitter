@@ -25,7 +25,7 @@ export const Retweet = ({userInfo}) => {
     <>
     {loading ? <Loading/> : !dataFilter.length?<NoLike action='retweeted'/>:
       <>
-        {dataFilter?.map(retweet=><Tweet tweet={retweet}/>)}
+        {dataFilter?.map((retweet,index)=><Tweet key={index} tweet={retweet}/>)}
       </>
     } 
     

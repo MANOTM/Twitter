@@ -59,11 +59,11 @@ const router = createBrowserRouter([
             }, 
             {
                 path : ':pseudo/status/:idTweet',
-                element : <AuthRoute element={Comment} />,
+                element : <Comment />,
             },
             {
                 path : ':pseudo/reply/:idComment/:idTweet',
-                element : <AuthRoute element={Reply} />,
+                element : <Reply />,
             },  
             {
                 path : ':pseudo/*',
