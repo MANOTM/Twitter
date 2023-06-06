@@ -44,7 +44,7 @@ export default function Tweet({tweet,Tweet4Comment,
         comments
     }
 }
-) {  
+) {    
     const [interested, setInterested] = useState(false)
     // const user = pseudo === JSON.parse(localStorage.getItem('user_info'))?.pseudo
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
@@ -89,7 +89,7 @@ export default function Tweet({tweet,Tweet4Comment,
     }                                                                                                                                                                                                     
     return (
         <div  hidden={interested} className='Tweet' key={idTweet}>
-            {isIn && CardHover ? <HoverCard setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
+            {isIn && CardHover ? <HoverCard IfollowHim={tweet?.following} setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
             {orginaUserId && <div className="retweet__tweet">
                 <div className="retweet__icon__tweet">
                     <RetweetIcon />

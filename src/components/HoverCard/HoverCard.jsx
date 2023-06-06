@@ -10,19 +10,19 @@ import { Skeleton } from '../Loading/Skeleton/skeleton';
 import { useEffect, useState } from 'react';
 import useFollow from '../../hooks/useFollow';
 
-function HoverCard({ isIn, setisIn, pseudo, hoverTimeout, setHoverTimeout }) {
+function HoverCard({ isIn, setisIn, pseudo,IfollowHim, hoverTimeout, setHoverTimeout }) {
     const { CardHover, setCardHover } = useStateContext();
     const { loading, data } = useFetch('/profile/' + pseudo)
     const { loggedIn: Auth, user } = useSelector(state => state.Auth)
-    const [followHim , setFollowHim]=useState(null)
-    const  following =   useFetch('followings/' + user?.pseudo).data
-    const followingLoading = useFetch('followings/' + user?.pseudo).loading
+    const [followHim , setFollowHim]=useState(IfollowHim)
+    // const  following =   useFetch('followings/' + user?.pseudo).data
+    // const followingLoading = useFetch('followings/' + user?.pseudo).loading 
 
-    useEffect(()=>{
-        if(following?.data){  
-            setFollowHim(following?.data?.some(follow=> follow?.pseudo == data?.data?.pseudo));
-        }
-    },[following])
+    // useEffect(()=>{
+    //     if(following?.data){  
+    //         setFollowHim(following?.data?.some(follow=> follow?.pseudo == data?.data?.pseudo));
+    //     }
+    // },[following])
     const follow = () =>{
         useFollow(followHim, data?.data?.id)
         setFollowHim(!followHim)
@@ -43,17 +43,12 @@ function HoverCard({ isIn, setisIn, pseudo, hoverTimeout, setHoverTimeout }) {
                         <img src={data?.data.pp || avatar} alt="profile__avatar" />
                     </Link>
                     <div>
-                        {Auth && <>
-                            { followingLoading ? 
-                            <div className='sketlon'>
-                                <Skeleton />
-                            </div>:
+                        {Auth &&
                             <>
-                                {followHim!==null && followHim && <button className='btn-def btn_unfollow' onClick={follow}  >Following</button>}
-                                {followHim!==null && !followHim && <button className='btn-def btn_follow'  onClick={follow}>Follow</button>}
-                            </>
-                            }
-                        </>}  
+                                {followHim!==undefined && followHim && <button className='btn-def btn_unfollow' onClick={follow}  >Following</button>}
+                                {followHim!==undefined && !followHim && <button className='btn-def btn_follow'  onClick={follow}>Follow</button>}
+                            </> 
+                        }  
                     </div>
                 </div>
                     <Link to={`${data?.data?.pseudo.substring(1)}`} className="hover__card_user">

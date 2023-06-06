@@ -25,11 +25,12 @@ const ChatSlice = createSlice({
             state.justForHelp=!state.justForHelp
         }, 
         leaveConversation:(state,action)=>{
-            state.converstions= state.converstions.map(user=>{ 
+            state.converstions= state.converstions.filter(user=>{ 
                 if(user.idReceiver!=action.payload){
                     return user
                 }
             }) 
+            console.log(state.converstions);
         },
         newConversation:(state,action)=>{
             const findUser=state.converstions.find(user=>user.idReceiver===action.payload.idReceiver) 
