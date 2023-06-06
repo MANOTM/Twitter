@@ -36,7 +36,7 @@ export const ChatLeft = () => {
         }
         const timeOut = setTimeout(() => {
             fetching()
-        }, 5000)
+        }, 3000)
 
         return () => { clearTimeout(timeOut) }
 

@@ -22,7 +22,7 @@ export const ChatHead = () => {
       const timeOut = setTimeout(() => {
         fetching()  
         console.log('boite message loaded');    
-      }, 5000)
+      }, 3000)
 
       return () => { clearTimeout(timeOut) }
     }
