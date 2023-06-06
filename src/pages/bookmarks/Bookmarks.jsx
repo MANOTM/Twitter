@@ -23,7 +23,7 @@ export default function Bookmarks() {
         <header className='bookmarks__header'>
           <div>
             <span className='bookmarks__title'>Bookmarks</span>
-            <span className='bookmarks__username'>{ user?.pseudo.substring(1) }</span>
+            <span className='bookmarks__username'>{ user?.pseudo}</span>
           </div>
           <span onClick={()=>navigate('/settings/Clear')} className="notification__setting center bokIcon">
                 <SettingIcon />

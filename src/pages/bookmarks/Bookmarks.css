@@ -4,7 +4,14 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.bookmarks__header{
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
 .bokIcon {
     margin: 0 12px 8px 0;
 }
@@ -14,12 +21,7 @@
     flex-direction: column;
     gap: 2px;
     padding: 10px 15px;
-    position: sticky;
-    top: 0;
-    z-index: 11;
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    
 } 
 .bookmarks__title {
     font-weight: 600;
