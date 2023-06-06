@@ -12,6 +12,7 @@ import ScrollPopup from "./Components/ScrollPopup/ScrollPopup";
 import tweetFromJson from '../../data/JsonTweets.json';
 import { useState } from "react";
 import axios from "../../api/axios";
+import ConnectionCheck from "../../assets/Helper/CheckConnexion";
 
 export default function Home() {
 
@@ -72,31 +73,33 @@ export default function Home() {
           {
             Auth && <HeadTweet />
           }
-          <div className="tweets__container">
-            {newTweets?.length > 0 && (
-              <div className="showTweets center" onClick={handleMixTweets}>
-              <span>Show {newTweets.length} Tweets</span>
-            </div>            
-            )}
-            {showScrollPopup && <ScrollPopup />}
-            {loading ? (
-              <Loading />
-            ) : (
-              <>
-                {tweets && tweets.length ? (
-                  tweets.map((tweet, index) => <Tweet key={index} tweet={tweet} />)
-                ) : (
-                  <>
-                    {Auth ? (
-                      <WhoToFollow100 />
-                    ) : 
-                      tweetFromJson.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}  />)
-                    }
-                  </>
-                )}
-              </>
-            )}
-          </div>
+          <ConnectionCheck>
+            <div className="tweets__container">
+              {newTweets?.length > 0 && (
+                <div className="showTweets center" onClick={handleMixTweets}>
+                <span>Show {newTweets.length} Tweets</span>
+              </div>            
+              )}
+              {showScrollPopup && <ScrollPopup />}
+              {loading ? (
+                <Loading />
+              ) : (
+                <>
+                  {tweets && tweets.length ? (
+                    tweets.map((tweet, index) => <Tweet key={index} tweet={tweet} />)
+                  ) : (
+                    <>
+                      {Auth ? (
+                        <WhoToFollow100 />
+                      ) : 
+                        tweetFromJson.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}  />)
+                      }
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </ConnectionCheck>
         </div>
       </Main>
     </>

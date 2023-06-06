@@ -7,6 +7,7 @@ import { useStateContext } from '../../../contexts/ContextProvider'
 import { useDispatch, useSelector } from 'react-redux'
 import { getConversations } from '../../../redux/Reducers/Chat'
 import lonely from '../../../assets/images/yellow-birds.png'
+import ConnectionCheck from '../../../assets/Helper/CheckConnexion'
 
 export const BoiteElement = () => {
     const dispatch = useDispatch()
@@ -21,8 +22,8 @@ export const BoiteElement = () => {
 
             {!ToBottom &&
                 <div className="boite_messages_chatLines">
+                    <ConnectionCheck small={true}>
                     {
-
                         status == 'loading' ? <Loading /> :
                             <>
                                 {converstions.length ? converstions.slice().reverse().map((item, index) => <ChatLine user={item} key={index} />) :
@@ -37,6 +38,7 @@ export const BoiteElement = () => {
                                 }
                             </>
                     }
+                    </ConnectionCheck>
                 </div>
             }
         </>

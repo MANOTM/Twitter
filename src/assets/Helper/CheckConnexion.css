@@ -1,0 +1,51 @@
+.Connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    max-width: 600px;
+    row-gap: 23px;
+}
+
+.Connexion span {
+    color: rgb(113, 118, 123);
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.connexion__icon {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.connexion__icon svg{
+    fill: rgb(113, 118, 123) !important;
+}
+
+.Connexion button {
+    outline: none;
+    border: none;
+    border-radius: 9999px;
+    height: 38px;
+    padding: 0 15px;
+    background-color: rgb(29, 155, 240);
+    transition: .2s ease;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16.5px;
+    cursor: pointer;
+}
+
+.Connexion button:hover {
+    background-color: rgb(26, 140, 216);
+}
+
+.Connexion button svg{
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    margin-right: 5px;
+}

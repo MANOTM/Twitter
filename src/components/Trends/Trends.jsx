@@ -10,6 +10,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import SearchComponent from './Components/Search/SearchComponent'
 import TrendResult from './Components/TrendResult/TrendResult'
 import { useSelector } from 'react-redux'
+import ConnectionCheck from '../../assets/Helper/CheckConnexion'
 
 export default function Trends({FromExplore}) {
   
@@ -31,6 +32,7 @@ export default function Trends({FromExplore}) {
                 <header className='trends__header'>
                   <span className='trends__title'>Trends for you</span>
                 </header>
+                <ConnectionCheck>
                   <div className="trends__hashtags">
                     {
                       loading ? <Loading /> : data?.data?.length && 
@@ -38,6 +40,7 @@ export default function Trends({FromExplore}) {
                     }
                   </div>
                   {!loading && <ShowMore to={explore ? '/i/trends' : '/explore'}/>}
+                </ConnectionCheck>
             </div>  
             )
         }

@@ -16,6 +16,7 @@ import { Retweet } from '../../components/ProfileComponent/Retweet/Retweet'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 import { AuthRoute } from '../../layouts/AuthLayout'
 import { useStateContext } from '../../contexts/ContextProvider'
+import ConnectionCheck from '../../assets/Helper/CheckConnexion'
 function Profile() {
   const {pseudo}=useParams() 
   const path= useLocation().pathname  
@@ -68,23 +69,25 @@ function Profile() {
         {loading  ?<Loading/>:
         <div className="profile scroll">
           <ProfileHead name={data.data.name}/>
-          <ProfileInfo data1={data.data} />
-          <div className="profile__links">
-              <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('retweet')==-1 ? 'active' :''} to='' > Tweets  </Link>
-              <Link className={path.includes('retweet') ? 'active':''} to='retweet' > Retweets </Link>
-              <Link className={path.includes('media') ? 'active' :''} to='media' > Media  </Link>
-              <Link className={path.includes('likes') ? 'active' :''} to='likes'> Likes  </Link>
-          </div>
-          <div className="profile_selecte">
-            <Routes>
-              <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
-              <Route path='/retweet' element={<Retweet userInfo={data?.data}/>}/>
-              <Route path='/media' element={<Media user={data.data}/>}/>
-              <Route path='/likes' element={<Likes user={data.data}/>}/>  
-              <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
-              <Route path='/*' element={<NotFound />}/> 
-            </Routes> 
-          </div>
+          <ConnectionCheck>
+            <ProfileInfo data1={data.data} />
+            <div className="profile__links">
+                <Link className={path.search('likes')==-1 && path.search('media')==-1 && path.search('retweet')==-1 ? 'active' :''} to='' > Tweets  </Link>
+                <Link className={path.includes('retweet') ? 'active':''} to='retweet' > Retweets </Link>
+                <Link className={path.includes('media') ? 'active' :''} to='media' > Media  </Link>
+                <Link className={path.includes('likes') ? 'active' :''} to='likes'> Likes  </Link>
+            </div>
+            <div className="profile_selecte">
+              <Routes>
+                <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
+                <Route path='/retweet' element={<Retweet userInfo={data?.data}/>}/>
+                <Route path='/media' element={<Media user={data.data}/>}/>
+                <Route path='/likes' element={<Likes user={data.data}/>}/>  
+                <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  
+                <Route path='/*' element={<NotFound />}/> 
+              </Routes> 
+            </div>
+          </ConnectionCheck>
         </div>
         }
       </Main>
