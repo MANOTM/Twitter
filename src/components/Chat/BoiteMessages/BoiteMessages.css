@@ -27,9 +27,15 @@
 .h100{
     height: 100% !important;
 }
+.forChat{
+    height:calc(100% - 53px) !important ;
+}
 .toBottom{
     height: 53px !important;
 }
+
+
+
 @media (max-width: 1200px) {
     .boite__messages{
         display: none;

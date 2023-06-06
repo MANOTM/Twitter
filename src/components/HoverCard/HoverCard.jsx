@@ -15,7 +15,7 @@ function HoverCard({ isIn, setisIn, pseudo }) {
     const { loading, data } = useFetch('/profile/' + pseudo)
     const { loggedIn: Auth, user } = useSelector(state => state.Auth)
     const [followHim , setFollowHim]=useState(null)
-    const following = useFetch('followings/' + user?.pseudo).data
+    const  following =   useFetch('followings/' + user?.pseudo).data
     const followingLoading = useFetch('followings/' + user?.pseudo).loading
 
     useEffect(()=>{

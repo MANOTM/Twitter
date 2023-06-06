@@ -67,7 +67,7 @@ export const ContextProvider = ({ children }) => {
 
     const handelChat=(user)=>{
         setInChat(user ? true : false)
-        setUserChat(user)  
+        setUserChat(user)   
     }
     const handelChange = () => {
         setToBottom(!ToBottom) 

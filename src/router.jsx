@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element : <AuthRoute element={Messages} />,
             },
             {
-                path : '/messages/:idSender',
+                path : '/messages/:pseudo',
                 element : <AuthRoute element={Messages} />,
             },
             {

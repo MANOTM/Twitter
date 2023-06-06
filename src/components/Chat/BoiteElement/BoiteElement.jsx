@@ -1,34 +1,41 @@
 import './BoiteElement.css'
-import {ChatLine} from '../ChatLine/ChatLine'
+import { ChatLine } from '../ChatLine/ChatLine'
 import Loading from '../../Loading/Loading'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useStateContext } from '../../../contexts/ContextProvider'
+import { useDispatch, useSelector } from 'react-redux'
+import { getConversations } from '../../../redux/Reducers/Chat'
+import lonely from '../../../assets/images/yellow-birds.png'
+
 export const BoiteElement = () => {
-  const {ToBottom }=useStateContext()
-    const [data,setData] =useState(null)
-    const [loading,setLoading] =useState(true) 
-    useEffect(()=>{ 
-        if(!ToBottom){
-          axios.get("https://reqres.in/api/users?page=2")
-          .then(function (response) {
-            setTimeout(()=>{ 
-              setData(response.data.data.map(it=>{
-                return <ChatLine key={it.id} user={it}  />
-              }))   
-              setLoading(false)  
-  
-            },1000)
-            
-          })  
-        }
-      },[ToBottom])
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.Auth)
+    const { status, converstions } = useSelector((state) => state.Chat);
+
+    const { ToBottom, setShowingCard } = useStateContext()
+ 
+
     return (
         <>
+
             {!ToBottom &&
-                <div className="boite_messages_chatLines"> 
+                <div className="boite_messages_chatLines">
                     {
-                        loading ? <Loading /> : data
+
+                        status == 'loading' ? <Loading /> :
+                            <>
+                                {converstions.length ? converstions.slice().reverse().map((item, index) => <ChatLine user={item} key={index} />) :
+                                    <div className="no_user_select">
+                                        <div className="no_user_content">
+                                            <img src={lonely} alt="" />
+                                            <span>You look lonely</span>
+                                            <p>Search for people to start a new conversation ,or just keep swimming. </p>
+                                            <button className='tweet__bottom bg-blue' onClick={() => setShowingCard(true)}> New message</button>
+                                        </div>
+                                    </div>
+                                }
+                            </>
                     }
                 </div>
             }

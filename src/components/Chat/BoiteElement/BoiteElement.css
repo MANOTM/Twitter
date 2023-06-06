@@ -5,3 +5,10 @@
     height: calc(100% - 60px);
     /* overflow: auto; */
 } 
+.boite_messages_chatLines .no_user_content{
+    text-align: center;
+}
+.boite_messages_chatLines .no_user_content p{
+    width: 85%;
+    margin-inline:auto ;
+}

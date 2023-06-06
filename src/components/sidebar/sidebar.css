@@ -157,9 +157,11 @@
     -o-transition: .2s;
 }
 .hover:hover{
-    background-color: #80808026;
+    background-color: #80808026 !important;
 }
-
+.fixhover{
+    background-color: #8080803d !important;
+}
 
 @media (max-width: 1280px) {
     .sidebar__text{

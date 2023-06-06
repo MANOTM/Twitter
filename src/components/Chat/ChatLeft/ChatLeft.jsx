@@ -1,15 +1,48 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NewMessage from '../../Icons/NewMessage'
 import SearchIcon from '../../Icons/SearchIcon'
 import SettingsIcon from '../../Icons/SettingsIcon'
 import './ChatLeft.css'
 import { ChatLine } from '../ChatLine/ChatLine'
 import { useStateContext } from '../../../contexts/ContextProvider'
+import { useDispatch, useSelector } from 'react-redux'
+import { getConversations } from '../../../redux/Reducers/Chat'
+import Loading from '../../Loading/Loading';
 
 export const ChatLeft = () => {
-    const userA=[{id:2,first_name:'sma3in',last_name:"Mansouri", avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:662,first_name:'3tman',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:22,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:25,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'},{id:55,first_name:'Otmane',last_name:"Mansouri" , avatar:'https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small'}]
     const [InputActive, setInputActive] = useState(false)
-    const {ShowingCard,setShowingCard}=useStateContext()
+    const { setShowingCard } = useStateContext()
+    const { user } = useSelector(state => state.Auth)
+
+
+    const dispatch = useDispatch();
+    const { status, converstions } = useSelector((state) => state.Chat);
+    const [searchResult, setSearchResult] = useState(null)
+    const [val, setVal] = useState('')
+
+    //get conversation evry 5s
+    useEffect(() => {    
+        console.log('load conversation');
+        const fetching = () =>{ 
+            dispatch(getConversations(user?.id))
+        }
+        const timeOut= setTimeout(()=>{
+            fetching()
+        },5000)
+
+        return ()=>{clearTimeout(timeOut)}
+
+    }, [status, converstions])
+
+
+    const search = e => {
+        setVal(e.target.value)
+        setSearchResult(
+            converstions.filter((user) =>
+                user.receiver_name.toLowerCase().includes(e.target.value.toLowerCase())
+            ))
+    }
+
     return (
         <div className='chat__left scroll'>
             <div className="boite__m__header cursor_auto">
@@ -19,26 +52,64 @@ export const ChatLeft = () => {
                     </div>
                 </div>
                 <div className="boite__header__actions">
-                    <div className="iconH">
+                    {/* <div className="iconH">
                         <SettingsIcon />
-                    </div>
-                    <div className="iconH" onClick={()=>setShowingCard(true)}>
+                    </div> */}
+                    <div className="iconH" onClick={() => setShowingCard(true)}>
                         <NewMessage />
                     </div>
                 </div>
             </div>
 
-            <div className={`search__chat ${InputActive && 'active'}`} onClick={() => setInputActive(true)}>
-                <div className="search__chat_form">
-                    <SearchIcon fill="rgb(113, 118, 123)" />
-                    <div className="input__search">
-                        <input type="text" placeholder='Search Direct Messages' onBlur={() => { setInputActive(false) }} />
-                    </div>
-                </div>
-            </div>
-            <div className="chat_left_users">
-                {userA.map(item=><ChatLine user={item} key={item.id} to={item.id}/>)}
-            </div>
+            {status == 'loading' ? <Loading /> :
+                <>
+                    {!converstions.length ?
+
+                        <div className="no_user_select">
+                            <div className="no_user_content">
+                                <span>Welcome to your inbox!</span>
+                                <p>Drop a line, share Tweets and more with private conversations between you and others on Twitter.   </p>
+                                <button className='tweet__bottom bg-blue' onClick={() => setShowingCard(true)}> New message</button>
+                            </div>
+                        </div>
+                        :
+                        <>
+                            <div className={`search__chat ${InputActive && 'active'}`} onClick={() => setInputActive(true)}>
+                                <div className="search__chat_form">
+                                    <SearchIcon fill="rgb(113, 118, 123)" />
+                                    <div className="input__search">
+                                        <input type="text" value={val} onChange={search} placeholder='Search Direct Messages' onBlur={() => { setInputActive(false) }} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="chat_left_users">
+                                {
+                                    val ?
+                                        <>
+                                            {searchResult.length ? searchResult.map((item, index) => <ChatLine user={item} key={index} to={item.receiver_pseudo} />) :
+                                                <div className="no_user_select">
+                                                    <div className="no_user_content">
+                                                        <span>No results for "{val}"</span>
+                                                        <p>The term you entered did not bring up any results</p>
+                                                        <button className='tweet__bottom bg-blue' onClick={() => setShowingCard(true)}> New message</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </>
+                                        :
+                                        converstions.slice().reverse().map((item, index) => <ChatLine user={item} key={index} to={item?.receiver_pseudo} />)}
+                            </div>
+                        </>
+
+                    }
+                </>
+            }
+
+
+
+
+
         </div>
     )
 }
+

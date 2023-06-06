@@ -2,27 +2,36 @@ import './BoiteMessages.css'
 import { ChatHead } from '../ChatHead/ChatHead'
 import { BoiteElement } from '../BoiteElement/BoiteElement'
 import { ChatContent } from '../ChatContent/ChatContent'
-import { ChatInput } from '../ChatInput/ChatInput' 
+import { ChatInput } from '../ChatInput/ChatInput'
 import { useStateContext } from '../../../contexts/ContextProvider'
 import { NewChat } from '../NewChat/NewChat'
-import { useRef } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
+export const BoiteMessages = () => {
+  const { ToBottom, userChat } = useStateContext()
+  const { converstions, InChat,justForHelp} = useSelector((state) => state.Chat);
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    if (messagesEndRef?.current && InChat) {  
+      setTimeout(() => {
+        scrollTobottom()
+      }, 100);
+    }
+  }, [InChat,justForHelp])
 
-export const BoiteMessages = () => { 
-  const {ToBottom,InChat ,userChat}=useStateContext()  
-
-  
-
-  return ( 
+  return (
     <>
-    <div className={`boite__messages ${ToBottom && 'toBottom'} `} >
-      <ChatHead />
-      <div className={`boite_messages_scroll ${InChat || 'h100'}`} >
-        {InChat ? <ChatContent />: <BoiteElement /> }        
+      <div className={`boite__messages ${ToBottom && 'toBottom'} `} >
+        <ChatHead />
+        <div className={`boite_messages_scroll ${InChat || 'forChat'}`} id='ee' ref={messagesEndRef}>
+          {InChat ? <ChatContent userChat={userChat} /> : <BoiteElement />}
+        </div>
+        {InChat && <ChatInput />}
       </div>
-      {InChat && <ChatInput/> }
-    </div>  
-    <NewChat/>
+      <NewChat />
     </>
   )
+}
+function scrollTobottom (){ 
+  document.getElementById('ee').scrollTop=document.getElementById('ee').scrollHeight 
 }

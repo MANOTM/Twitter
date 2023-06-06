@@ -1,16 +1,18 @@
 .chat__line{
+    position: relative;
     padding: 15px 16px; 
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
-.chat__left .chat__line.active{
+.chat_left_users > .chat__line:has(> .active) {
     background: #202327;
     border-right: 2px solid #1d9bf0;
 }
-.chat__line_{
-    width: 100%;
+ 
+.chat__line_{ 
+    width: calc(100% - 23px);;
     display: flex;
     gap: 10px;
 }
@@ -42,12 +44,12 @@
 }
 .chat__line__info{
     gap: 5px;
-    max-width: 90%;
-    width: fit-content;
+    /* max-width: 90%; */
+    width: 100%;
 }
 .chat__line__name , .chat__line__username{
-    width: 41%;
-    max-width: 113px;
+    max-width: 41%;
+    /* max-width: 113px; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -61,6 +63,7 @@
     width: 73px;
 }
 .chat__line_message{
+    margin-top: 5px !important;
     width: 236px;
     color: gray;
     font-size: 15px;
@@ -70,4 +73,19 @@
     padding-bottom: 10px;
     position: relative;
     bottom: 4px;
+    padding-inline: 7px;
+}
+.chat__line .chat__line__time .username{
+    display: block;
+    width: 75px;
+}
+.chat__line .iconH{
+    position: relative;
+    bottom: 15px;
+}
+.chat__line .iconH:hover{
+    background-color: rgba(29, 155, 240, .1);
+}
+.chat__line .iconH svg{
+    fill: gray;
 }

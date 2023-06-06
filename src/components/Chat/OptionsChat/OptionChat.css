@@ -1,0 +1,50 @@
+.red span{
+    color: #d01e1e;
+}
+.option__Chat span{
+    font-weight: 600;
+}
+.red svg{
+    fill: #d01e1e !important;
+}
+.option__Chat{
+    min-width: 0;
+}
+.option__Chat.option__card{
+    top: 13px !important;
+}
+.option__Chat.option__card{
+    padding: 0;
+} 
+.option__Chat.option__card ul{
+    row-gap: 0;
+} 
+
+.option__Chat.option__card ul li{
+    padding: 10px;
+    border-bottom: 1px solid rgb(47, 51, 54);
+} 
+.option__Chat .closeIcon svg{
+    height: 17px;
+    position: absolute;
+    right: 8px;
+    top: 6px;
+}
+
+@keyframes option {
+    0%{
+        height: 0;
+    }
+    25%{
+        height: 30px;
+    }
+    50%{
+        height: 60px;
+    }
+    75%{
+        height: 90px;
+    }
+    100%{
+        height: 131px;
+    }
+}

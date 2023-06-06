@@ -43,3 +43,11 @@
 .search__chat.active .input__search {
     width: calc(100% - 40px);
 }
+.chat__left .no_user_select{
+    height: fit-content;
+    margin-top: 30px;
+}
+.chat__left .no_user_content {
+    width: 390px;
+    padding-inline:20px ;
+} 

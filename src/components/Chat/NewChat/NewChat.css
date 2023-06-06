@@ -45,6 +45,7 @@
     height: 42px;
     padding-left: 22px;
     border-bottom: 1px solid #8585857d;
+    position: relative;
 }
 .new_chat_input input{
     all: unset;
@@ -105,6 +106,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin-top: 5px;
 }
 .new_chat_info_name{
     color: rgb(231, 233, 234);
@@ -115,4 +117,15 @@
     font-size: 15px;
     font-weight: 400;
     color: #71767b;
+}
+.new__chat__container .nooResult{
+    display: block;
+    color: rgb(113, 118, 123);
+    font-size: 15px; 
+    text-align: center;
+    margin: 20px;
+    overflow: hidden;
+}
+.new__chat__container .loadingLine::after{
+    top: 101% !important    ;
 }

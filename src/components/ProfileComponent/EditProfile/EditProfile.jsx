@@ -1,4 +1,4 @@
-import { useNavigate,Navigate, useParams } from 'react-router-dom'
+import { useNavigate, Navigate, useParams } from 'react-router-dom'
 import './EditProfile.css'
 import CloseIcon from '../../Icons/CloseIcon'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
@@ -11,29 +11,29 @@ import { useSelector } from 'react-redux'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../Loading/Loading'
 import { useRef } from 'react'
-import axios from '../../../api/axios' 
+import axios from '../../../api/axios'
 
 export const EditProfile = () => {
 
     const { user: { pseudo } } = useSelector(state => state.Auth)
-    const { Mounths,CallToast,setRender ,render} = useStateContext();
+    const { Mounths, CallToast, setRender, render } = useStateContext();
     const navigate = useNavigate()
     if (pseudo.substring(1) != useParams().pseudo) navigate(-1)
 
     const { loading, data } = useFetch('profile/' + pseudo)
 
-    const [hidden,setHidden]=useState(true)
+    const [hidden, setHidden] = useState(true)
 
     //for input
-    const [userInfo, setUserInfo] = useState(null) 
+    const [userInfo, setUserInfo] = useState(null)
     const [birthday, setBirthday] = useState({})
-    const [images, setImages] = useState({}) 
-    const [checker,setChecker]=useState(false)
+    const [images, setImages] = useState({})
+    const [checker, setChecker] = useState(false)
 
-        const changeUserInfo = e => {
+    const changeUserInfo = e => {
         setChecker(true)
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
-        if(e.target.name=='name'){
+        if (e.target.name == 'name') {
             setChecker(e.target.value && true)
         }
     }
@@ -41,32 +41,32 @@ export const EditProfile = () => {
     useEffect(() => {
         if (data?.data) {
             // add you timer befor pp and cover added so you can handle your work faster
-            setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse:data?.data?.adresse })
+            setUserInfo({ name: data?.data?.name, bio: data?.data?.bio, adresse: data?.data?.adresse })
             const bir = new Date(data?.data?.birthday)
-            setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() }) 
+            setBirthday({ month: bir.getMonth(), day: bir.getDate(), year: bir.getFullYear() })
         }
     }, [data])
 
 
-// si mhamed i thing you should this trables before insert any thing so i can copie your work 😊
-// and find solution for image slowns the animation like facebook its just an excuse 
+    // si mhamed i thing you should this trables before insert any thing so i can copie your work 😊
+    // and find solution for image slowns the animation like facebook its just an excuse 
 
 
-    const save = () => { 
+    const save = () => {
         setHidden(false)
-        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));  
-        axios.post('editProfile/', {'pp':images?.pp,'cover':images?.cover, 'birthDay':date.toISOString().slice(0, 10),name:userInfo.name,bio:userInfo?.bio,adresse:userInfo?.adresse},{
+        const date = new Date(birthday.year, parseInt(birthday.month), parseInt(birthday.day));
+        axios.post('editProfile/', { 'pp': images?.pp, 'cover': images?.cover, 'birthDay': date.toISOString().slice(0, 10), name: userInfo.name, bio: userInfo?.bio, adresse: userInfo?.adresse }, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
             .then(function (response) {
                 console.log(response.data);
-                if(!response?.data?.length){
+                if (!response?.data?.length) {
                     CallToast('Profile updated successfuly')
                     setRender(!render)
-                    navigate('/'+pseudo.substring(1))
-                }else{
+                    navigate('/' + pseudo.substring(1))
+                } else {
                     CallToast('Errore🤔🤨')
                     setHidden(true)
                 }
@@ -74,15 +74,15 @@ export const EditProfile = () => {
             })
             .catch(function (error) {
                 console.log(error);
-            }); 
+            });
     }
 
     // for image
     const cover = useRef()
-    const pp = useRef() 
+    const pp = useRef()
     const prviewImg = e => {
-        const image=e.target.files[0] 
-        setImages({...images,[e.target.name]:image}) 
+        const image = e.target.files[0]
+        setImages({ ...images, [e.target.name]: image })
         setChecker(true)
     }
 
@@ -106,14 +106,14 @@ export const EditProfile = () => {
             setBirthday({ ...birthday, month: e.target.selectedOptions[0].className })
         } else {
             setBirthday({ ...birthday, [e.target.name]: e.target.value })
-        } 
+        }
     }
 
     return (
         <div className='new__chat__container edit__profile' onClick={() => navigate(-1)}>
             {loading ? <Loading /> :
                 <div className="new__chat scroll" onClick={e => { e.stopPropagation() }}>
-                    <div className="eventNone" hidden={hidden}><Loading/></div>
+                    <div className="eventNone" hidden={hidden}><Loading /></div>
                     <div className="boite__m__header cursor_auto">
                         <div className='boite__header__info op1'>
                             <span className='iconH' onClick={() => navigate(-1)}><CloseIcon /></span>
@@ -134,13 +134,13 @@ export const EditProfile = () => {
                                         <Camera onClick={() => cover.current.click()} />
                                     </div>
                                     {images?.cover ?
-                                        <div className="icon" onClick={() => setImages({...images,cover:null})}>
+                                        <div className="icon" onClick={() => setImages({ ...images, cover: null })}>
                                             <CloseIcon />
-                                        </div>:''}
+                                        </div> : ''}
 
                                 </div>
 
-                                {data?.data?.cover || images?.cover ? (<img src={images?.cover ? URL.createObjectURL(images?.cover) : data?.data?.cover} name='cover' className="img__banner" />):''}
+                                {data?.data?.cover || images?.cover ? (<img src={images?.cover ? URL.createObjectURL(images?.cover) : data?.data?.cover} name='cover' className="img__banner" />) : ''}
                             </div>
                             <div className="profile__img">
                                 <div className="img__profile">

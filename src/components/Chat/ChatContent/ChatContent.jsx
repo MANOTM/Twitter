@@ -1,39 +1,56 @@
-import { useEffect, useRef } from 'react'
-import { useStateContext } from '../../../contexts/ContextProvider'
-import './ChatContent.css'
 
-export const ChatContent = () => {
-  const {userChat}=useStateContext()
-  return (
-    <div className='chat__content' >
-        <div className="chat__content__head hover">
-            <div className="avatar64">
-                <img src={userChat.avatar} alt="" />
-            </div>
-            <div className="user__InFo">
-                <span className="name underline">{userChat?.first_name+userChat?.last_name }</span>
-                <span className="username">{userChat?.last_name && '@'+userChat?.last_name }</span>
-            </div>
-            <span className='user__bio'>"يَا أَيُّهَا الَّذِينَ آمَنُواْ اسْتَعِينُواْ بِالصَّبْرِ وَالصَّلاَةِ إِنَّ اللّهَ مَعَ الصَّابِرِينَ",(153)</span>
-            <span className='user__joined text-gray'>Joined March 2021 <span className='point'>.</span> 15 Followers</span>
-        </div>
-        <div className="chat">
-            <div className="chat_ele">
-                <span className="chat__text">Small msg</span>
-                <small className="chat__date text-gray">Apr 17, 2023, 1:39 PM</small>
-            </div>
-            
-            <div className="chat_ele align__flex_end">
-                <span className="chat__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequuntur eveniet, voluptatibus voluptate dolor cum. Exercitationem voluptate necessitatibus assumenda eveniet! Ullam quia, iure inventore architecto animi reprehenderit voluptates exercitationem. Dolor.</span>
-                <small className="chat__date text-gray">Apr 17, 2023, 1:39 PM</small>
-            </div>
-            <div className="chat_ele">
-                <div className="chat__img">
-                    <img src="https://pbs.twimg.com/media/FvCzfM4WIAIKRRP?format=jpg&name=small" alt="" />
+import './ChatContent.css'
+import avatar from '../../../assets/images/defaultProfile.png'
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { MessageItem } from '../MessageItem/MessageItem';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handelInchat, scrollPls } from '../../../redux/Reducers/Chat';
+import { useStateContext } from '../../../contexts/ContextProvider';
+
+export const ChatContent = ({ userChat }) => {
+    const joined = moment(userChat?.receiver_joined  , "YYYY/MM/DD");
+    const [chatSort, setChatSort] = useState([])
+    const dispatch=useDispatch()
+    const { converstions  } = useSelector((state) => state.Chat);
+    const {InChat}=useStateContext()  
+
+    useEffect(() => {
+        if (userChat) { 
+            setChatSort(userChat?.messages.slice().sort((a, b) => {
+                return new Date(a.created_at) - new Date(b.created_at);
+            })) 
+        }  else{
+            dispatch(handelInchat(false))
+        }
+    }, [userChat, converstions])
+
+     useEffect(()=>{
+        setTimeout(()=>{
+            dispatch(scrollPls())
+        },500)
+     },[InChat])      
+
+    return ( 
+        <div className='chat__content' >
+            <Link to={`/${userChat?.receiver_pseudo   }`} className="chat__content__head hover">
+                <div className="avatar64">
+                    <img src={userChat?.receiver_pp ||  avatar} alt="" />
                 </div>
-                <small className="chat__date text-gray">Apr 17, 2023, 1:39 PM</small>
+                <div className="user__InFo">
+                    <span className="name underline">{userChat?.receiver_name }</span>
+                    <span className="username">{userChat?.receiver_pseudo  }</span>
+                </div>
+                <span className='user__bio'>{userChat?.receiver_bio  }</span>
+                <span className='user__joined text-gray'>{userChat?.receiver_joined && 'Joined '+ joined.format("MMMM YYYY") } </span>
+            </Link>
+            <div className="chat">
+                {
+                    chatSort.map((item, index) => <MessageItem message={item} key={index} />)
+                }
+
             </div>
         </div>
-    </div>
-  )
+    )
 }

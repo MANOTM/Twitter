@@ -39,7 +39,9 @@
     gap: 15px;
     padding: 20px; 
 }
-.chat_ele{
+.chat_ele{ 
+    width: fit-content;
+    max-width: 80%;
     display: flex;
     flex-direction: column;
     gap: 7px; 
@@ -48,7 +50,7 @@
     align-self: flex-end;
 }
 .align__flex_end .chat__text{
-    align-self: flex-end;
+    /* align-self: flex-end; */
     border-radius: 20px 20px 0px 20px;
     -webkit-border-radius: 20px 20px 0px 20px;
     -moz-border-radius: 20px 20px 0px 20px;
@@ -75,13 +77,12 @@ align-self: flex-end;
     width: 100%;
 }
 .chat__text{
+    word-wrap: break-word !important;
     color: rgb(255, 255, 255);
     background-color: #2f3336;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     padding: 11px 15px;
-    width: fit-content;
-    border-radius: 20px 20px 20px 0;
-    max-width: 80%;
+    border-radius: 20px 20px 20px 0; 
 }
