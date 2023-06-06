@@ -39,7 +39,7 @@ export const ChatLeft = () => {
         setVal(e.target.value)
         setSearchResult(
             converstions.filter((user) =>
-                user.receiver_name.toLowerCase().includes(e.target.value.toLowerCase())
+                user?.receiver_name.toLowerCase().includes(e.target.value.toLowerCase())
             ))
     }
 
