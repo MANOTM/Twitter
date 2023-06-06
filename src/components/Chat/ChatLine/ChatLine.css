@@ -36,6 +36,7 @@
     height: 100%;
 }  
 .chat__line__content{
+    margin-top: 3px;
     width: calc(100% - 58px) !important;
 }
 .chat__line__info{

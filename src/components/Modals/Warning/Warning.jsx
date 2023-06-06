@@ -20,6 +20,7 @@ export const Warning = ({ close, userId }) => {
             path && navigate('/messages')
             
         dispatch(leaveConversation(userId))
+        close(  )
     }
     return (
         <div className='overlay__showed center' onClick={close}>

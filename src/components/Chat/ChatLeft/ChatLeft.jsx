@@ -17,20 +17,28 @@ export const ChatLeft = () => {
 
     const dispatch = useDispatch();
     const { status, converstions } = useSelector((state) => state.Chat);
+    const [converWithoutDelete, setconverWithoutDelete] = useState([])
     const [searchResult, setSearchResult] = useState(null)
     const [val, setVal] = useState('')
 
     //get conversation evry 5s
-    useEffect(() => {    
+    useEffect(() => {
+        const filter = converstions.slice().filter(user => {
+            if (!user?.delete) {
+                return user
+            }
+        }) 
+        setconverWithoutDelete(filter)
+
         console.log('load conversation');
-        const fetching = () =>{ 
+        const fetching = () => {
             dispatch(getConversations(user?.id))
         }
-        const timeOut= setTimeout(()=>{
+        const timeOut = setTimeout(() => {
             fetching()
-        },5000)
+        }, 5000)
 
-        return ()=>{clearTimeout(timeOut)}
+        return () => { clearTimeout(timeOut) }
 
     }, [status, converstions])
 
@@ -38,7 +46,7 @@ export const ChatLeft = () => {
     const search = e => {
         setVal(e.target.value)
         setSearchResult(
-            converstions.filter((user) =>
+            converWithoutDelete.filter((user) =>
                 user?.receiver_name.toLowerCase().includes(e.target.value.toLowerCase())
             ))
     }
@@ -63,7 +71,7 @@ export const ChatLeft = () => {
 
             {status == 'loading' ? <Loading /> :
                 <>
-                    {!converstions.length ?
+                    {!converWithoutDelete?.length ?
 
                         <div className="no_user_select">
                             <div className="no_user_content">
@@ -97,7 +105,7 @@ export const ChatLeft = () => {
                                             }
                                         </>
                                         :
-                                        converstions.slice().reverse().map((item, index) => <ChatLine user={item} key={index} to={item?.receiver_pseudo} />)}
+                                        converWithoutDelete.reverse().map((item, index) => <ChatLine user={item} key={index} to={item?.receiver_pseudo} />)}
                             </div>
                         </>
 

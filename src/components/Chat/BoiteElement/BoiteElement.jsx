@@ -13,20 +13,27 @@ export const BoiteElement = () => {
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.Auth)
     const { status, converstions } = useSelector((state) => state.Chat);
-
+    const [converWithoutDelete,setconverWithoutDelete]=useState([])
     const { ToBottom, setShowingCard } = useStateContext()
  
+    useEffect(()=>{
+        const filter=converstions.slice().filter(user=>{
+            if(!user?.delete){
+                return user
+            }
+        }) 
+        setconverWithoutDelete(filter)
 
+    },[converstions])
     return (
         <>
-
             {!ToBottom &&
                 <div className="boite_messages_chatLines">
                     <ConnectionCheck small={true}>
                     {
                         status == 'loading' ? <Loading /> :
                             <>
-                                {converstions.length ? converstions.slice().reverse().map((item, index) => <ChatLine user={item} key={index} />) :
+                                {converWithoutDelete?.length ? converWithoutDelete.map((item, index) => <ChatLine user={item} key={index} />) :
                                     <div className="no_user_select">
                                         <div className="no_user_content">
                                             <img src={lonely} alt="" />

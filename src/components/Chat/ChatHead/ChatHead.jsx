@@ -53,11 +53,10 @@ export const ChatHead = () => {
         </div>
       </div>
       <div className="boite__header__actions">
-        {!userChat ?
+        {!userChat &&
           <div className="iconH" onClick={() => setShowingCard(true)}>
             <NewMessage />
-          </div>
-          : ''}
+          </div> }
 
         <div className="iconH">
           <Collapse onClick={handelChange} className={`Collapse ${ToBottom && 'rotate'}`} />

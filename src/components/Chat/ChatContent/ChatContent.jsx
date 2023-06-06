@@ -13,8 +13,7 @@ export const ChatContent = ({ userChat }) => {
     const joined = moment(userChat?.receiver_joined  , "YYYY/MM/DD");
     const [chatSort, setChatSort] = useState([])
     const dispatch=useDispatch()
-    const { converstions  } = useSelector((state) => state.Chat);
-    const {InChat}=useStateContext()  
+    const { converstions  ,InChat} = useSelector((state) => state.Chat);
 
     useEffect(() => {
         if (userChat) { 

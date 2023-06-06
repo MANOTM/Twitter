@@ -24,13 +24,21 @@ const ChatSlice = createSlice({
             })
             state.justForHelp=!state.justForHelp
         }, 
+        // leaveConversation:(state,action)=>{
+        //     state.converstions= state.converstions.filter(user=>{ 
+        //         if(user.idReceiver!=action.payload){
+        //             return user
+        //         }
+        //     })  
+        // },
         leaveConversation:(state,action)=>{
-            state.converstions= state.converstions.filter(user=>{ 
-                if(user.idReceiver!=action.payload){
+            state.converstions= state.converstions.map(user=>{ 
+                if(user.idReceiver==action.payload){
+                    user.delete=true
                     return user
                 }
-            }) 
-            console.log(state.converstions);
+                return user
+            })  
         },
         newConversation:(state,action)=>{
             const findUser=state.converstions.find(user=>user.idReceiver===action.payload.idReceiver) 
@@ -56,8 +64,13 @@ const ChatSlice = createSlice({
                     return user
                 }
             })  
-            state.converstions=newChats
-            state.converstions=[...action.payload,...state.converstions]
+            const deletedChat=state.converstions.filter(user=>{
+                if(user?.delete) return user
+            })
+
+            const result = action.payload.filter(user => !deletedChat.some(o1 => o1.idReceiver === user.idReceiver));
+ 
+            state.converstions=[...result,...newChats]
             state.status='ok' 
         },
         [getConversations.rejected]:(state,action)=>{
