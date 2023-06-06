@@ -9,13 +9,14 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { handelInchat } from '../../../redux/Reducers/Chat'
 import { DeleteIcon } from '../../Icons/DeleteIcon'
-import { OptionsChat } from '../OptionsChat/OptionsChat'
+import { OptionsChat } from '../OptionsChat/OptionsChat'  
+import formatTimeAgo from '../../../assets/Helper/FormatDate';
+
 export const ChatLine = ({ user, to }) => {
     const { handelChat } = useStateContext()
     const [lastMessage, setLastMessage] = useState(null)
     const [Options, setOptions] = useState(false)
-    const dispatch = useDispatch()
-
+    const dispatch = useDispatch() 
 
     useEffect(() => {
         const sortedMessage = user?.messages.slice().sort((a, b) => {
@@ -46,7 +47,7 @@ export const ChatLine = ({ user, to }) => {
                                 <span className='username '>{user?.receiver_pseudo}</span>
                             </div>
                             <div className="chat__line__time">
-                                <span className='username '>{lastMessage?.created_at && <span className='point'>.</span>}{lastMessage?.created_at && moment(lastMessage?.created_at).format('MMM DD')}</span>
+                                <span className='username '>{lastMessage?.created_at && <span className='point'>.</span>}{lastMessage?.created_at && formatTimeAgo(moment(lastMessage?.created_at).fromNow()) }</span>
                             </div>
                         </div>
 
