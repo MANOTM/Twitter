@@ -6,6 +6,7 @@ import { useStateContext } from '../../contexts/ContextProvider'
 import { useDispatch } from 'react-redux'
 import { removeTweet } from '../../redux/Reducers/HomeReducer'
 import useFollow from '../../hooks/useFollow'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
 
@@ -13,6 +14,8 @@ export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hid
     const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
     const { CallToast, showErrorFunction } = useStateContext();
     const dispatch = useDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const DeleteTweet = () => {
         if(!commentOption){
@@ -21,6 +24,7 @@ export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hid
             axios
             .delete('/tweets/deleteTweet/'+idTweet)
             .then(res => {
+                if(location.pathname.includes('/status/')) navigate('/')
                 CallToast('tweet Delete successfully😊');
             })
             .catch(err => {

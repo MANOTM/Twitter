@@ -87,7 +87,8 @@
     font-size: 15px;
     cursor: pointer;
     min-height: 50px;
-    max-width:220px ;
+    /* max-width:220px ; */
+    width: calc(100% - 20px);
     outline-style: none;
     user-select: none; 
     border-radius:999px ;
@@ -178,6 +179,8 @@
     }
     .tweet__bottom {
         padding-left: 10px;
+        max-width: 41px;
+        width: 100%;
     }
     .tweet__bottom .text{
         display: none;

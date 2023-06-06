@@ -19,7 +19,7 @@ import FooterAction from './FooterAction/FooterAction';
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import formatTimeAgo from '../../../assets/Helper/FormatDate';
 
-export default function Tweet({tweet,
+export default function Tweet({tweet,Tweet4Comment,
     tweet:
     {  
         id,
@@ -39,7 +39,9 @@ export default function Tweet({tweet,
         retweet_count,
         like,
         retweeted,
-        orginaUserId
+        orginaUserId,
+        originalUserPseudo,
+        comments
     }
 }
 ) {  
@@ -49,13 +51,15 @@ export default function Tweet({tweet,
     const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
     const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const myPseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo || false
+    const userIsMe = (myPseudo || false) === pseudo
     const [OptionHover, setOptionHover] = useState(false)
     const [ShareHover, setShareHover] = useState(false)
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isIn, setisIn] = useState(false) 
     const navigate = useNavigate() 
     const MouseIn = ()=>{
-        if(!Auth) return
+        if(!Auth || userIsMe) return
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
             setCardHover(true)
@@ -64,13 +68,13 @@ export default function Tweet({tweet,
         setHoverTimeout(timeoutId);
     }
     const MouseOut = () => {
-        if(!Auth) return
+        if(!Auth || userIsMe) return
         if(hoverTimeout) return clearTimeout(hoverTimeout)
         setHoverTimeout(
             setTimeout(() => {
-            setCardHover(false);
-            setisIn(false);
-        }, 400)
+                setCardHover(false);
+                setisIn(false);
+            }, 300)
         );
     };
     const showOption = (A) => {
@@ -90,12 +94,16 @@ export default function Tweet({tweet,
                 <div className="retweet__icon__tweet">
                     <RetweetIcon />
                 </div>
-                <span className="retweet__message">This Tweet is retweeted</span>
+                <span className="retweet__message">
+                    {
+                        `${originalUserPseudo === pseudo ? 'You' : (originalUserPseudo || 'pseudo')} Retweeted`
+                    }
+                </span>
             </div>}
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
-                    <div onMouseEnter={Auth ? MouseIn : ''} onMouseLeave={MouseOut} className="tweet__avatar__user">
+                    <div onMouseEnter={MouseIn} onMouseLeave={MouseOut} className="tweet__avatar__user">
                         <Link to={'/'+pseudo.substring(1)} >
                             <img loading='lazy' src={pp || avatar} />
                         </Link>
@@ -132,11 +140,30 @@ export default function Tweet({tweet,
                         </div>
                     </div>
                     {
-                        description && <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__body">
-                            <p className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
+                        description && Tweet4Comment ? <div className='tweet__content__body'>
+                            <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
+                        </div> : <Link onClick={e => e.preventDefault()} to={`${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__body">
+                            <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
                         </Link>
                     }
-                    <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__media m-t">
+                    {
+                        Tweet4Comment ? <div className='tweet__content__media m-t'>
+                            {
+                                image && <div className="tweet__image">
+                                    {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
+                                    <LazyLoadImage
+                                        effect="blur"
+                                        src={image}
+                                        alt="tweet_img"
+                                    />
+                                </div>
+                            }
+                            {
+                                video && <Video video={video} />
+                            }
+                        </div>
+                        :
+                    <Link to={`${pseudo.substring(1)}/status/${idTweet}`} className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
                                 {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
@@ -151,6 +178,7 @@ export default function Tweet({tweet,
                             video && <Video video={video} />
                         }
                     </Link>
+                    }
                     <FooterAction
                         pseudo={pseudo}
                         idTweet={idTweet || id}
@@ -158,6 +186,8 @@ export default function Tweet({tweet,
                         comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count}
+                        likes={likes}
+                        comments={comments}
                         hiddeOption={hiddeOption}
                         retweet_count={retweet_count}
                         ShareHover={ShareHover}

@@ -10,7 +10,7 @@ import { Skeleton } from '../Loading/Skeleton/skeleton';
 import { useEffect, useState } from 'react';
 import useFollow from '../../hooks/useFollow';
 
-function HoverCard({ isIn, setisIn, pseudo }) {
+function HoverCard({ isIn, setisIn, pseudo, hoverTimeout, setHoverTimeout }) {
     const { CardHover, setCardHover } = useStateContext();
     const { loading, data } = useFetch('/profile/' + pseudo)
     const { loggedIn: Auth, user } = useSelector(state => state.Auth)
@@ -32,8 +32,8 @@ function HoverCard({ isIn, setisIn, pseudo }) {
         setisIn(true)
     }
     const MouseOut = () => {
-        setCardHover(false)
-        setisIn(false)
+        setCardHover(false);
+        setisIn(false);
     }
     return (
         <div className='hover__card' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>

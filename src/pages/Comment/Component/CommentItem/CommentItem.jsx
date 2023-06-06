@@ -12,8 +12,12 @@ import { useStateContext } from "../../../../contexts/ContextProvider";
 
 export const CommentItem = (
     {
+        isComment,
+        isReply,
         idTweet,
         comment : {
+            idUser,
+            repliesCount,
             replyBody,
             idComment,
             pseudo,
@@ -39,7 +43,6 @@ export const CommentItem = (
         if(event) event.stopPropagation();
         setOptionHover(false)
     }   
-
     return (
     <div className="Tweet" hidden={interested}>
         <div className="tweet__content tweet__comment">
@@ -70,6 +73,7 @@ export const CommentItem = (
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
                                 <OptionCard
+                                idUser={idUser}
                                 commentOption={true}
                                 idComment={idComment}
                                 hiddeOptionClick={()=>hiddeOption()}
@@ -81,10 +85,18 @@ export const CommentItem = (
                             </div>
                         </div>
                     </div> 
-                    <Link to={`/${pseudo.substring(1)}/reply/${idComment}/${idTweet}`} className="tweet__content__body">
+                    <Link to={isComment ? `/${pseudo.substring(1)}/reply/${idComment}/${idTweet}` : null} className="tweet__content__body">
                         <p className={`tweet__paragraph  ${IsArabic(body) && 'arabic'}`}><HashtagLink text={ body || replyBody }/></p>
                     </Link>
-                    
+                    {
+                        repliesCount ? 
+                            isComment &&
+                            <div className="Show__repllies">
+                                <Link to={`/${pseudo.substring(1)}/reply/${idComment}/${idTweet}`}>
+                                    Show replies <small>{`(${repliesCount})`}</small>
+                                </Link>
+                            </div> : null
+                    }
                 </div>
             </div>
     </div>

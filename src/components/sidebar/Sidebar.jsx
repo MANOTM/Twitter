@@ -13,24 +13,30 @@ import axios from '../../api/axios'
 
 export default function Sidebar() {
   const { loggedIn:Auth, user } = useSelector(state => state.Auth)
-  const { setshow__createTweet, countNotifi, setCountNotifi } = useStateContext()
+  const { setshow__createTweet, countNotifi, setCountNotifi, setZIndex, zIndex } = useStateContext()
   const { newTweets } = useSelector((state) => state.tweets);
   const [actived, setActive] = useState(false)
-  const showIn = () => setActive(true)
+  const showIn = () => {
+    setActive(true)
+    setZIndex(true)
+  }
   const navigate = useNavigate();
   // notification check 
-
+  
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios.get('/countNotification').then(res => {
-        setCountNotifi(res.data.data.count_notify);
-      })
-  }, 20000);
-    return () => clearInterval(interval);
+    if(Auth){
+      const interval = setInterval(() => {
+        axios.get('/countNotification').then(res => {
+          setCountNotifi(res.data.data.count_notify);
+        })
+    }, 20000);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const showOut = event => {
     event.stopPropagation();
+    setZIndex(false)
     setActive(false)
   }
   const GoToProfile = e => {
@@ -81,10 +87,10 @@ export default function Sidebar() {
               <SidebarItem to="/settings/account" text="More">
                 <icons.MoreIcon fill="#e7e9ea" />
               </SidebarItem>
-              {
-                Auth && <button onClick={()=>setshow__createTweet(false)} className='tweet__bottom bg-blue' > <p className='text'>Tweet</p> <icons.NewTweetIcon className="d-none icon" fill="#e7e9ea" /></button>
-              }
             </ul>
+            {
+              Auth && <button onClick={()=>setshow__createTweet(false)} className='tweet__bottom bg-blue' > <p className='text'>Tweet</p> <icons.NewTweetIcon className="d-none icon" fill="#e7e9ea" /></button>
+            }
           </nav>
           {
             Auth && (

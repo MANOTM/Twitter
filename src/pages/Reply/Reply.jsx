@@ -8,6 +8,7 @@ import Loading from '../../components/Loading/Loading'
 import { useStateContext } from '../../contexts/ContextProvider'
 import { CommentItem } from '../Comment/Component/CommentItem/CommentItem'
 import CreateComment from '../Comment/Component/CreateComment/CreateComment'
+import { NoLike } from '../../components/ProfileComponent/NoLike/NoLike'
 
 export default function Reply() {
 
@@ -15,6 +16,8 @@ export default function Reply() {
     const { loading, data } = useFetch('replies/'+idComment);
     const { loading:loading_Comment, data:data_comment } = useFetch('tweet/'+idTweet)
     const comment = data_comment?.data?.comments.find(one => one.idComment == idComment)
+    const { setHeadingCount } = useStateContext()
+    setHeadingCount('Replys')
     return (
         <Main>
             <div className='reply__'>
@@ -33,8 +36,8 @@ export default function Reply() {
                             {
                                 loading ? <Loading /> :
                                 data?.data?.length ? 
-                                data?.data?.map((comment,i) => <CommentItem key={i} comment={comment} />) :
-                                null
+                                data?.data?.map((comment,i) => <CommentItem key={i} comment={comment} isReply={true} />) :
+                                <NoLike comment={true} any="Replys" />
                             }
                         </div>
                     </>
