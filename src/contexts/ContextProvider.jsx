@@ -6,24 +6,24 @@ import { useLocation } from "react-router-dom";
 const StateContext = createContext()
 
 export const ContextProvider = ({ children }) => {
-    const { loggedIn:Auth ,user} = useSelector(state => state.Auth) 
+    const { loggedIn: Auth, user } = useSelector(state => state.Auth)
     const [timeoutId, setTimeOutId] = useState(null)
-    const CallToast = (content,time=2222) => {
-        if(timeoutId) clearTimeout(timeoutId)
-        setToast({status:true, content})
-        
+    const CallToast = (content, time = 2222) => {
+        if (timeoutId) clearTimeout(timeoutId)
+        setToast({ status: true, content })
+
         let timer = setTimeout(() => {
-            setToast({status:false, content:''})
-        },time)
+            setToast({ status: false, content: '' })
+        }, time)
         setTimeOutId(timer)
     }
 
-    const IsArabic = (content,pattern = /[\u0600-\u06FF\u0750-\u077F]/) => {
+    const IsArabic = (content, pattern = /[\u0600-\u06FF\u0750-\u077F]/) => {
         return pattern.test(content);
     }
 
-    const SetTitle = (title,Dont=false) => {
-        if(Dont){
+    const SetTitle = (title, Dont = false) => {
+        if (Dont) {
             return document.title = 'Wazoo'
         }
         const { pathname } = useLocation();
@@ -31,7 +31,7 @@ export const ContextProvider = ({ children }) => {
         useEffect(() => {
             document.title = `${title ? title : content.charAt(0).toUpperCase() + content.slice(1)}
             / Wazoo`;
-        },[title, content, Dont]);
+        }, [title, content, Dont]);
         return null
     }
     const Mounths = [
@@ -60,41 +60,43 @@ export const ContextProvider = ({ children }) => {
     // had context kon kan kaydwi kon galk barak
     // context: ibraaahim ir7amni 
     const [ToBottom, setToBottom] = useState(true)
-    const [InChat, setInChat] = useState(false)
+    // const [InChat, setInChat] = useState(false)
     const [userChat, setUserChat] = useState(null)
-    const [ShowingCard,setShowingCard]=useState(false)
-    const [render,setRender]=useState(false)
+    const [ShowingCard, setShowingCard] = useState(false)
+    const [render, setRender] = useState(false)
 
-    const handelChat=(user)=>{
-        setInChat(user ? true : false)
-        setUserChat(user)   
+    const handelChat = (user) => {
+        // setInChat(user ? true : false)
+        setUserChat(user)
     }
     const handelChange = () => {
-        setToBottom(!ToBottom) 
-    } 
+        setToBottom(!ToBottom)
+    }
     //--- Profile----//
 
-    const [HeadingCount,setHeadingCount]=useState('')
+    const [HeadingCount, setHeadingCount] = useState('')
 
     //------------//
 
-// ---------------Setting------------------
-const [SettingLayouts, setSettingLayouts] = useState(false);
-// ---------------Create Tweet popup------------------
-const [show__createTweet, setshow__createTweet] = useState(true);
-// ---------------z-index main 0------------------
-const [zIndex, setZIndex] = useState(false)
-// ----------------Notification Count----------
-const [countNotifi, setCountNotifi] = useState(null)
-// ----------------Error modal ----------
-const showErrorFunction = (off) => {
-    if(off) return setShowErrorModal(true)
-    setShowErrorModal(false)
-}
-const [ShowErrorModal, setShowErrorModal] = useState(true)
+    // ---------------Setting------------------
+    const [SettingLayouts, setSettingLayouts] = useState(false);
+    // ---------------Create Tweet popup------------------
+    const [show__createTweet, setshow__createTweet] = useState(true);
+    // ---------------z-index main 0------------------
+    const [zIndex, setZIndex] = useState(false)
+    // ----------------Notification Count----------
+    const [countNotifi, setCountNotifi] = useState(null)
+    // ----------------Error modal ----------
+    const showErrorFunction = (off) => {
+        if (off) return setShowErrorModal(true)
+        setShowErrorModal(false)
+    }
+    const [ShowErrorModal, setShowErrorModal] = useState(true)
 
     return (
-        <StateContext.Provider value={{ showErrorFunction, ShowErrorModal, countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard,setShowingCard, ToBottom,InChat,userChat,handelChange,handelChat,SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal ,CardHover ,setCardHover }}>
+        <StateContext.Provider value={{
+             showErrorFunction, ShowErrorModal, countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard, setShowingCard, ToBottom, userChat, handelChange, handelChat, SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal, CardHover, setCardHover 
+             }}>
             {
                 children
             }
