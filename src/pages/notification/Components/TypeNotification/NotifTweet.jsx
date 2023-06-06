@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import { TweetIcon } from '../../Icons/notificationIcons'
 
 export default function NotifTweet({ notifi }) {
+    const { idTweet, id_notify, pseudo, name, pp } = notifi
     return (
-        <Link key={notifi.id_notify} className="notification__row hover">
+        <Link to={`/${pseudo.substring(1)}/status/${idTweet}`} key={id_notify} className="notification__row hover">
             <div className="notification__option center" title='More'>
                 <ThreePoints />
             </div>
@@ -17,10 +18,10 @@ export default function NotifTweet({ notifi }) {
             </div>
             <div className="notification__body">
                 <div className="notification__avatar">
-                    <img src={notifi.pp || avatar} alt="notification__avatar" />
+                    <img src={pp || avatar} alt="notification__avatar" />
                 </div>
                 <div className="notification__message">
-                    <span className="notification__span"><span className="pseudo">{notifi.name}</span>Post new Tweet</span>
+                    <span className="notification__span"><span className="pseudo">{name}</span> post new Tweet</span>
                 </div>
             </div>
         </Link>

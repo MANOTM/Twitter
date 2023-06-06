@@ -34,7 +34,7 @@ export const ChatContent = ({ userChat }) => {
 
     return ( 
         <div className='chat__content' >
-            <Link to={`/${userChat?.receiver_pseudo   }`} className="chat__content__head hover">
+            <Link to={`/${userChat?.receiver_pseudo.substring(1)   }`} className="chat__content__head hover">
                 <div className="avatar64">
                     <img src={userChat?.receiver_pp ||  avatar} alt="" />
                 </div>
