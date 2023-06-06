@@ -3,17 +3,22 @@ import moment from 'moment';
 import Born from '../../Icons/Born'
 import Calendrier from '../../Icons/calendrier'
 import defaultProfile from '../../../assets/images/defaultProfile.png'
-import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { NotAuthCard } from '../../NotAuthCard/NotAuthCard';
 import { useEffect } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import useFollow from '../../../hooks/useFollow';
 import Loading from '../../Loading/Loading';
 import { Skeleton } from '../../Loading/Skeleton/skeleton';
+import { MessageIcon } from '../../posts/icons/postIcons';
+import { newConversation } from '../../../redux/Reducers/Chat';
 
 export const ProfileInfo = ({ data1 }) => {
   const { pseudo } = useParams()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const birthday = moment(data1.birthday, "YYYY/MM/DD");
   const joined = moment(data1.created_at, "YYYY/MM/DD");
   const { loggedIn: Auth, user } = useSelector(state => state.Auth)
@@ -23,7 +28,7 @@ export const ProfileInfo = ({ data1 }) => {
   const showimg = e => {
 
     setProfileImg({ from: [e.target.name], src: [e.target.src] })
-     
+
   }
 
   const [NotAuth, setnotAuth] = useState(false)
@@ -34,13 +39,28 @@ export const ProfileInfo = ({ data1 }) => {
   useEffect(() => {
     if (data?.data) {
       setfollowHim(data?.data?.some(user => user?.pseudo.substring(1) == pseudo))
-    } 
+    }
   }, [data, data1, pseudo])
 
   const follow = () => {
     useFollow(followHim, data1.id)
     setfollowHim(!followHim)
-  } 
+  }
+
+  const GoToChat = () => {
+    const newUser = {
+      "idReceiver": data1?.id,
+      "receiver_name": data1?.name,
+      "receiver_pseudo": data1?.pseudo,
+      "receiver_bio": data1?.bio,
+      "receiver_joined": data1?.created_at,
+      "receiver_pp": data1?.pp,
+      "messages": []
+    }
+    dispatch(newConversation(newUser))
+    navigate('/messages/' + data1?.pseudo)
+
+  }
 
   return (
     <>
@@ -50,7 +70,7 @@ export const ProfileInfo = ({ data1 }) => {
             <>
               {ImageLoading?.cover && <Skeleton />}
               <div >
-                <img src={data1?.cover} name='cover' onLoad={()=>{setImageLoading({ ...ImageLoading, cover: false })}} onClick={showimg} className="img__banner" />
+                <img src={data1?.cover} name='cover' onLoad={() => { setImageLoading({ ...ImageLoading, cover: false }) }} onClick={showimg} className="img__banner" />
               </div>
             </>
           }
@@ -61,8 +81,11 @@ export const ProfileInfo = ({ data1 }) => {
             <img src={data1.pp ? data1.pp : defaultProfile} onLoad={() => { setTimeout(() => { setImageLoading({ ...ImageLoading, pp: false }) }, 500) }} name='pp' onClick={showimg} />
           </div>
           <div className="profile__actions">
-
-
+            {(Auth && user?.id != data1?.id) &&
+              <div className="iconH" onClick={GoToChat}>
+                <MessageIcon />
+              </div>
+            }
             {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
             {!Auth && <button className='btn-def btn_follow' onClick={() => setnotAuth(true)}>Follow</button>}
             {
@@ -77,11 +100,6 @@ export const ProfileInfo = ({ data1 }) => {
 
                 </>
             }
-
-            {/* {Auth && data1.id == user.id && <Link to="edit" className='profile_btn btn-def'>Edit profile</Link>}
-            {!Auth && <button className='btn-def btn_follow' onClick={() => setnotAuth(true)}>Follow</button>}
-            {Auth && followHim != null && followHim && data1.id != user.id && <button className='btn-def btn_unfollow' onClick={follow}>Following</button>}
-            {Auth && followHim != null && !followHim && data1.id != user.id && <button className='btn-def btn_follow' onClick={follow}>Follow</button>} */}
           </div>
         </div>
       </div>
