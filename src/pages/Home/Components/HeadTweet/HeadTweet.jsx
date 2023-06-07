@@ -8,6 +8,7 @@ import Everyone from "../../../../components/Modals/CreateTweet/EveryoneCreate/E
 import CloseIcon from "../../../../components/Icons/CloseIcon";
 import axios from "../../../../api/axios";
 import { useStateContext } from "../../../../contexts/ContextProvider";
+import { Link } from "react-router-dom";
 
 export default function HeadTweet() {
     const { CallToast, IsArabic, render } = useStateContext()
@@ -80,11 +81,11 @@ export default function HeadTweet() {
         <header className="header__section">
             <HeaderHome />
             <div className="create__home">
-                <div className="create__Avatar">
+                <Link to={`/`+data?.pseudo?.substring(1)}  className="create__Avatar">
                     <div className="tweet__avatar__user">
                         <img src={data?.pp || avatar} />
                     </div>
-                </div>
+                </Link>
                 <div className="create__right">
                     <div className="create__input">
                         <input className={IsArabic(tweet?.description) ? 'arabic' : ''} value={tweet?.description || ''} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} onFocus={()=>setEverone(false)} type="text" placeholder="What is happening?!" name="description" />
