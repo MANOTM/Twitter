@@ -2,10 +2,11 @@ import './Messages.css'
 import { useStateContext } from '../../contexts/ContextProvider'
 import { ChatLeft } from '../../components/Chat/ChatLeft/ChatLeft';
 import { ChatRight } from '../../components/Chat/ChatRight/ChatRight';
-import {  useLocation } from 'react-router-dom';
+import {  Route, Routes, useLocation } from 'react-router-dom';
 import { NewChat } from '../../components/Chat/NewChat/NewChat'; 
 import { Nochat } from '../../components/Chat/NoChat/Nochat';
 import { Warning } from '../../components/Modals/Warning/Warning';
+import { ChatInfo } from '../../components/Chat/ChatInfo/ChatInfo';
 
 export default function Messages() {
   const { SetTitle } = useStateContext(); 
@@ -17,7 +18,12 @@ export default function Messages() {
         <ChatLeft />
       </div>
       <div className={`sideRightM ${path && 'over_h'}`}  >
-        {path ?<Nochat/>:<ChatRight/>}
+        <Routes>
+          <Route path='/' element={<Nochat/>}/>
+          <Route path='/:pseudo' element={<ChatRight/>}/>
+          <Route path='/:pseudo/info' element={<ChatInfo/>}/>
+        </Routes>
+        {/* {path ?<Nochat/>:<ChatRight/>} */}
       </div>
       <NewChat/>
     </div>

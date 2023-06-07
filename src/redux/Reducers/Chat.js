@@ -23,14 +23,7 @@ const ChatSlice = createSlice({
                 return user
             })
             state.justForHelp=!state.justForHelp
-        }, 
-        // leaveConversation:(state,action)=>{
-        //     state.converstions= state.converstions.filter(user=>{ 
-        //         if(user.idReceiver!=action.payload){
-        //             return user
-        //         }
-        //     })  
-        // },
+        },  
         leaveConversation:(state,action)=>{
             state.converstions= state.converstions.map(user=>{ 
                 if(user.idReceiver==action.payload){

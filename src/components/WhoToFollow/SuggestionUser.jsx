@@ -16,7 +16,7 @@ export default function SuggestionUser({userSu , isFollowed}) {
   return (
     <div className="suggestions">
         <div className="suggestion__user hover">
-          <Link to={`/${userSu?.pseudo.substring(1) || ''}`} className="suggestion__content">
+          <Link to={`/${userSu?.pseudo?.substring(1) || ''}`} className="suggestion__content">
             <div className="avatar">
               <img src={userSu?.image || defaultAvatar} alt=""  />
             </div>

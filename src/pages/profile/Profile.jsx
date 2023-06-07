@@ -55,7 +55,7 @@ function Profile() {
     axios.get('profile/@' + pseudo)
       .then(function (response) {
         setData(response.data)
-        setLoading(false)
+        setLoading(false) 
       })
       .catch(function (error) {
         setLoading(false)

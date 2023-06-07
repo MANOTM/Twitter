@@ -1,0 +1,27 @@
+.chat__right hr{
+    border-color: #80808075;
+}
+.chat_info_action{
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(29, 155, 240);
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 200ms;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;
+}
+.chat_info_action:hover{
+    background-color: rgba(29, 155, 244, .1);
+}
+.chat_info_action.red{
+    color: rgb(244, 33, 46) !important;
+}   
+.chat_info_action.red:hover{
+    background-color: rgb(244, 33, 46 ,.1) !important;
+}   
