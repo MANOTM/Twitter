@@ -12,7 +12,7 @@ import { TweetsProfile } from '../../components/ProfileComponent/TweetsProfile/T
 import NotFound from '../NotFound/NotFound'   
 import { useEffect, useState } from 'react'
 import axios from '../../api/axios'
-import { Retweet } from '../../components/ProfileComponent/Retweet/Retweet'
+import { RetweetProfile } from '../../components/ProfileComponent/Retweet/Retweet'
 import { EditProfile } from '../../components/ProfileComponent/EditProfile/EditProfile'
 import { AuthRoute } from '../../layouts/AuthLayout'
 import { useStateContext } from '../../contexts/ContextProvider'
@@ -80,7 +80,7 @@ function Profile() {
             <div className="profile_selecte">
               <Routes>
                 <Route path='/'  element={<TweetsProfile userInfo={data.data}/>}/>
-                <Route path='/retweet' element={<Retweet userInfo={data?.data}/>}/>
+                <Route path='/retweet' element={<RetweetProfile userInfo={data?.data}/>}/>
                 <Route path='/media' element={<Media user={data.data}/>}/>
                 <Route path='/likes' element={<Likes user={data.data}/>}/>  
                 <Route path='/edit' element={<AuthRoute element={EditProfile} />}/>  

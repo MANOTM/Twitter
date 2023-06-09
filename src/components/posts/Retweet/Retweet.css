@@ -12,7 +12,7 @@
 .tweet__paragraph.arabic{
     text-align: right;
 }
-.retweet__tweet { 
+.retweet__tweet {
     display: flex;
     align-items: center;
     margin-top: 8px;

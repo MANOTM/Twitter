@@ -5,8 +5,10 @@ import { NoLike } from "../NoLike/NoLike"
 import { useState } from "react"
 import Loading from "../../Loading/Loading"
 import Tweet from "../../posts/Tweets/Tweet"
+import Retweet from "../../posts/Retweet/Retweet"
 
-export const Retweet = ({userInfo}) => {
+
+export const RetweetProfile = ({userInfo}) => {
   const {error , data ,loading} =useFetch('tweets/' + userInfo?.pseudo)  
   const {setHeadingCount}=useStateContext()
   const [dataFilter,setDataFilter]=useState([])
@@ -25,7 +27,7 @@ export const Retweet = ({userInfo}) => {
     <>
     {loading ? <Loading/> : !dataFilter.length?<NoLike action='retweeted'/>:
       <>
-        {dataFilter?.map((retweet,index)=><Tweet key={index} tweet={retweet}/>)}
+        {dataFilter?.map((retweet,index)=><Retweet key={index} tweet={retweet}/>)}
       </>
     } 
     

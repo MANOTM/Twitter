@@ -94,7 +94,7 @@ export default function Retweet({tweet,Tweet4Comment,
     return (
         <div  hidden={interested} className='Tweet' key={idTweet}>
             {isIn && CardHover ? <HoverCard IfollowHim={tweet?.following} setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={originalUserPseudo} isIn={isIn} setisIn={setisIn}/> :''}
-            {originalUserId && <Link to={'/'+originalUserPseudo.substring(1)} className="retweet__tweet">
+            {(originalUserId || orginaUserId) && <Link to={'/'+pseudo?.substring(1)} className="retweet__tweet underline">
                 <div className="retweet__icon__tweet">
                     <RetweetIcon />
                 </div>
