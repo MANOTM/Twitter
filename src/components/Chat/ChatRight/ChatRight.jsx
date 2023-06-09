@@ -59,9 +59,9 @@ useEffect(()=>{
                 </Link> 
               </div>
               <div className="boite__header__actions">
-                <div className="iconH">
+                <Link to={'info'} className="iconH">
                   <Details />
-                </div>
+                </Link>
               </div>
             </div>
             <div className='boite_messages_scroll' id='ee' ref={messagesEndRef} onScroll={(e) => {

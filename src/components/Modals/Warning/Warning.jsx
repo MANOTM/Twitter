@@ -5,9 +5,9 @@ import axios from '../../../api/axios'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Warning = ({ close, userId }) => {
-    const dispatch = useDispatch() 
-    const navigate = useNavigate() 
-    const path = useLocation().pathname.includes('messages'); 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const path = useLocation().pathname.includes('messages');
 
     const leave = () => {
         axios.delete('conversations/' + userId)
@@ -17,10 +17,10 @@ export const Warning = ({ close, userId }) => {
             .catch(function (error) {
                 console.log(error);
             });
-            path && navigate('/messages')
-            
+        path && navigate('/messages')
+
         dispatch(leaveConversation(userId))
-        close(  )
+        close()
     }
     return (
         <div className='overlay__showed center' onClick={close}>

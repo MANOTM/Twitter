@@ -69,6 +69,14 @@
 }
 .profile__actions .iconH{
     border: 1px solid rgb(83, 100, 113);
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile__actions .iconH svg{
+    fill: rgb(239, 243, 244);
 }
 .btn-def{
     all: unset;

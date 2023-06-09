@@ -14,7 +14,8 @@ import { useStateContext } from '../contexts/ContextProvider';
 export default function Countainer() {  
   const { ShowErrorModal } = useStateContext();
   const { loggedIn:Auth } = useSelector(state => state.Auth)
-  const isInMessagePath = useLocation().pathname == '/messages' || useLocation().pathname == '/messages/' || useLocation().pathname == '/settings' || useLocation().pathname.includes('/settings/');  
+  const isInMessagePath = useLocation().pathname.includes('messages') || useLocation().pathname.includes('settings') 
+  // const isInMessagePath = useLocation().pathname == '/messages' || useLocation().pathname == '/messages/' || useLocation().pathname == '/settings' || useLocation().pathname.includes('/settings/');  
   const match = matchPath(
     { path: "/messages/:idSender" },
     useLocation().pathname,
