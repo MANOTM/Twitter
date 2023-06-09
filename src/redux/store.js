@@ -4,6 +4,8 @@ import RegisterReducer from "./Reducers/RegisterReducer";
 import ForgotReducer from "./Reducers/ForgotReducer";
 import HomeReducer from "./Reducers/HomeReducer";
 import Chat from "./Reducers/Chat";
+import CommentReducer from "./Reducers/CommentReducer";
+import ReplyReducer from "./Reducers/ReplyReducer";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +13,8 @@ export const store = configureStore({
         Register: RegisterReducer,
         Forgot: ForgotReducer,
         tweets:HomeReducer,
-        Chat:Chat
+        Chat:Chat,
+        comment: CommentReducer,
+        reply: ReplyReducer,
     }
 })

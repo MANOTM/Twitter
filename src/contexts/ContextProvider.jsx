@@ -95,8 +95,8 @@ export const ContextProvider = ({ children }) => {
 
     return (
         <StateContext.Provider value={{
-             showErrorFunction, ShowErrorModal, countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard, setShowingCard, ToBottom, userChat, handelChange, handelChat, SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal, CardHover, setCardHover 
-             }}>
+                showErrorFunction, ShowErrorModal, countNotifi, setCountNotifi, setZIndex, zIndex, IsArabic, setRender, render, setshow__createTweet, show__createTweet, HeadingCount, setHeadingCount, SettingLayouts, setSettingLayouts, Mounths, ShowingCard, setShowingCard, ToBottom, userChat, handelChange, handelChat, SetTitle, CallToast, Toast, steps, setSteps, AuthModal, setAuthModal, CardHover, setCardHover 
+            }}>
             {
                 children
             }

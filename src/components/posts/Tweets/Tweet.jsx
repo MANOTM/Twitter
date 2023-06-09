@@ -39,9 +39,7 @@ export default function Tweet({tweet,Tweet4Comment,
         retweet_count,
         like,
         retweeted,
-        orginaUserId,
-        originalUserPseudo,
-        comments
+        comments,
     }
 }
 ) {    
@@ -62,8 +60,8 @@ export default function Tweet({tweet,Tweet4Comment,
         if(!Auth || userIsMe) return
         clearTimeout(hoverTimeout);
         const timeoutId = setTimeout(() => {
-            setCardHover(true)
-            setisIn(true)
+            setCardHover(true);
+            setisIn(true);
         }, 800);
         setHoverTimeout(timeoutId);
     }
@@ -90,16 +88,6 @@ export default function Tweet({tweet,Tweet4Comment,
     return (
         <div  hidden={interested} className='Tweet' key={idTweet}>
             {isIn && CardHover ? <HoverCard IfollowHim={tweet?.following} setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={pseudo} isIn={isIn} setisIn={setisIn}/> :''}
-            {orginaUserId && <div className="retweet__tweet">
-                <div className="retweet__icon__tweet">
-                    <RetweetIcon />
-                </div>
-                <span className="retweet__message">
-                    {
-                        `${originalUserPseudo === pseudo ? 'You' : (originalUserPseudo || 'pseudo')} Retweeted`
-                    }
-                </span>
-            </div>}
         
             <div className="tweet__content">
                 <div className="tweet__left__img">
@@ -129,7 +117,8 @@ export default function Tweet({tweet,Tweet4Comment,
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
                                 <OptionCard 
-                                hiddeOptionClick={()=>hiddeOption()}
+                                OptionHover={OptionHover}
+                                hiddeOptionClick={()=>hiddeOption}
                                 setInterested={()=>setInterested(true)} 
                                 idTweet={idTweet || id}  idUser={idUser}
                                 pseudo={pseudo} />

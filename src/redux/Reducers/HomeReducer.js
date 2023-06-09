@@ -37,8 +37,9 @@ const homeSlice = createSlice({
       state.newTweets = [];
     },
     removeTweet: (state, action) => {
-      const idUser = action.payload;
-      state.tweets = state.tweets.filter((tweet) => tweet.idUser !== idUser);
+      console.log('delete');
+      const idTweet = action.payload;
+      state.tweets = state.tweets.filter((tweet) => tweet.idTweet !== idTweet);
     },
   },
   extraReducers: (builder) => {

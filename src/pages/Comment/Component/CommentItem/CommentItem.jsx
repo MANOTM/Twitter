@@ -20,6 +20,7 @@ export const CommentItem = (
             repliesCount,
             replyBody,
             idComment,
+            id,
             pseudo,
             verification,
             created_at,
@@ -69,18 +70,19 @@ export const CommentItem = (
                             </Link>
                             <span className='tweet___date' title={formattedDate} >{formatTimeAgo(timeSpan)}</span>
                         </div>
-                        <div className="tweet__option__icon iconStyle center">
+                        <div onClick={()=>JSON.parse(localStorage.getItem('id_follows')) && showOption(false)} className="tweet__option__icon iconStyle center">
                             { OptionHover && <>
                                 <div onClick={hiddeOption} className="overlay__hidden"></div>
                                 <OptionCard
                                 idUser={idUser}
-                                commentOption={true}
-                                idComment={idComment}
+                                commentOption={isReply ? false : true}
+                                replyOption={isReply}
+                                idComment={idComment || id}
                                 hiddeOptionClick={()=>hiddeOption()}
                                 setInterested={()=>setInterested(true)} 
                                 pseudo={pseudo} />
                             </> }
-                            <div onClick={()=>JSON.parse(localStorage.getItem('id_follows')) && showOption(false)} title='More'>
+                            <div title='More'>
                                 <ThreePoints />
                             </div>
                         </div>

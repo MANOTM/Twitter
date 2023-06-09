@@ -19,6 +19,7 @@
 }
 .replys{
     margin-bottom: 100px;
+    transition: all .0001s ease-in;
 }
 
 .Title__reply {

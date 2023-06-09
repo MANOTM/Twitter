@@ -78,7 +78,7 @@ export default function CreateTweet() {
                     </div>
                     <div className="createTweet__content__input">
                         <label htmlFor='post_tweet' className={`create__input__feild ${(tweet?.image || tweet?.video) && 'small-textarea'}`}>
-                            <textarea value={tweet?.description} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} name='description' ref={description} placeholder='What is happening?!' id="post_tweet"></textarea>
+                            <textarea autoComplete="off" value={tweet?.description} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} name='description' ref={description} placeholder='What is happening?!' id="post_tweet"></textarea>
                         </label>
                         {
                             tweet?.image && <div className="createTweet__media">

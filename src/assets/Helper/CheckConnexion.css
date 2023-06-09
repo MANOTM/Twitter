@@ -6,6 +6,7 @@
     padding: 20px 12px;
     max-width: 600px;
     row-gap: 23px;
+    transition: all .0001s ease-in;
 }
 
 .Connexion span {

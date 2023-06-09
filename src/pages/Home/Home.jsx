@@ -13,6 +13,8 @@ import tweetFromJson from '../../data/JsonTweets.json';
 import { useState } from "react";
 import axios from "../../api/axios";
 import ConnectionCheck from "../../assets/Helper/CheckConnexion";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Retweet from "../../components/posts/Retweet/Retweet";
 
 export default function Home() {
 
@@ -22,6 +24,7 @@ export default function Home() {
   const { loggedIn: Auth, user } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
   const { tweets, newTweets, loading } = useSelector((state) => state.tweets);
+  const [homeTweets, setHomeTweets] = useState();
   const [showScrollPopup, setShowScrollPopup] = useState(false);
   
   const getIDs = async() => {
@@ -37,6 +40,9 @@ export default function Home() {
       localStorage.setItem('id_Save',JSON.stringify(idSave));
   }
 
+  useEffect(()=> {
+    setHomeTweets(tweets)
+  },[tweets,newTweets])
 
   useEffect(() => {
     if (!tweets || tweets.length === 0) {
@@ -55,12 +61,12 @@ export default function Home() {
   }, [dispatch, tweets]);
   
 
-  const CheckpopupTweets = () => {
-    console.log("scroll");
-    console.log(window.scrollY);
-  }
+  // const CheckpopupTweets = () => {
+  //   console.log("scroll");
+  //   console.log(window.scrollY);
+  // }
 
-  window.addEventListener('scroll',CheckpopupTweets)
+  // window.addEventListener('scroll',CheckpopupTweets)
 
   function handleMixTweets() {
     dispatch(mixTweets());
@@ -85,14 +91,26 @@ export default function Home() {
                 <Loading />
               ) : (
                 <>
-                  {tweets && tweets.length ? (
-                    tweets.map((tweet, index) => <Tweet key={index} tweet={tweet} />)
+                  {homeTweets && homeTweets.length ? (
+                    homeTweets.map((tweet, index) => {
+                      if(tweet.type == 'tweet') {
+                        return <Tweet key={index} tweet={tweet} />
+                      }else{
+                        return <Retweet key={index} tweet={tweet} />
+                      }
+                    })
                   ) : (
                     <>
                       {Auth ? (
                         <WhoToFollow100 />
                       ) : 
-                        tweetFromJson.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}  />)
+                        tweetFromJson.tweets.map((tweet, index) => {
+                          if(tweet.type == 'tweet') {
+                            return <Tweet key={index} tweet={tweet} />
+                          }else{
+                            return <Retweet key={index} tweet={tweet} />
+                          }
+                        })
                       }
                     </>
                   )}

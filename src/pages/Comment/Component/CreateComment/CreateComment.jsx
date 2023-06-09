@@ -9,14 +9,17 @@ import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { useStateContext } from '../../../../contexts/ContextProvider';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { GetComment } from '../../../../redux/Reducers/CommentReducer';
+import { GetReply } from '../../../../redux/Reducers/ReplyReducer';
 
-export default function CreateComment({ idTweet, idComment }) {
+export default function CreateComment({ idTweet, idComment, idUser }) {
     
-    const TweetTest = { comments: 0, created_at: "2023-05-21T13:34:17.000000Z", description: "Surely Allah never fails in His promise #Quran", email: "otmaneolmansouri1@gmail.com", id: 1, idUser: 6, image: 'https://pbs.twimg.com/media/FwlYVWiaEAEB7K8?format=jpg&name=small', likes: 1, name: "mansouri otmane", pp: "http://localhost:8000/images/@mansouri-otmane6/pp/ShOkMU93PXSYXsZ6SxyilBMIAJselOjSw95E99d6.jpg", pseudo: "@mansouri-otmane6", video: null }
     const [ReplyText,setReplyText]=useState('');
     const [ShowingEmoji, setShowingEmoji] = useState(false)
     const InputElement = useRef();
     const { CallToast, showErrorFunction } = useStateContext();
+    const dispatch = useDispatch()
 
     const handleComment = e => {
         e.preventDefault()
@@ -27,6 +30,7 @@ export default function CreateComment({ idTweet, idComment }) {
         axios
         .post(prefix,objet)
         .then(res => {
+            !idComment ? dispatch(GetComment(idTweet,idUser)) : dispatch(GetReply(idComment))
             CallToast(res?.data?.message,2500);
         })
         .catch(err => {
@@ -47,7 +51,7 @@ export default function CreateComment({ idTweet, idComment }) {
         </div>
         <form className="create__right" onSubmit={handleComment}>
             <div className="create__input">
-                <input type="text" ref={InputElement} value={ReplyText} onChange={e=>setReplyText(e.target.value)} placeholder="Tweet your reply!" name="description" />
+                <input autoComplete="off" type="text" ref={InputElement} value={ReplyText} onChange={e=>setReplyText(e.target.value)} placeholder="Tweet your reply!" name="description" />
             </div>
 
             <div className="createTweet__footer">

@@ -26,23 +26,6 @@ export default function UsernameOption({ value: pseudo }) {
     const handleSubmit = e => {
         e.preventDefault()
         showErrorFunction()
-        // if(!value?.trim()) return
-        // if(value?.length >= 2) {
-        //     axios
-        //     .post('updateInfo',{pseudo:value})
-        //     .then(res => {
-        //         CallToast(res?.data?.message + '😊✨✨');
-        //         localStorage.removeItem('user_info');
-        //         const newInfo = {...user, pseudo:value}
-        //         localStorage.setItem('user_info',JSON.stringify(newInfo));
-        //         dispatch(Login(newInfo))
-        //         console.log(newInfo);
-        //         setRender(!render)
-        //     })
-        //     .catch(err => showErrorFunction())
-        // }else{
-        //     CallToast('Type a longer name 👀');
-        // }
     }
 
     return <form onSubmit={handleSubmit} className="UsernameOption">

@@ -87,7 +87,7 @@ export default function HeadTweet() {
                 </div>
                 <div className="create__right">
                     <div className="create__input">
-                        <input className={IsArabic(tweet?.description) ? 'arabic' : ''} value={tweet?.description || ''} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} onFocus={()=>setEverone(false)} type="text" placeholder="What is happening?!" name="description" />
+                        <input autoComplete="off" className={IsArabic(tweet?.description) ? 'arabic' : ''} value={tweet?.description || ''} onChange={e => setTweet(prev => ({ ...prev, [e.target.name]: e.target.value }))} onFocus={()=>setEverone(false)} type="text" placeholder="What is happening?!" name="description" />
                     </div>
                     {
                         tweet?.image && (<div className="createTweet__media">

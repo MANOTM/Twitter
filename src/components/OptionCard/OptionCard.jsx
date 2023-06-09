@@ -8,24 +8,36 @@ import { removeTweet } from '../../redux/Reducers/HomeReducer'
 import useFollow from '../../hooks/useFollow'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
+export default function OptionCard({ replyOption, OptionHover, pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
 
     const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
-    const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows')).includes(idUser))
+    const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows'))?.includes(idUser))
     const { CallToast, showErrorFunction } = useStateContext();
     const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
-
+    console.log(replyOption);
     const DeleteTweet = () => {
-        if(!commentOption){
+        if(commentOption){
+            hiddeOptionClick()
             setInterested(true)
-            dispatch(removeTweet(idTweet))
             axios
-            .delete('/tweets/deleteTweet/'+idTweet)
+            .delete('/comments/delete/'+idComment)
             .then(res => {
-                if(location.pathname.includes('/status/')) navigate('/')
-                CallToast('tweet Delete successfully😊');
+                CallToast('Comment Delete successfully😊');
+            })
+            .catch(err => {
+                // CallToast('something happend, please try later✌');
+                showErrorFunction()
+                setInterested(false)
+            })
+        }else if(replyOption){
+            hiddeOptionClick()
+            setInterested(true)
+            axios
+            .delete('/replies/delete/'+idComment)
+            .then(res => {
+                CallToast('Reply Delete successfully😊');
             })
             .catch(err => {
                 // CallToast('something happend, please try later✌');
@@ -33,11 +45,14 @@ export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hid
                 setInterested(false)
             })
         }else{
+            hiddeOptionClick()
             setInterested(true)
+            // dispatch(removeTweet(idTweet));
             axios
-            .delete('/comments/delete/'+idComment)
+            .delete('/tweets/deleteTweet/'+idTweet)
             .then(res => {
-                CallToast('Comment Delete successfully😊');
+                if(location.pathname.includes('/status/')) navigate('/')
+                CallToast('tweet Delete successfully😊');
             })
             .catch(err => {
                 // CallToast('something happend, please try later✌');
@@ -50,10 +65,11 @@ export default function OptionCard({ pseudo, idUser, setInterested, idTweet, hid
     const handleFollow = () => {
         useFollow(follow, idUser)
         setFollow(!follow)
-        // hiddeOptionClick()
+        hiddeOptionClick()
     }
 
     const Sorry = () => {
+        hiddeOptionClick()
         CallToast("We don't have the option yet😢",1300);
     }
 

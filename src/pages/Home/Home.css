@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.tweets__container {
+    transition: all .1s ease;
+}
+
 .showTweets {
     height: 48px;
     cursor: pointer;
