@@ -13,7 +13,6 @@ import tweetFromJson from '../../data/JsonTweets.json';
 import { useState } from "react";
 import axios from "../../api/axios";
 import ConnectionCheck from "../../assets/Helper/CheckConnexion";
-import InfiniteScroll from 'react-infinite-scroll-component';
 import Retweet from "../../components/posts/Retweet/Retweet";
 
 export default function Home() {

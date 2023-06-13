@@ -52,7 +52,7 @@ export default function Logout() {
                                 <FollowBtn title="Log out" click={handleLogout} />
                                 <FollowBtn title="Cancel" click={handleCancel} noBackground={true} />
                         </div>
-            </div>
+                    </div>
             }
         </>
     )

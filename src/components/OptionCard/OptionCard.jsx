@@ -16,7 +16,6 @@ export default function OptionCard({ replyOption, OptionHover, pseudo, idUser, s
     const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(replyOption);
     const DeleteTweet = () => {
         if(commentOption){
             hiddeOptionClick()

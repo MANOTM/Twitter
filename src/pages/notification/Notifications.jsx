@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import axios from '../../api/axios';
 import NotifTweet from './Components/TypeNotification/NotifTweet';
 import ConnectionCheck from '../../assets/Helper/CheckConnexion';
+import NotifiRetweet from './Components/TypeNotification/NotifRetweet';
 
 export default function Notifications() {
   const { SetTitle, setCountNotifi  } = useStateContext();
@@ -41,6 +42,9 @@ export default function Notifications() {
                     }
                     else if(notifi.type === 'Tweet'){
                       return <NotifTweet key={notifi.id_notify} notifi={notifi} />
+                    }
+                    else if(notifi.type === 'Retweet'){
+                      return <NotifiRetweet key={notifi.id_notify} notifi={notifi} />
                     }
                   })
                     :
