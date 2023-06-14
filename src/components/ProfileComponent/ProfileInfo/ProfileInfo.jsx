@@ -35,6 +35,7 @@ export const ProfileInfo = ({ data1 }) => {
   const [followHim, setfollowHim] = useState(null)
 
   const { data } = useFetch('followings/' + user?.pseudo)
+ 
 
   useEffect(() => {
     if (data?.data) {
@@ -43,6 +44,10 @@ export const ProfileInfo = ({ data1 }) => {
   }, [data, data1, pseudo])
 
   const follow = () => {
+    if (!Auth) {
+      setnotAuth(true)
+      return
+    }
     useFollow(followHim, data1.id)
     setfollowHim(!followHim)
   }

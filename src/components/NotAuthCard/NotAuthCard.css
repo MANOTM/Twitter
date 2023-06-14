@@ -21,8 +21,9 @@
     margin-top: 20px;
 }
 .not__auth_action svg{
-    
-    height: 48px;
+    height: 48px !important;
+    width: 48px !important;
+    fill: rgb(214, 217, 219) !important;
 }
 .not_auth_content{
     display: flex;
@@ -36,7 +37,7 @@
     display: block;
 }
 .not__auth_title{
-    color: rgb(214, 217, 219);
+    color: rgb(214, 217, 219) !important;
     font-weight: 700;
     font-size: 26px;
 }

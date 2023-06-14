@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useFetch from '../../../hooks/useFetch'
 import { WhoToFollow100 } from '../WhoToFollow100/WhoToFollow100'
 import Loading from '../../Loading/Loading'
@@ -7,10 +7,29 @@ import { NoLike } from '../NoLike/NoLike'
 import { useStateContext } from '../../../contexts/ContextProvider'
 import { useEffect } from 'react'
 import Tweet from '../../posts/Tweets/Tweet'
+import axios from '../../../api/axios'
 
 export const TweetsProfile = ({userInfo}) => { 
-  const {error , data ,loading} =useFetch('tweets/' + userInfo.pseudo) 
+  
   const { loggedIn:Auth , user} = useSelector(state => state.Auth) 
+ 
+
+  // fetch data
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState(null) 
+  useEffect(()=>{  
+      axios.get( Auth ? 'tweetsProtected/'+ userInfo.pseudo: 'tweets/' + userInfo.pseudo ) 
+      .then(function (response) {
+        setData(response.data)
+        setLoading(false) 
+      })
+      .catch(function (error) {
+        setLoading(false) 
+        console.log(error);
+      });  
+  },[]) 
+
+
   const {setHeadingCount}=useStateContext() 
   useEffect(()=>{
     setHeadingCount(data?.data ? data?.data.length+' tweets':'')

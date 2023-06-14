@@ -11,7 +11,7 @@ import DogIcon from '../../../pages/Home/icons/DogIcon';
 import ShareCard from '../Components/ShareCard/ShareCard';
 import OptionCard from '../../OptionCard/OptionCard';
 import moment from 'moment';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useLike from '../../../hooks/useLike'; 
 import { HashtagLink } from '../../../assets/Helper/HashtagLink';
@@ -38,6 +38,7 @@ export default function Retweet({tweet,Tweet4Comment,
         likes,
         retweet_count,
         like,
+        liked,
         retweeted,
         orginaUserId,
         originalUserId,
@@ -62,6 +63,7 @@ export default function Retweet({tweet,Tweet4Comment,
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isIn, setisIn] = useState(false) 
     const navigate = useNavigate() 
+    const ItsForProfile=useParams()?.pseudo 
     const MouseIn = ()=>{
         if(!Auth || userIsMe) return
         clearTimeout(hoverTimeout);
@@ -94,13 +96,13 @@ export default function Retweet({tweet,Tweet4Comment,
     return (
         <div  hidden={interested} className='Tweet' key={idTweet}>
             {isIn && CardHover ? <HoverCard IfollowHim={tweet?.following} setHoverTimeout={setHoverTimeout} hoverTimeout={hoverTimeout} pseudo={originalUserPseudo} isIn={isIn} setisIn={setisIn}/> :''}
-            {(originalUserId || orginaUserId) && <Link to={'/'+pseudo?.substring(1)} className="retweet__tweet underline">
+            {(originalUserId || orginaUserId) && <Link to={'/'+ ItsForProfile || pseudo?.substring(1)} className="retweet__tweet underline">
                 <div className="retweet__icon__tweet">
                     <RetweetIcon />
                 </div>
                 <span className="retweet__message">
                     {
-                        `${pseudo} Retweeted`
+                        `${ItsForProfile || pseudo} Retweeted`
                     }
                 </span>
             </Link>}
@@ -117,14 +119,14 @@ export default function Retweet({tweet,Tweet4Comment,
                     <div className="tweet__info__user">
                         <div className="tweet__user shrenk">
                             <Link to={'/'+pseudo.substring(1)} className='teet__profile__line' onMouseEnter={MouseIn} onMouseLeave={MouseOut}>
-                                <span className="tweet__username shrenk">{originalUserName}</span>
+                                <span className="tweet__username shrenk">{originalUserName || name}</span>
                                 {
                                 verifyUser && (<span className="tweet__icon__verify">
                                             <VerifyIcon />
                                             <DogIcon />
                                         </span>)
                                 }
-                                <span className="tweet__pseudo">{originalUserPseudo}</span>
+                                <span className="tweet__pseudo">{originalUserPseudo || pseudo}</span>
                                 <span className='tweet__dot point'>.</span>
                             </Link>
                             <span className='tweet___date' title={formattedDate}> {timeSpan !=='Invalid date'?  formatTimeAgo(timeSpan):created_at}</span>
@@ -147,7 +149,7 @@ export default function Retweet({tweet,Tweet4Comment,
                     {
                         description && Tweet4Comment ? <div className='tweet__content__body'>
                             <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
-                        </div> : <Link onClick={e => e.preventDefault()} to={`${pseudo.substring(1)}/status/${id}`} className="tweet__content__body">
+                        </div> : <Link onClick={e => e.preventDefault()} to={`/${pseudo.substring(1)}/status/${id}`} className="tweet__content__body">
                             <p onClick={e => e.stopPropagation()} className={`tweet__paragraph  ${IsArabic(description) && 'arabic'}`}><HashtagLink text={description}/></p>
                         </Link>
                     }
@@ -168,7 +170,7 @@ export default function Retweet({tweet,Tweet4Comment,
                             }
                         </div>
                         :
-                    <Link to={`${pseudo.substring(1)}/status/${id}`} className="tweet__content__media m-t">
+                    <Link to={`/${pseudo.substring(1)}/status/${id}`} className="tweet__content__media m-t">
                         {
                             image && <div className="tweet__image">
                                 {/* <img loading='lazy' src={image} alt="tweet__image" /> */}
@@ -187,7 +189,7 @@ export default function Retweet({tweet,Tweet4Comment,
                     <FooterAction
                         pseudo={pseudo}
                         idTweet={idTweet || id}
-                        like={like}
+                        like={like || liked}
                         comment_count={comment_count}
                         retweeted={retweeted}
                         like_count={like_count}

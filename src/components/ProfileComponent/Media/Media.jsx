@@ -7,43 +7,57 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useStateContext } from '../../../contexts/ContextProvider'
 import Tweet from '../../posts/Tweets/Tweet'
+import axios from '../../../api/axios'
 
-export const Media = ({user}) => {
-  
-  const { loggedIn:Auth } = useSelector(state => state.Auth) 
-  const {error , data ,loading} =useFetch('tweets/' + user.pseudo) 
+export const Media = ({ user }) => {
 
-  const {setHeadingCount}=useStateContext()
-  const [dataFilter,setDataFilter]=useState([])
-  useEffect(()=>{
-    setHeadingCount(dataFilter?.length+' Photos & videos')
-  },[dataFilter])
+  const { loggedIn: Auth } = useSelector(state => state.Auth)
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState(null)
 
-  useEffect(()=>{
-    if(data){
-      const dataFilter=data.data.filter(tweet=>tweet.image && !tweet.orginaUserId)
+  useEffect(() => {
+    axios.get(Auth ? 'tweetsProtected/' + user?.pseudo : 'tweets/' + user?.pseudo)
+      .then(function (response) {
+        setData(response.data)
+        setLoading(false)
+      })
+      .catch(function (error) {
+        setLoading(false)
+        console.log(error);
+      });
+  }, [])
+
+  const { setHeadingCount } = useStateContext()
+  const [dataFilter, setDataFilter] = useState([])
+  useEffect(() => {
+    setHeadingCount(dataFilter?.length + ' Photos & videos')
+  }, [dataFilter])
+
+  useEffect(() => {
+    if (data) {
+      const dataFilter = data.data.filter(tweet => tweet.image && !tweet.orginaUserId)
       setDataFilter(dataFilter)
-    }  
-  },[data])
-  return ( 
+    }
+  }, [data])
+  return (
     <>
-      {!loading && !data ? <NoMedia/>:
+      {!loading && !data ? <NoMedia /> :
         <>
-          {loading  ?<Loading/>:
+          {loading ? <Loading /> :
             <>
-              {dataFilter.length==0?<NoMedia/>:
+              {dataFilter.length == 0 ? <NoMedia /> :
                 <>
-                  {dataFilter.map((tweet,id)=>  
-                  <Tweet key={id}
-                    tweet={tweet}
-                  />
+                  {dataFilter.map((tweet, id) =>
+                    <Tweet key={id}
+                      tweet={tweet}
+                    />
                   )}
                 </>
               }
             </>
           }
         </>
-      } 
+      }
     </>
   )
 }

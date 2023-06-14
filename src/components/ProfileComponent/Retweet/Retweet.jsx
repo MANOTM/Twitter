@@ -6,12 +6,30 @@ import { useState } from "react"
 import Loading from "../../Loading/Loading"
 import Tweet from "../../posts/Tweets/Tweet"
 import Retweet from "../../posts/Retweet/Retweet"
+import axios from "../../../api/axios"
+import { useSelector } from "react-redux"
 
 
-export const RetweetProfile = ({userInfo}) => {
-  const {error , data ,loading} =useFetch('tweets/' + userInfo?.pseudo)  
+export const RetweetProfile = ({userInfo}) => { 
   const {setHeadingCount}=useStateContext()
   const [dataFilter,setDataFilter]=useState([])
+  const { loggedIn:Auth , user} = useSelector(state => state.Auth) 
+
+
+
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState(null) 
+  useEffect(()=>{  
+      axios.get( Auth ? 'tweetsProtected/'+ userInfo?.pseudo: 'tweets/' + userInfo?.pseudo ) 
+      .then(function (response) {
+        setData(response.data)
+        setLoading(false) 
+      })
+      .catch(function (error) {
+        setLoading(false) 
+        console.log(error);
+      });  
+  },[]) 
 
   useEffect(()=>{
     setHeadingCount(dataFilter?.length+' Retweets')
