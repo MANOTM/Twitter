@@ -7,13 +7,13 @@ import Like from './Icons/Like'
 import Retweet from './Icons/Retweet'
 import Reply from './Icons/Reply'
 
-export const NotAuthCard = ({title,paragraph,action}) => {
+export const NotAuthCard = ({title,paragraph,action,haveState,hide}) => {
     const [Show, setShow] = useState(true)
   return (
-    <div className='new__chat__container' hidden={!Show} onClick={()=>setShow(false)}>
+    <div className='new__chat__container' hidden={ haveState ? !haveState: !Show} onClick={()=>haveState? hide(false) :setShow(false)}>
         <div className="NotAuthCard" onClick={e=>{e.stopPropagation()}}>
             <div className="not__auth_header">
-                <span className='iconH' onClick={()=>setShow(false)}><CloseIcon /></span>
+                <span className='iconH' onClick={()=>haveState? hide(false) :setShow(false)}><CloseIcon /></span>
             </div>
             <div className="not_auth_content">
                 <div className="not__auth_action">

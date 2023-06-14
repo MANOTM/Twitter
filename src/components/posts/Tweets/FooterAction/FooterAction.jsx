@@ -6,14 +6,25 @@ import { useState } from 'react';
 import axios from '../../../../api/axios';
 import useFetch from '../../../../hooks/useFetch';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NotAuthCard } from '../../../NotAuthCard/NotAuthCard';
 
 export default function FooterAction({ pseudo, setInterested, idTweet, comments, comment_count, retweeted, likes,like_count, retweet_count, like, showOption, ShareHover, hiddeOption }) {
 
     const [actionTimer,setActionTimer] = useState(false)
+    const [showCard,setShowCard]=useState(false)
     // like logic
     const [addLike, setAddLike] = useState(like);
     const [likeCount, setLikeCount] = useState(likes !== undefined ? likes : like_count);
+
+    // what's happand if not auth 
+    
+    const { loggedIn:Auth} = useSelector(state => state.Auth) 
     const handleLikes = status => {
+     if(!Auth){
+        setShowCard(true)
+        return
+     }
         const url = status ? '/disLikeTweet/' : '/likeTweet/';
         axios.post(url+idTweet).then(res => console.log(url))
         .catch(err => {
@@ -40,6 +51,10 @@ export default function FooterAction({ pseudo, setInterested, idTweet, comments,
     const [addRetweet, setAddRetweet] = useState(false);
     const [retweetCount, setRetweetCount] = useState(retweet_count || 0);
     const handleRetweet = status => {
+        if(!Auth){
+            setShowCard(true)
+            return
+         }
         const url = status ? '/removeReTweet/' : '/reTweet/';
         axios.post(url+idTweet).then(res => console.log(url))
         .catch(err => {
@@ -94,5 +109,6 @@ export default function FooterAction({ pseudo, setInterested, idTweet, comments,
                 </div>
             </div>
         </div>
+        {showCard && <NotAuthCard haveState={showCard} hide={setShowCard}/>}
     </div>
 }

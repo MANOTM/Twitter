@@ -5,7 +5,8 @@
     cursor: auto;
     border-radius: 16px;
     overflow: hidden;
-    padding: 32px;
+    padding: 32px;    display: flex;
+    align-items: center;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;

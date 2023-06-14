@@ -48,7 +48,7 @@ export default function Tweet({tweet,Tweet4Comment,
     const formattedDate = moment(created_at).format('MMMM Do YYYY, h:mm:ss a');
     const timeSpan = moment(created_at).fromNow();
     const { CardHover, setCardHover, CallToast, IsArabic } = useStateContext();  
-    const { loggedIn:Auth } = useSelector(state => state.Auth)
+    const { loggedIn:Auth} = useSelector(state => state.Auth) 
     const myPseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo || false
     const userIsMe = (myPseudo || false) === pseudo
     const [OptionHover, setOptionHover] = useState(false)
