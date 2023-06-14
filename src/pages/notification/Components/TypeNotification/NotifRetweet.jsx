@@ -6,10 +6,10 @@ import { RetweetIcon } from '../../Icons/notificationIcons'
 
 export default function NotifiRetweet({ notifi }) {
     return (
-        <Link key={notifi.id_notify} to={`/${notifi.pseudo.substring(1)}`} className="notification__row hover">
-            <div className="notification__option center" title='More'>
+        <Link key={notifi.id_notify} className="notification__row hover">
+            {/* <div className="notification__option center" title='More'>
                 <ThreePoints />
-            </div>
+            </div> */}
             <div className="notification__icon__type like">
                 <div className="notification__icon retweet">
                     <RetweetIcon />

@@ -8,16 +8,31 @@ import { removeTweet } from '../../redux/Reducers/HomeReducer'
 import useFollow from '../../hooks/useFollow'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export default function OptionCard({ replyOption, OptionHover, pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
-
-    const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo === pseudo;
+export default function OptionCard({ retweetOption,replyOption, OptionHover, pseudo, idUser, setInterested, idTweet, hiddeOptionClick, commentOption, idComment }) {
+    const user_pseudo = JSON.parse(localStorage.getItem('user_info'))?.pseudo == pseudo;
     const [follow, setFollow] = useState(user_pseudo ? false : JSON.parse(localStorage.getItem('id_follows'))?.includes(idUser))
     const { CallToast, showErrorFunction } = useStateContext();
     const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
     const DeleteTweet = () => {
-        if(commentOption){
+        if(retweetOption){
+            hiddeOptionClick()
+            setInterested(true)
+            // dispatch(removeTweet(idTweet));
+            axios
+            .post('/removeReTweet/'+idTweet)
+            .then(res => {
+                if(location.pathname.includes('/status/')) navigate('/')
+                CallToast('tweet Delete successfully😊');
+            })
+            .catch(err => {
+                // CallToast('something happend, please try later✌');
+                showErrorFunction()
+                setInterested(false)
+            })
+        }
+        else if(commentOption){
             hiddeOptionClick()
             setInterested(true)
             axios

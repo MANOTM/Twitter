@@ -8,6 +8,7 @@ import { useStateContext } from '../../../contexts/ContextProvider'
 import { useEffect } from 'react'
 import Tweet from '../../posts/Tweets/Tweet'
 import axios from '../../../api/axios'
+import Retweet from '../../posts/Retweet/Retweet'
 
 export const TweetsProfile = ({userInfo}) => { 
   
@@ -51,8 +52,11 @@ export const TweetsProfile = ({userInfo}) => {
           <> 
           { 
             data?.data.length ?data?.data.map((tweet,id)=>{
-              return<Tweet key={id}
-              tweet={tweet}
+              if(tweet?.orginaUserId){
+                return <Retweet key={id} tweet={tweet}/>
+              }
+              return <Tweet key={id}
+              tweet={tweet}e
             />
             }):''  
           } 
